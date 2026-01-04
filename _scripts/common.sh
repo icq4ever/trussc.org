@@ -2,7 +2,7 @@
 # 共通関数・設定
 
 # パス設定
-TRUSSC_ROOT="${TRUSSC_ROOT:-$HOME/Nextcloud/Make/TrussC/tc_v0.0.1}"
+TRUSSC_ROOT="${TRUSSC_ROOT:-$HOME/Nextcloud/Make/TrussC/TrussC}"
 EXAMPLES_DIR="$TRUSSC_ROOT/examples"
 ADDONS_DIR="$TRUSSC_ROOT/addons"
 SAMPLES_DIR="/tmp/trussc-samples"

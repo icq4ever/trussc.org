@@ -246,6 +246,12 @@
       "visible": true,
       "items": [
         {
+          "name": "beepSoundExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
           "name": "chipSoundExample",
           "width": 960,
           "height": 600,
