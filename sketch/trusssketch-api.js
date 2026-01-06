@@ -967,21 +967,24 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Toggle fullscreen mode"
+                    "desc": "Toggle fullscreen mode",
+                    "snippet": "toggleFullscreen()"
                 },
                 {
                     "name": "setClipboardString",
                     "params": "text",
                     "params_typed": "const string& text",
                     "return_type": "void",
-                    "desc": "Copy text to clipboard"
+                    "desc": "Copy text to clipboard",
+                    "snippet": "setClipboardString(${1:\"text\"})"
                 },
                 {
                     "name": "getClipboardString",
                     "params": "",
                     "params_typed": "",
                     "return_type": "string",
-                    "desc": "Get text from clipboard"
+                    "desc": "Get text from clipboard",
+                    "snippet": "getClipboardString()"
                 }
             ]
         },
@@ -1396,21 +1399,24 @@
                     "params": "child",
                     "params_typed": "shared_ptr<Node> child",
                     "return_type": "void",
-                    "desc": "Add a child node"
+                    "desc": "Add a child node",
+                    "snippet": "addChild(${1:child})"
                 },
                 {
                     "name": "setPosition",
                     "params": "x, y",
                     "params_typed": "float x, float y",
                     "return_type": "void",
-                    "desc": "Set position"
+                    "desc": "Set position",
+                    "snippet": "setPosition(${1:x}, ${2:y})"
                 },
                 {
                     "name": "setPosition",
                     "params": "pos",
                     "params_typed": "Vec3 pos",
                     "return_type": "void",
-                    "desc": "Set position"
+                    "desc": "Set position",
+                    "snippet": "setPosition(${1:x}, ${2:y})"
                 },
                 {
                     "name": "RectNode",
@@ -1425,7 +1431,8 @@
                     "params": "w, h",
                     "params_typed": "float w, float h",
                     "return_type": "void",
-                    "desc": "Set size"
+                    "desc": "Set size",
+                    "snippet": "setSize(${1:w}, ${2:h})"
                 }
             ]
         },
@@ -1445,14 +1452,16 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Apply camera transform"
+                    "desc": "Apply camera transform",
+                    "snippet": "begin()"
                 },
                 {
                     "name": "end",
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Restore previous transform"
+                    "desc": "Restore previous transform",
+                    "snippet": "end()"
                 }
             ]
         },
@@ -1501,21 +1510,24 @@
                     "params": "size",
                     "params_typed": "float size",
                     "return_type": "Mesh",
-                    "desc": "Create a box mesh"
+                    "desc": "Create a box mesh",
+                    "snippet": "createBox(${1:size})"
                 },
                 {
                     "name": "createBox",
                     "params": "w, h, d",
                     "params_typed": "float w, float h, float d",
                     "return_type": "Mesh",
-                    "desc": "Create a box mesh"
+                    "desc": "Create a box mesh",
+                    "snippet": "createBox(${1:size})"
                 },
                 {
                     "name": "createSphere",
                     "params": "radius, res",
                     "params_typed": "float radius, int res = 20",
                     "return_type": "Mesh",
-                    "desc": "Create a sphere mesh"
+                    "desc": "Create a sphere mesh",
+                    "snippet": "createSphere(${1:radius})"
                 }
             ]
         },
