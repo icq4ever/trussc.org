@@ -212,31 +212,11 @@
                     }
 
                     // Determine return type
-                    let returnType = 'void';
-                    if (fn.name.startsWith('get') || fn.name.startsWith('is')) {
-                        if (fn.name.includes('Width') || fn.name.includes('Height') ||
-                            fn.name.includes('Count') || fn.name.includes('Seconds') ||
-                            fn.name.includes('Minutes') || fn.name.includes('Hours') ||
-                            fn.name.includes('Year') || fn.name.includes('Month') ||
-                            fn.name.includes('Day') || fn.name.includes('Weekday')) {
-                            returnType = 'int';
-                        } else if (fn.name.includes('Millis') || fn.name.includes('Micros')) {
-                            returnType = 'int64_t';
-                        } else if (fn.name === 'getTimestampString') {
-                            returnType = 'string';
-                        } else if (fn.name === 'isMousePressed') {
-                            returnType = 'bool';
-                        } else {
-                            returnType = 'float';
-                        }
-                    } else if (['sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'atan2',
-                                'abs', 'sqrt', 'sq', 'pow', 'log', 'exp', 'min', 'max',
-                                'floor', 'ceil', 'round', 'fmod', 'sign', 'fract',
-                                'lerp', 'clamp', 'map', 'random', 'noise',
-                                'deg2rad', 'rad2deg', 'dist', 'distSquared'].includes(fn.name)) {
-                        returnType = 'float';
-                    } else if (fn.name === 'to_string') {
-                        returnType = 'string';
+                    let returnType = fn.return_type;
+                    if (returnType === null || returnType === undefined) {
+                        returnType = '<span style="color:#f44747" title="Return type missing in definition">?</span>';
+                    } else if (returnType === '') {
+                        returnType = ''; // Constructor
                     }
 
                     html += `<div class="func">`;
