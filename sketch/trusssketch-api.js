@@ -966,21 +966,21 @@
                     "name": "toggleFullscreen",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Toggle fullscreen mode"
                 },
                 {
                     "name": "setClipboardString",
                     "params": "text",
                     "params_typed": "const string& text",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Copy text to clipboard"
                 },
                 {
                     "name": "getClipboardString",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "string",
                     "desc": "Get text from clipboard"
                 }
             ]
@@ -1074,7 +1074,7 @@
                     "name": "Tween",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a tween",
                     "snippet": "Tween()"
                 },
@@ -1082,7 +1082,7 @@
                     "name": "setDuration",
                     "params": "seconds",
                     "params_typed": "float seconds",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set animation duration",
                     "snippet": "setDuration(${1:1.0})"
                 },
@@ -1090,7 +1090,7 @@
                     "name": "start",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Start animation",
                     "snippet": "start()"
                 },
@@ -1098,7 +1098,7 @@
                     "name": "update",
                     "params": "dt",
                     "params_typed": "float dt",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Update animation",
                     "snippet": "update(getDeltaTime())"
                 },
@@ -1106,7 +1106,7 @@
                     "name": "getValue",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Get current tween value",
                     "snippet": "getValue()"
                 }
@@ -1387,7 +1387,7 @@
                     "name": "Node",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a base scene node",
                     "snippet": "Node()"
                 },
@@ -1395,28 +1395,28 @@
                     "name": "addChild",
                     "params": "child",
                     "params_typed": "shared_ptr<Node> child",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a child node"
                 },
                 {
                     "name": "setPosition",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set position"
                 },
                 {
                     "name": "setPosition",
                     "params": "pos",
                     "params_typed": "Vec3 pos",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set position"
                 },
                 {
                     "name": "RectNode",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a 2D rectangle node",
                     "snippet": "RectNode()"
                 },
@@ -1424,7 +1424,7 @@
                     "name": "setSize",
                     "params": "w, h",
                     "params_typed": "float w, float h",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set size"
                 }
             ]
@@ -1436,7 +1436,7 @@
                     "name": "EasyCam",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create an easy-to-use 3D camera",
                     "snippet": "EasyCam()"
                 },
@@ -1444,14 +1444,14 @@
                     "name": "begin",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Apply camera transform"
                 },
                 {
                     "name": "end",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Restore previous transform"
                 }
             ]
@@ -1463,7 +1463,7 @@
                     "name": "Mat4",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a 4x4 matrix",
                     "snippet": "Mat4()"
                 },
@@ -1471,7 +1471,7 @@
                     "name": "Quaternion",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a quaternion",
                     "snippet": "Quaternion()"
                 }
@@ -1484,7 +1484,7 @@
                     "name": "drawMesh",
                     "params": "mesh",
                     "params_typed": "Mesh mesh",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw a mesh",
                     "snippet": "drawMesh(${1:mesh})"
                 },
@@ -1492,7 +1492,7 @@
                     "name": "drawPolyline",
                     "params": "polyline",
                     "params_typed": "Polyline polyline",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw a polyline",
                     "snippet": "drawPolyline(${1:polyline})"
                 },
@@ -1500,21 +1500,21 @@
                     "name": "createBox",
                     "params": "size",
                     "params_typed": "float size",
-                    "return_type": null,
+                    "return_type": "Mesh",
                     "desc": "Create a box mesh"
                 },
                 {
                     "name": "createBox",
                     "params": "w, h, d",
                     "params_typed": "float w, float h, float d",
-                    "return_type": null,
+                    "return_type": "Mesh",
                     "desc": "Create a box mesh"
                 },
                 {
                     "name": "createSphere",
                     "params": "radius, res",
                     "params_typed": "float radius, int res = 20",
-                    "return_type": null,
+                    "return_type": "Mesh",
                     "desc": "Create a sphere mesh"
                 }
             ]
