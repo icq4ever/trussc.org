@@ -748,6 +748,12 @@ def keyPressed(key) {
 
         // Initialize Emscripten Module
         var Module = {
+            locateFile: function(path, prefix) {
+                if (path.endsWith('.wasm')) {
+                    return prefix + path + '?v=' + new Date().getTime();
+                }
+                return prefix + path;
+            },
             canvas: (function() {
                 return document.getElementById('canvas');
             })(),
@@ -893,6 +899,6 @@ def keyPressed(key) {
             });
         })();
     </script>
-    <script src="https://wasm.trussc.org/sketch/TrussSketch.js"></script>
+    <script src="https://wasm.trussc.org/sketch/TrussSketch.js?v=2"></script>
 </body>
 </html>
