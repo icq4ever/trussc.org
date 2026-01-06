@@ -178,9 +178,33 @@
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
+                    "name": "drawRect",
+                    "params": "pos, w, h",
+                    "params_typed": "Vec3 pos, float w, float h",
+                    "return_type": "void",
+                    "desc": "Draw rectangle",
+                    "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "drawRect",
+                    "params": "pos, size",
+                    "params_typed": "Vec3 pos, Vec2 size",
+                    "return_type": "void",
+                    "desc": "Draw rectangle",
+                    "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
                     "name": "drawCircle",
                     "params": "x, y, radius",
                     "params_typed": "float x, float y, float radius",
+                    "return_type": "void",
+                    "desc": "Draw circle",
+                    "snippet": "drawCircle(${1:x}, ${2:y}, ${3:radius})"
+                },
+                {
+                    "name": "drawCircle",
+                    "params": "center, radius",
+                    "params_typed": "Vec3 center, float radius",
                     "return_type": "void",
                     "desc": "Draw circle",
                     "snippet": "drawCircle(${1:x}, ${2:y}, ${3:radius})"
@@ -194,9 +218,33 @@
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
+                    "name": "drawEllipse",
+                    "params": "center, rx, ry",
+                    "params_typed": "Vec3 center, float rx, float ry",
+                    "return_type": "void",
+                    "desc": "Draw ellipse",
+                    "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "drawEllipse",
+                    "params": "center, radii",
+                    "params_typed": "Vec3 center, Vec2 radii",
+                    "return_type": "void",
+                    "desc": "Draw ellipse",
+                    "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
                     "name": "drawLine",
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
+                    "return_type": "void",
+                    "desc": "Draw line",
+                    "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
+                },
+                {
+                    "name": "drawLine",
+                    "params": "p1, p2",
+                    "params_typed": "Vec3 p1, Vec3 p2",
                     "return_type": "void",
                     "desc": "Draw line",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
@@ -208,6 +256,110 @@
                     "return_type": "void",
                     "desc": "Draw triangle",
                     "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
+                },
+                {
+                    "name": "drawTriangle",
+                    "params": "p1, p2, p3",
+                    "params_typed": "Vec3 p1, Vec3 p2, Vec3 p3",
+                    "return_type": "void",
+                    "desc": "Draw triangle",
+                    "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "size",
+                    "params_typed": "float size",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "w, h, d",
+                    "params_typed": "float w, float h, float d",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "x, y, z, size",
+                    "params_typed": "float x, float y, float z, float size",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "x, y, z, w, h, d",
+                    "params_typed": "float x, float y, float z, float w, float h, float d",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "pos, size",
+                    "params_typed": "Vec3 pos, float size",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawBox",
+                    "params": "pos, w, h, d",
+                    "params_typed": "Vec3 pos, float w, float h, float d",
+                    "return_type": "void",
+                    "desc": "Draw 3D box (respects fill/noFill)",
+                    "snippet": "drawBox(${1:size})"
+                },
+                {
+                    "name": "drawSphere",
+                    "params": "radius",
+                    "params_typed": "float radius",
+                    "return_type": "void",
+                    "desc": "Draw 3D sphere (respects fill/noFill)",
+                    "snippet": "drawSphere(${1:radius})"
+                },
+                {
+                    "name": "drawSphere",
+                    "params": "x, y, z, radius",
+                    "params_typed": "float x, float y, float z, float radius",
+                    "return_type": "void",
+                    "desc": "Draw 3D sphere (respects fill/noFill)",
+                    "snippet": "drawSphere(${1:radius})"
+                },
+                {
+                    "name": "drawSphere",
+                    "params": "pos, radius",
+                    "params_typed": "Vec3 pos, float radius",
+                    "return_type": "void",
+                    "desc": "Draw 3D sphere (respects fill/noFill)",
+                    "snippet": "drawSphere(${1:radius})"
+                },
+                {
+                    "name": "drawCone",
+                    "params": "radius, height",
+                    "params_typed": "float radius, float height",
+                    "return_type": "void",
+                    "desc": "Draw 3D cone (respects fill/noFill)",
+                    "snippet": "drawCone(${1:radius}, ${2:height})"
+                },
+                {
+                    "name": "drawCone",
+                    "params": "x, y, z, radius, height",
+                    "params_typed": "float x, float y, float z, float radius, float height",
+                    "return_type": "void",
+                    "desc": "Draw 3D cone (respects fill/noFill)",
+                    "snippet": "drawCone(${1:radius}, ${2:height})"
+                },
+                {
+                    "name": "drawCone",
+                    "params": "pos, radius, height",
+                    "params_typed": "Vec3 pos, float radius, float height",
+                    "return_type": "void",
+                    "desc": "Draw 3D cone (respects fill/noFill)",
+                    "snippet": "drawCone(${1:radius}, ${2:height})"
                 },
                 {
                     "name": "beginShape",
@@ -275,7 +427,7 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Enable fill",
+                    "desc": "Enable fill mode (shapes are solid, no outline)",
                     "snippet": "fill()"
                 },
                 {
@@ -283,24 +435,8 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Disable fill",
+                    "desc": "Enable stroke mode (shapes show outline only)",
                     "snippet": "noFill()"
-                },
-                {
-                    "name": "stroke",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "void",
-                    "desc": "Enable stroke",
-                    "snippet": "stroke()"
-                },
-                {
-                    "name": "noStroke",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "void",
-                    "desc": "Disable stroke",
-                    "snippet": "noStroke()"
                 },
                 {
                     "name": "setStrokeWeight",
@@ -336,13 +472,53 @@
                     "params": "radians",
                     "params_typed": "float radians",
                     "return_type": "void",
-                    "desc": "Rotate by radians",
+                    "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
+                    "snippet": "rotate(${1:radians})"
+                },
+                {
+                    "name": "rotate",
+                    "params": "x, y, z",
+                    "params_typed": "float x, float y, float z",
+                    "return_type": "void",
+                    "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
+                    "snippet": "rotate(${1:radians})"
+                },
+                {
+                    "name": "rotate",
+                    "params": "euler",
+                    "params_typed": "Vec3 euler",
+                    "return_type": "void",
+                    "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
+                    "snippet": "rotate(${1:radians})"
+                },
+                {
+                    "name": "rotate",
+                    "params": "quat",
+                    "params_typed": "Quaternion quat",
+                    "return_type": "void",
+                    "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
                     "snippet": "rotate(${1:radians})"
                 },
                 {
                     "name": "rotateDeg",
                     "params": "degrees",
                     "params_typed": "float degrees",
+                    "return_type": "void",
+                    "desc": "Rotate by degrees",
+                    "snippet": "rotateDeg(${1:degrees})"
+                },
+                {
+                    "name": "rotateDeg",
+                    "params": "x, y, z",
+                    "params_typed": "float x, float y, float z",
+                    "return_type": "void",
+                    "desc": "Rotate by degrees",
+                    "snippet": "rotateDeg(${1:degrees})"
+                },
+                {
+                    "name": "rotateDeg",
+                    "params": "euler",
+                    "params_typed": "Vec3 euler",
                     "return_type": "void",
                     "desc": "Rotate by degrees",
                     "snippet": "rotateDeg(${1:degrees})"
@@ -401,6 +577,14 @@
                     "snippet": "getWindowHeight()"
                 },
                 {
+                    "name": "getWindowSize",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Vec2",
+                    "desc": "Get canvas size as Vec2",
+                    "snippet": "getWindowSize()"
+                },
+                {
                     "name": "getMouseX",
                     "params": "",
                     "params_typed": "",
@@ -415,6 +599,22 @@
                     "return_type": "float",
                     "desc": "Get mouse Y position",
                     "snippet": "getMouseY()"
+                },
+                {
+                    "name": "getMousePos",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Vec2",
+                    "desc": "Get mouse position as Vec2",
+                    "snippet": "getMousePos()"
+                },
+                {
+                    "name": "getGlobalMousePos",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Vec2",
+                    "desc": "Get global mouse position as Vec2",
+                    "snippet": "getGlobalMousePos()"
                 },
                 {
                     "name": "isMousePressed",
@@ -1433,6 +1633,75 @@
                     "return_type": "void",
                     "desc": "Set size",
                     "snippet": "setSize(${1:w}, ${2:h})"
+                }
+            ]
+        },
+        {
+            "name": "3D Setup",
+            "functions": [
+                {
+                    "name": "setupScreenPerspective",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Set up perspective projection (oF-style default 3D)",
+                    "snippet": "setupScreenPerspective()"
+                },
+                {
+                    "name": "setupScreenPerspective",
+                    "params": "fovDeg",
+                    "params_typed": "float fovDeg",
+                    "return_type": "void",
+                    "desc": "Set up perspective projection (oF-style default 3D)",
+                    "snippet": "setupScreenPerspective()"
+                },
+                {
+                    "name": "setupScreenPerspective",
+                    "params": "fovDeg, nearDist, farDist",
+                    "params_typed": "float fovDeg, float nearDist, float farDist",
+                    "return_type": "void",
+                    "desc": "Set up perspective projection (oF-style default 3D)",
+                    "snippet": "setupScreenPerspective()"
+                },
+                {
+                    "name": "setupScreenOrtho",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Set up orthographic projection (2D mode)",
+                    "snippet": "setupScreenOrtho()"
+                },
+                {
+                    "name": "setupScreenFov",
+                    "params": "fovDeg",
+                    "params_typed": "float fovDeg",
+                    "return_type": "void",
+                    "desc": "Set up screen projection with specified FOV (0 = ortho, >0 = perspective)",
+                    "snippet": "setupScreenFov(${1:45.0})"
+                },
+                {
+                    "name": "setupScreenFov",
+                    "params": "fovDeg, nearDist, farDist",
+                    "params_typed": "float fovDeg, float nearDist, float farDist",
+                    "return_type": "void",
+                    "desc": "Set up screen projection with specified FOV (0 = ortho, >0 = perspective)",
+                    "snippet": "setupScreenFov(${1:45.0})"
+                },
+                {
+                    "name": "setDefaultScreenFov",
+                    "params": "fovDeg",
+                    "params_typed": "float fovDeg",
+                    "return_type": "void",
+                    "desc": "Set default screen FOV (applied at frame start)",
+                    "snippet": "setDefaultScreenFov(${1:45.0})"
+                },
+                {
+                    "name": "getDefaultScreenFov",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get current default screen FOV",
+                    "snippet": "getDefaultScreenFov()"
                 }
             ]
         },
