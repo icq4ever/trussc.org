@@ -199,10 +199,11 @@
                     seen.add(key);
 
                     // Build C++ signature from params
-                    let cppParams = fn.params;
-                    if (cppParams) {
-                        // Add float types to simple params
-                        cppParams = cppParams.split(', ').map(p => {
+                    let cppParams = fn.params_typed;
+                    
+                    if (!cppParams && fn.params) {
+                        // Fallback: Add float types to simple params
+                        cppParams = fn.params.split(', ').map(p => {
                             if (p === 'text' || p === 'message' || p === 'format') return 'const string& ' + p;
                             if (p === 'key' || p === 'button' || p === 'width' || p === 'height') return 'int ' + p;
                             if (p === 'value') return 'T ' + p;
