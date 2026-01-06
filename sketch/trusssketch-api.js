@@ -104,7 +104,7 @@
                     "name": "clear",
                     "params": "gray",
                     "params_typed": "float gray",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Clear screen",
                     "snippet": "clear(${1:0.0})"
                 },
@@ -112,7 +112,7 @@
                     "name": "clear",
                     "params": "r, g, b",
                     "params_typed": "float r, float g, float b",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Clear screen",
                     "snippet": "clear(${1:0.0})"
                 },
@@ -120,7 +120,7 @@
                     "name": "setColor",
                     "params": "gray",
                     "params_typed": "float gray",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
@@ -128,7 +128,7 @@
                     "name": "setColor",
                     "params": "r, g, b",
                     "params_typed": "float r, float g, float b",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
@@ -136,7 +136,7 @@
                     "name": "setColor",
                     "params": "r, g, b, a",
                     "params_typed": "float r, float g, float b, float a",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
@@ -144,7 +144,7 @@
                     "name": "setColorHSB",
                     "params": "h, s, b",
                     "params_typed": "float h, float s, float b",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set color from HSB (H: 0-TAU)",
                     "snippet": "setColorHSB(${1:0.0}, ${2:1.0}, ${3:1.0})"
                 },
@@ -152,7 +152,7 @@
                     "name": "setColorOKLCH",
                     "params": "L, C, H",
                     "params_typed": "float L, float C, float H",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set color from OKLCH",
                     "snippet": "setColorOKLCH(${1:0.7}, ${2:0.15}, ${3:0.0})"
                 },
@@ -160,7 +160,7 @@
                     "name": "setColorOKLab",
                     "params": "L, a, b",
                     "params_typed": "float L, float a, float b",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set color from OKLab",
                     "snippet": "setColorOKLab(${1:0.7}, ${2:0.0}, ${3:0.0})"
                 }
@@ -173,7 +173,7 @@
                     "name": "drawRect",
                     "params": "x, y, w, h",
                     "params_typed": "float x, float y, float w, float h",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw rectangle",
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
@@ -181,7 +181,7 @@
                     "name": "drawCircle",
                     "params": "x, y, radius",
                     "params_typed": "float x, float y, float radius",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw circle",
                     "snippet": "drawCircle(${1:x}, ${2:y}, ${3:radius})"
                 },
@@ -189,7 +189,7 @@
                     "name": "drawEllipse",
                     "params": "x, y, w, h",
                     "params_typed": "float x, float y, float w, float h",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw ellipse",
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
@@ -197,7 +197,7 @@
                     "name": "drawLine",
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw line",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
@@ -205,7 +205,7 @@
                     "name": "drawTriangle",
                     "params": "x1, y1, x2, y2, x3, y3",
                     "params_typed": "float x1, float y1, float x2, float y2, float x3, float y3",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw triangle",
                     "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
                 },
@@ -213,7 +213,7 @@
                     "name": "beginShape",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Begin drawing a shape",
                     "snippet": "beginShape()"
                 },
@@ -221,7 +221,7 @@
                     "name": "vertex",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
@@ -229,7 +229,7 @@
                     "name": "vertex",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
@@ -237,7 +237,7 @@
                     "name": "vertex",
                     "params": "v",
                     "params_typed": "const Vec2& v",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
@@ -245,7 +245,7 @@
                     "name": "vertex",
                     "params": "v",
                     "params_typed": "const Vec3& v",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
@@ -253,7 +253,7 @@
                     "name": "endShape",
                     "params": "close",
                     "params_typed": "bool close = false",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "End drawing a shape",
                     "snippet": "endShape()"
                 },
@@ -261,7 +261,7 @@
                     "name": "drawBitmapString",
                     "params": "text, x, y",
                     "params_typed": "const string& text, float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw text",
                     "snippet": "drawBitmapString(${1:\"text\"}, ${2:x}, ${3:y})"
                 }
@@ -274,7 +274,7 @@
                     "name": "fill",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Enable fill",
                     "snippet": "fill()"
                 },
@@ -282,7 +282,7 @@
                     "name": "noFill",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Disable fill",
                     "snippet": "noFill()"
                 },
@@ -290,7 +290,7 @@
                     "name": "stroke",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Enable stroke",
                     "snippet": "stroke()"
                 },
@@ -298,7 +298,7 @@
                     "name": "noStroke",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Disable stroke",
                     "snippet": "noStroke()"
                 },
@@ -306,7 +306,7 @@
                     "name": "setStrokeWeight",
                     "params": "weight",
                     "params_typed": "float weight",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set stroke width",
                     "snippet": "setStrokeWeight(${1:1.0})"
                 }
@@ -319,7 +319,7 @@
                     "name": "translate",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Move origin",
                     "snippet": "translate(${1:x}, ${2:y})"
                 },
@@ -327,7 +327,7 @@
                     "name": "translate",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Move origin",
                     "snippet": "translate(${1:x}, ${2:y})"
                 },
@@ -335,7 +335,7 @@
                     "name": "rotate",
                     "params": "radians",
                     "params_typed": "float radians",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Rotate by radians",
                     "snippet": "rotate(${1:radians})"
                 },
@@ -343,7 +343,7 @@
                     "name": "rotateDeg",
                     "params": "degrees",
                     "params_typed": "float degrees",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Rotate by degrees",
                     "snippet": "rotateDeg(${1:degrees})"
                 },
@@ -351,7 +351,7 @@
                     "name": "scale",
                     "params": "s",
                     "params_typed": "float s",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Scale",
                     "snippet": "scale(${1:s})"
                 },
@@ -359,7 +359,7 @@
                     "name": "scale",
                     "params": "sx, sy",
                     "params_typed": "float sx, float sy",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Scale",
                     "snippet": "scale(${1:s})"
                 },
@@ -367,7 +367,7 @@
                     "name": "pushMatrix",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Save transform state",
                     "snippet": "pushMatrix()"
                 },
@@ -375,7 +375,7 @@
                     "name": "popMatrix",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Restore transform state",
                     "snippet": "popMatrix()"
                 }
@@ -388,7 +388,7 @@
                     "name": "getWindowWidth",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Get canvas width",
                     "snippet": "getWindowWidth()"
                 },
@@ -396,7 +396,7 @@
                     "name": "getWindowHeight",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Get canvas height",
                     "snippet": "getWindowHeight()"
                 },
@@ -404,7 +404,7 @@
                     "name": "getMouseX",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Get mouse X position",
                     "snippet": "getMouseX()"
                 },
@@ -412,7 +412,7 @@
                     "name": "getMouseY",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Get mouse Y position",
                     "snippet": "getMouseY()"
                 },
@@ -420,7 +420,7 @@
                     "name": "isMousePressed",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "bool",
                     "desc": "Is mouse button pressed",
                     "snippet": "isMousePressed()"
                 }
@@ -433,7 +433,7 @@
                     "name": "getDeltaTime",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "double",
                     "desc": "Seconds since last frame",
                     "snippet": "getDeltaTime()"
                 },
@@ -441,7 +441,7 @@
                     "name": "getFrameRate",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "double",
                     "desc": "Current FPS",
                     "snippet": "getFrameRate()"
                 },
@@ -449,7 +449,7 @@
                     "name": "getFrameCount",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "uint64_t",
                     "desc": "Total frames rendered",
                     "snippet": "getFrameCount()"
                 }
@@ -462,7 +462,7 @@
                     "name": "getElapsedTimef",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Elapsed seconds (float)",
                     "snippet": "getElapsedTimef()"
                 },
@@ -470,7 +470,7 @@
                     "name": "getElapsedTimeMillis",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "uint64_t",
                     "desc": "Elapsed milliseconds (int64)",
                     "snippet": "getElapsedTimeMillis()"
                 },
@@ -478,7 +478,7 @@
                     "name": "getElapsedTimeMicros",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "uint64_t",
                     "desc": "Elapsed microseconds (int64)",
                     "snippet": "getElapsedTimeMicros()"
                 },
@@ -486,7 +486,7 @@
                     "name": "resetElapsedTimeCounter",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Reset elapsed time",
                     "snippet": "resetElapsedTimeCounter()"
                 }
@@ -499,7 +499,7 @@
                     "name": "getSystemTimeMillis",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "uint64_t",
                     "desc": "Unix time in milliseconds",
                     "snippet": "getSystemTimeMillis()"
                 },
@@ -507,7 +507,7 @@
                     "name": "getSystemTimeMicros",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "uint64_t",
                     "desc": "Unix time in microseconds",
                     "snippet": "getSystemTimeMicros()"
                 },
@@ -515,7 +515,7 @@
                     "name": "getTimestampString",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "string",
                     "desc": "Formatted timestamp",
                     "snippet": "getTimestampString()"
                 },
@@ -523,7 +523,7 @@
                     "name": "getTimestampString",
                     "params": "format",
                     "params_typed": "const string& format",
-                    "return_type": null,
+                    "return_type": "string",
                     "desc": "Formatted timestamp",
                     "snippet": "getTimestampString()"
                 }
@@ -536,7 +536,7 @@
                     "name": "getSeconds",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current seconds (0-59)",
                     "snippet": "getSeconds()"
                 },
@@ -544,7 +544,7 @@
                     "name": "getMinutes",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current minutes (0-59)",
                     "snippet": "getMinutes()"
                 },
@@ -552,7 +552,7 @@
                     "name": "getHours",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current hours (0-23)",
                     "snippet": "getHours()"
                 },
@@ -560,7 +560,7 @@
                     "name": "getYear",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current year",
                     "snippet": "getYear()"
                 },
@@ -568,7 +568,7 @@
                     "name": "getMonth",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current month (1-12)",
                     "snippet": "getMonth()"
                 },
@@ -576,7 +576,7 @@
                     "name": "getDay",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Current day (1-31)",
                     "snippet": "getDay()"
                 },
@@ -584,7 +584,7 @@
                     "name": "getWeekday",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "int",
                     "desc": "Weekday (0=Sun, 6=Sat)",
                     "snippet": "getWeekday()"
                 }
@@ -597,7 +597,7 @@
                     "name": "random",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Random number",
                     "snippet": "random()"
                 },
@@ -605,7 +605,7 @@
                     "name": "random",
                     "params": "max",
                     "params_typed": "float max",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Random number",
                     "snippet": "random()"
                 },
@@ -613,15 +613,39 @@
                     "name": "random",
                     "params": "min, max",
                     "params_typed": "float min, float max",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Random number",
                     "snippet": "random()"
                 },
                 {
+                    "name": "randomInt",
+                    "params": "max",
+                    "params_typed": "int max",
+                    "return_type": "int",
+                    "desc": "Random integer",
+                    "snippet": "randomInt(${1:max})"
+                },
+                {
+                    "name": "randomInt",
+                    "params": "min, max",
+                    "params_typed": "int min, int max",
+                    "return_type": "int",
+                    "desc": "Random integer",
+                    "snippet": "randomInt(${1:max})"
+                },
+                {
+                    "name": "randomSeed",
+                    "params": "seed",
+                    "params_typed": "unsigned int seed",
+                    "return_type": "void",
+                    "desc": "Set random seed",
+                    "snippet": "randomSeed(${1:seed})"
+                },
+                {
                     "name": "noise",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise",
                     "snippet": "noise(${1:x})"
                 },
@@ -629,7 +653,7 @@
                     "name": "noise",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise",
                     "snippet": "noise(${1:x})"
                 },
@@ -637,7 +661,7 @@
                     "name": "noise",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise",
                     "snippet": "noise(${1:x})"
                 },
@@ -645,7 +669,7 @@
                     "name": "signedNoise",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
@@ -653,7 +677,7 @@
                     "name": "signedNoise",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
@@ -661,7 +685,7 @@
                     "name": "signedNoise",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
@@ -669,7 +693,7 @@
                     "name": "signedNoise",
                     "params": "x, y, z, w",
                     "params_typed": "float x, float y, float z, float w",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
@@ -677,7 +701,7 @@
                     "name": "fbm",
                     "params": "x, y, octaves, lacunarity, gain",
                     "params_typed": "float x, float y, int octaves = 4, float lacunarity = 2.0, float gain = 0.5",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Fractal Brownian Motion noise",
                     "snippet": "fbm(${1:x}, ${2:y})"
                 },
@@ -685,7 +709,7 @@
                     "name": "fbm",
                     "params": "x, y, z, octaves, lacunarity, gain",
                     "params_typed": "float x, float y, float z, int octaves = 4, float lacunarity = 2.0, float gain = 0.5",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Fractal Brownian Motion noise",
                     "snippet": "fbm(${1:x}, ${2:y})"
                 }
@@ -698,7 +722,7 @@
                     "name": "lerp",
                     "params": "a, b, t",
                     "params_typed": "float a, float b, float t",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Linear interpolation",
                     "snippet": "lerp(${1:a}, ${2:b}, ${3:t})"
                 },
@@ -706,7 +730,7 @@
                     "name": "clamp",
                     "params": "v, min, max",
                     "params_typed": "float v, float min, float max",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Clamp value to range",
                     "snippet": "clamp(${1:v}, ${2:min}, ${3:max})"
                 },
@@ -714,7 +738,7 @@
                     "name": "map",
                     "params": "v, inMin, inMax, outMin, outMax",
                     "params_typed": "float v, float inMin, float inMax, float outMin, float outMax",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Map value between ranges",
                     "snippet": "map(${1:v}, ${2:inMin}, ${3:inMax}, ${4:outMin}, ${5:outMax})"
                 }
@@ -727,7 +751,7 @@
                     "name": "sin",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Sine",
                     "snippet": "sin(${1:x})"
                 },
@@ -735,7 +759,7 @@
                     "name": "cos",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Cosine",
                     "snippet": "cos(${1:x})"
                 },
@@ -743,7 +767,7 @@
                     "name": "tan",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Tangent",
                     "snippet": "tan(${1:x})"
                 },
@@ -751,7 +775,7 @@
                     "name": "asin",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Arc sine",
                     "snippet": "asin(${1:x})"
                 },
@@ -759,7 +783,7 @@
                     "name": "acos",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Arc cosine",
                     "snippet": "acos(${1:x})"
                 },
@@ -767,7 +791,7 @@
                     "name": "atan",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Arc tangent",
                     "snippet": "atan(${1:x})"
                 },
@@ -775,7 +799,7 @@
                     "name": "atan2",
                     "params": "y, x",
                     "params_typed": "float y, float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Arc tangent of y/x",
                     "snippet": "atan2(${1:y}, ${2:x})"
                 },
@@ -783,7 +807,7 @@
                     "name": "deg2rad",
                     "params": "degrees",
                     "params_typed": "float degrees",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Degrees to radians",
                     "snippet": "deg2rad(${1:degrees})"
                 },
@@ -791,7 +815,7 @@
                     "name": "rad2deg",
                     "params": "radians",
                     "params_typed": "float radians",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Radians to degrees",
                     "snippet": "rad2deg(${1:radians})"
                 }
@@ -804,7 +828,7 @@
                     "name": "abs",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Absolute value",
                     "snippet": "abs(${1:x})"
                 },
@@ -812,7 +836,7 @@
                     "name": "sqrt",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Square root",
                     "snippet": "sqrt(${1:x})"
                 },
@@ -820,7 +844,7 @@
                     "name": "sq",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Square (x*x)",
                     "snippet": "sq(${1:x})"
                 },
@@ -828,7 +852,7 @@
                     "name": "pow",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Power (x^y)",
                     "snippet": "pow(${1:x}, ${2:y})"
                 },
@@ -836,7 +860,7 @@
                     "name": "log",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Natural logarithm",
                     "snippet": "log(${1:x})"
                 },
@@ -844,7 +868,7 @@
                     "name": "exp",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Exponential (e^x)",
                     "snippet": "exp(${1:x})"
                 },
@@ -852,7 +876,7 @@
                     "name": "min",
                     "params": "a, b",
                     "params_typed": "float a, float b",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Minimum",
                     "snippet": "min(${1:a}, ${2:b})"
                 },
@@ -860,7 +884,7 @@
                     "name": "max",
                     "params": "a, b",
                     "params_typed": "float a, float b",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Maximum",
                     "snippet": "max(${1:a}, ${2:b})"
                 },
@@ -868,7 +892,7 @@
                     "name": "floor",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Round down",
                     "snippet": "floor(${1:x})"
                 },
@@ -876,7 +900,7 @@
                     "name": "ceil",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Round up",
                     "snippet": "ceil(${1:x})"
                 },
@@ -884,7 +908,7 @@
                     "name": "round",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Round to nearest",
                     "snippet": "round(${1:x})"
                 },
@@ -892,7 +916,7 @@
                     "name": "fmod",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Floating-point modulo",
                     "snippet": "fmod(${1:x}, ${2:y})"
                 },
@@ -900,7 +924,7 @@
                     "name": "sign",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Sign (-1, 0, 1)",
                     "snippet": "sign(${1:x})"
                 },
@@ -908,7 +932,7 @@
                     "name": "fract",
                     "params": "x",
                     "params_typed": "float x",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Fractional part",
                     "snippet": "fract(${1:x})"
                 }
@@ -921,7 +945,7 @@
                     "name": "dist",
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Distance between points",
                     "snippet": "dist(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
@@ -929,7 +953,7 @@
                     "name": "distSquared",
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
-                    "return_type": null,
+                    "return_type": "float",
                     "desc": "Squared distance",
                     "snippet": "distSquared(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 }
@@ -1502,7 +1526,7 @@
                     "name": "Mesh",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a new Mesh",
                     "snippet": "Mesh()"
                 },
@@ -1510,7 +1534,7 @@
                     "name": "setMode",
                     "params": "mode",
                     "params_typed": "int mode",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set primitive mode (MESH_TRIANGLES, etc.)",
                     "snippet": "setMode(${1:MESH_TRIANGLES})"
                 },
@@ -1518,7 +1542,7 @@
                     "name": "addVertex",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "addVertex(${1:x}, ${2:y}, ${3:0})"
                 },
@@ -1526,7 +1550,7 @@
                     "name": "addVertex",
                     "params": "v",
                     "params_typed": "Vec3 v",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "addVertex(${1:x}, ${2:y}, ${3:0})"
                 },
@@ -1534,7 +1558,7 @@
                     "name": "addColor",
                     "params": "r, g, b, a",
                     "params_typed": "float r, float g, float b, float a",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a color for the vertex",
                     "snippet": "addColor(${1:1}, ${2:1}, ${3:1}, ${4:1})"
                 },
@@ -1542,7 +1566,7 @@
                     "name": "addColor",
                     "params": "c",
                     "params_typed": "Color c",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a color for the vertex",
                     "snippet": "addColor(${1:1}, ${2:1}, ${3:1}, ${4:1})"
                 },
@@ -1550,7 +1574,7 @@
                     "name": "addTexCoord",
                     "params": "u, v",
                     "params_typed": "float u, float v",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a texture coordinate",
                     "snippet": "addTexCoord(${1:u}, ${2:v})"
                 },
@@ -1558,7 +1582,7 @@
                     "name": "addNormal",
                     "params": "x, y, z",
                     "params_typed": "float x, float y, float z",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a normal vector",
                     "snippet": "addNormal(${1:x}, ${2:y}, ${3:z})"
                 },
@@ -1566,7 +1590,7 @@
                     "name": "addIndex",
                     "params": "index",
                     "params_typed": "int index",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add an index",
                     "snippet": "addIndex(${1:index})"
                 },
@@ -1574,7 +1598,7 @@
                     "name": "addTriangle",
                     "params": "i1, i2, i3",
                     "params_typed": "int i1, int i2, int i3",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a triangle (3 indices)",
                     "snippet": "addTriangle(${1:i1}, ${2:i2}, ${3:i3})"
                 },
@@ -1582,7 +1606,7 @@
                     "name": "clear",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Clear all data",
                     "snippet": "clear()"
                 },
@@ -1590,7 +1614,7 @@
                     "name": "draw",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Draw the mesh",
                     "snippet": "draw()"
                 }
@@ -1603,7 +1627,7 @@
                     "name": "Polyline",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a new Polyline (Path)",
                     "snippet": "Polyline()"
                 },
@@ -1611,7 +1635,7 @@
                     "name": "addVertex",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
@@ -1619,7 +1643,7 @@
                     "name": "lineTo",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a line segment to point",
                     "snippet": "lineTo(${1:x}, ${2:y})"
                 },
@@ -1627,7 +1651,7 @@
                     "name": "bezierTo",
                     "params": "cx1, cy1, cx2, cy2, x, y",
                     "params_typed": "float cx1, float cy1, float cx2, float cy2, float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a cubic bezier curve",
                     "snippet": "bezierTo(${1:cx1}, ${2:cy1}, ${3:cx2}, ${4:cy2}, ${5:x}, ${6:y})"
                 },
@@ -1635,7 +1659,7 @@
                     "name": "quadBezierTo",
                     "params": "cx, cy, x, y",
                     "params_typed": "float cx, float cy, float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a quadratic bezier curve",
                     "snippet": "quadBezierTo(${1:cx}, ${2:cy}, ${3:x}, ${4:y})"
                 },
@@ -1643,7 +1667,7 @@
                     "name": "curveTo",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a Catmull-Rom curve segment",
                     "snippet": "curveTo(${1:x}, ${2:y})"
                 },
@@ -1651,7 +1675,7 @@
                     "name": "arc",
                     "params": "x, y, rX, rY, start, end",
                     "params_typed": "float x, float y, float rX, float rY, float angleBegin, float angleEnd",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add an arc",
                     "snippet": "arc(${1:x}, ${2:y}, ${3:rX}, ${4:rY}, ${5:0}, ${6:360})"
                 },
@@ -1659,7 +1683,7 @@
                     "name": "close",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Close the shape",
                     "snippet": "close()"
                 }
@@ -1672,7 +1696,7 @@
                     "name": "StrokeMesh",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a new StrokeMesh",
                     "snippet": "StrokeMesh()"
                 },
@@ -1680,7 +1704,7 @@
                     "name": "setWidth",
                     "params": "width",
                     "params_typed": "float width",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set stroke width",
                     "snippet": "setWidth(${1:5.0})"
                 },
@@ -1688,7 +1712,7 @@
                     "name": "setColor",
                     "params": "color",
                     "params_typed": "Color color",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set stroke color",
                     "snippet": "setColor(${1:color})"
                 },
@@ -1696,7 +1720,7 @@
                     "name": "setCapType",
                     "params": "type",
                     "params_typed": "int type",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set cap type (CAP_BUTT, CAP_ROUND, CAP_SQUARE)",
                     "snippet": "setCapType(${1:CAP_ROUND})"
                 },
@@ -1704,7 +1728,7 @@
                     "name": "setJoinType",
                     "params": "type",
                     "params_typed": "int type",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set join type (JOIN_MITER, JOIN_ROUND, JOIN_BEVEL)",
                     "snippet": "setJoinType(${1:JOIN_ROUND})"
                 },
@@ -1712,7 +1736,7 @@
                     "name": "addVertex",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Add a vertex",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
@@ -1720,7 +1744,7 @@
                     "name": "update",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Update the internal mesh",
                     "snippet": "update()"
                 }
