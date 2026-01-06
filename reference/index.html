@@ -176,14 +176,14 @@
 
     <div id="content"></div>
 
-    <script src="../sketch/tcscript-api.js"></script>
+    <script src="../sketch/trusssketch-api.js"></script>
     <script>
         function renderReference() {
             const content = document.getElementById('content');
             let html = '';
 
             // Render categories
-            for (const cat of tcScriptAPI.categories) {
+            for (const cat of TrussSketchAPI.categories) {
                 // Skip lifecycle and events for C++ reference (these are class methods)
                 if (cat.name === 'Lifecycle' || cat.name === 'Events') {
                     html += `<h2>${cat.name} (Override in tcApp)</h2>\n<div class="section">\n`;
@@ -258,7 +258,7 @@
 
             // Render constants
             html += `<h2>Constants</h2>\n<div class="constants">\n`;
-            for (const c of tcScriptAPI.constants) {
+            for (const c of TrussSketchAPI.constants) {
                 html += `<div class="const">${c.name} = ${c.value}</div>\n`;
             }
             html += `</div>\n`;
