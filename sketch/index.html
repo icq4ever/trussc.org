@@ -899,6 +899,31 @@ def keyPressed(key) {
             });
         })();
     </script>
-    <script src="https://wasm.trussc.org/sketch/TrussSketch.js?v=2"></script>
+    <script>
+        (function() {
+            var script = document.createElement('script');
+            // If localhost, try local file first
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                fetch('TrussSketch.js', { method: 'HEAD' })
+                    .then(res => {
+                        if (res.ok) {
+                            console.log('Loading local TrussSketch.js');
+                            script.src = 'TrussSketch.js?v=' + new Date().getTime();
+                            document.body.appendChild(script);
+                        } else {
+                            throw new Error('Not found');
+                        }
+                    })
+                    .catch(() => {
+                        console.log('Local TrussSketch.js not found, using CDN');
+                        script.src = 'https://wasm.trussc.org/sketch/TrussSketch.js?v=2';
+                        document.body.appendChild(script);
+                    });
+            } else {
+                script.src = 'https://wasm.trussc.org/sketch/TrussSketch.js?v=2';
+                document.body.appendChild(script);
+            }
+        })();
+    </script>
 </body>
 </html>
