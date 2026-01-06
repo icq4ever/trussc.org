@@ -727,16 +727,6 @@ const TrussSketchAPI = {
             "name": "Window & System",
             "functions": [
                 {
-                    "name": "setWindowTitle",
-                    "params": "title",
-                    "desc": "Set window title"
-                },
-                {
-                    "name": "setWindowSize",
-                    "params": "width, height",
-                    "desc": "Set window size"
-                },
-                {
                     "name": "toggleFullscreen",
                     "params": "",
                     "desc": "Toggle fullscreen mode"
@@ -790,11 +780,6 @@ const TrussSketchAPI = {
                     "params": "",
                     "desc": "Create a sound player",
                     "snippet": "Sound()"
-                },
-                {
-                    "name": "load",
-                    "params": "path",
-                    "desc": "Load sound file"
                 },
                 {
                     "name": "play",
@@ -1167,171 +1152,6 @@ const TrussSketchAPI = {
                     "name": "createSphere",
                     "params": "radius, res",
                     "desc": "Create a sphere mesh"
-                },
-                {
-                    "name": "drawTexture",
-                    "params": "tex, x, y",
-                    "desc": "Draw a texture"
-                },
-                {
-                    "name": "drawTexture",
-                    "params": "tex, x, y, w, h",
-                    "desc": "Draw a texture"
-                }
-            ]
-        },
-        {
-            "name": "Graphics - Texture & GPU",
-            "functions": [
-                {
-                    "name": "Texture",
-                    "params": "",
-                    "desc": "Create a texture"
-                },
-                {
-                    "name": "load",
-                    "params": "path",
-                    "desc": "Load image from file"
-                },
-                {
-                    "name": "loadFromPixels",
-                    "params": "pixels",
-                    "desc": "Load from pixel data"
-                },
-                {
-                    "name": "bind",
-                    "params": "slot",
-                    "desc": "Bind texture"
-                },
-                {
-                    "name": "unbind",
-                    "params": "slot",
-                    "desc": "Unbind texture"
-                },
-                {
-                    "name": "getWidth",
-                    "params": "",
-                    "desc": "Get width"
-                },
-                {
-                    "name": "getHeight",
-                    "params": "",
-                    "desc": "Get height"
-                }
-            ]
-        },
-        {
-            "name": "Graphics - FBO",
-            "functions": [
-                {
-                    "name": "Fbo",
-                    "params": "",
-                    "desc": "Create an FBO"
-                },
-                {
-                    "name": "allocate",
-                    "params": "w, h",
-                    "desc": "Allocate buffer"
-                },
-                {
-                    "name": "begin",
-                    "params": "",
-                    "desc": "Begin drawing to FBO"
-                },
-                {
-                    "name": "end",
-                    "params": "",
-                    "desc": "End drawing to FBO"
-                },
-                {
-                    "name": "getTexture",
-                    "params": "",
-                    "desc": "Get internal texture"
-                },
-                {
-                    "name": "readToPixels",
-                    "params": "pixels",
-                    "desc": "Read pixels to CPU memory"
-                }
-            ]
-        },
-        {
-            "name": "Graphics - Shader",
-            "functions": [
-                {
-                    "name": "Shader",
-                    "params": "",
-                    "desc": "Create a shader"
-                },
-                {
-                    "name": "load",
-                    "params": "vert, frag",
-                    "desc": "Load shader from files"
-                },
-                {
-                    "name": "begin",
-                    "params": "",
-                    "desc": "Begin shader"
-                },
-                {
-                    "name": "end",
-                    "params": "",
-                    "desc": "End shader"
-                },
-                {
-                    "name": "setUniform",
-                    "params": "name, val",
-                    "desc": "Set uniform variable"
-                },
-                {
-                    "name": "setUniform",
-                    "params": "name, x, y",
-                    "desc": "Set uniform variable"
-                },
-                {
-                    "name": "setUniform",
-                    "params": "name, v",
-                    "desc": "Set uniform variable"
-                },
-                {
-                    "name": "setUniform",
-                    "params": "name, c",
-                    "desc": "Set uniform variable"
-                }
-            ]
-        },
-        {
-            "name": "Types - Pixels",
-            "functions": [
-                {
-                    "name": "Pixels",
-                    "params": "",
-                    "desc": "Create pixel buffer"
-                },
-                {
-                    "name": "allocate",
-                    "params": "w, h, channels",
-                    "desc": "Allocate memory"
-                },
-                {
-                    "name": "getData",
-                    "params": "",
-                    "desc": "Get raw data pointer"
-                },
-                {
-                    "name": "getColor",
-                    "params": "x, y",
-                    "desc": "Get color at pixel"
-                },
-                {
-                    "name": "setColor",
-                    "params": "x, y, c",
-                    "desc": "Set color at pixel"
-                },
-                {
-                    "name": "save",
-                    "params": "path",
-                    "desc": "Save to file"
                 }
             ]
         },
