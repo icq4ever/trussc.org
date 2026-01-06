@@ -231,6 +231,8 @@
                 if (response.ok) {
                     const code = await response.text();
                     sourceCode.textContent = code;
+                    sourceCode.className = 'language-cpp';
+                    sourceCode.removeAttribute('data-highlighted');
                     hljs.highlightElement(sourceCode);
                     sourceSection.style.display = '';
 
@@ -277,12 +279,15 @@
                             const code = await response.text();
                             sourceCode.textContent = code;
                             sourceCode.className = file.endsWith('.glsl') ? 'language-glsl' : 'language-cpp';
+                            sourceCode.removeAttribute('data-highlighted');
                             hljs.highlightElement(sourceCode);
                         } else {
                             sourceCode.textContent = `// ${file} not found`;
+                            sourceCode.className = '';
                         }
                     } catch (error) {
                         sourceCode.textContent = `// Failed to load ${file}`;
+                        sourceCode.className = '';
                     }
 
                     window.scrollTo(0, scrollY);

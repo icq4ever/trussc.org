@@ -111,7 +111,8 @@
           "name": "shaderExample",
           "width": 960,
           "height": 600,
-          "webSupported": true
+          "webSupported": true,
+          "additionalFiles": ["shaders/effects.glsl"]
         },
         {
           "name": "strokeMeshExample",
@@ -295,13 +296,15 @@
           "name": "threadChannelExample",
           "width": 580,
           "height": 380,
-          "webSupported": false
+          "webSupported": false,
+          "additionalFiles": ["AnalysisThread.h"]
         },
         {
           "name": "threadExample",
           "width": 640,
           "height": 480,
-          "webSupported": false
+          "webSupported": false,
+          "additionalFiles": ["threadedObject.h"]
         }
       ]
     },
@@ -377,7 +380,8 @@
           "name": "projectGenerator",
           "width": 800,
           "height": 600,
-          "webSupported": false
+          "webSupported": false,
+          "additionalFiles": ["ProjectGenerator.h", "ProjectGenerator.cpp", "IdeHelper.h", "IdeHelper.cpp", "VsDetector.h", "VsDetector.cpp"]
         }
       ]
     }
