@@ -164,6 +164,42 @@ const TrussSketchAPI = {
                     "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
                 },
                 {
+                    "name": "beginShape",
+                    "params": "",
+                    "desc": "Begin drawing a shape",
+                    "snippet": "beginShape()"
+                },
+                {
+                    "name": "vertex",
+                    "params": "x, y",
+                    "desc": "Add a vertex",
+                    "snippet": "vertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "vertex",
+                    "params": "x, y, z",
+                    "desc": "Add a vertex",
+                    "snippet": "vertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "vertex",
+                    "params": "v",
+                    "desc": "Add a vertex",
+                    "snippet": "vertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "vertex",
+                    "params": "v",
+                    "desc": "Add a vertex",
+                    "snippet": "vertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "endShape",
+                    "params": "close",
+                    "desc": "End drawing a shape",
+                    "snippet": "endShape()"
+                },
+                {
                     "name": "drawBitmapString",
                     "params": "text, x, y",
                     "desc": "Draw text",
@@ -460,6 +496,42 @@ const TrussSketchAPI = {
                     "params": "x, y, z",
                     "desc": "Perlin noise",
                     "snippet": "noise(${1:x})"
+                },
+                {
+                    "name": "signedNoise",
+                    "params": "x",
+                    "desc": "Perlin noise (-1.0 to 1.0)",
+                    "snippet": "signedNoise(${1:x})"
+                },
+                {
+                    "name": "signedNoise",
+                    "params": "x, y",
+                    "desc": "Perlin noise (-1.0 to 1.0)",
+                    "snippet": "signedNoise(${1:x})"
+                },
+                {
+                    "name": "signedNoise",
+                    "params": "x, y, z",
+                    "desc": "Perlin noise (-1.0 to 1.0)",
+                    "snippet": "signedNoise(${1:x})"
+                },
+                {
+                    "name": "signedNoise",
+                    "params": "x, y, z, w",
+                    "desc": "Perlin noise (-1.0 to 1.0)",
+                    "snippet": "signedNoise(${1:x})"
+                },
+                {
+                    "name": "fbm",
+                    "params": "x, y, octaves, lacunarity, gain",
+                    "desc": "Fractal Brownian Motion noise",
+                    "snippet": "fbm(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "fbm",
+                    "params": "x, y, z, octaves, lacunarity, gain",
+                    "desc": "Fractal Brownian Motion noise",
+                    "snippet": "fbm(${1:x}, ${2:y})"
                 }
             ]
         },
@@ -652,6 +724,36 @@ const TrussSketchAPI = {
             ]
         },
         {
+            "name": "Window & System",
+            "functions": [
+                {
+                    "name": "setWindowTitle",
+                    "params": "title",
+                    "desc": "Set window title"
+                },
+                {
+                    "name": "setWindowSize",
+                    "params": "width, height",
+                    "desc": "Set window size"
+                },
+                {
+                    "name": "toggleFullscreen",
+                    "params": "",
+                    "desc": "Toggle fullscreen mode"
+                },
+                {
+                    "name": "setClipboardString",
+                    "params": "text",
+                    "desc": "Copy text to clipboard"
+                },
+                {
+                    "name": "getClipboardString",
+                    "params": "",
+                    "desc": "Get text from clipboard"
+                }
+            ]
+        },
+        {
             "name": "Utility",
             "functions": [
                 {
@@ -677,6 +779,81 @@ const TrussSketchAPI = {
                     "params": "frequency",
                     "desc": "Play a beep sound",
                     "snippet": "beep()"
+                }
+            ]
+        },
+        {
+            "name": "Sound",
+            "functions": [
+                {
+                    "name": "Sound",
+                    "params": "",
+                    "desc": "Create a sound player",
+                    "snippet": "Sound()"
+                },
+                {
+                    "name": "load",
+                    "params": "path",
+                    "desc": "Load sound file"
+                },
+                {
+                    "name": "play",
+                    "params": "",
+                    "desc": "Play sound",
+                    "snippet": "play()"
+                },
+                {
+                    "name": "stop",
+                    "params": "",
+                    "desc": "Stop sound",
+                    "snippet": "stop()"
+                },
+                {
+                    "name": "setVolume",
+                    "params": "vol",
+                    "desc": "Set volume (0.0-1.0)",
+                    "snippet": "setVolume(${1:0.8})"
+                },
+                {
+                    "name": "setLoop",
+                    "params": "loop",
+                    "desc": "Enable/disable looping",
+                    "snippet": "setLoop(${1:true})"
+                }
+            ]
+        },
+        {
+            "name": "Animation",
+            "functions": [
+                {
+                    "name": "Tween",
+                    "params": "",
+                    "desc": "Create a tween",
+                    "snippet": "Tween()"
+                },
+                {
+                    "name": "setDuration",
+                    "params": "seconds",
+                    "desc": "Set animation duration",
+                    "snippet": "setDuration(${1:1.0})"
+                },
+                {
+                    "name": "start",
+                    "params": "",
+                    "desc": "Start animation",
+                    "snippet": "start()"
+                },
+                {
+                    "name": "update",
+                    "params": "dt",
+                    "desc": "Update animation",
+                    "snippet": "update(getDeltaTime())"
+                },
+                {
+                    "name": "getValue",
+                    "params": "",
+                    "desc": "Get current tween value",
+                    "snippet": "getValue()"
                 }
             ]
         },
@@ -887,6 +1064,81 @@ const TrussSketchAPI = {
             ]
         },
         {
+            "name": "Scene Graph",
+            "functions": [
+                {
+                    "name": "Node",
+                    "params": "",
+                    "desc": "Create a base scene node",
+                    "snippet": "Node()"
+                },
+                {
+                    "name": "addChild",
+                    "params": "child",
+                    "desc": "Add a child node"
+                },
+                {
+                    "name": "setPosition",
+                    "params": "x, y",
+                    "desc": "Set position"
+                },
+                {
+                    "name": "setPosition",
+                    "params": "pos",
+                    "desc": "Set position"
+                },
+                {
+                    "name": "RectNode",
+                    "params": "",
+                    "desc": "Create a 2D rectangle node",
+                    "snippet": "RectNode()"
+                },
+                {
+                    "name": "setSize",
+                    "params": "w, h",
+                    "desc": "Set size"
+                }
+            ]
+        },
+        {
+            "name": "3D Camera",
+            "functions": [
+                {
+                    "name": "EasyCam",
+                    "params": "",
+                    "desc": "Create an easy-to-use 3D camera",
+                    "snippet": "EasyCam()"
+                },
+                {
+                    "name": "begin",
+                    "params": "",
+                    "desc": "Apply camera transform"
+                },
+                {
+                    "name": "end",
+                    "params": "",
+                    "desc": "Restore previous transform"
+                }
+            ]
+        },
+        {
+            "name": "Math - 3D",
+            "functions": [
+                {
+                    "name": "Mat4",
+                    "params": "",
+                    "desc": "Create a 4x4 matrix",
+                    "snippet": "Mat4()"
+                },
+                {
+                    "name": "Quaternion",
+                    "params": "",
+                    "desc": "Create a quaternion",
+                    "snippet": "Quaternion()"
+                }
+            ]
+        },
+        {
             "name": "Graphics - Advanced",
             "functions": [
                 {
@@ -900,6 +1152,186 @@ const TrussSketchAPI = {
                     "params": "polyline",
                     "desc": "Draw a polyline",
                     "snippet": "drawPolyline(${1:polyline})"
+                },
+                {
+                    "name": "createBox",
+                    "params": "size",
+                    "desc": "Create a box mesh"
+                },
+                {
+                    "name": "createBox",
+                    "params": "w, h, d",
+                    "desc": "Create a box mesh"
+                },
+                {
+                    "name": "createSphere",
+                    "params": "radius, res",
+                    "desc": "Create a sphere mesh"
+                },
+                {
+                    "name": "drawTexture",
+                    "params": "tex, x, y",
+                    "desc": "Draw a texture"
+                },
+                {
+                    "name": "drawTexture",
+                    "params": "tex, x, y, w, h",
+                    "desc": "Draw a texture"
+                }
+            ]
+        },
+        {
+            "name": "Graphics - Texture & GPU",
+            "functions": [
+                {
+                    "name": "Texture",
+                    "params": "",
+                    "desc": "Create a texture"
+                },
+                {
+                    "name": "load",
+                    "params": "path",
+                    "desc": "Load image from file"
+                },
+                {
+                    "name": "loadFromPixels",
+                    "params": "pixels",
+                    "desc": "Load from pixel data"
+                },
+                {
+                    "name": "bind",
+                    "params": "slot",
+                    "desc": "Bind texture"
+                },
+                {
+                    "name": "unbind",
+                    "params": "slot",
+                    "desc": "Unbind texture"
+                },
+                {
+                    "name": "getWidth",
+                    "params": "",
+                    "desc": "Get width"
+                },
+                {
+                    "name": "getHeight",
+                    "params": "",
+                    "desc": "Get height"
+                }
+            ]
+        },
+        {
+            "name": "Graphics - FBO",
+            "functions": [
+                {
+                    "name": "Fbo",
+                    "params": "",
+                    "desc": "Create an FBO"
+                },
+                {
+                    "name": "allocate",
+                    "params": "w, h",
+                    "desc": "Allocate buffer"
+                },
+                {
+                    "name": "begin",
+                    "params": "",
+                    "desc": "Begin drawing to FBO"
+                },
+                {
+                    "name": "end",
+                    "params": "",
+                    "desc": "End drawing to FBO"
+                },
+                {
+                    "name": "getTexture",
+                    "params": "",
+                    "desc": "Get internal texture"
+                },
+                {
+                    "name": "readToPixels",
+                    "params": "pixels",
+                    "desc": "Read pixels to CPU memory"
+                }
+            ]
+        },
+        {
+            "name": "Graphics - Shader",
+            "functions": [
+                {
+                    "name": "Shader",
+                    "params": "",
+                    "desc": "Create a shader"
+                },
+                {
+                    "name": "load",
+                    "params": "vert, frag",
+                    "desc": "Load shader from files"
+                },
+                {
+                    "name": "begin",
+                    "params": "",
+                    "desc": "Begin shader"
+                },
+                {
+                    "name": "end",
+                    "params": "",
+                    "desc": "End shader"
+                },
+                {
+                    "name": "setUniform",
+                    "params": "name, val",
+                    "desc": "Set uniform variable"
+                },
+                {
+                    "name": "setUniform",
+                    "params": "name, x, y",
+                    "desc": "Set uniform variable"
+                },
+                {
+                    "name": "setUniform",
+                    "params": "name, v",
+                    "desc": "Set uniform variable"
+                },
+                {
+                    "name": "setUniform",
+                    "params": "name, c",
+                    "desc": "Set uniform variable"
+                }
+            ]
+        },
+        {
+            "name": "Types - Pixels",
+            "functions": [
+                {
+                    "name": "Pixels",
+                    "params": "",
+                    "desc": "Create pixel buffer"
+                },
+                {
+                    "name": "allocate",
+                    "params": "w, h, channels",
+                    "desc": "Allocate memory"
+                },
+                {
+                    "name": "getData",
+                    "params": "",
+                    "desc": "Get raw data pointer"
+                },
+                {
+                    "name": "getColor",
+                    "params": "x, y",
+                    "desc": "Get color at pixel"
+                },
+                {
+                    "name": "setColor",
+                    "params": "x, y, c",
+                    "desc": "Set color at pixel"
+                },
+                {
+                    "name": "save",
+                    "params": "path",
+                    "desc": "Save to file"
                 }
             ]
         },
