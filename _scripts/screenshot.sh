@@ -148,14 +148,21 @@ for sample in "${samples[@]}"; do
     # アプリを起動（FIFOをfd 3に接続）
     (
         cd "$sample_dir"
+        export TRUSSC_MCP=1
         exec 3<>"$fifo_path"
         "$app_path" <&3 &
         app_pid=$!
 
-        # 2秒待ってスクショ
-        sleep 2
-        echo "tcdebug screenshot $screenshot_path" >&3
-        sleep 0.5
+        # 起動待ち & Initialize
+        sleep 1
+        echo '{"jsonrpc":"2.0","method":"initialize","id":1,"params":{}}' >&3
+
+        # 1秒待ってスクショ
+        sleep 1
+        # JSON string construction using printf to safely handle path
+        # Note: We assume path doesn't contain double quotes for simplicity in this script
+        echo "{\"jsonrpc\":\"2.0\",\"method\":\"tools/call\",\"id\":2,\"params\":{\"name\":\"save_screenshot\",\"arguments\":{\"path\":\"$screenshot_path\"}}}" >&3
+        sleep 1
 
         # 終了
         kill $app_pid 2>/dev/null || true

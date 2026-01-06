@@ -702,6 +702,18 @@ const TrussSketchAPI = {
                     "snippet": "Vec2(${1:x}, ${2:y})"
                 },
                 {
+                    "name": "set",
+                    "params": "x, y",
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "set",
+                    "params": "v",
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y})"
+                },
+                {
                     "name": "Vec2_fromAngle",
                     "params": "radians",
                     "desc": "Create Vec2 from angle",
@@ -735,6 +747,18 @@ const TrussSketchAPI = {
                     "params": "v",
                     "desc": "Create 3D vector",
                     "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "set",
+                    "params": "x, y, z",
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "set",
+                    "params": "v",
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:z})"
                 }
             ]
         },
@@ -758,6 +782,30 @@ const TrussSketchAPI = {
                     "params": "r, g, b, a",
                     "desc": "Create color (0.0-1.0)",
                     "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
+                    "name": "set",
+                    "params": "r, g, b",
+                    "desc": "Set color components",
+                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
+                    "name": "set",
+                    "params": "r, g, b, a",
+                    "desc": "Set color components",
+                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
+                    "name": "set",
+                    "params": "gray",
+                    "desc": "Set color components",
+                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
+                    "name": "set",
+                    "params": "c",
+                    "desc": "Set color components",
+                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
                     "name": "Color_fromHSB",
@@ -794,6 +842,47 @@ const TrussSketchAPI = {
                     "params": "L, a, b, alpha",
                     "desc": "Create Color from OKLab",
                     "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
+                }
+            ]
+        },
+        {
+            "name": "Types - Rect",
+            "functions": [
+                {
+                    "name": "Rect",
+                    "params": "",
+                    "desc": "Create a rectangle",
+                    "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "Rect",
+                    "params": "x, y, w, h",
+                    "desc": "Create a rectangle",
+                    "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "set",
+                    "params": "x, y, w, h",
+                    "desc": "Set rectangle properties",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "set",
+                    "params": "pos, w, h",
+                    "desc": "Set rectangle properties",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "contains",
+                    "params": "x, y",
+                    "desc": "Check if point is inside",
+                    "snippet": "contains(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "intersects",
+                    "params": "other",
+                    "desc": "Check intersection",
+                    "snippet": "intersects(${1:other})"
                 }
             ]
         },
