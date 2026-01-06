@@ -14,7 +14,7 @@
                     "name": "setup",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Called once at start",
                     "snippet": "setup() {\n\t$0\n}"
                 },
@@ -22,7 +22,7 @@
                     "name": "update",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Called every frame before draw",
                     "snippet": "update() {\n\t$0\n}"
                 },
@@ -30,7 +30,7 @@
                     "name": "draw",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Called every frame after update",
                     "snippet": "draw() {\n\t$0\n}"
                 }
@@ -43,7 +43,7 @@
                     "name": "mousePressed",
                     "params": "x, y, button",
                     "params_typed": "float x, float y, int button",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Mouse button pressed",
                     "snippet": "mousePressed(x, y, button) {\n\t$0\n}"
                 },
@@ -51,7 +51,7 @@
                     "name": "mouseReleased",
                     "params": "x, y, button",
                     "params_typed": "float x, float y, int button",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Mouse button released",
                     "snippet": "mouseReleased(x, y, button) {\n\t$0\n}"
                 },
@@ -59,7 +59,7 @@
                     "name": "mouseMoved",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Mouse moved",
                     "snippet": "mouseMoved(x, y) {\n\t$0\n}"
                 },
@@ -67,7 +67,7 @@
                     "name": "mouseDragged",
                     "params": "x, y, button",
                     "params_typed": "float x, float y, int button",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Mouse dragged",
                     "snippet": "mouseDragged(x, y, button) {\n\t$0\n}"
                 },
@@ -75,7 +75,7 @@
                     "name": "keyPressed",
                     "params": "key",
                     "params_typed": "int key",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Key pressed",
                     "snippet": "keyPressed(key) {\n\t$0\n}"
                 },
@@ -83,7 +83,7 @@
                     "name": "keyReleased",
                     "params": "key",
                     "params_typed": "int key",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Key released",
                     "snippet": "keyReleased(key) {\n\t$0\n}"
                 },
@@ -91,7 +91,7 @@
                     "name": "windowResized",
                     "params": "width, height",
                     "params_typed": "int width, int height",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Window resized",
                     "snippet": "windowResized(width, height) {\n\t$0\n}"
                 }
@@ -992,7 +992,7 @@
                     "name": "logNotice",
                     "params": "message",
                     "params_typed": "const string& message",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Print to console",
                     "snippet": "logNotice(${1:\"message\"})"
                 },
@@ -1000,7 +1000,7 @@
                     "name": "to_string",
                     "params": "value",
                     "params_typed": "value",
-                    "return_type": null,
+                    "return_type": "string",
                     "desc": "Convert to string",
                     "snippet": "to_string(${1:value})"
                 },
@@ -1008,7 +1008,7 @@
                     "name": "beep",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Play a beep sound",
                     "snippet": "beep()"
                 },
@@ -1016,7 +1016,7 @@
                     "name": "beep",
                     "params": "frequency",
                     "params_typed": "float frequency",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Play a beep sound",
                     "snippet": "beep()"
                 }
@@ -1029,7 +1029,7 @@
                     "name": "Sound",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "",
                     "desc": "Create a sound player",
                     "snippet": "Sound()"
                 },
@@ -1037,7 +1037,7 @@
                     "name": "play",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Play sound",
                     "snippet": "play()"
                 },
@@ -1045,7 +1045,7 @@
                     "name": "stop",
                     "params": "",
                     "params_typed": "",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Stop sound",
                     "snippet": "stop()"
                 },
@@ -1053,7 +1053,7 @@
                     "name": "setVolume",
                     "params": "vol",
                     "params_typed": "float vol",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Set volume (0.0-1.0)",
                     "snippet": "setVolume(${1:0.8})"
                 },
@@ -1061,7 +1061,7 @@
                     "name": "setLoop",
                     "params": "loop",
                     "params_typed": "bool loop",
-                    "return_type": null,
+                    "return_type": "void",
                     "desc": "Enable/disable looping",
                     "snippet": "setLoop(${1:true})"
                 }
@@ -1366,7 +1366,7 @@
                     "name": "contains",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": null,
+                    "return_type": "bool",
                     "desc": "Check if point is inside",
                     "snippet": "contains(${1:x}, ${2:y})"
                 },
@@ -1374,7 +1374,7 @@
                     "name": "intersects",
                     "params": "other",
                     "params_typed": "Rect other",
-                    "return_type": null,
+                    "return_type": "bool",
                     "desc": "Check intersection",
                     "snippet": "intersects(${1:other})"
                 }
