@@ -6,6 +6,16 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
+# Path to ProjectGenerator (macOS)
+TRUSSC_REPO_DIR="$SCRIPT_DIR/../../TrussC"
+PG_BIN="$TRUSSC_REPO_DIR/projectGenerator/projectGenerator.app/Contents/MacOS/projectGenerator"
+
+if [ ! -f "$PG_BIN" ]; then
+    log_error "ProjectGenerator not found at: $PG_BIN"
+    log_error "Please build ProjectGenerator first."
+    exit 1
+fi
+
 # examples.json path
 EXAMPLES_JSON="$SCRIPT_DIR/../examples/examples.json"
 
@@ -78,14 +88,22 @@ for sample in "${samples[@]}"; do
         continue
     fi
 
+    log_info "$sample: プロジェクト更新 (Web)..."
+    if ! "$PG_BIN" --update "$sample_dir" --web --tc-root "$TRUSSC_REPO_DIR"; then
+        log_error "$sample: プロジェクト更新失敗"
+        ((fail_count++))
+        continue
+    fi
+
     log_info "$sample: WASMビルド開始... ($sample_type/$sample_group)"
 
-    build_dir="$sample_dir/build-web"
-    rm -rf "$build_dir"
-    mkdir -p "$build_dir"
+    cd "$sample_dir"
+    
+    # Clean build
+    rm -rf build-web
 
-    # Emscriptenビルド
-    if (cd "$build_dir" && emcmake cmake .. >/dev/null 2>&1 && cmake --build . 2>&1); then
+    # Run generated build script
+    if ./build-web.command; then
         log_success "$sample: WASMビルド完了"
 
         # R2にアップロード (wasm/{type}/{group}/{name}.{ext})

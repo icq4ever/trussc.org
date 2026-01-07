@@ -6,6 +6,16 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
+# Path to ProjectGenerator (macOS)
+TRUSSC_REPO_DIR="$SCRIPT_DIR/../../TrussC"
+PG_BIN="$TRUSSC_REPO_DIR/projectGenerator/projectGenerator.app/Contents/MacOS/projectGenerator"
+
+if [ ! -f "$PG_BIN" ]; then
+    log_error "ProjectGenerator not found at: $PG_BIN"
+    log_error "Please build ProjectGenerator first."
+    exit 1
+fi
+
 if [[ $# -eq 0 ]]; then
     echo "使い方: $0 [sample1] [sample2] ... [--all]"
     echo "例: $0 graphicsExample colorExample"
@@ -34,11 +44,21 @@ for sample in "${samples[@]}"; do
         continue
     fi
 
+    log_info "$sample: プロジェクト更新..."
+    if ! "$PG_BIN" --update "$sample_dir" --tc-root "$TRUSSC_REPO_DIR"; then
+        log_error "$sample: プロジェクト更新失敗"
+        ((fail_count++))
+        continue
+    fi
+
     log_info "$sample: ビルド開始..."
 
-    build_dir="$sample_dir/build-macos"
-    mkdir -p "$build_dir"
-    if (cd "$build_dir" && cmake .. && cmake --build .); then
+    cd "$sample_dir"
+    
+    # Clean build (optional, but safer)
+    rm -rf build-macos
+
+    if cmake --preset macos && cmake --build --preset macos; then
         log_success "$sample: ビルド完了"
         ((success_count++))
     else
