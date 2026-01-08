@@ -116,8 +116,8 @@
         },
         {
           "name": "lutFilterExample",
-          "width": 960,
-          "height": 600,
+          "width": 1280,
+          "height": 720,
           "webSupported": true,
           "autoScreenshot": false,
           "additionalFiles": ["shaders/lut.glsl"]
