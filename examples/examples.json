@@ -87,7 +87,7 @@
           "name": "fboExample",
           "width": 960,
           "height": 600,
-          "webSupported": false
+          "webSupported": true
         },
         {
           "name": "fontExample",
@@ -152,7 +152,7 @@
           "name": "fileDialogExample",
           "width": 960,
           "height": 600,
-          "webSupported": false
+          "webSupported": true
         },
         {
           "name": "imageLoaderExample",
@@ -373,15 +373,14 @@
         }
       ]
     },
-    "tools": {
+    "tests": {
       "visible": false,
       "items": [
         {
-          "name": "projectGenerator",
-          "width": 800,
+          "name": "AllFeaturesExample",
+          "width": 960,
           "height": 600,
-          "webSupported": false,
-          "additionalFiles": ["ProjectGenerator.h", "ProjectGenerator.cpp", "IdeHelper.h", "IdeHelper.cpp", "VsDetector.h", "VsDetector.cpp"]
+          "webSupported": true
         }
       ]
     }
