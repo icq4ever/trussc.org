@@ -115,6 +115,14 @@
           "additionalFiles": ["shaders/effects.glsl"]
         },
         {
+          "name": "lutFilterExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true,
+          "autoScreenshot": false,
+          "additionalFiles": ["shaders/lut.glsl"]
+        },
+        {
           "name": "strokeMeshExample",
           "width": 960,
           "height": 600,
