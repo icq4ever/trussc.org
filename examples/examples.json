@@ -112,7 +112,7 @@
           "width": 960,
           "height": 600,
           "webSupported": true,
-          "additionalFiles": ["shaders/effects.glsl"]
+          "additionalFiles": ["shaders/effect.glsl"]
         },
         {
           "name": "lutFilterExample",
@@ -127,6 +127,13 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        },
+        {
+          "name": "strokeExample",
+          "width": 800,
+          "height": 600,
+          "webSupported": true,
+          "autoScreenshot": false
         },
         {
           "name": "textureExample",

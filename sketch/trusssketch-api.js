@@ -410,6 +410,38 @@
                     "snippet": "endShape()"
                 },
                 {
+                    "name": "beginStroke",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Begin drawing a stroke (uses StrokeMesh internally)",
+                    "snippet": "beginStroke()"
+                },
+                {
+                    "name": "endStroke",
+                    "params": "close",
+                    "params_typed": "bool close = false",
+                    "return_type": "void",
+                    "desc": "End drawing a stroke",
+                    "snippet": "endStroke()"
+                },
+                {
+                    "name": "drawStroke",
+                    "params": "x1, y1, x2, y2",
+                    "params_typed": "float x1, float y1, float x2, float y2",
+                    "return_type": "void",
+                    "desc": "Draw a single stroke segment (thick line with cap/join)",
+                    "snippet": "drawStroke(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
+                },
+                {
+                    "name": "drawStroke",
+                    "params": "p1, p2",
+                    "params_typed": "const Vec2& p1, const Vec2& p2",
+                    "return_type": "void",
+                    "desc": "Draw a single stroke segment (thick line with cap/join)",
+                    "snippet": "drawStroke(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
+                },
+                {
                     "name": "drawBitmapString",
                     "params": "text, x, y",
                     "params_typed": "const string& text, float x, float y",
@@ -445,6 +477,46 @@
                     "return_type": "void",
                     "desc": "Set stroke width",
                     "snippet": "setStrokeWeight(${1:1.0})"
+                },
+                {
+                    "name": "getStrokeWeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get current stroke width",
+                    "snippet": "getStrokeWeight()"
+                },
+                {
+                    "name": "setStrokeCap",
+                    "params": "cap",
+                    "params_typed": "StrokeCap cap",
+                    "return_type": "void",
+                    "desc": "Set stroke cap style (Butt, Round, Square)",
+                    "snippet": "setStrokeCap(StrokeCap::${1:Round})"
+                },
+                {
+                    "name": "getStrokeCap",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "StrokeCap",
+                    "desc": "Get current stroke cap style",
+                    "snippet": "getStrokeCap()"
+                },
+                {
+                    "name": "setStrokeJoin",
+                    "params": "join",
+                    "params_typed": "StrokeJoin join",
+                    "return_type": "void",
+                    "desc": "Set stroke join style (Miter, Round, Bevel)",
+                    "snippet": "setStrokeJoin(StrokeJoin::${1:Round})"
+                },
+                {
+                    "name": "getStrokeJoin",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "StrokeJoin",
+                    "desc": "Get current stroke join style",
+                    "snippet": "getStrokeJoin()"
                 }
             ]
         },
