@@ -1,9 +1,84 @@
 // Guide Page - JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
-    initApiCategoryToggle();
-    initApiSearch();
+    // Load API mapping and render tables
+    loadApiMapping().then(() => {
+        initApiCategoryToggle();
+        initApiSearch();
+    });
 });
+
+/**
+ * Load of-mapping.json and render API tables dynamically
+ */
+async function loadApiMapping() {
+    const container = document.getElementById('api-tables');
+    if (!container) return;
+
+    // Detect Japanese version
+    const isJapanese = window.location.pathname.includes('/ja/');
+    const jsonPath = isJapanese ? '../of-mapping.json' : 'of-mapping.json';
+
+    try {
+        const response = await fetch(jsonPath);
+        const data = await response.json();
+        renderApiTables(data, isJapanese, container);
+    } catch (error) {
+        console.error('Failed to load of-mapping.json:', error);
+        container.innerHTML = '<p>Failed to load API mapping data.</p>';
+    }
+}
+
+/**
+ * Render API tables from JSON data
+ */
+function renderApiTables(data, isJapanese, container) {
+    const html = data.categories.map(cat => {
+        const categoryName = isJapanese ? cat.name_ja : cat.name;
+        const rows = cat.mappings.map(m => {
+            const notes = isJapanese ? (m.notes_ja || m.notes) : m.notes;
+            return `<tr><td><code>${escapeHtml(m.of)}</code></td><td><code>${escapeHtml(m.tc)}</code></td><td>${escapeHtml(notes)}</td></tr>`;
+        }).join('\n');
+
+        return `
+            <div class="api-category">
+                <h3 class="api-category-title" data-toggle="${cat.id}">
+                    <span>${escapeHtml(categoryName)}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </h3>
+                <div class="api-table-wrapper" id="${cat.id}">
+                    <table class="api-table">
+                        <thead>
+                            <tr>
+                                <th>openFrameworks</th>
+                                <th>TrussC</th>
+                                <th>${isJapanese ? '備考' : 'Notes'}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+    }).join('\n');
+
+    container.innerHTML = html;
+}
+
+/**
+ * Escape HTML special characters
+ */
+function escapeHtml(str) {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
 
 /**
  * APIカテゴリの折りたたみ
