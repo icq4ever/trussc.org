@@ -234,17 +234,18 @@ node->callEvery(<span class="code-number">1.0f</span>, []() {
                 </div>
                 <div class="solution-answer">
                     <div class="solution-label answer-label">TrussC's Solution</div>
-                    <h3>Beautiful Strokes with StrokeMesh</h3>
+                    <h3>Beautiful Thick Lines Built-in</h3>
                     <p>
-                        In oF, thick lines had ugly clipped corners and endpoints.<br>
-                        StrokeMesh gives you beautiful strokes with proper edges.
+                        Just use <code>beginStroke()</code> / <code>endStroke()</code>.<br>
+                        Automatic line caps and joins, any thickness you want.
                     </p>
-                    <pre><code><span class="code-comment">// Draw lines of any thickness with StrokeMesh</span>
-StrokeMesh stroke;
-stroke.setStrokeWidth(<span class="code-number">5.0f</span>);  <span class="code-comment">// 5px thick line</span>
-stroke.moveTo(<span class="code-number">0</span>, <span class="code-number">0</span>);
-stroke.lineTo(<span class="code-number">100</span>, <span class="code-number">100</span>);
-stroke.draw();</code></pre>
+                    <pre><code><span class="code-comment">// Beautiful thick lines with beginStroke/endStroke</span>
+setStrokeWeight(<span class="code-number">5.0f</span>);  <span class="code-comment">// 5px thick line</span>
+beginStroke();
+vertex(<span class="code-number">0</span>, <span class="code-number">0</span>);
+vertex(<span class="code-number">100</span>, <span class="code-number">50</span>);
+vertex(<span class="code-number">200</span>, <span class="code-number">0</span>);
+endStroke();  <span class="code-comment">// Automatic caps and joins</span></code></pre>
                 </div>
             </div>
 

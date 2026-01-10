@@ -234,17 +234,18 @@ node->callEvery(<span class="code-number">1.0f</span>, []() {
                 </div>
                 <div class="solution-answer">
                     <div class="solution-label answer-label">TrussCの解決策</div>
-                    <h3>StrokeMesh で美しい太線</h3>
+                    <h3>標準で美しい太線</h3>
                     <p>
-                        oFでは太い線を描くと角や終端がプッツリ切れた見た目になっていました。<br>
-                        StrokeMesh を使えば美しいエッジを持った幅のある線を描画できます。
+                        <code>beginStroke()</code> / <code>endStroke()</code> を使うだけ。<br>
+                        ラインキャップやジョインも自動で綺麗に処理される。
                     </p>
-                    <pre><code><span class="code-comment">// StrokeMesh で任意の太さの線が描ける</span>
-StrokeMesh stroke;
-stroke.setStrokeWidth(<span class="code-number">5.0f</span>);  <span class="code-comment">// 5px の太線</span>
-stroke.moveTo(<span class="code-number">0</span>, <span class="code-number">0</span>);
-stroke.lineTo(<span class="code-number">100</span>, <span class="code-number">100</span>);
-stroke.draw();</code></pre>
+                    <pre><code><span class="code-comment">// beginStroke/endStroke で美しい太線</span>
+setStrokeWeight(<span class="code-number">5.0f</span>);  <span class="code-comment">// 5px の太線</span>
+beginStroke();
+vertex(<span class="code-number">0</span>, <span class="code-number">0</span>);
+vertex(<span class="code-number">100</span>, <span class="code-number">50</span>);
+vertex(<span class="code-number">200</span>, <span class="code-number">0</span>);
+endStroke();  <span class="code-comment">// キャップとジョインは自動</span></code></pre>
                 </div>
             </div>
 
