@@ -16,7 +16,7 @@
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Called once at start",
-                    "snippet": "setup() {\n\t$0\n}"
+                    "snippet": "void setup() {\n\t$0\n}"
                 },
                 {
                     "name": "update",
@@ -24,7 +24,7 @@
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Called every frame before draw",
-                    "snippet": "update() {\n\t$0\n}"
+                    "snippet": "void update() {\n\t$0\n}"
                 },
                 {
                     "name": "draw",
@@ -32,7 +32,7 @@
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Called every frame after update",
-                    "snippet": "draw() {\n\t$0\n}"
+                    "snippet": "void draw() {\n\t$0\n}"
                 }
             ]
         },
@@ -45,7 +45,7 @@
                     "params_typed": "float x, float y, int button",
                     "return_type": "void",
                     "desc": "Mouse button pressed",
-                    "snippet": "mousePressed(x, y, button) {\n\t$0\n}"
+                    "snippet": "void mousePressed(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
                     "name": "mouseReleased",
@@ -53,7 +53,7 @@
                     "params_typed": "float x, float y, int button",
                     "return_type": "void",
                     "desc": "Mouse button released",
-                    "snippet": "mouseReleased(x, y, button) {\n\t$0\n}"
+                    "snippet": "void mouseReleased(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
                     "name": "mouseMoved",
@@ -61,7 +61,7 @@
                     "params_typed": "float x, float y",
                     "return_type": "void",
                     "desc": "Mouse moved",
-                    "snippet": "mouseMoved(x, y) {\n\t$0\n}"
+                    "snippet": "void mouseMoved(float x, float y) {\n\t$0\n}"
                 },
                 {
                     "name": "mouseDragged",
@@ -69,7 +69,7 @@
                     "params_typed": "float x, float y, int button",
                     "return_type": "void",
                     "desc": "Mouse dragged",
-                    "snippet": "mouseDragged(x, y, button) {\n\t$0\n}"
+                    "snippet": "void mouseDragged(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
                     "name": "keyPressed",
@@ -77,7 +77,7 @@
                     "params_typed": "int key",
                     "return_type": "void",
                     "desc": "Key pressed",
-                    "snippet": "keyPressed(key) {\n\t$0\n}"
+                    "snippet": "void keyPressed(int key) {\n\t$0\n}"
                 },
                 {
                     "name": "keyReleased",
@@ -85,7 +85,7 @@
                     "params_typed": "int key",
                     "return_type": "void",
                     "desc": "Key released",
-                    "snippet": "keyReleased(key) {\n\t$0\n}"
+                    "snippet": "void keyReleased(int key) {\n\t$0\n}"
                 },
                 {
                     "name": "windowResized",
@@ -93,7 +93,7 @@
                     "params_typed": "int width, int height",
                     "return_type": "void",
                     "desc": "Window resized",
-                    "snippet": "windowResized(width, height) {\n\t$0\n}"
+                    "snippet": "void windowResized(int width, int height) {\n\t$0\n}"
                 }
             ]
         },
@@ -1235,6 +1235,22 @@
             "name": "Window & System",
             "functions": [
                 {
+                    "name": "setWindowTitle",
+                    "params": "title",
+                    "params_typed": "const string& title",
+                    "return_type": "void",
+                    "desc": "Set window title",
+                    "snippet": "setWindowTitle(${1:\"title\"})"
+                },
+                {
+                    "name": "setWindowSize",
+                    "params": "width, height",
+                    "params_typed": "int width, int height",
+                    "return_type": "void",
+                    "desc": "Set window size",
+                    "snippet": "setWindowSize(${1:800}, ${2:600})"
+                },
+                {
                     "name": "toggleFullscreen",
                     "params": "",
                     "params_typed": "",
@@ -1272,12 +1288,12 @@
                     "snippet": "logNotice(${1:\"message\"})"
                 },
                 {
-                    "name": "to_string",
+                    "name": "toString",
                     "params": "value",
                     "params_typed": "value",
                     "return_type": "string",
                     "desc": "Convert to string",
-                    "snippet": "to_string(${1:value})"
+                    "snippet": "toString(${1:value})"
                 },
                 {
                     "name": "beep",
@@ -1307,6 +1323,14 @@
                     "return_type": "",
                     "desc": "Create a sound player",
                     "snippet": "Sound()"
+                },
+                {
+                    "name": "load",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "bool",
+                    "desc": "Load sound file",
+                    "snippet": "load(${1:\"sound.wav\"})"
                 },
                 {
                     "name": "play",
@@ -1869,6 +1893,173 @@
                     "return_type": "Mesh",
                     "desc": "Create a sphere mesh",
                     "snippet": "createSphere(${1:radius})"
+                },
+                {
+                    "name": "drawTexture",
+                    "params": "tex, x, y",
+                    "params_typed": "const Texture& tex, float x, float y",
+                    "return_type": "void",
+                    "desc": "Draw a texture",
+                    "snippet": "drawTexture(${1:tex}, ${2:x}, ${3:y})"
+                },
+                {
+                    "name": "drawTexture",
+                    "params": "tex, x, y, w, h",
+                    "params_typed": "const Texture& tex, float x, float y, float w, float h",
+                    "return_type": "void",
+                    "desc": "Draw a texture",
+                    "snippet": "drawTexture(${1:tex}, ${2:x}, ${3:y})"
+                }
+            ]
+        },
+        {
+            "name": "Graphics - Texture & GPU",
+            "functions": [
+                {
+                    "name": "Texture",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "",
+                    "desc": "Create a texture",
+                    "snippet": "Texture()"
+                },
+                {
+                    "name": "load",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "bool",
+                    "desc": "Load image from file",
+                    "snippet": "load(${1:\"image.png\"})"
+                },
+                {
+                    "name": "loadFromPixels",
+                    "params": "pixels",
+                    "params_typed": "const Pixels& pixels",
+                    "return_type": "bool",
+                    "desc": "Load from pixel data",
+                    "snippet": "loadFromPixels(${1:pixels})"
+                },
+                {
+                    "name": "bind",
+                    "params": "slot",
+                    "params_typed": "int slot = 0",
+                    "return_type": "void",
+                    "desc": "Bind texture",
+                    "snippet": "bind(${1:0})"
+                },
+                {
+                    "name": "unbind",
+                    "params": "slot",
+                    "params_typed": "int slot = 0",
+                    "return_type": "void",
+                    "desc": "Unbind texture",
+                    "snippet": "unbind(${1:0})"
+                },
+                {
+                    "name": "getWidth",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get width",
+                    "snippet": "getWidth()"
+                },
+                {
+                    "name": "getHeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get height",
+                    "snippet": "getHeight()"
+                }
+            ]
+        },
+        {
+            "name": "Graphics - FBO",
+            "functions": [
+                {
+                    "name": "Fbo",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "",
+                    "desc": "Create an FBO",
+                    "snippet": "Fbo()"
+                },
+                {
+                    "name": "allocate",
+                    "params": "w, h",
+                    "params_typed": "int w, int h",
+                    "return_type": "void",
+                    "desc": "Allocate buffer",
+                    "snippet": "allocate(${1:800}, ${2:600})"
+                },
+                {
+                    "name": "begin",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Begin drawing to FBO",
+                    "snippet": "begin()"
+                },
+                {
+                    "name": "end",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "End drawing to FBO",
+                    "snippet": "end()"
+                },
+                {
+                    "name": "getTexture",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Texture&",
+                    "desc": "Get internal texture",
+                    "snippet": "getTexture()"
+                },
+                {
+                    "name": "readToPixels",
+                    "params": "pixels",
+                    "params_typed": "Pixels& pixels",
+                    "return_type": "void",
+                    "desc": "Read pixels to CPU memory",
+                    "snippet": "readToPixels(${1:pixels})"
+                }
+            ]
+        },
+        {
+            "name": "Types - Pixels",
+            "functions": [
+                {
+                    "name": "Pixels",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "",
+                    "desc": "Create pixel buffer",
+                    "snippet": "Pixels()"
+                },
+                {
+                    "name": "allocate",
+                    "params": "w, h, channels",
+                    "params_typed": "int w, int h, int channels",
+                    "return_type": "void",
+                    "desc": "Allocate memory",
+                    "snippet": "allocate(${1:800}, ${2:600}, ${3:4})"
+                },
+                {
+                    "name": "getColor",
+                    "params": "x, y",
+                    "params_typed": "int x, int y",
+                    "return_type": "Color",
+                    "desc": "Get color at pixel",
+                    "snippet": "getColor(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "setColor",
+                    "params": "x, y, c",
+                    "params_typed": "int x, int y, const Color& c",
+                    "return_type": "void",
+                    "desc": "Set color at pixel",
+                    "snippet": "setColor(${1:x}, ${2:y}, ${3:color})"
                 }
             ]
         },
@@ -2157,16 +2348,22 @@
         }
     ],
     "keywords": [
-        "def",
-        "var",
-        "global",
+        "void",
+        "int",
+        "float",
+        "bool",
+        "string",
         "if",
         "else",
         "for",
         "while",
         "return",
+        "break",
+        "continue",
         "true",
-        "false"
+        "false",
+        "null",
+        "const"
     ]
 };
             

@@ -480,7 +480,7 @@
         },
         {
           "of": "ofToString",
-          "tc": "to_string(value)",
+          "tc": "toString(value)",
           "notes": "",
           "notes_ja": ""
         }
