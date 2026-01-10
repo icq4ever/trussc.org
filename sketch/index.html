@@ -123,6 +123,36 @@
             background: #848d97;
         }
 
+        .btn-record {
+            background: #6e7681;
+        }
+
+        .btn-record:hover {
+            background: #848d97;
+        }
+
+        .btn-record svg {
+            fill: #ccc;
+        }
+
+        .btn-record.recording {
+            background: #dc3545;
+            animation: pulse-record 1s infinite;
+        }
+
+        .btn-record.recording svg {
+            fill: white;
+        }
+
+        .btn-record.recording:hover {
+            background: #e35d6a;
+        }
+
+        @keyframes pulse-record {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         /* Text buttons (save, load, share, help) */
         .btn {
             padding: 6px 12px;
@@ -205,6 +235,15 @@
             color: #d4d4d4;
             border-bottom: 1px solid #1e1e1e;
             margin-bottom: -1px;
+        }
+
+        .file-tab.dragging {
+            opacity: 0.5;
+        }
+
+        .file-tab.drag-over {
+            border-left: 2px solid #58a6ff;
+            padding-left: 6px;
         }
 
         .file-tab-name {
@@ -396,6 +435,9 @@
             <button class="btn-icon btn-fullscreen" onclick="toggleFullscreen()" title="Fullscreen">
                 <svg viewBox="0 0 24 24"><path d="M2 2h7v2H4v5H2V2zm13 0h7v7h-2V4h-5V2zM2 15h2v5h5v2H2v-7zm18 0h2v7h-7v-2h5v-5z"/></svg>
             </button>
+            <button class="btn-icon btn-record" id="recordBtn" onclick="toggleRecording()" title="Record video">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+            </button>
             <div class="controls-spacer"></div>
             <!-- File controls -->
             <button class="btn" onclick="saveScript()">Save</button>
@@ -457,6 +499,9 @@
             isModified = false;
         }
 
+        // Drag and drop state
+        let draggedTab = null;
+
         // Render file tabs
         function renderFileTabs() {
             const container = document.getElementById('fileTabs');
@@ -465,6 +510,8 @@
             for (const [name, file] of files) {
                 const tab = document.createElement('div');
                 tab.className = 'file-tab' + (name === currentFile ? ' active' : '');
+                tab.draggable = true;
+                tab.dataset.filename = name;
                 tab.innerHTML = `
                     <span class="file-tab-name">${name}</span>
                     ${files.size > 1 ? `<span class="file-tab-close" onclick="event.stopPropagation(); removeFile('${name}')">
@@ -473,6 +520,34 @@
                 `;
                 tab.onclick = () => switchToFile(name);
                 tab.ondblclick = () => renameFile(name);
+
+                // Drag events
+                tab.ondragstart = (e) => {
+                    draggedTab = name;
+                    tab.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                };
+                tab.ondragend = () => {
+                    draggedTab = null;
+                    tab.classList.remove('dragging');
+                };
+                tab.ondragover = (e) => {
+                    e.preventDefault();
+                    if (draggedTab && draggedTab !== name) {
+                        tab.classList.add('drag-over');
+                    }
+                };
+                tab.ondragleave = () => {
+                    tab.classList.remove('drag-over');
+                };
+                tab.ondrop = (e) => {
+                    e.preventDefault();
+                    tab.classList.remove('drag-over');
+                    if (draggedTab && draggedTab !== name) {
+                        reorderFiles(draggedTab, name);
+                    }
+                };
+
                 container.appendChild(tab);
             }
 
@@ -483,6 +558,23 @@
             addBtn.onclick = () => addFile();
             addBtn.title = 'Add new file';
             container.appendChild(addBtn);
+        }
+
+        // Reorder files: move 'from' before 'to'
+        function reorderFiles(from, to) {
+            const entries = [...files.entries()];
+            const fromIndex = entries.findIndex(([name]) => name === from);
+            const toIndex = entries.findIndex(([name]) => name === to);
+            if (fromIndex === -1 || toIndex === -1) return;
+
+            const [removed] = entries.splice(fromIndex, 1);
+            entries.splice(toIndex, 0, removed);
+
+            files.clear();
+            for (const [name, file] of entries) {
+                files.set(name, file);
+            }
+            renderFileTabs();
         }
 
         // Switch to a different file
@@ -852,9 +944,9 @@ void draw() {
                 const hasMultiFileAPI = typeof Module._clearScriptFiles === 'function';
 
                 if (hasMultiFileAPI && files.size > 1) {
-                    // Use multi-file API
+                    // Use multi-file API (load right-to-left: dependencies first)
                     Module.ccall('clearScriptFiles', null, [], []);
-                    for (const [name, file] of files) {
+                    for (const [name, file] of [...files].reverse()) {
                         const code = file.model.getValue();
                         Module.ccall('addScriptFile', null, ['string', 'string'], [name, code]);
                     }
@@ -900,6 +992,70 @@ void draw() {
                 document.getElementById('stopBtn').classList.remove('running');
             } catch (e) {
                 logToConsole('Error: ' + e.message, 'error');
+            }
+        }
+
+        // Video recording
+        let mediaRecorder = null;
+        let recordedChunks = [];
+
+        function toggleRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            const canvas = document.getElementById('canvas');
+            if (!canvas) {
+                logToConsole('Canvas not ready!', 'error');
+                return;
+            }
+
+            try {
+                const stream = canvas.captureStream(30); // 30 fps
+
+                // Try to use mp4 (Safari), fallback to webm (Chrome/Firefox)
+                const mimeType = MediaRecorder.isTypeSupported('video/mp4')
+                    ? 'video/mp4'
+                    : 'video/webm';
+
+                mediaRecorder = new MediaRecorder(stream, { mimeType });
+                recordedChunks = [];
+
+                mediaRecorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) {
+                        recordedChunks.push(e.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    const ext = mimeType.includes('mp4') ? 'mp4' : 'webm';
+                    const blob = new Blob(recordedChunks, { type: mimeType });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `trusssketch-${Date.now()}.${ext}`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    logToConsole(`Video saved! (${(blob.size / 1024 / 1024).toFixed(1)} MB)`, 'success');
+                };
+
+                mediaRecorder.start();
+                document.getElementById('recordBtn').classList.add('recording');
+                logToConsole('Recording started... Click again to stop.', 'notice');
+            } catch (e) {
+                logToConsole('Recording error: ' + e.message, 'error');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.stop();
+                document.getElementById('recordBtn').classList.remove('recording');
+                logToConsole('Recording stopped.', 'notice');
             }
         }
 
