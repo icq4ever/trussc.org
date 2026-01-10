@@ -130,29 +130,24 @@
     <div id="content"></div>
 
     <h2>Example</h2>
-    <div class="example"><span class="keyword">global</span> angle = <span class="number">0.0</span>
+    <div class="example"><span class="keyword">float</span> angle = <span class="number">0</span>;
 
-<span class="keyword">def</span> <span class="function">setup</span>() {
-    <span class="function">logNotice</span>(<span class="string">"Starting!"</span>)
-}
-
-<span class="keyword">def</span> <span class="function">update</span>() {
-    angle = angle + <span class="function">getDeltaTime</span>()
-}
-
-<span class="keyword">def</span> <span class="function">draw</span>() {
-    <span class="function">clear</span>(<span class="number">0.1</span>)
-    <span class="function">pushMatrix</span>()
-    <span class="function">translate</span>(<span class="function">getWindowWidth</span>() / <span class="number">2.0</span>, <span class="function">getWindowHeight</span>() / <span class="number">2.0</span>)
-    <span class="function">rotate</span>(angle)
-    <span class="function">setColor</span>(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.2</span>)
-    <span class="function">drawRect</span>(-<span class="number">50.0</span>, -<span class="number">50.0</span>, <span class="number">100.0</span>, <span class="number">100.0</span>)
-    <span class="function">popMatrix</span>()
-}
-
-<span class="keyword">def</span> <span class="function">keyPressed</span>(key) {
-    <span class="function">logNotice</span>(<span class="string">"Key: "</span> + <span class="function">to_string</span>(key))
+<span class="keyword">void</span> <span class="function">draw</span>() {
+    angle += <span class="function">getDeltaTime</span>();
+    <span class="function">clear</span>(<span class="number">0.1</span>);
+    <span class="function">pushMatrix</span>();
+    <span class="function">translate</span>(<span class="function">getWindowWidth</span>() / <span class="number">2</span>, <span class="function">getWindowHeight</span>() / <span class="number">2</span>);
+    <span class="function">rotate</span>(angle);
+    <span class="function">setColor</span>(<span class="number">1</span>, <span class="number">0.5</span>, <span class="number">0.2</span>);
+    <span class="function">drawRect</span>(-<span class="number">50</span>, -<span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);
+    <span class="function">popMatrix</span>();
 }</div>
+
+    <h2>Embed</h2>
+    <p style="color: #888; margin-bottom: 15px;">
+        Add TrussSketch to any website with just two lines of code.
+        <a href="../embed.html" style="color: #4ec9b0;">See embed guide →</a>
+    </p>
 
     <script src="../trusssketch-api.js"></script>
     <script>

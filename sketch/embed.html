@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed TrussSketch - Creative Coding for the Web</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .code-block code {
+            color: #e0e0e0;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .tag { color: #569cd6; }
+        .code-block .attr { color: #9cdcfe; }
+        .code-block .string { color: #ce9178; }
+        .code-block .keyword { color: #c586c0; }
+
+        .example-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .example-section h3 {
+            margin-top: 0;
+            color: #7eb8da;
+        }
+
+        .demo-frame {
+            width: 100%;
+            height: 300px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .file-list {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        .file-list li {
+            margin: 0.5rem 0;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #4a6cf7 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="../" class="nav-logo">TrussC</a>
+        <div class="nav-links">
+            <a href="../">Home</a>
+            <a href="./">Sketch Editor</a>
+            <a href="../examples/">Examples</a>
+            <a href="../docs/">Docs</a>
+        </div>
+    </nav>
+
+    <main class="container" style="max-width: 900px; padding: 2rem;">
+        <h1>Embed <span class="highlight">TrussSketch</span></h1>
+        <p class="lead">
+            Add creative, interactive backgrounds to any website with just two lines of code.
+        </p>
+
+        <!-- Quick Start -->
+        <section class="example-section">
+            <h3>Quick Start</h3>
+            <p>Add this to your HTML:</p>
+            <div class="code-block">
+<code><span class="comment">&lt;!-- Include TrussSketch --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="comment">&lt;!-- Write your sketch --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span><span class="tag">&gt;</span>
+<span class="keyword">void</span> draw() {
+    clear(<span class="string">0.1f</span>);
+    setColor(<span class="string">1.0f</span>, <span class="string">0.5f</span>, <span class="string">0.2f</span>);
+    drawCircle(getMouseX(), getMouseY(), <span class="string">50.0f</span>);
+}
+<span class="tag">&lt;/script&gt;</span></code>
+            </div>
+            <p>That's it! A fullscreen canvas is automatically created as a background.</p>
+        </section>
+
+        <!-- Background Mode -->
+        <section class="example-section">
+            <h3>Fullscreen Background</h3>
+            <p>By default, TrussSketch creates a fullscreen canvas behind your content:</p>
+            <div class="code-block">
+<code><span class="tag">&lt;body&gt;</span>
+    <span class="comment">&lt;!-- Your content stays on top --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"content"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>My Website<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span><span class="tag">&gt;</span>
+    <span class="keyword">float</span> t = <span class="string">0.0f</span>;
+    <span class="keyword">void</span> draw() {
+        t += getDeltaTime();
+        clear(<span class="string">0.05f</span>);
+
+        <span class="comment">// Animated gradient circles</span>
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="string">0</span>; i < <span class="string">5</span>; i++) {
+            <span class="keyword">float</span> x = getWindowWidth() / <span class="string">2.0f</span> + cos(t + i) * <span class="string">100.0f</span>;
+            <span class="keyword">float</span> y = getWindowHeight() / <span class="string">2.0f</span> + sin(t + i) * <span class="string">100.0f</span>;
+            setColor(<span class="string">0.3f</span>, <span class="string">0.5f</span>, <span class="string">0.9f</span>, <span class="string">0.3f</span>);
+            drawCircle(x, y, <span class="string">50.0f</span> + i * <span class="string">20.0f</span>);
+        }
+    }
+    <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span></code>
+            </div>
+        </section>
+
+        <!-- Custom Canvas -->
+        <section class="example-section">
+            <h3>Custom Canvas</h3>
+            <p>Target a specific canvas element:</p>
+            <div class="code-block">
+<code><span class="tag">&lt;canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">height</span>=<span class="string">"300"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span> <span class="attr">data-canvas</span>=<span class="string">"myCanvas"</span><span class="tag">&gt;</span>
+<span class="keyword">void</span> draw() {
+    clear(<span class="string">0.1f</span>);
+    drawCircle(<span class="string">200.0f</span>, <span class="string">150.0f</span>, <span class="string">50.0f</span>);
+}
+<span class="tag">&lt;/script&gt;</span></code>
+            </div>
+        </section>
+
+        <!-- Self-Hosting -->
+        <section class="example-section">
+            <h3>Self-Hosting (Version Lock)</h3>
+            <p>For production sites that need version stability, download and host the files yourself:</p>
+
+            <ol>
+                <li>Download these files:
+                    <ul class="file-list">
+                        <li><a href="https://cdn.trussc.org/sketch.js">sketch.js</a> (loader)</li>
+                        <li><a href="https://cdn.trussc.org/TrussSketch.js">TrussSketch.js</a> (runtime)</li>
+                        <li><a href="https://cdn.trussc.org/TrussSketch.wasm">TrussSketch.wasm</a> (~2.8MB)</li>
+                    </ul>
+                </li>
+                <li>Place them in your project:
+                    <div class="code-block">
+<code>mysite/
+  assets/
+    sketch.js
+    TrussSketch.js
+    TrussSketch.wasm
+  index.html</code>
+                    </div>
+                </li>
+                <li>Reference the local file:
+                    <div class="code-block">
+<code><span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"./assets/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code>
+                    </div>
+                </li>
+            </ol>
+            <p>The loader automatically detects local hosting and uses local WASM files.</p>
+        </section>
+
+        <!-- API Reference -->
+        <section class="example-section">
+            <h3>Learn More</h3>
+            <ul>
+                <li><a href="./">Try the Sketch Editor</a> - Interactive playground with autocomplete</li>
+                <li><a href="./#reference">API Reference</a> - Full list of available functions</li>
+                <li><a href="../examples/">Examples</a> - See what's possible with TrussC</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: rgba(255,255,255,0.4);">
+        <p>TrussSketch is part of <a href="../" style="color: #7eb8da;">TrussC</a> - Creative coding framework</p>
+    </footer>
+</body>
+</html>
