@@ -247,7 +247,7 @@
         }
 
         .file-tab-name {
-            max-width: 120px;
+            max-width: 180px;
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -475,6 +475,31 @@
     <script>
         let editor;
         let isModified = false;
+        let editorReady = false;
+        let engineReady = false;
+
+        // Auto-run when both editor and engine are ready
+        function tryAutoRun() {
+            if (editorReady && engineReady) {
+                runScript();
+                if (editor) editor.focus();
+            }
+        }
+
+        // Random project name generator
+        let randomNameData = null;
+        fetch('random-names.json')
+            .then(r => r.json())
+            .then(data => { randomNameData = data; })
+            .catch(() => { randomNameData = { adjectives: ['my'], nouns: ['sketch'] }; });
+
+        function generateRandomName() {
+            if (!randomNameData) return 'myCode';
+            const adj = randomNameData.adjectives[Math.floor(Math.random() * randomNameData.adjectives.length)];
+            const noun = randomNameData.nouns[Math.floor(Math.random() * randomNameData.nouns.length)];
+            // Capitalize first letter of noun
+            return adj + noun.charAt(0).toUpperCase() + noun.slice(1) + 'Code';
+        }
 
         // Multi-file management
         const files = new Map();  // filename -> { model: Monaco.ITextModel, savedContent: string }
@@ -512,8 +537,9 @@
                 tab.className = 'file-tab' + (name === currentFile ? ' active' : '');
                 tab.draggable = true;
                 tab.dataset.filename = name;
+                const displayName = name.replace(/\.as$/, '');
                 tab.innerHTML = `
-                    <span class="file-tab-name">${name}</span>
+                    <span class="file-tab-name">${displayName}</span>
                     ${files.size > 1 ? `<span class="file-tab-close" onclick="event.stopPropagation(); removeFile('${name}')">
                         <svg viewBox="0 0 16 16"><path d="M4 4l8 8m0-8l-8 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
                     </span>` : ''}
@@ -589,7 +615,7 @@
         // Add a new file
         function addFile(name = null, content = '') {
             if (!name) {
-                name = prompt('Enter file name:', 'utils.as');
+                name = prompt('Enter file name:', 'utils');
                 if (!name) return;
             }
             if (!name.endsWith('.as')) name += '.as';
@@ -631,8 +657,9 @@
 
         // Rename a file
         function renameFile(oldName) {
-            const newName = prompt('Rename file:', oldName);
-            if (!newName || newName === oldName) return;
+            const oldDisplayName = oldName.replace(/\.as$/, '');
+            const newName = prompt('Rename file:', oldDisplayName);
+            if (!newName || newName === oldDisplayName) return;
 
             const finalName = newName.endsWith('.as') ? newName : newName + '.as';
             if (files.has(finalName)) {
@@ -843,18 +870,25 @@ void draw() {
                     model.onDidChangeContent(() => checkModified());
                     files.set(name, { model, savedContent: content });
                 }
-                currentFile = files.has('main.as') ? 'main.as' : files.keys().next().value;
+                currentFile = files.keys().next().value;
             } else {
                 // Single-file format or default
                 const content = (typeof hashData === 'string') ? hashData : defaultCode;
                 const model = monaco.editor.createModel(content, 'trusssketch');
                 model.onDidChangeContent(() => checkModified());
-                files.set('main.as', { model, savedContent: content });
+                // Use random name for new projects, 'main.as' for loaded single-file
+                const fileName = hashData ? 'main.as' : (generateRandomName() + '.as');
+                files.set(fileName, { model, savedContent: content });
+                currentFile = fileName;
             }
 
             // Set initial model and render tabs
             editor.setModel(files.get(currentFile).model);
             renderFileTabs();
+
+            // Mark editor as ready and try auto-run
+            editorReady = true;
+            tryAutoRun();
 
         });
 
@@ -1061,19 +1095,19 @@ void draw() {
             }
         }
 
-        // Get save data (single file = plain text, multi-file = JSON)
+        // Get save data (always JSON to preserve tab names)
         function getSaveData() {
-            if (files.size === 1) {
-                // Single file: save as plain text for backward compatibility
-                return files.values().next().value.model.getValue();
-            } else {
-                // Multi-file: save as JSON
-                const data = { files: {} };
-                for (const [name, file] of files) {
-                    data.files[name] = file.model.getValue();
-                }
-                return JSON.stringify(data, null, 2);
+            const data = { files: {} };
+            for (const [name, file] of files) {
+                data.files[name] = file.model.getValue();
             }
+            return JSON.stringify(data, null, 2);
+        }
+
+        // Get project name (first tab name without .as)
+        function getProjectName() {
+            const firstName = files.keys().next().value || 'sketch';
+            return firstName.replace(/\.as$/, '');
         }
 
         // Mark all files as saved
@@ -1087,12 +1121,13 @@ void draw() {
         // Save script to file
         async function saveScript() {
             const data = getSaveData();
+            const projectName = getProjectName();
 
             // Use File System Access API if available
             if ('showSaveFilePicker' in window) {
                 try {
                     const handle = await window.showSaveFilePicker({
-                        suggestedName: 'script.tcs',
+                        suggestedName: projectName + '.tcs',
                         types: [{
                             description: 'TrussSketch Files',
                             accept: { 'text/plain': ['.tcs'] }
@@ -1114,7 +1149,7 @@ void draw() {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'script.tcs';
+            a.download = projectName + '.tcs';
             a.click();
             URL.revokeObjectURL(url);
             logToConsole('Script saved to file!', 'success');
@@ -1268,11 +1303,9 @@ void draw() {
                 logToConsole('TrussSketch engine ready!', 'success');
                 // Focus canvas when clicked (required for keyboard input)
                 canvas.addEventListener('mousedown', () => canvas.focus());
-                // Auto-run script, then focus editor
-                setTimeout(function() {
-                    runScript();
-                    if (editor) editor.focus();
-                }, 100);
+                // Mark engine as ready and try auto-run
+                engineReady = true;
+                tryAutoRun();
             },
             print: function(text) {
                 logToConsole(text);

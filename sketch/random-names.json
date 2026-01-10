@@ -1,0 +1,43 @@
+{
+  "adjectives": [
+    "red", "blue", "gold", "jade", "pink", "cyan", "mint", "rose", "plum", "lime",
+    "rust", "teal", "navy", "wine", "sage", "coal", "sand", "snow", "ice", "fire",
+    "warm", "cool", "cold", "hot", "soft", "bold", "pale", "deep", "dark", "dawn",
+    "dusk", "noon", "hazy", "calm", "wild", "fast", "slow", "lazy", "tiny", "vast",
+    "thin", "wide", "tall", "flat", "round", "wavy", "pure", "raw", "new", "old",
+    "shy", "loud", "quiet", "swift", "light", "misty", "dusty", "sunny", "rainy", "foggy",
+    "windy", "stormy", "frosty", "silky", "fuzzy", "sharp", "smooth", "rough", "shiny", "matte",
+    "vivid", "faded", "bright", "dim", "clear", "murky", "fresh", "crisp", "dry", "wet",
+    "dense", "thin", "hollow", "solid", "broken", "whole", "odd", "even", "prime", "dual",
+    "mono", "poly", "mini", "mega", "ultra", "hyper", "super", "extra", "half", "full",
+    "low", "high", "near", "far", "east", "west", "north", "south", "upper", "lower",
+    "inner", "outer", "left", "right", "front", "back", "top", "base", "core", "edge",
+    "peak", "root", "side", "mid", "end", "open", "shut", "free", "bound", "lost",
+    "found", "safe", "risky", "easy", "hard", "simple", "complex", "basic", "fancy", "plain",
+    "rich", "bare", "clean", "dirty", "neat", "messy", "tidy", "chaotic", "orderly", "random",
+    "fixed", "fluid", "rigid", "flex", "stable", "shaky", "steady", "wobbly", "firm", "loose",
+    "tight", "slack", "taut", "limp", "stiff", "supple", "tender", "tough", "fragile", "sturdy",
+    "heavy", "airy", "dense", "sparse", "thick", "sleek", "bulky", "slim", "lean", "plump",
+    "curvy", "angular", "pointy", "blunt", "jagged", "smooth", "bumpy", "flat", "curved", "spiral"
+  ],
+  "nouns": [
+    "fox", "owl", "bee", "ant", "bat", "cat", "dog", "elk", "emu", "fly",
+    "hen", "jay", "koi", "ram", "ray", "yak", "ape", "cod", "cow", "cub",
+    "doe", "eel", "fawn", "frog", "goat", "hare", "hawk", "ibis", "lynx", "mole",
+    "moth", "newt", "oryx", "puma", "seal", "slug", "swan", "toad", "wasp", "wren",
+    "sun", "moon", "star", "sky", "rain", "snow", "wind", "fog", "dew", "ice",
+    "fire", "lake", "pond", "bay", "sea", "wave", "tide", "reef", "cave", "rock",
+    "peak", "hill", "vale", "glen", "dale", "wood", "fern", "moss", "vine", "leaf",
+    "root", "seed", "bud", "stem", "bark", "twig", "palm", "pine", "oak", "elm",
+    "rose", "lily", "iris", "daisy", "lotus", "tulip", "poppy", "aster", "sage", "mint",
+    "grid", "mesh", "web", "net", "loop", "ring", "arc", "orb", "dot", "line",
+    "ray", "beam", "glow", "blur", "haze", "mist", "spark", "flash", "pulse", "wave",
+    "flow", "flux", "drift", "swirl", "spin", "twist", "curl", "coil", "helix", "spiral",
+    "prism", "lens", "shard", "gem", "crystal", "pearl", "shell", "coral", "sand", "dust",
+    "ash", "clay", "mud", "soil", "stone", "pebble", "boulder", "cliff", "crag", "ledge",
+    "path", "road", "trail", "track", "lane", "route", "bridge", "gate", "door", "arch",
+    "tower", "spire", "dome", "vault", "hall", "room", "nest", "den", "hive", "burrow",
+    "echo", "hum", "buzz", "chirp", "song", "tune", "beat", "rhythm", "tone", "chord",
+    "dream", "wish", "hope", "idea", "thought", "memory", "vision", "quest", "journey", "voyage"
+  ]
+}
