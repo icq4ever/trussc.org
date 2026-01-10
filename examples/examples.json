@@ -115,12 +115,11 @@
           "additionalFiles": ["shaders/effect.glsl"]
         },
         {
-          "name": "lutFilterExample",
+          "name": "fullscreenShaderExample",
           "width": 960,
-          "height": 540,
+          "height": 600,
           "webSupported": true,
-          "autoScreenshot": false,
-          "additionalFiles": ["shaders/lut.glsl"]
+          "additionalFiles": ["shaders/effects.glsl"]
         },
         {
           "name": "strokeMeshExample",
@@ -421,6 +420,19 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        }
+      ]
+    },
+    "tcxLut": {
+      "visible": true,
+      "items": [
+        {
+          "name": "example-lut",
+          "width": 960,
+          "height": 540,
+          "webSupported": true,
+          "autoScreenshot": false,
+          "additionalFiles": ["shaders/lut.glsl"]
         }
       ]
     },
