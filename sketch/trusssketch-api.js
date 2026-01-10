@@ -448,6 +448,70 @@
                     "return_type": "void",
                     "desc": "Draw text",
                     "snippet": "drawBitmapString(${1:\"text\"}, ${2:x}, ${3:y})"
+                },
+                {
+                    "name": "setTextAlign",
+                    "params": "horizontal",
+                    "params_typed": "TextAlign horizontal",
+                    "return_type": "void",
+                    "desc": "Set text alignment",
+                    "snippet": "setTextAlign(TextAlign::${1:Left})"
+                },
+                {
+                    "name": "setTextAlign",
+                    "params": "horizontal, vertical",
+                    "params_typed": "TextAlign horizontal, TextAlign vertical",
+                    "return_type": "void",
+                    "desc": "Set text alignment",
+                    "snippet": "setTextAlign(TextAlign::${1:Left})"
+                },
+                {
+                    "name": "getTextAlignH",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "TextAlign",
+                    "desc": "Get horizontal text alignment",
+                    "snippet": "getTextAlignH()"
+                },
+                {
+                    "name": "getTextAlignV",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "TextAlign",
+                    "desc": "Get vertical text alignment",
+                    "snippet": "getTextAlignV()"
+                },
+                {
+                    "name": "getBitmapFontHeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get bitmap font height",
+                    "snippet": "getBitmapFontHeight()"
+                },
+                {
+                    "name": "getBitmapStringWidth",
+                    "params": "text",
+                    "params_typed": "const string& text",
+                    "return_type": "float",
+                    "desc": "Get text width",
+                    "snippet": "getBitmapStringWidth(${1:\"text\"})"
+                },
+                {
+                    "name": "getBitmapStringHeight",
+                    "params": "text",
+                    "params_typed": "const string& text",
+                    "return_type": "float",
+                    "desc": "Get text height",
+                    "snippet": "getBitmapStringHeight(${1:\"text\"})"
+                },
+                {
+                    "name": "getBitmapStringBBox",
+                    "params": "text, x, y",
+                    "params_typed": "const string& text, float x, float y",
+                    "return_type": "Rect",
+                    "desc": "Get text bounding box",
+                    "snippet": "getBitmapStringBBox(${1:\"text\"}, ${2:x}, ${3:y})"
                 }
             ]
         },
@@ -517,6 +581,38 @@
                     "return_type": "StrokeJoin",
                     "desc": "Get current stroke join style",
                     "snippet": "getStrokeJoin()"
+                },
+                {
+                    "name": "isFillEnabled",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if fill mode is enabled",
+                    "snippet": "isFillEnabled()"
+                },
+                {
+                    "name": "isStrokeEnabled",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if stroke mode is enabled",
+                    "snippet": "isStrokeEnabled()"
+                },
+                {
+                    "name": "setCircleResolution",
+                    "params": "resolution",
+                    "params_typed": "int resolution",
+                    "return_type": "void",
+                    "desc": "Set circle segment count",
+                    "snippet": "setCircleResolution(${1:32})"
+                },
+                {
+                    "name": "getCircleResolution",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get circle segment count",
+                    "snippet": "getCircleResolution()"
                 }
             ]
         },
@@ -1363,6 +1459,75 @@
                     "return_type": "void",
                     "desc": "Enable/disable looping",
                     "snippet": "setLoop(${1:true})"
+                }
+            ]
+        },
+        {
+            "name": "Font",
+            "functions": [
+                {
+                    "name": "createFont",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Font@",
+                    "desc": "Create a TrueType font",
+                    "snippet": "Font@ font = createFont();"
+                },
+                {
+                    "name": "load",
+                    "params": "path, size",
+                    "params_typed": "const string& path, int size",
+                    "return_type": "bool",
+                    "desc": "Load TTF font file",
+                    "snippet": "load(FONT_SANS, ${1:24})"
+                },
+                {
+                    "name": "isLoaded",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if font is loaded",
+                    "snippet": "isLoaded()"
+                },
+                {
+                    "name": "drawString",
+                    "params": "text, x, y",
+                    "params_typed": "const string& text, float x, float y",
+                    "return_type": "void",
+                    "desc": "Draw text at position",
+                    "snippet": "drawString(${1:\"Hello\"}, ${2:100}, ${3:100})"
+                },
+                {
+                    "name": "getWidth",
+                    "params": "text",
+                    "params_typed": "const string& text",
+                    "return_type": "float",
+                    "desc": "Get text width in pixels",
+                    "snippet": "getWidth(${1:\"text\"})"
+                },
+                {
+                    "name": "getHeight",
+                    "params": "text",
+                    "params_typed": "const string& text",
+                    "return_type": "float",
+                    "desc": "Get text height in pixels",
+                    "snippet": "getHeight(${1:\"text\"})"
+                },
+                {
+                    "name": "getLineHeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get line height",
+                    "snippet": "getLineHeight()"
+                },
+                {
+                    "name": "getSize",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get font size",
+                    "snippet": "getSize()"
                 }
             ]
         },
@@ -2317,34 +2482,49 @@
             "desc": "Pi (use TAU instead)"
         },
         {
-            "name": "StrokeCap_Butt",
+            "name": "StrokeCap::Butt",
             "value": "0",
             "desc": "Flat line cap (no extension)"
         },
         {
-            "name": "StrokeCap_Round",
+            "name": "StrokeCap::Round",
             "value": "1",
             "desc": "Rounded line cap"
         },
         {
-            "name": "StrokeCap_Square",
+            "name": "StrokeCap::Square",
             "value": "2",
             "desc": "Square line cap (extends by half stroke width)"
         },
         {
-            "name": "StrokeJoin_Miter",
+            "name": "StrokeJoin::Miter",
             "value": "0",
             "desc": "Sharp corner join"
         },
         {
-            "name": "StrokeJoin_Round",
+            "name": "StrokeJoin::Round",
             "value": "1",
             "desc": "Rounded corner join"
         },
         {
-            "name": "StrokeJoin_Bevel",
+            "name": "StrokeJoin::Bevel",
             "value": "2",
             "desc": "Beveled corner join"
+        },
+        {
+            "name": "FONT_SANS",
+            "value": "string",
+            "desc": "System sans-serif font path (CDN URL on Web)"
+        },
+        {
+            "name": "FONT_SERIF",
+            "value": "string",
+            "desc": "System serif font path (CDN URL on Web)"
+        },
+        {
+            "name": "FONT_MONO",
+            "value": "string",
+            "desc": "System monospace font path (CDN URL on Web)"
         }
     ],
     "keywords": [
@@ -2364,6 +2544,557 @@
         "false",
         "null",
         "const"
+    ],
+    "types": [
+        {
+            "name": "Vec2",
+            "desc": "2D vector",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "float x, float y",
+                    "float v"
+                ],
+                "snippet": "Vec2(${1:x}, ${2:y})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "float",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "float",
+                    "desc": "Y component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "set",
+                    "return": "Vec2&",
+                    "signatures": [
+                        "float x, float y",
+                        "Vec2 v"
+                    ],
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "length",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vector length",
+                    "snippet": "length()"
+                },
+                {
+                    "name": "lengthSquared",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get squared length (faster, no sqrt)",
+                    "snippet": "lengthSquared()"
+                },
+                {
+                    "name": "normalized",
+                    "return": "Vec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get normalized copy",
+                    "snippet": "normalized()"
+                },
+                {
+                    "name": "normalize",
+                    "return": "Vec2&",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Normalize in place",
+                    "snippet": "normalize()"
+                },
+                {
+                    "name": "limit",
+                    "return": "Vec2&",
+                    "signatures": [
+                        "float max"
+                    ],
+                    "desc": "Limit length to max",
+                    "snippet": "limit(${1:max})"
+                },
+                {
+                    "name": "dot",
+                    "return": "float",
+                    "signatures": [
+                        "Vec2 v"
+                    ],
+                    "desc": "Dot product",
+                    "snippet": "dot(${1:v})"
+                },
+                {
+                    "name": "cross",
+                    "return": "float",
+                    "signatures": [
+                        "Vec2 v"
+                    ],
+                    "desc": "Cross product (z component)",
+                    "snippet": "cross(${1:v})"
+                },
+                {
+                    "name": "distance",
+                    "return": "float",
+                    "signatures": [
+                        "Vec2 v"
+                    ],
+                    "desc": "Distance to another vector",
+                    "snippet": "distance(${1:v})"
+                },
+                {
+                    "name": "distanceSquared",
+                    "return": "float",
+                    "signatures": [
+                        "Vec2 v"
+                    ],
+                    "desc": "Squared distance (faster)",
+                    "snippet": "distanceSquared(${1:v})"
+                },
+                {
+                    "name": "angle",
+                    "return": "float",
+                    "signatures": [
+                        "",
+                        "Vec2 v"
+                    ],
+                    "desc": "Angle in radians",
+                    "snippet": "angle()"
+                },
+                {
+                    "name": "rotated",
+                    "return": "Vec2",
+                    "signatures": [
+                        "float radians"
+                    ],
+                    "desc": "Get rotated copy",
+                    "snippet": "rotated(${1:radians})"
+                },
+                {
+                    "name": "rotate",
+                    "return": "Vec2&",
+                    "signatures": [
+                        "float radians"
+                    ],
+                    "desc": "Rotate in place",
+                    "snippet": "rotate(${1:radians})"
+                },
+                {
+                    "name": "lerp",
+                    "return": "Vec2",
+                    "signatures": [
+                        "Vec2 target, float t"
+                    ],
+                    "desc": "Linear interpolation",
+                    "snippet": "lerp(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "perpendicular",
+                    "return": "Vec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get perpendicular vector",
+                    "snippet": "perpendicular()"
+                },
+                {
+                    "name": "reflected",
+                    "return": "Vec2",
+                    "signatures": [
+                        "Vec2 normal"
+                    ],
+                    "desc": "Get reflected vector",
+                    "snippet": "reflected(${1:normal})"
+                }
+            ],
+            "static_methods": [
+                {
+                    "name": "fromAngle",
+                    "return": "Vec2",
+                    "signatures": [
+                        "float radians",
+                        "float radians, float length"
+                    ],
+                    "desc": "Create Vec2 from angle",
+                    "snippet": "Vec2::fromAngle(${1:radians})"
+                }
+            ]
+        },
+        {
+            "name": "Vec3",
+            "desc": "3D vector",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "float x, float y, float z",
+                    "float v"
+                ],
+                "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "float",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "float",
+                    "desc": "Y component"
+                },
+                {
+                    "name": "z",
+                    "type": "float",
+                    "desc": "Z component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "set",
+                    "return": "Vec3&",
+                    "signatures": [
+                        "float x, float y, float z",
+                        "Vec3 v"
+                    ],
+                    "desc": "Set vector components",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "length",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vector length",
+                    "snippet": "length()"
+                },
+                {
+                    "name": "lengthSquared",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get squared length",
+                    "snippet": "lengthSquared()"
+                },
+                {
+                    "name": "normalized",
+                    "return": "Vec3",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get normalized copy",
+                    "snippet": "normalized()"
+                },
+                {
+                    "name": "normalize",
+                    "return": "Vec3&",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Normalize in place",
+                    "snippet": "normalize()"
+                },
+                {
+                    "name": "limit",
+                    "return": "Vec3&",
+                    "signatures": [
+                        "float max"
+                    ],
+                    "desc": "Limit length to max",
+                    "snippet": "limit(${1:max})"
+                },
+                {
+                    "name": "dot",
+                    "return": "float",
+                    "signatures": [
+                        "Vec3 v"
+                    ],
+                    "desc": "Dot product",
+                    "snippet": "dot(${1:v})"
+                },
+                {
+                    "name": "cross",
+                    "return": "Vec3",
+                    "signatures": [
+                        "Vec3 v"
+                    ],
+                    "desc": "Cross product",
+                    "snippet": "cross(${1:v})"
+                },
+                {
+                    "name": "distance",
+                    "return": "float",
+                    "signatures": [
+                        "Vec3 v"
+                    ],
+                    "desc": "Distance to another vector",
+                    "snippet": "distance(${1:v})"
+                },
+                {
+                    "name": "distanceSquared",
+                    "return": "float",
+                    "signatures": [
+                        "Vec3 v"
+                    ],
+                    "desc": "Squared distance",
+                    "snippet": "distanceSquared(${1:v})"
+                },
+                {
+                    "name": "lerp",
+                    "return": "Vec3",
+                    "signatures": [
+                        "Vec3 target, float t"
+                    ],
+                    "desc": "Linear interpolation",
+                    "snippet": "lerp(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "reflected",
+                    "return": "Vec3",
+                    "signatures": [
+                        "Vec3 normal"
+                    ],
+                    "desc": "Get reflected vector",
+                    "snippet": "reflected(${1:normal})"
+                },
+                {
+                    "name": "xy",
+                    "return": "Vec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get XY components as Vec2",
+                    "snippet": "xy()"
+                }
+            ]
+        },
+        {
+            "name": "Color",
+            "desc": "RGBA color (0.0-1.0)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "float r, float g, float b",
+                    "float r, float g, float b, float a",
+                    "float gray",
+                    "float gray, float a"
+                ],
+                "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
+            },
+            "properties": [
+                {
+                    "name": "r",
+                    "type": "float",
+                    "desc": "Red component (0.0-1.0)"
+                },
+                {
+                    "name": "g",
+                    "type": "float",
+                    "desc": "Green component (0.0-1.0)"
+                },
+                {
+                    "name": "b",
+                    "type": "float",
+                    "desc": "Blue component (0.0-1.0)"
+                },
+                {
+                    "name": "a",
+                    "type": "float",
+                    "desc": "Alpha component (0.0-1.0)"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "set",
+                    "return": "Color&",
+                    "signatures": [
+                        "float r, float g, float b",
+                        "float r, float g, float b, float a",
+                        "float gray"
+                    ],
+                    "desc": "Set color components",
+                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
+                    "name": "toHex",
+                    "return": "uint32_t",
+                    "signatures": [
+                        "",
+                        "bool includeAlpha"
+                    ],
+                    "desc": "Convert to hex value",
+                    "snippet": "toHex()"
+                },
+                {
+                    "name": "lerp",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in OKLab space",
+                    "snippet": "lerp(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpRGB",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in RGB space",
+                    "snippet": "lerpRGB(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "clamped",
+                    "return": "Color",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get clamped copy (0.0-1.0)",
+                    "snippet": "clamped()"
+                }
+            ],
+            "static_methods": [
+                {
+                    "name": "fromHex",
+                    "return": "Color",
+                    "signatures": [
+                        "uint32_t hex",
+                        "uint32_t hex, bool hasAlpha"
+                    ],
+                    "desc": "Create from hex value",
+                    "snippet": "Color::fromHex(${1:0xRRGGBB})"
+                },
+                {
+                    "name": "fromHSB",
+                    "return": "Color",
+                    "signatures": [
+                        "float h, float s, float b",
+                        "float h, float s, float b, float a"
+                    ],
+                    "desc": "Create from HSB (H: 0-TAU)",
+                    "snippet": "Color::fromHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "fromBytes",
+                    "return": "Color",
+                    "signatures": [
+                        "int r, int g, int b",
+                        "int r, int g, int b, int a"
+                    ],
+                    "desc": "Create from 0-255 values",
+                    "snippet": "Color::fromBytes(${1:r}, ${2:g}, ${3:b})"
+                }
+            ]
+        },
+        {
+            "name": "Rect",
+            "desc": "Rectangle (x, y, width, height)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "float x, float y, float width, float height"
+                ],
+                "snippet": "Rect(${1:x}, ${2:y}, ${3:width}, ${4:height})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "float",
+                    "desc": "X position"
+                },
+                {
+                    "name": "y",
+                    "type": "float",
+                    "desc": "Y position"
+                },
+                {
+                    "name": "width",
+                    "type": "float",
+                    "desc": "Width"
+                },
+                {
+                    "name": "height",
+                    "type": "float",
+                    "desc": "Height"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "set",
+                    "return": "Rect&",
+                    "signatures": [
+                        "float x, float y, float w, float h"
+                    ],
+                    "desc": "Set rectangle bounds",
+                    "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "getRight",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get right edge (x + width)",
+                    "snippet": "getRight()"
+                },
+                {
+                    "name": "getBottom",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get bottom edge (y + height)",
+                    "snippet": "getBottom()"
+                },
+                {
+                    "name": "getCenterX",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get center X",
+                    "snippet": "getCenterX()"
+                },
+                {
+                    "name": "getCenterY",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get center Y",
+                    "snippet": "getCenterY()"
+                },
+                {
+                    "name": "contains",
+                    "return": "bool",
+                    "signatures": [
+                        "float px, float py"
+                    ],
+                    "desc": "Check if point is inside",
+                    "snippet": "contains(${1:px}, ${2:py})"
+                },
+                {
+                    "name": "intersects",
+                    "return": "bool",
+                    "signatures": [
+                        "Rect other"
+                    ],
+                    "desc": "Check if intersects with another rect",
+                    "snippet": "intersects(${1:other})"
+                }
+            ]
+        }
     ]
 };
             
