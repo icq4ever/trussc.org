@@ -2124,6 +2124,36 @@
             "name": "PI",
             "value": "3.141...",
             "desc": "Pi (use TAU instead)"
+        },
+        {
+            "name": "StrokeCap_Butt",
+            "value": "0",
+            "desc": "Flat line cap (no extension)"
+        },
+        {
+            "name": "StrokeCap_Round",
+            "value": "1",
+            "desc": "Rounded line cap"
+        },
+        {
+            "name": "StrokeCap_Square",
+            "value": "2",
+            "desc": "Square line cap (extends by half stroke width)"
+        },
+        {
+            "name": "StrokeJoin_Miter",
+            "value": "0",
+            "desc": "Sharp corner join"
+        },
+        {
+            "name": "StrokeJoin_Round",
+            "value": "1",
+            "desc": "Rounded corner join"
+        },
+        {
+            "name": "StrokeJoin_Bevel",
+            "value": "2",
+            "desc": "Beveled corner join"
         }
     ],
     "keywords": [
