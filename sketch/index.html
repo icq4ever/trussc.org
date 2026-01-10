@@ -686,6 +686,18 @@ void draw() {
     float cx = getWindowWidth() / 2;
     float cy = getWindowHeight() / 2;
 
+    // Smooth wave
+    setStrokeWeight(3);
+    setColor(0.2, 0.5, 0.9);
+    beginStroke();
+    for (int i = 0; i <= 50; i++) {
+        float x = i * 12 + 50;
+        float y = cy + sin(i * 0.2 + t * 2) * 60;
+        vertex(x, y);
+    }
+    endStroke();
+    setStrokeWeight(0);
+
     // Pulsing circle
     setColor(0.95, 0.3, 0.4);
     drawCircle(cx - 120, cy, 40 + sin(t * 3) * 10);
