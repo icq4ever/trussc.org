@@ -3,177 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embed TrussSketch</title>
+    <title>Embed TrussSketch | TrussC</title>
+    <meta name="description" content="Add interactive creative coding backgrounds to any website with TrussSketch.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <style>
-        .code-block {
-            background: #1a1a2e;
+        .embed-hero {
+            padding: 6rem 0 3rem;
+            text-align: center;
+        }
+        .embed-hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .embed-hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .embed-section {
+            padding: 2rem 0;
+        }
+        .embed-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .embed-section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .embed-code {
+            background: #252526;
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
             overflow-x: auto;
             margin: 1rem 0;
-            position: relative;
-        }
-        .code-block code {
-            color: #e0e0e0;
-            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
             line-height: 1.6;
             white-space: pre;
+            color: #d4d4d4;
         }
-        .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: #aaa;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
+        .embed-code .comment { color: #6a9955; }
+        .embed-code .tag { color: #569cd6; }
+        .embed-code .attr { color: #9cdcfe; }
+        .embed-code .string { color: #ce9178; }
+        .embed-code .keyword { color: #c586c0; }
+        .embed-code .number { color: #b5cea8; }
+        .file-list {
+            list-style: none;
+            padding: 0;
         }
-        .copy-btn:hover {
-            background: rgba(255,255,255,0.2);
-            color: #fff;
+        .file-list li {
+            padding: 0.5rem 0;
         }
-        section {
-            margin: 3rem 0;
-        }
-        h2 {
-            color: #7eb8da;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 0.5rem;
-        }
-        .step {
-            margin: 1.5rem 0;
-        }
-        .step-num {
-            display: inline-block;
-            background: #4a6cf7;
-            color: #fff;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 1.5rem;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-        }
-        .download-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        .download-links a {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            color: #7eb8da;
-            text-decoration: none;
-        }
-        .download-links a:hover {
-            background: rgba(255,255,255,0.2);
+        .file-list a {
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="nav">
-        <a href="../" class="nav-logo">TrussC</a>
-        <div class="nav-links">
-            <a href="./">Sketch</a>
-            <a href="../examples/">Examples</a>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/images/logo-navigator.svg" alt="TrussC" class="logo-img">
+            </a>
+            <button class="nav-toggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../reference/">Reference</a></li>
+                <li><a href="../examples/">Examples</a></li>
+                <li><a href="../for-of-users.html">For oF Users</a></li>
+                <li><a href="https://gemini.google.com/gem/16aq3ccVPl33j6xSMyE7MWXDjaZvauL0I" target="_blank" rel="noopener">Ask AI</a></li>
+                <li><a href="https://github.com/TrussC-org/TrussC/blob/main/docs/GET_STARTED.md" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
+            </ul>
         </div>
     </nav>
 
-    <main class="container" style="max-width: 800px; padding: 2rem;">
-        <h1>Embed TrussSketch</h1>
-        <p>Add animated backgrounds to your website.</p>
-
-        <!-- 基本 -->
-        <section>
-            <h2>Copy & Paste</h2>
-            <p>Add this to your HTML. A fullscreen animated background will appear.</p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<code>&lt;script src="https://cdn.trussc.org/sketch.js"&gt;&lt;/script&gt;
-&lt;script type="text/tcs"&gt;
-float t = 0.0f;
-
-void draw() {
-    t += getDeltaTime();
-    clear(0.05f);
-
-    setColor(0.4f, 0.6f, 0.9f, 0.5f);
-    drawCircle(getWindowWidth()/2 + cos(t)*100, getWindowHeight()/2 + sin(t)*100, 80);
-}
-&lt;/script&gt;</code>
-            </div>
-        </section>
-
-        <!-- 特定のcanvasに描画 -->
-        <section>
-            <h2>Draw to Specific Canvas</h2>
-            <p>Use <code>data-canvas</code> to target your own canvas element.</p>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<code>&lt;canvas id="myCanvas" width="400" height="300"&gt;&lt;/canvas&gt;
-
-&lt;script src="https://cdn.trussc.org/sketch.js"&gt;&lt;/script&gt;
-&lt;script type="text/tcs" data-canvas="myCanvas"&gt;
-void draw() {
-    clear(0.1f);
-    setColor(1.0f, 0.5f, 0.2f);
-    drawCircle(getMouseX(), getMouseY(), 30);
-}
-&lt;/script&gt;</code>
-            </div>
-        </section>
-
-        <!-- ローカルホスティング -->
-        <section>
-            <h2>Self-Hosting</h2>
-            <p>Download files for version control or offline use.</p>
-
-            <div class="step">
-                <span class="step-num">1</span> Download these files:
-                <div class="download-links">
-                    <a href="https://cdn.trussc.org/sketch.js" download>sketch.js</a>
-                    <a href="https://cdn.trussc.org/TrussSketch.js" download>TrussSketch.js</a>
-                    <a href="https://cdn.trussc.org/TrussSketch.wasm" download>TrussSketch.wasm</a>
-                </div>
-            </div>
-
-            <div class="step">
-                <span class="step-num">2</span> Put them in the same folder, then:
-                <div class="code-block">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-<code>&lt;script src="./sketch.js"&gt;&lt;/script&gt;
-&lt;script type="text/tcs"&gt;
-void draw() {
-    // your code
-}
-&lt;/script&gt;</code>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Next Steps</h2>
-            <p>
-                <a href="./">Open Sketch Editor</a> to write and test your code with autocomplete.
+    <!-- Hero -->
+    <header class="embed-hero">
+        <div class="container">
+            <h1 class="embed-hero-title">Embed TrussSketch</h1>
+            <p class="embed-hero-description">
+                Add interactive creative coding backgrounds to any website with just a few lines of code.
             </p>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="container" style="max-width: 800px;">
+
+        <!-- Quick Start -->
+        <section class="embed-section">
+            <h2>Quick Start</h2>
+            <p>Include the script and write your sketch code:</p>
+            <div class="embed-code">
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span><span class="tag">&gt;</span>
+<span class="keyword">void</span> draw() {
+    clear(<span class="number">0.1</span>);
+    setColor(<span class="number">1</span>, <span class="number">0.5</span>, <span class="number">0.2</span>);
+    drawCircle(getMouseX(), getMouseY(), <span class="number">30</span>);
+}
+<span class="tag">&lt;/script&gt;</span>
+            </div>
+            <p>That's it! A fullscreen canvas is automatically created as a background layer.</p>
         </section>
+
+        <!-- Full Example -->
+        <section class="embed-section">
+            <h2>Full HTML Example</h2>
+            <p>Copy this complete example to get started:</p>
+            <div class="embed-code">
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>My Site<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+        body { margin: <span class="number">0</span>; color: white; font-family: sans-serif; }
+        .content { position: relative; z-index: <span class="number">1</span>; padding: <span class="number">2</span>rem; }
+    <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"content"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Hello World<span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Your content goes here.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+    <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span><span class="tag">&gt;</span>
+<span class="keyword">float</span> t = <span class="number">0</span>;
+
+<span class="keyword">void</span> draw() {
+    t += getDeltaTime();
+    clear(<span class="number">0.05</span>);
+
+    <span class="keyword">float</span> cx = getWindowWidth() / <span class="number">2</span>;
+    <span class="keyword">float</span> cy = getWindowHeight() / <span class="number">2</span>;
+
+    <span class="comment">// Pulsing circles</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) {
+        <span class="keyword">float</span> r = <span class="number">50</span> + i * <span class="number">40</span> + sin(t * <span class="number">2</span>) * <span class="number">20</span>;
+        setColor(<span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.9</span>, <span class="number">0.2</span>);
+        drawCircle(cx, cy, r);
+    }
+}
+    <span class="tag">&lt;/script&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+            </div>
+        </section>
+
+        <!-- Custom Canvas -->
+        <section class="embed-section">
+            <h2>Custom Canvas</h2>
+            <p>Target a specific canvas element instead of fullscreen:</p>
+            <div class="embed-code">
+<span class="tag">&lt;canvas</span> <span class="attr">id</span>=<span class="string">"myCanvas"</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">height</span>=<span class="string">"300"</span><span class="tag">&gt;&lt;/canvas&gt;</span>
+
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span> <span class="attr">data-canvas</span>=<span class="string">"myCanvas"</span><span class="tag">&gt;</span>
+<span class="keyword">void</span> draw() {
+    clear(<span class="number">0.1</span>);
+    drawCircle(<span class="number">200</span>, <span class="number">150</span>, <span class="number">50</span>);
+}
+<span class="tag">&lt;/script&gt;</span>
+            </div>
+        </section>
+
+        <!-- External File -->
+        <section class="embed-section">
+            <h2>External File</h2>
+            <p>Load your sketch from a separate .tcs file:</p>
+            <div class="embed-code">
+<span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span> <span class="attr">src</span>=<span class="string">"sketch.tcs"</span><span class="tag">&gt;&lt;/script&gt;</span>
+            </div>
+            <p>This keeps your code organized and makes it easier to edit.</p>
+        </section>
+
+        <!-- Self Hosting -->
+        <section class="embed-section">
+            <h2>Self-Hosting</h2>
+            <p>For version stability, download and host the files yourself:</p>
+            <ul class="file-list">
+                <li><a href="https://cdn.trussc.org/sketch.js" download>sketch.js</a> - Loader script</li>
+                <li><a href="https://cdn.trussc.org/TrussSketch.js" download>TrussSketch.js</a> - Runtime</li>
+                <li><a href="https://cdn.trussc.org/TrussSketch.wasm" download>TrussSketch.wasm</a> - WebAssembly (~2.8MB)</li>
+            </ul>
+            <p>Place them in the same directory and reference your local sketch.js.</p>
+        </section>
+
+        <!-- Learn More -->
+        <section class="embed-section">
+            <h2>Learn More</h2>
+            <ul class="file-list">
+                <li><a href="./">Sketch Editor</a> - Interactive playground with autocomplete</li>
+                <li><a href="./reference/">API Reference</a> - All available functions</li>
+                <li><a href="../examples/">Examples</a> - See what's possible</li>
+            </ul>
+        </section>
+
     </main>
 
-    <script>
-    function copyCode(btn) {
-        const code = btn.parentElement.querySelector('code').textContent;
-        navigator.clipboard.writeText(code);
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy', 1500);
-    }
-    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 TrussC. Released under the <a href="../license.html">MIT License</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
 </body>
 </html>
