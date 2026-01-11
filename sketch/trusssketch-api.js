@@ -3094,6 +3094,413 @@
                     "snippet": "intersects(${1:other})"
                 }
             ]
+        },
+        {
+            "name": "Pixels",
+            "desc": "Pixel buffer for image manipulation",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Pixels()"
+            },
+            "methods": [
+                {
+                    "name": "allocate",
+                    "return": "void",
+                    "signatures": [
+                        "int width, int height",
+                        "int width, int height, int channels"
+                    ],
+                    "desc": "Allocate pixel buffer",
+                    "snippet": "allocate(${1:width}, ${2:height})"
+                },
+                {
+                    "name": "getColor",
+                    "return": "Color",
+                    "signatures": [
+                        "int x, int y"
+                    ],
+                    "desc": "Get pixel color at position",
+                    "snippet": "getColor(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "setColor",
+                    "return": "void",
+                    "signatures": [
+                        "int x, int y, Color color"
+                    ],
+                    "desc": "Set pixel color at position",
+                    "snippet": "setColor(${1:x}, ${2:y}, ${3:color})"
+                },
+                {
+                    "name": "load",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Load image from file",
+                    "snippet": "load(${1:\"path\"})"
+                },
+                {
+                    "name": "save",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Save image to file",
+                    "snippet": "save(${1:\"path\"})"
+                },
+                {
+                    "name": "getWidth",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get width",
+                    "snippet": "getWidth()"
+                },
+                {
+                    "name": "getHeight",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get height",
+                    "snippet": "getHeight()"
+                },
+                {
+                    "name": "isAllocated",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if allocated",
+                    "snippet": "isAllocated()"
+                }
+            ]
+        },
+        {
+            "name": "Texture",
+            "desc": "GPU texture for rendering",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Texture()"
+            },
+            "methods": [
+                {
+                    "name": "allocate",
+                    "return": "void",
+                    "signatures": [
+                        "int width, int height",
+                        "Pixels pixels"
+                    ],
+                    "desc": "Allocate texture",
+                    "snippet": "allocate(${1:width}, ${2:height})"
+                },
+                {
+                    "name": "loadData",
+                    "return": "void",
+                    "signatures": [
+                        "Pixels pixels"
+                    ],
+                    "desc": "Load pixel data to texture",
+                    "snippet": "loadData(${1:pixels})"
+                },
+                {
+                    "name": "bind",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Bind texture for rendering",
+                    "snippet": "bind()"
+                },
+                {
+                    "name": "unbind",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Unbind texture",
+                    "snippet": "unbind()"
+                },
+                {
+                    "name": "getWidth",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get width",
+                    "snippet": "getWidth()"
+                },
+                {
+                    "name": "getHeight",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get height",
+                    "snippet": "getHeight()"
+                },
+                {
+                    "name": "isAllocated",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if allocated",
+                    "snippet": "isAllocated()"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float w, float h"
+                    ],
+                    "desc": "Draw texture",
+                    "snippet": "draw(${1:x}, ${2:y})"
+                }
+            ]
+        },
+        {
+            "name": "Fbo",
+            "desc": "Framebuffer object for offscreen rendering",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Fbo()"
+            },
+            "methods": [
+                {
+                    "name": "allocate",
+                    "return": "void",
+                    "signatures": [
+                        "int width, int height"
+                    ],
+                    "desc": "Allocate framebuffer",
+                    "snippet": "allocate(${1:width}, ${2:height})"
+                },
+                {
+                    "name": "begin",
+                    "return": "void",
+                    "signatures": [
+                        "",
+                        "float r, float g, float b, float a"
+                    ],
+                    "desc": "Begin rendering to FBO",
+                    "snippet": "begin()"
+                },
+                {
+                    "name": "end",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "End rendering to FBO",
+                    "snippet": "end()"
+                },
+                {
+                    "name": "getTexture",
+                    "return": "Texture",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get FBO texture",
+                    "snippet": "getTexture()"
+                },
+                {
+                    "name": "getWidth",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get width",
+                    "snippet": "getWidth()"
+                },
+                {
+                    "name": "getHeight",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get height",
+                    "snippet": "getHeight()"
+                },
+                {
+                    "name": "isAllocated",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if allocated",
+                    "snippet": "isAllocated()"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float w, float h"
+                    ],
+                    "desc": "Draw FBO contents",
+                    "snippet": "draw(${1:x}, ${2:y})"
+                }
+            ]
+        },
+        {
+            "name": "Sound",
+            "desc": "Audio playback",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Sound()"
+            },
+            "methods": [
+                {
+                    "name": "load",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Load audio file",
+                    "snippet": "load(${1:\"path\"})"
+                },
+                {
+                    "name": "play",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Play audio",
+                    "snippet": "play()"
+                },
+                {
+                    "name": "stop",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Stop audio",
+                    "snippet": "stop()"
+                },
+                {
+                    "name": "isLoaded",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if loaded",
+                    "snippet": "isLoaded()"
+                },
+                {
+                    "name": "isPlaying",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if playing",
+                    "snippet": "isPlaying()"
+                },
+                {
+                    "name": "setVolume",
+                    "return": "void",
+                    "signatures": [
+                        "float volume"
+                    ],
+                    "desc": "Set volume (0.0-1.0)",
+                    "snippet": "setVolume(${1:1.0})"
+                },
+                {
+                    "name": "setLoop",
+                    "return": "void",
+                    "signatures": [
+                        "bool loop"
+                    ],
+                    "desc": "Set loop mode",
+                    "snippet": "setLoop(${1:true})"
+                }
+            ]
+        },
+        {
+            "name": "Font",
+            "desc": "TrueType font for text rendering",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Font()"
+            },
+            "methods": [
+                {
+                    "name": "load",
+                    "return": "bool",
+                    "signatures": [
+                        "string path, int size"
+                    ],
+                    "desc": "Load font file",
+                    "snippet": "load(${1:\"path\"}, ${2:24})"
+                },
+                {
+                    "name": "isLoaded",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if loaded",
+                    "snippet": "isLoaded()"
+                },
+                {
+                    "name": "drawString",
+                    "return": "void",
+                    "signatures": [
+                        "string text, float x, float y"
+                    ],
+                    "desc": "Draw text",
+                    "snippet": "drawString(${1:\"text\"}, ${2:x}, ${3:y})"
+                },
+                {
+                    "name": "getWidth",
+                    "return": "float",
+                    "signatures": [
+                        "string text"
+                    ],
+                    "desc": "Get text width",
+                    "snippet": "getWidth(${1:\"text\"})"
+                },
+                {
+                    "name": "getHeight",
+                    "return": "float",
+                    "signatures": [
+                        "string text"
+                    ],
+                    "desc": "Get text height",
+                    "snippet": "getHeight(${1:\"text\"})"
+                },
+                {
+                    "name": "getLineHeight",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get line height",
+                    "snippet": "getLineHeight()"
+                },
+                {
+                    "name": "getSize",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get font size",
+                    "snippet": "getSize()"
+                }
+            ]
         }
     ]
 };

@@ -609,7 +609,6 @@
             currentFile = name;
             editor.setModel(files.get(name).model);
             renderFileTabs();
-            clearErrorMarkers();
         }
 
         // Add a new file
@@ -800,7 +799,12 @@ void draw() {
                 'Vec2': 'Vec2',
                 'Vec3': 'Vec3',
                 'Color': 'Color',
-                'Rect': 'Rect'
+                'Rect': 'Rect',
+                'Pixels': 'Pixels',
+                'Texture': 'Texture',
+                'Fbo': 'Fbo',
+                'Sound': 'Sound',
+                'Font': 'Font'
             };
 
             // Build global completions (functions, constants, constructors)
@@ -1063,17 +1067,12 @@ void draw() {
         }
 
         // Parse error message for line/column info
-        // AngelScript format: "filename.as (line, col) : Error : message"
+        // Format: "filename (line, col) : message"
         function parseErrorLocation(errorMsg) {
-            // AngelScript multi-file format: "utils.as (12, 5) : Error : ..."
-            const match = errorMsg.match(/^(\S+\.as)\s*\((\d+),\s*(\d+)\)/);
+            // Multi-file format: "main (12, 5) : ..." or "utils (3, 10) : ..."
+            const match = errorMsg.match(/^(\S+)\s*\((\d+),\s*(\d+)\)/);
             if (match) {
                 return { file: match[1], line: parseInt(match[2]), column: parseInt(match[3]) };
-            }
-            // Legacy ChaiScript format: "at (line, col)"
-            const legacyMatch = errorMsg.match(/at \((\d+),\s*(\d+)\)/);
-            if (legacyMatch) {
-                return { file: 'main.as', line: parseInt(legacyMatch[1]), column: parseInt(legacyMatch[2]) };
             }
             return null;
         }
@@ -1115,30 +1114,49 @@ void draw() {
                 // Resume engine if it was paused
                 Module.ccall('resumeEngine', null, [], []);
 
-                // Check if multi-file API is available
-                const hasMultiFileAPI = typeof Module._clearScriptFiles === 'function';
-
-                if (hasMultiFileAPI && files.size > 1) {
-                    // Use multi-file API (load right-to-left: dependencies first)
-                    Module.ccall('clearScriptFiles', null, [], []);
-                    for (const [name, file] of [...files].reverse()) {
-                        const code = file.model.getValue();
-                        Module.ccall('addScriptFile', null, ['string', 'string'], [name, code]);
-                    }
-                    Module.ccall('buildScriptFiles', null, [], []);
-                } else {
-                    // Single-file mode (backward compatible)
-                    const code = files.get('main.as')?.model.getValue() || editor.getValue();
-                    Module.ccall('updateScriptCode', null, ['string'], [code]);
+                // Always use multi-file API (even for single file, to preserve filename)
+                Module.ccall('clearScriptFiles', null, [], []);
+                for (const [name, file] of [...files].reverse()) {
+                    const code = file.model.getValue();
+                    Module.ccall('addScriptFile', null, ['string', 'string'], [name, code]);
                 }
+                Module.ccall('buildScriptFiles', null, [], []);
 
                 // Check for script errors
                 const error = Module.ccall('getScriptError', 'string', [], []);
                 if (error && error.length > 0) {
                     logToConsole('Error: ' + error, 'error');
-                    const loc = parseErrorLocation(error);
-                    if (loc) {
-                        setErrorMarkerInFile(loc.file, loc.line, loc.column, error);
+                    // Parse all errors (one per line) and set markers
+                    const errorLines = error.split('\n');
+                    const markersByFile = new Map();
+                    for (const line of errorLines) {
+                        const loc = parseErrorLocation(line);
+                        if (loc) {
+                            if (!markersByFile.has(loc.file)) {
+                                markersByFile.set(loc.file, []);
+                            }
+                            markersByFile.get(loc.file).push({
+                                startLineNumber: loc.line,
+                                startColumn: loc.column,
+                                endLineNumber: loc.line,
+                                endColumn: loc.column + 10,
+                                message: line,
+                                severity: monaco.MarkerSeverity.Error
+                            });
+                        }
+                    }
+                    // Set markers for each file
+                    for (const [file, markers] of markersByFile) {
+                        if (files.has(file)) {
+                            monaco.editor.setModelMarkers(files.get(file).model, 'trusssketch', markers);
+                        }
+                    }
+                    // Switch to first error's file
+                    if (errorLines.length > 0) {
+                        const firstLoc = parseErrorLocation(errorLines[0]);
+                        if (firstLoc && files.has(firstLoc.file) && currentFile !== firstLoc.file) {
+                            switchToFile(firstLoc.file);
+                        }
                     }
                 } else {
                     logToConsole('Script loaded successfully!', 'success');
@@ -1312,7 +1330,7 @@ void draw() {
                     model.onDidChangeContent(() => checkModified());
                     files.set(name, { model, savedContent: content });
                 }
-                currentFile = files.has('main.as') ? 'main.as' : files.keys().next().value;
+                currentFile = files.has('main') ? 'main' : files.keys().next().value;
             } else {
                 // Single file format
                 const content = typeof data === 'string' ? data : JSON.stringify(data);
