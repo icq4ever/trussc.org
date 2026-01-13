@@ -1265,10 +1265,17 @@
         }
 
         const defaultCode = `// TrussSketch - Creative Coding Playground
-float t = 0;
+float t;
+
+void setup() {
+    t = 0;
+}
+
+void update() {
+    t += getDeltaTime();
+}
 
 void draw() {
-    t += getDeltaTime();
     clear(1);
 
     float cx = getWindowWidth() / 2;
