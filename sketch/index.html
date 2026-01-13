@@ -605,6 +605,103 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Share modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #252526;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal h2 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            color: white;
+        }
+
+        .modal p {
+            margin: 0 0 16px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .modal-btn-x {
+            background: #1d9bf0;
+            color: white;
+        }
+
+        .modal-btn-x:hover {
+            background: #1a8cd8;
+        }
+
+        .modal-btn-bluesky {
+            background: #0085ff;
+            color: white;
+        }
+
+        .modal-btn-bluesky:hover {
+            background: #0070dd;
+        }
+
+        .modal-btn-copy {
+            background: #3c3c3c;
+            color: white;
+        }
+
+        .modal-btn-copy:hover {
+            background: #4c4c4c;
+        }
+
+        .modal-btn-close {
+            background: transparent;
+            color: #888;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .modal-btn-close:hover {
+            color: white;
+        }
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -714,6 +811,84 @@
             const noun = randomNameData.nouns[Math.floor(Math.random() * randomNameData.nouns.length)];
             // Capitalize first letter of noun
             return adj + noun.charAt(0).toUpperCase() + noun.slice(1) + 'Code';
+        }
+
+        // i18n - Localization
+        const i18n = {
+            en: {
+                videoSaved: 'Video Saved!',
+                shareDesc: 'Share your creation on social media. Don\'t forget to attach the downloaded video!',
+                close: 'Close',
+                copy: 'Copy',
+                assetWarning: 'This project contains assets (images, etc.) that cannot be included in the share URL.\n\nOnly the source code will be shared. Continue?',
+                shareText: 'Made with TrussSketch!',
+            },
+            ja: {
+                videoSaved: '動画を保存しました！',
+                shareDesc: 'SNSでシェアしよう！ダウンロードした動画を添付してね。',
+                close: '閉じる',
+                copy: 'コピー',
+                assetWarning: 'このプロジェクトにはアセット（画像など）が含まれていますが、シェアURLには含めることができません。\n\nソースコードのみがシェアされます。続行しますか？',
+                shareText: 'TrussSketchで作ったよ！',
+            },
+            'zh-Hans': {
+                videoSaved: '视频已保存！',
+                shareDesc: '在社交媒体上分享你的作品吧！别忘了附上下载的视频。',
+                close: '关闭',
+                copy: '复制',
+                assetWarning: '此项目包含无法包含在分享链接中的资源（图片等）。\n\n只会分享源代码。是否继续？',
+                shareText: '用TrussSketch制作！',
+            },
+            'zh-Hant': {
+                videoSaved: '影片已儲存！',
+                shareDesc: '在社群媒體上分享你的作品吧！別忘了附上下載的影片。',
+                close: '關閉',
+                copy: '複製',
+                assetWarning: '此專案包含無法包含在分享連結中的資源（圖片等）。\n\n只會分享原始碼。是否繼續？',
+                shareText: '用TrussSketch製作！',
+            },
+            ko: {
+                videoSaved: '영상이 저장되었습니다!',
+                shareDesc: 'SNS에 공유해보세요! 다운로드한 영상을 첨부하는 것을 잊지 마세요.',
+                close: '닫기',
+                copy: '복사',
+                assetWarning: '이 프로젝트에는 공유 URL에 포함할 수 없는 에셋(이미지 등)이 있습니다.\n\n소스 코드만 공유됩니다. 계속하시겠습니까?',
+                shareText: 'TrussSketch로 만들었어요!',
+            },
+            es: {
+                videoSaved: '¡Video guardado!',
+                shareDesc: '¡Comparte tu creación en redes sociales! No olvides adjuntar el video descargado.',
+                close: 'Cerrar',
+                copy: 'Copiar',
+                assetWarning: 'Este proyecto contiene recursos (imágenes, etc.) que no se pueden incluir en la URL de compartir.\n\nSolo se compartirá el código fuente. ¿Continuar?',
+                shareText: '¡Hecho con TrussSketch!',
+            },
+            pt: {
+                videoSaved: 'Vídeo salvo!',
+                shareDesc: 'Compartilhe sua criação nas redes sociais! Não esqueça de anexar o vídeo baixado.',
+                close: 'Fechar',
+                copy: 'Copiar',
+                assetWarning: 'Este projeto contém recursos (imagens, etc.) que não podem ser incluídos na URL de compartilhamento.\n\nApenas o código-fonte será compartilhado. Continuar?',
+                shareText: 'Feito com TrussSketch!',
+            }
+        };
+
+        function getLang() {
+            const lang = navigator.language || 'en';
+            if (lang.startsWith('ja')) return 'ja';
+            if (lang.startsWith('ko')) return 'ko';
+            if (lang.startsWith('es')) return 'es';
+            if (lang.startsWith('pt')) return 'pt';
+            // Traditional Chinese: Taiwan, Hong Kong, Macau
+            if (lang === 'zh-TW' || lang === 'zh-HK' || lang === 'zh-MO' || lang === 'zh-Hant') return 'zh-Hant';
+            // Simplified Chinese: China, Singapore
+            if (lang.startsWith('zh')) return 'zh-Hans';
+            return 'en';
+        }
+
+        function t(key) {
+            const lang = getLang();
+            return i18n[lang][key] || i18n.en[key];
         }
 
         // Multi-file management
@@ -1856,6 +2031,8 @@ void draw() {
                     a.click();
                     URL.revokeObjectURL(url);
                     logToConsole(`Video saved! (${(blob.size / 1024 / 1024).toFixed(1)} MB)`, 'success');
+                    // Show share modal after video download
+                    showShareModal();
                 };
 
                 mediaRecorder.start();
@@ -1871,6 +2048,78 @@ void draw() {
                 mediaRecorder.stop();
                 document.getElementById('recordBtn').classList.remove('recording');
                 logToConsole('Recording stopped.', 'notice');
+            }
+        }
+
+        // Share modal functions
+        function showShareModal() {
+            document.getElementById('shareModalTitle').textContent = t('videoSaved');
+            document.getElementById('shareModalDesc').textContent = t('shareDesc');
+            document.getElementById('shareModalCopy').lastChild.textContent = ' ' + t('copy');
+            document.getElementById('shareModalClose').textContent = t('close');
+            document.getElementById('shareModal').classList.add('active');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.remove('active');
+        }
+
+        // Get share URL (returns null if assets exist)
+        async function getShareUrl() {
+            if (assets.size > 0) {
+                return null;  // Can't share projects with assets via URL
+            }
+            const data = getSaveData();
+            const compressed = LZString.compressToEncodedURIComponent(data);
+
+            // Try short URL first
+            try {
+                const response = await fetch('/api/shorten', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: compressed })
+                });
+                if (response.ok) {
+                    const { url } = await response.json();
+                    return url;
+                }
+            } catch (e) {}
+
+            // Fallback to long URL
+            return window.location.origin + window.location.pathname + '#' + compressed;
+        }
+
+        function getShareText(url) {
+            const text = t('shareText');
+            if (url) {
+                return `${text}\n${url}`;
+            } else {
+                return `${text}\nhttps://trussc.org/sketch`;
+            }
+        }
+
+        async function shareToX() {
+            const url = await getShareUrl();
+            const text = getShareText(url);
+            const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            window.open(intentUrl, '_blank');
+        }
+
+        async function shareToBluesky() {
+            const url = await getShareUrl();
+            const text = getShareText(url);
+            const intentUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(text)}`;
+            window.open(intentUrl, '_blank');
+        }
+
+        async function copyShareText() {
+            const url = await getShareUrl();
+            const text = getShareText(url);
+            try {
+                await navigator.clipboard.writeText(text);
+                logToConsole('Copied!', 'success');
+            } catch (e) {
+                logToConsole('Copy failed: ' + e.message, 'error');
             }
         }
 
@@ -2159,6 +2408,12 @@ void draw() {
 
         // Share script via short URL (with fallback to long URL)
         async function shareScript() {
+            // Warn if assets exist
+            if (assets.size > 0) {
+                const proceed = confirm(t('assetWarning'));
+                if (!proceed) return;
+            }
+
             const btn = document.getElementById('shareBtn');
             const originalText = btn.textContent;
 
@@ -2406,5 +2661,28 @@ void draw() {
             }
         })();
     </script>
+
+    <!-- Share Modal -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal">
+            <h2 id="shareModalTitle">Video Saved!</h2>
+            <p id="shareModalDesc">Share your creation on social media. Don't forget to attach the downloaded video!</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-x" onclick="shareToX()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Post
+                </button>
+                <button class="modal-btn modal-btn-bluesky" onclick="shareToBluesky()">
+                    <svg width="16" height="16" viewBox="0 0 600 530" fill="currentColor"><path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.72 40.255-67.24 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/></svg>
+                    Post
+                </button>
+                <button class="modal-btn modal-btn-copy" id="shareModalCopy" onclick="copyShareText()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                </button>
+            </div>
+            <button class="modal-btn modal-btn-close" id="shareModalClose" onclick="closeShareModal()">Close</button>
+        </div>
+    </div>
 </body>
 </html>
