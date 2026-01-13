@@ -234,6 +234,22 @@
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
+                    "name": "drawPoint",
+                    "params": "x, y",
+                    "params_typed": "float x, float y",
+                    "return_type": "void",
+                    "desc": "Draw a single point",
+                    "snippet": "drawPoint(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "drawPoint",
+                    "params": "pos",
+                    "params_typed": "Vec3 pos",
+                    "return_type": "void",
+                    "desc": "Draw a single point",
+                    "snippet": "drawPoint(${1:x}, ${2:y})"
+                },
+                {
                     "name": "drawLine",
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
@@ -613,6 +629,30 @@
                     "return_type": "int",
                     "desc": "Get circle segment count",
                     "snippet": "getCircleResolution()"
+                },
+                {
+                    "name": "pushStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Save current style state (color, stroke, fill)",
+                    "snippet": "pushStyle()"
+                },
+                {
+                    "name": "popStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Restore previous style state",
+                    "snippet": "popStyle()"
+                },
+                {
+                    "name": "getColor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Color",
+                    "desc": "Get current fill color",
+                    "snippet": "getColor()"
                 }
             ]
         },
@@ -692,6 +732,54 @@
                     "snippet": "rotateDeg(${1:degrees})"
                 },
                 {
+                    "name": "rotateX",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "void",
+                    "desc": "Rotate around X axis",
+                    "snippet": "rotateX(${1:radians})"
+                },
+                {
+                    "name": "rotateY",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "void",
+                    "desc": "Rotate around Y axis",
+                    "snippet": "rotateY(${1:radians})"
+                },
+                {
+                    "name": "rotateZ",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "void",
+                    "desc": "Rotate around Z axis",
+                    "snippet": "rotateZ(${1:radians})"
+                },
+                {
+                    "name": "rotateXDeg",
+                    "params": "degrees",
+                    "params_typed": "float degrees",
+                    "return_type": "void",
+                    "desc": "Rotate around X axis (degrees)",
+                    "snippet": "rotateXDeg(${1:degrees})"
+                },
+                {
+                    "name": "rotateYDeg",
+                    "params": "degrees",
+                    "params_typed": "float degrees",
+                    "return_type": "void",
+                    "desc": "Rotate around Y axis (degrees)",
+                    "snippet": "rotateYDeg(${1:degrees})"
+                },
+                {
+                    "name": "rotateZDeg",
+                    "params": "degrees",
+                    "params_typed": "float degrees",
+                    "return_type": "void",
+                    "desc": "Rotate around Z axis (degrees)",
+                    "snippet": "rotateZDeg(${1:degrees})"
+                },
+                {
                     "name": "scale",
                     "params": "s",
                     "params_typed": "float s",
@@ -722,6 +810,30 @@
                     "return_type": "void",
                     "desc": "Restore transform state",
                     "snippet": "popMatrix()"
+                },
+                {
+                    "name": "getCurrentMatrix",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Mat4",
+                    "desc": "Get current transformation matrix",
+                    "snippet": "getCurrentMatrix()"
+                },
+                {
+                    "name": "resetMatrix",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset transformation matrix to identity",
+                    "snippet": "resetMatrix()"
+                },
+                {
+                    "name": "setMatrix",
+                    "params": "mat",
+                    "params_typed": "const Mat4& mat",
+                    "return_type": "void",
+                    "desc": "Set transformation matrix directly",
+                    "snippet": "setMatrix(${1:mat})"
                 }
             ]
         },
@@ -1463,6 +1575,123 @@
             ]
         },
         {
+            "name": "ChipSound",
+            "functions": [
+                {
+                    "name": "ChipSoundNote",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "",
+                    "desc": "Create a chip sound note (8-bit style sound)",
+                    "snippet": "ChipSoundNote note;"
+                },
+                {
+                    "name": "wave",
+                    "params": "type",
+                    "params_typed": "Wave type",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set wave type (Sin, Square, Triangle, Sawtooth, Noise, PinkNoise)",
+                    "snippet": "wave(Wave::Square)"
+                },
+                {
+                    "name": "hz",
+                    "params": "frequency",
+                    "params_typed": "float frequency",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set frequency in Hz",
+                    "snippet": "hz(${1:440})"
+                },
+                {
+                    "name": "duration",
+                    "params": "seconds",
+                    "params_typed": "float seconds",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set note duration in seconds",
+                    "snippet": "duration(${1:0.5})"
+                },
+                {
+                    "name": "volume",
+                    "params": "vol",
+                    "params_typed": "float vol",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set volume (0.0-1.0)",
+                    "snippet": "volume(${1:0.8})"
+                },
+                {
+                    "name": "attack",
+                    "params": "seconds",
+                    "params_typed": "float seconds",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set attack time (ADSR envelope)",
+                    "snippet": "attack(${1:0.01})"
+                },
+                {
+                    "name": "decay",
+                    "params": "seconds",
+                    "params_typed": "float seconds",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set decay time (ADSR envelope)",
+                    "snippet": "decay(${1:0.1})"
+                },
+                {
+                    "name": "sustain",
+                    "params": "level",
+                    "params_typed": "float level",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set sustain level (0.0-1.0)",
+                    "snippet": "sustain(${1:0.7})"
+                },
+                {
+                    "name": "release",
+                    "params": "seconds",
+                    "params_typed": "float seconds",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set release time (ADSR envelope)",
+                    "snippet": "release(${1:0.2})"
+                },
+                {
+                    "name": "adsr",
+                    "params": "a, d, s, r",
+                    "params_typed": "float a, float d, float s, float r",
+                    "return_type": "ChipSoundNote&",
+                    "desc": "Set ADSR envelope (attack, decay, sustain, release)",
+                    "snippet": "adsr(${1:0.01}, ${2:0.1}, ${3:0.7}, ${4:0.2})"
+                },
+                {
+                    "name": "build",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Sound@",
+                    "desc": "Build and return Sound object from note",
+                    "snippet": "build()"
+                },
+                {
+                    "name": "createChipBundle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "ChipSoundBundle@",
+                    "desc": "Create a chip sound bundle for sequencing multiple notes",
+                    "snippet": "ChipSoundBundle@ bundle = createChipBundle();"
+                },
+                {
+                    "name": "add",
+                    "params": "note, time",
+                    "params_typed": "const ChipSoundNote& note, float time",
+                    "return_type": "ChipSoundBundle&",
+                    "desc": "Add a note at specified time (seconds)",
+                    "snippet": "add(${1:note}, ${2:0.0})"
+                },
+                {
+                    "name": "clear",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "ChipSoundBundle&",
+                    "desc": "Clear all notes from bundle",
+                    "snippet": "clear()"
+                }
+            ]
+        },
+        {
             "name": "Font",
             "functions": [
                 {
@@ -1535,28 +1764,116 @@
             "name": "Animation",
             "functions": [
                 {
-                    "name": "Tween",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a tween",
-                    "snippet": "Tween()"
+                    "name": "ease",
+                    "params": "t, type, mode",
+                    "params_typed": "float t, EaseType type, EaseMode mode",
+                    "return_type": "float",
+                    "desc": "Apply easing to value (0-1)",
+                    "snippet": "ease(${1:t}, EaseType::${2:Cubic}, EaseMode::${3:InOut})"
                 },
                 {
-                    "name": "setDuration",
+                    "name": "easeIn",
+                    "params": "t, type",
+                    "params_typed": "float t, EaseType type",
+                    "return_type": "float",
+                    "desc": "Apply ease-in to value (0-1)",
+                    "snippet": "easeIn(${1:t}, EaseType::${2:Cubic})"
+                },
+                {
+                    "name": "easeOut",
+                    "params": "t, type",
+                    "params_typed": "float t, EaseType type",
+                    "return_type": "float",
+                    "desc": "Apply ease-out to value (0-1)",
+                    "snippet": "easeOut(${1:t}, EaseType::${2:Cubic})"
+                },
+                {
+                    "name": "easeInOut",
+                    "params": "t, type",
+                    "params_typed": "float t, EaseType type",
+                    "return_type": "float",
+                    "desc": "Apply ease-in-out to value (0-1)",
+                    "snippet": "easeInOut(${1:t}, EaseType::${2:Cubic})"
+                },
+                {
+                    "name": "createTween",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Tween@",
+                    "desc": "Create a tween object",
+                    "snippet": "createTween()"
+                },
+                {
+                    "name": "from",
+                    "params": "value",
+                    "params_typed": "float value",
+                    "return_type": "Tween@",
+                    "desc": "Set start value",
+                    "snippet": "from(${1:0.0})"
+                },
+                {
+                    "name": "to",
+                    "params": "value",
+                    "params_typed": "float value",
+                    "return_type": "Tween@",
+                    "desc": "Set end value",
+                    "snippet": "to(${1:1.0})"
+                },
+                {
+                    "name": "duration",
                     "params": "seconds",
                     "params_typed": "float seconds",
-                    "return_type": "void",
+                    "return_type": "Tween@",
                     "desc": "Set animation duration",
-                    "snippet": "setDuration(${1:1.0})"
+                    "snippet": "duration(${1:1.0})"
+                },
+                {
+                    "name": "ease",
+                    "params": "type",
+                    "params_typed": "EaseType type",
+                    "return_type": "Tween@",
+                    "desc": "Set easing type",
+                    "snippet": "ease(EaseType::${1:Cubic})"
                 },
                 {
                     "name": "start",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "void",
-                    "desc": "Start animation",
+                    "return_type": "Tween@",
+                    "desc": "Start animation (chainable)",
                     "snippet": "start()"
+                },
+                {
+                    "name": "pause",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Tween@",
+                    "desc": "Pause animation (chainable)",
+                    "snippet": "pause()"
+                },
+                {
+                    "name": "resume",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Tween@",
+                    "desc": "Resume animation (chainable)",
+                    "snippet": "resume()"
+                },
+                {
+                    "name": "reset",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Tween@",
+                    "desc": "Reset animation (chainable)",
+                    "snippet": "reset()"
+                },
+                {
+                    "name": "finish",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Tween@",
+                    "desc": "Jump to end (chainable)",
+                    "snippet": "finish()"
                 },
                 {
                     "name": "update",
@@ -1573,6 +1890,62 @@
                     "return_type": "float",
                     "desc": "Get current tween value",
                     "snippet": "getValue()"
+                },
+                {
+                    "name": "getProgress",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get progress (0-1)",
+                    "snippet": "getProgress()"
+                },
+                {
+                    "name": "getElapsed",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get elapsed time",
+                    "snippet": "getElapsed()"
+                },
+                {
+                    "name": "getDuration",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get duration",
+                    "snippet": "getDuration()"
+                },
+                {
+                    "name": "isPlaying",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if playing",
+                    "snippet": "isPlaying()"
+                },
+                {
+                    "name": "isComplete",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if complete",
+                    "snippet": "isComplete()"
+                },
+                {
+                    "name": "getStart",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get start value",
+                    "snippet": "getStart()"
+                },
+                {
+                    "name": "getEnd",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get end value",
+                    "snippet": "getEnd()"
                 }
             ]
         },
@@ -2525,6 +2898,41 @@
             "name": "FONT_MONO",
             "value": "string",
             "desc": "System monospace font path (CDN URL on Web)"
+        },
+        {
+            "name": "Wave::Sin",
+            "value": "0",
+            "desc": "Sine wave (smooth, pure tone)"
+        },
+        {
+            "name": "Wave::Square",
+            "value": "1",
+            "desc": "Square wave (harsh, 8-bit style)"
+        },
+        {
+            "name": "Wave::Triangle",
+            "value": "2",
+            "desc": "Triangle wave (softer than square)"
+        },
+        {
+            "name": "Wave::Sawtooth",
+            "value": "3",
+            "desc": "Sawtooth wave (bright, buzzy)"
+        },
+        {
+            "name": "Wave::Noise",
+            "value": "4",
+            "desc": "White noise"
+        },
+        {
+            "name": "Wave::PinkNoise",
+            "value": "5",
+            "desc": "Pink noise (1/f noise, more natural)"
+        },
+        {
+            "name": "Wave::Silent",
+            "value": "6",
+            "desc": "Silent (no sound)"
         }
     ],
     "keywords": [
@@ -3177,6 +3585,236 @@
                     ],
                     "desc": "Check if allocated",
                     "snippet": "isAllocated()"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Release pixel buffer",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "getChannels",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get number of channels",
+                    "snippet": "getChannels()"
+                },
+                {
+                    "name": "getTotalBytes",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get total byte size",
+                    "snippet": "getTotalBytes()"
+                },
+                {
+                    "name": "getData",
+                    "return": "uint8_t*",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get raw data pointer",
+                    "snippet": "getData()"
+                },
+                {
+                    "name": "loadFromMemory",
+                    "return": "bool",
+                    "signatures": [
+                        "const uint8_t* buffer, int len"
+                    ],
+                    "desc": "Load image from memory",
+                    "snippet": "loadFromMemory(${1:buffer}, ${2:len})"
+                },
+                {
+                    "name": "setFromPixels",
+                    "return": "void",
+                    "signatures": [
+                        "const uint8_t* data, int width, int height, int channels"
+                    ],
+                    "desc": "Copy from external pixel data",
+                    "snippet": "setFromPixels(${1:data}, ${2:width}, ${3:height}, ${4:channels})"
+                },
+                {
+                    "name": "copyTo",
+                    "return": "void",
+                    "signatures": [
+                        "uint8_t* dst"
+                    ],
+                    "desc": "Copy to external buffer",
+                    "snippet": "copyTo(${1:dst})"
+                }
+            ]
+        },
+        {
+            "name": "Image",
+            "desc": "Image with CPU pixels and GPU texture",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Image()"
+            },
+            "methods": [
+                {
+                    "name": "load",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Load image from file",
+                    "snippet": "load(${1:\"path\"})"
+                },
+                {
+                    "name": "loadFromMemory",
+                    "return": "bool",
+                    "signatures": [
+                        "const uint8_t* buffer, int len"
+                    ],
+                    "desc": "Load image from memory",
+                    "snippet": "loadFromMemory(${1:buffer}, ${2:len})"
+                },
+                {
+                    "name": "save",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Save image to file",
+                    "snippet": "save(${1:\"path\"})"
+                },
+                {
+                    "name": "allocate",
+                    "return": "void",
+                    "signatures": [
+                        "int width, int height",
+                        "int width, int height, int channels"
+                    ],
+                    "desc": "Allocate empty image for dynamic updates",
+                    "snippet": "allocate(${1:width}, ${2:height})"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Release image resources",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "isAllocated",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if allocated",
+                    "snippet": "isAllocated()"
+                },
+                {
+                    "name": "getWidth",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get width",
+                    "snippet": "getWidth()"
+                },
+                {
+                    "name": "getHeight",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get height",
+                    "snippet": "getHeight()"
+                },
+                {
+                    "name": "getChannels",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get number of channels",
+                    "snippet": "getChannels()"
+                },
+                {
+                    "name": "getPixels",
+                    "return": "Pixels&",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get pixels reference for direct manipulation",
+                    "snippet": "getPixels()"
+                },
+                {
+                    "name": "getPixelsData",
+                    "return": "uint8_t*",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get raw pixel data pointer",
+                    "snippet": "getPixelsData()"
+                },
+                {
+                    "name": "getColor",
+                    "return": "Color",
+                    "signatures": [
+                        "int x, int y"
+                    ],
+                    "desc": "Get pixel color at position",
+                    "snippet": "getColor(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "setColor",
+                    "return": "void",
+                    "signatures": [
+                        "int x, int y, Color color"
+                    ],
+                    "desc": "Set pixel color at position (marks image as dirty)",
+                    "snippet": "setColor(${1:x}, ${2:y}, ${3:color})"
+                },
+                {
+                    "name": "update",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Apply pixel changes to GPU texture",
+                    "snippet": "update()"
+                },
+                {
+                    "name": "setDirty",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Mark image as needing update",
+                    "snippet": "setDirty()"
+                },
+                {
+                    "name": "getTexture",
+                    "return": "Texture&",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get internal texture",
+                    "snippet": "getTexture()"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float w, float h"
+                    ],
+                    "desc": "Draw image",
+                    "snippet": "draw(${1:x}, ${2:y})"
                 }
             ]
         },
@@ -3263,6 +3901,141 @@
                     ],
                     "desc": "Draw texture",
                     "snippet": "draw(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "drawSubsection",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y, float w, float h, float sx, float sy, float sw, float sh"
+                    ],
+                    "desc": "Draw subsection of texture",
+                    "snippet": "drawSubsection(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:sx}, ${6:sy}, ${7:sw}, ${8:sh})"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Release texture resources",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "getChannels",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get number of channels",
+                    "snippet": "getChannels()"
+                },
+                {
+                    "name": "getUsage",
+                    "return": "TextureUsage",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get texture usage mode",
+                    "snippet": "getUsage()"
+                },
+                {
+                    "name": "getSampleCount",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get MSAA sample count",
+                    "snippet": "getSampleCount()"
+                },
+                {
+                    "name": "setMinFilter",
+                    "return": "void",
+                    "signatures": [
+                        "TextureFilter filter"
+                    ],
+                    "desc": "Set minification filter",
+                    "snippet": "setMinFilter(${1:TextureFilter::Linear})"
+                },
+                {
+                    "name": "setMagFilter",
+                    "return": "void",
+                    "signatures": [
+                        "TextureFilter filter"
+                    ],
+                    "desc": "Set magnification filter",
+                    "snippet": "setMagFilter(${1:TextureFilter::Linear})"
+                },
+                {
+                    "name": "setFilter",
+                    "return": "void",
+                    "signatures": [
+                        "TextureFilter filter"
+                    ],
+                    "desc": "Set both min and mag filters",
+                    "snippet": "setFilter(${1:TextureFilter::Linear})"
+                },
+                {
+                    "name": "getMinFilter",
+                    "return": "TextureFilter",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get minification filter",
+                    "snippet": "getMinFilter()"
+                },
+                {
+                    "name": "getMagFilter",
+                    "return": "TextureFilter",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get magnification filter",
+                    "snippet": "getMagFilter()"
+                },
+                {
+                    "name": "setWrapU",
+                    "return": "void",
+                    "signatures": [
+                        "TextureWrap wrap"
+                    ],
+                    "desc": "Set horizontal wrap mode",
+                    "snippet": "setWrapU(${1:TextureWrap::ClampToEdge})"
+                },
+                {
+                    "name": "setWrapV",
+                    "return": "void",
+                    "signatures": [
+                        "TextureWrap wrap"
+                    ],
+                    "desc": "Set vertical wrap mode",
+                    "snippet": "setWrapV(${1:TextureWrap::ClampToEdge})"
+                },
+                {
+                    "name": "setWrap",
+                    "return": "void",
+                    "signatures": [
+                        "TextureWrap wrap"
+                    ],
+                    "desc": "Set both wrap modes",
+                    "snippet": "setWrap(${1:TextureWrap::ClampToEdge})"
+                },
+                {
+                    "name": "getWrapU",
+                    "return": "TextureWrap",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get horizontal wrap mode",
+                    "snippet": "getWrapU()"
+                },
+                {
+                    "name": "getWrapV",
+                    "return": "TextureWrap",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vertical wrap mode",
+                    "snippet": "getWrapV()"
                 }
             ]
         },
@@ -3349,6 +4122,649 @@
                     ],
                     "desc": "Draw FBO contents",
                     "snippet": "draw(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "getSampleCount",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get MSAA sample count",
+                    "snippet": "getSampleCount()"
+                },
+                {
+                    "name": "isActive",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if currently rendering to FBO",
+                    "snippet": "isActive()"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Release FBO resources",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "save",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Save FBO contents to file",
+                    "snippet": "save(${1:\"path\"})"
+                },
+                {
+                    "name": "copyTo",
+                    "return": "bool",
+                    "signatures": [
+                        "Image image"
+                    ],
+                    "desc": "Copy FBO contents to Image",
+                    "snippet": "copyTo(${1:image})"
+                }
+            ]
+        },
+        {
+            "name": "Mesh",
+            "desc": "3D mesh with vertices, colors, normals, and indices",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Mesh()"
+            },
+            "methods": [
+                {
+                    "name": "setMode",
+                    "return": "void",
+                    "signatures": [
+                        "PrimitiveMode mode"
+                    ],
+                    "desc": "Set primitive mode (Triangles, Lines, Points, etc.)",
+                    "snippet": "setMode(${1:PrimitiveMode::Triangles})"
+                },
+                {
+                    "name": "getMode",
+                    "return": "PrimitiveMode",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get current primitive mode",
+                    "snippet": "getMode()"
+                },
+                {
+                    "name": "addVertex",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y, float z",
+                        "Vec2 v",
+                        "Vec3 v"
+                    ],
+                    "desc": "Add a vertex",
+                    "snippet": "addVertex(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "addVertices",
+                    "return": "void",
+                    "signatures": [
+                        "vector<Vec3> verts"
+                    ],
+                    "desc": "Add multiple vertices",
+                    "snippet": "addVertices(${1:verts})"
+                },
+                {
+                    "name": "getVertices",
+                    "return": "vector<Vec3>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all vertices",
+                    "snippet": "getVertices()"
+                },
+                {
+                    "name": "getNumVertices",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vertex count",
+                    "snippet": "getNumVertices()"
+                },
+                {
+                    "name": "addColor",
+                    "return": "void",
+                    "signatures": [
+                        "Color c",
+                        "float r, float g, float b, float a"
+                    ],
+                    "desc": "Add a vertex color",
+                    "snippet": "addColor(${1:color})"
+                },
+                {
+                    "name": "addColors",
+                    "return": "void",
+                    "signatures": [
+                        "vector<Color> cols"
+                    ],
+                    "desc": "Add multiple vertex colors",
+                    "snippet": "addColors(${1:colors})"
+                },
+                {
+                    "name": "getColors",
+                    "return": "vector<Color>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all vertex colors",
+                    "snippet": "getColors()"
+                },
+                {
+                    "name": "getNumColors",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vertex color count",
+                    "snippet": "getNumColors()"
+                },
+                {
+                    "name": "hasColors",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if mesh has vertex colors",
+                    "snippet": "hasColors()"
+                },
+                {
+                    "name": "addIndex",
+                    "return": "void",
+                    "signatures": [
+                        "int index"
+                    ],
+                    "desc": "Add an index",
+                    "snippet": "addIndex(${1:index})"
+                },
+                {
+                    "name": "addIndices",
+                    "return": "void",
+                    "signatures": [
+                        "vector<int> indices"
+                    ],
+                    "desc": "Add multiple indices",
+                    "snippet": "addIndices(${1:indices})"
+                },
+                {
+                    "name": "addTriangle",
+                    "return": "void",
+                    "signatures": [
+                        "int i0, int i1, int i2"
+                    ],
+                    "desc": "Add a triangle (3 indices)",
+                    "snippet": "addTriangle(${1:i0}, ${2:i1}, ${3:i2})"
+                },
+                {
+                    "name": "getIndices",
+                    "return": "vector<int>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all indices",
+                    "snippet": "getIndices()"
+                },
+                {
+                    "name": "getNumIndices",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get index count",
+                    "snippet": "getNumIndices()"
+                },
+                {
+                    "name": "hasIndices",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if mesh has indices",
+                    "snippet": "hasIndices()"
+                },
+                {
+                    "name": "addNormal",
+                    "return": "void",
+                    "signatures": [
+                        "float nx, float ny, float nz",
+                        "Vec3 n"
+                    ],
+                    "desc": "Add a normal vector",
+                    "snippet": "addNormal(${1:nx}, ${2:ny}, ${3:nz})"
+                },
+                {
+                    "name": "addNormals",
+                    "return": "void",
+                    "signatures": [
+                        "vector<Vec3> normals"
+                    ],
+                    "desc": "Add multiple normals",
+                    "snippet": "addNormals(${1:normals})"
+                },
+                {
+                    "name": "setNormal",
+                    "return": "void",
+                    "signatures": [
+                        "int index, Vec3 n"
+                    ],
+                    "desc": "Set normal at index",
+                    "snippet": "setNormal(${1:index}, ${2:normal})"
+                },
+                {
+                    "name": "getNormal",
+                    "return": "Vec3",
+                    "signatures": [
+                        "int index"
+                    ],
+                    "desc": "Get normal at index",
+                    "snippet": "getNormal(${1:index})"
+                },
+                {
+                    "name": "getNormals",
+                    "return": "vector<Vec3>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all normals",
+                    "snippet": "getNormals()"
+                },
+                {
+                    "name": "getNumNormals",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get normal count",
+                    "snippet": "getNumNormals()"
+                },
+                {
+                    "name": "hasNormals",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if mesh has normals",
+                    "snippet": "hasNormals()"
+                },
+                {
+                    "name": "addTexCoord",
+                    "return": "void",
+                    "signatures": [
+                        "float u, float v",
+                        "Vec2 t"
+                    ],
+                    "desc": "Add a texture coordinate",
+                    "snippet": "addTexCoord(${1:u}, ${2:v})"
+                },
+                {
+                    "name": "getTexCoords",
+                    "return": "vector<Vec2>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all texture coordinates",
+                    "snippet": "getTexCoords()"
+                },
+                {
+                    "name": "getNumTexCoords",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get texture coordinate count",
+                    "snippet": "getNumTexCoords()"
+                },
+                {
+                    "name": "hasTexCoords",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if mesh has texture coordinates",
+                    "snippet": "hasTexCoords()"
+                },
+                {
+                    "name": "hasValidTexCoords",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if texture coordinates match vertex count",
+                    "snippet": "hasValidTexCoords()"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear all mesh data",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "clearVertices",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear vertices only",
+                    "snippet": "clearVertices()"
+                },
+                {
+                    "name": "clearColors",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear colors only",
+                    "snippet": "clearColors()"
+                },
+                {
+                    "name": "clearIndices",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear indices only",
+                    "snippet": "clearIndices()"
+                },
+                {
+                    "name": "clearNormals",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear normals only",
+                    "snippet": "clearNormals()"
+                },
+                {
+                    "name": "clearTexCoords",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear texture coordinates only",
+                    "snippet": "clearTexCoords()"
+                },
+                {
+                    "name": "translate",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y, float z",
+                        "Vec3 offset"
+                    ],
+                    "desc": "Translate all vertices",
+                    "snippet": "translate(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "rotateX",
+                    "return": "void",
+                    "signatures": [
+                        "float radians"
+                    ],
+                    "desc": "Rotate mesh around X axis",
+                    "snippet": "rotateX(${1:radians})"
+                },
+                {
+                    "name": "rotateY",
+                    "return": "void",
+                    "signatures": [
+                        "float radians"
+                    ],
+                    "desc": "Rotate mesh around Y axis",
+                    "snippet": "rotateY(${1:radians})"
+                },
+                {
+                    "name": "rotateZ",
+                    "return": "void",
+                    "signatures": [
+                        "float radians"
+                    ],
+                    "desc": "Rotate mesh around Z axis",
+                    "snippet": "rotateZ(${1:radians})"
+                },
+                {
+                    "name": "scale",
+                    "return": "void",
+                    "signatures": [
+                        "float s",
+                        "float x, float y, float z"
+                    ],
+                    "desc": "Scale mesh",
+                    "snippet": "scale(${1:s})"
+                },
+                {
+                    "name": "transform",
+                    "return": "void",
+                    "signatures": [
+                        "Mat4 matrix"
+                    ],
+                    "desc": "Apply transformation matrix",
+                    "snippet": "transform(${1:matrix})"
+                },
+                {
+                    "name": "append",
+                    "return": "void",
+                    "signatures": [
+                        "Mesh other"
+                    ],
+                    "desc": "Append another mesh",
+                    "snippet": "append(${1:other})"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        "",
+                        "Texture texture",
+                        "Image image"
+                    ],
+                    "desc": "Draw the mesh",
+                    "snippet": "draw()"
+                },
+                {
+                    "name": "drawWireframe",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Draw mesh as wireframe",
+                    "snippet": "drawWireframe()"
+                }
+            ]
+        },
+        {
+            "name": "Polyline",
+            "desc": "Path/Polyline for drawing lines and curves",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "vector<Vec2> verts",
+                    "vector<Vec3> verts"
+                ],
+                "snippet": "Polyline()"
+            },
+            "methods": [
+                {
+                    "name": "addVertex",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float z",
+                        "Vec2 v",
+                        "Vec3 v"
+                    ],
+                    "desc": "Add a vertex",
+                    "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertices",
+                    "return": "void",
+                    "signatures": [
+                        "vector<Vec2> verts",
+                        "vector<Vec3> verts"
+                    ],
+                    "desc": "Add multiple vertices",
+                    "snippet": "addVertices(${1:verts})"
+                },
+                {
+                    "name": "getVertices",
+                    "return": "vector<Vec3>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all vertices",
+                    "snippet": "getVertices()"
+                },
+                {
+                    "name": "size",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vertex count",
+                    "snippet": "size()"
+                },
+                {
+                    "name": "empty",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if polyline is empty",
+                    "snippet": "empty()"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear all vertices",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "lineTo",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float z",
+                        "Vec2 p",
+                        "Vec3 p"
+                    ],
+                    "desc": "Add line segment to point",
+                    "snippet": "lineTo(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "bezierTo",
+                    "return": "void",
+                    "signatures": [
+                        "float cx1, float cy1, float cx2, float cy2, float x, float y",
+                        "Vec2 cp1, Vec2 cp2, Vec2 to",
+                        "Vec3 cp1, Vec3 cp2, Vec3 to"
+                    ],
+                    "desc": "Add cubic bezier curve",
+                    "snippet": "bezierTo(${1:cx1}, ${2:cy1}, ${3:cx2}, ${4:cy2}, ${5:x}, ${6:y})"
+                },
+                {
+                    "name": "quadBezierTo",
+                    "return": "void",
+                    "signatures": [
+                        "float cx, float cy, float x, float y",
+                        "Vec2 cp, Vec2 to",
+                        "Vec3 cp, Vec3 to"
+                    ],
+                    "desc": "Add quadratic bezier curve",
+                    "snippet": "quadBezierTo(${1:cx}, ${2:cy}, ${3:x}, ${4:y})"
+                },
+                {
+                    "name": "curveTo",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "Vec2 to",
+                        "Vec3 to"
+                    ],
+                    "desc": "Add Catmull-Rom curve segment",
+                    "snippet": "curveTo(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "arc",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y, float radiusX, float radiusY, float angleBegin, float angleEnd",
+                        "Vec2 center, float radiusX, float radiusY, float angleBegin, float angleEnd"
+                    ],
+                    "desc": "Add an arc",
+                    "snippet": "arc(${1:x}, ${2:y}, ${3:radiusX}, ${4:radiusY}, ${5:0}, ${6:360})"
+                },
+                {
+                    "name": "close",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Close the path",
+                    "snippet": "close()"
+                },
+                {
+                    "name": "setClosed",
+                    "return": "void",
+                    "signatures": [
+                        "bool closed"
+                    ],
+                    "desc": "Set closed state",
+                    "snippet": "setClosed(${1:true})"
+                },
+                {
+                    "name": "isClosed",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if path is closed",
+                    "snippet": "isClosed()"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Draw the polyline",
+                    "snippet": "draw()"
+                },
+                {
+                    "name": "getBoundingBox",
+                    "return": "void",
+                    "signatures": [
+                        "float minX, float minY, float maxX, float maxY"
+                    ],
+                    "desc": "Get bounding box (output parameters)",
+                    "snippet": "getBoundingBox(${1:minX}, ${2:minY}, ${3:maxX}, ${4:maxY})"
+                },
+                {
+                    "name": "getPerimeter",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get total path length",
+                    "snippet": "getPerimeter()"
                 }
             ]
         },
@@ -3424,6 +4840,96 @@
                     ],
                     "desc": "Set loop mode",
                     "snippet": "setLoop(${1:true})"
+                },
+                {
+                    "name": "isLoop",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if loop mode is enabled",
+                    "snippet": "isLoop()"
+                },
+                {
+                    "name": "setPan",
+                    "return": "void",
+                    "signatures": [
+                        "float pan"
+                    ],
+                    "desc": "Set panning (-1.0=left, 0.0=center, 1.0=right)",
+                    "snippet": "setPan(${1:0.0})"
+                },
+                {
+                    "name": "getPan",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get current panning",
+                    "snippet": "getPan()"
+                },
+                {
+                    "name": "setSpeed",
+                    "return": "void",
+                    "signatures": [
+                        "float speed"
+                    ],
+                    "desc": "Set playback speed (1.0=normal)",
+                    "snippet": "setSpeed(${1:1.0})"
+                },
+                {
+                    "name": "getSpeed",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get current playback speed",
+                    "snippet": "getSpeed()"
+                },
+                {
+                    "name": "pause",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Pause playback",
+                    "snippet": "pause()"
+                },
+                {
+                    "name": "resume",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Resume playback",
+                    "snippet": "resume()"
+                },
+                {
+                    "name": "isPaused",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if paused",
+                    "snippet": "isPaused()"
+                },
+                {
+                    "name": "getPosition",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get playback position in seconds",
+                    "snippet": "getPosition()"
+                },
+                {
+                    "name": "getDuration",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get total duration in seconds",
+                    "snippet": "getDuration()"
                 }
             ]
         },

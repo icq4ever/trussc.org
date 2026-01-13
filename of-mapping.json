@@ -151,6 +151,24 @@
           "tc": "setStrokeWeight(weight)",
           "notes": "",
           "notes_ja": ""
+        },
+        {
+          "of": "ofSetCircleResolution",
+          "tc": "setCircleResolution(resolution)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofPushStyle",
+          "tc": "pushStyle()",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofPopStyle",
+          "tc": "popStyle()",
+          "notes": "",
+          "notes_ja": ""
         }
       ]
     },
