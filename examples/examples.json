@@ -238,13 +238,37 @@
       "visible": true,
       "items": [
         {
+          "name": "grabExample",
+          "width": 650,
+          "height": 480,
+          "webSupported": true
+        },
+        {
           "name": "hitTestExample",
           "width": 960,
           "height": 600,
           "webSupported": true
         },
         {
+          "name": "layoutModExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
           "name": "nodeExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
+          "name": "scrollContainerExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
+          "name": "tweenModExample",
           "width": 960,
           "height": 600,
           "webSupported": true

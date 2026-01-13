@@ -39,7 +39,7 @@ get_sample_category() {
     local category=$(basename "$parent")
 
     case "$category" in
-        3d|graphics|sound|video|input_output|communication|utils|threads|windowing|tools|events|gui|math|network|templates)
+        3d|graphics|sound|video|input_output|communication|utils|threads|windowing|tools|events|gui|math|network|node|animation|ImGui|templates)
             echo "$category"
             ;;
         *)
