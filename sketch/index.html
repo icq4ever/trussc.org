@@ -115,6 +115,37 @@
             background: #848d97;
         }
 
+        /* Auto-run mode */
+        .btn-play {
+            position: relative;
+        }
+
+        .btn-play.auto-run::after {
+            content: 'AUTO';
+            position: absolute;
+            left: calc(50% + 1px);
+            bottom: 5px;
+            transform: translateX(-50%);
+            font-size: 7px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .btn-play.auto-run svg {
+            transform: translateY(-3px) scale(0.8);
+        }
+
+        /* Pulse effect for auto-run trigger */
+        @keyframes button-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.85); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-play.pulse {
+            animation: button-pulse 0.15s ease;
+        }
+
         .btn-fullscreen {
             background: #6e7681;
         }
@@ -583,7 +614,7 @@
         <h1>Truss<span>Sketch</span></h1>
         <div class="controls">
             <!-- Playback controls -->
-            <button class="btn-icon btn-play" id="runBtn" onclick="runScript()" title="Run">
+            <button class="btn-icon btn-play" id="runBtn" title="Run (click again for auto-run)">
                 <svg viewBox="0 0 24 24"><polygon points="7,4 20,12 7,20" transform="translate(0.7,0)"/></svg>
             </button>
             <button class="btn-icon btn-stop-icon" id="stopBtn" onclick="stopScript()" title="Stop">
@@ -694,6 +725,52 @@
 
         // File panel state
         let filePanelOpen = false;
+
+        // Auto-run mode
+        let autoRunEnabled = false;
+        let autoRunTimer = null;
+        const AUTO_RUN_DELAY = 500;  // ms after typing stops
+
+        function scheduleAutoRun() {
+            if (!autoRunEnabled) return;
+            if (autoRunTimer) clearTimeout(autoRunTimer);
+            autoRunTimer = setTimeout(() => {
+                autoRunTimer = null;
+                // Pulse effect
+                const runBtn = document.getElementById('runBtn');
+                if (runBtn) {
+                    runBtn.classList.remove('pulse');
+                    void runBtn.offsetWidth;  // Force reflow
+                    runBtn.classList.add('pulse');
+                }
+                runScript();
+            }, AUTO_RUN_DELAY);
+        }
+
+        function updateRunButtonState() {
+            const runBtn = document.getElementById('runBtn');
+            if (!runBtn) return;
+            runBtn.classList.toggle('auto-run', autoRunEnabled);
+        }
+
+        function toggleAutoRun() {
+            autoRunEnabled = !autoRunEnabled;
+            updateRunButtonState();
+            if (autoRunEnabled) {
+                logToConsole('Auto-run enabled', 'notice');
+            } else {
+                logToConsole('Auto-run disabled', 'notice');
+                if (autoRunTimer) {
+                    clearTimeout(autoRunTimer);
+                    autoRunTimer = null;
+                }
+            }
+        }
+
+        function isRunning() {
+            const runBtn = document.getElementById('runBtn');
+            return runBtn && runBtn.classList.contains('running');
+        }
 
         // Toggle file panel visibility
         function toggleFilePanel() {
@@ -1028,6 +1105,7 @@
             for (const [name, file] of files) {
                 if (file.model.getValue() !== file.savedContent) {
                     isModified = true;
+                    scheduleAutoRun();  // Trigger auto-run if enabled
                     return;
                 }
             }
@@ -1517,6 +1595,18 @@ void draw() {
                 detectIndentation: false,
             });
 
+            // Cmd+Enter / Ctrl+Enter to run script
+            editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+                // Pulse effect
+                const runBtn = document.getElementById('runBtn');
+                if (runBtn) {
+                    runBtn.classList.remove('pulse');
+                    void runBtn.offsetWidth;  // Force reflow
+                    runBtn.classList.add('pulse');
+                }
+                runScript();
+            });
+
             // Initialize files from URL hash or default
             const hashData = loadFromHash();
             if (hashData && typeof hashData === 'object' && hashData.files) {
@@ -1697,6 +1787,15 @@ void draw() {
                 // Clear running state
                 document.getElementById('runBtn').classList.remove('running');
                 document.getElementById('stopBtn').classList.remove('running');
+                // Disable auto-run when stopped
+                if (autoRunEnabled) {
+                    autoRunEnabled = false;
+                    updateRunButtonState();
+                    if (autoRunTimer) {
+                        clearTimeout(autoRunTimer);
+                        autoRunTimer = null;
+                    }
+                }
             } catch (e) {
                 logToConsole('Error: ' + e.message, 'error');
             }
@@ -1957,6 +2056,37 @@ void draw() {
                 saveScript(e.shiftKey);
             };
         })();
+
+        // Run button click handling
+        (function() {
+            const runBtn = document.getElementById('runBtn');
+            if (!runBtn) return;
+
+            runBtn.onclick = (e) => {
+                if (isRunning()) {
+                    // Already running - toggle auto-run mode
+                    toggleAutoRun();
+                } else {
+                    // Not running - start execution
+                    runScript();
+                }
+            };
+        })();
+
+        // Keyboard shortcuts (Cmd+Enter / Ctrl+Enter to run) - fallback for when editor not focused
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                e.preventDefault();
+                // Pulse effect
+                const runBtn = document.getElementById('runBtn');
+                if (runBtn) {
+                    runBtn.classList.remove('pulse');
+                    void runBtn.offsetWidth;  // Force reflow
+                    runBtn.classList.add('pulse');
+                }
+                runScript();
+            }
+        });
 
         // Load files from parsed data
         function loadFilesFromData(data, sourceName) {
