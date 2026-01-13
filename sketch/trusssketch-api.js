@@ -947,6 +947,14 @@
                     "snippet": "getElapsedTimef()"
                 },
                 {
+                    "name": "getElapsedTime",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Elapsed seconds (alias for getElapsedTimef)",
+                    "snippet": "getElapsedTime()"
+                },
+                {
                     "name": "getElapsedTimeMillis",
                     "params": "",
                     "params_typed": "",
@@ -1525,12 +1533,12 @@
             "name": "Sound",
             "functions": [
                 {
-                    "name": "Sound",
+                    "name": "createSound",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a sound player",
-                    "snippet": "Sound()"
+                    "return_type": "Sound@",
+                    "desc": "Create a sound player (TrussSketch factory)",
+                    "snippet": "Sound@ snd = createSound();"
                 },
                 {
                     "name": "load",
@@ -1577,14 +1585,6 @@
         {
             "name": "ChipSound",
             "functions": [
-                {
-                    "name": "ChipSoundNote",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a chip sound note (8-bit style sound)",
-                    "snippet": "ChipSoundNote note;"
-                },
                 {
                     "name": "wave",
                     "params": "type",
@@ -1688,6 +1688,14 @@
                     "return_type": "ChipSoundBundle&",
                     "desc": "Clear all notes from bundle",
                     "snippet": "clear()"
+                },
+                {
+                    "name": "getDuration",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get the total duration of the bundle",
+                    "snippet": "getDuration()"
                 }
             ]
         },
@@ -1953,46 +1961,6 @@
             "name": "Types - Vec2",
             "functions": [
                 {
-                    "name": "Vec2",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create 2D vector",
-                    "snippet": "Vec2(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "Vec2",
-                    "params": "x, y",
-                    "params_typed": "float x, float y",
-                    "return_type": "",
-                    "desc": "Create 2D vector",
-                    "snippet": "Vec2(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "Vec2",
-                    "params": "v",
-                    "params_typed": "float v",
-                    "return_type": "",
-                    "desc": "Create 2D vector",
-                    "snippet": "Vec2(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "set",
-                    "params": "x, y",
-                    "params_typed": "float x, float y",
-                    "return_type": "Vec2&",
-                    "desc": "Set vector components",
-                    "snippet": "set(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "set",
-                    "params": "v",
-                    "params_typed": "Vec2 v",
-                    "return_type": "Vec2&",
-                    "desc": "Set vector components",
-                    "snippet": "set(${1:x}, ${2:y})"
-                },
-                {
                     "name": "Vec2_fromAngle",
                     "params": "radians",
                     "params_typed": "float radians",
@@ -2011,109 +1979,8 @@
             ]
         },
         {
-            "name": "Types - Vec3",
-            "functions": [
-                {
-                    "name": "Vec3",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create 3D vector",
-                    "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
-                },
-                {
-                    "name": "Vec3",
-                    "params": "x, y, z",
-                    "params_typed": "float x, float y, float z",
-                    "return_type": "",
-                    "desc": "Create 3D vector",
-                    "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
-                },
-                {
-                    "name": "Vec3",
-                    "params": "v",
-                    "params_typed": "float v",
-                    "return_type": "",
-                    "desc": "Create 3D vector",
-                    "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
-                },
-                {
-                    "name": "set",
-                    "params": "x, y, z",
-                    "params_typed": "float x, float y, float z",
-                    "return_type": "Vec3&",
-                    "desc": "Set vector components",
-                    "snippet": "set(${1:x}, ${2:y}, ${3:z})"
-                },
-                {
-                    "name": "set",
-                    "params": "v",
-                    "params_typed": "Vec3 v",
-                    "return_type": "Vec3&",
-                    "desc": "Set vector components",
-                    "snippet": "set(${1:x}, ${2:y}, ${3:z})"
-                }
-            ]
-        },
-        {
             "name": "Types - Color",
             "functions": [
-                {
-                    "name": "Color",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create color (0.0-1.0)",
-                    "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "Color",
-                    "params": "r, g, b",
-                    "params_typed": "float r, float g, float b",
-                    "return_type": "",
-                    "desc": "Create color (0.0-1.0)",
-                    "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "Color",
-                    "params": "r, g, b, a",
-                    "params_typed": "float r, float g, float b, float a",
-                    "return_type": "",
-                    "desc": "Create color (0.0-1.0)",
-                    "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "set",
-                    "params": "r, g, b",
-                    "params_typed": "float r, float g, float b",
-                    "return_type": "Color&",
-                    "desc": "Set color components",
-                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "set",
-                    "params": "r, g, b, a",
-                    "params_typed": "float r, float g, float b, float a",
-                    "return_type": "Color&",
-                    "desc": "Set color components",
-                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "set",
-                    "params": "gray",
-                    "params_typed": "float gray",
-                    "return_type": "Color&",
-                    "desc": "Set color components",
-                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
-                },
-                {
-                    "name": "set",
-                    "params": "c",
-                    "params_typed": "Color c",
-                    "return_type": "Color&",
-                    "desc": "Set color components",
-                    "snippet": "set(${1:r}, ${2:g}, ${3:b})"
-                },
                 {
                     "name": "Color_fromHSB",
                     "params": "h, s, b",
@@ -2129,6 +1996,22 @@
                     "return_type": "Color",
                     "desc": "Create Color from HSB",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "colorFromHSB",
+                    "params": "h, s, b",
+                    "params_typed": "float h, float s, float b",
+                    "return_type": "Color",
+                    "desc": "Create Color from HSB (alias for Color_fromHSB)",
+                    "snippet": "colorFromHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "colorFromHSB",
+                    "params": "h, s, b, a",
+                    "params_typed": "float h, float s, float b, float a",
+                    "return_type": "Color",
+                    "desc": "Create Color from HSB (alias for Color_fromHSB)",
+                    "snippet": "colorFromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
                     "name": "Color_fromOKLCH",
@@ -2161,112 +2044,6 @@
                     "return_type": "Color",
                     "desc": "Create Color from OKLab",
                     "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
-                }
-            ]
-        },
-        {
-            "name": "Types - Rect",
-            "functions": [
-                {
-                    "name": "Rect",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a rectangle",
-                    "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
-                },
-                {
-                    "name": "Rect",
-                    "params": "x, y, w, h",
-                    "params_typed": "float x, float y, float w, float h",
-                    "return_type": "",
-                    "desc": "Create a rectangle",
-                    "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
-                },
-                {
-                    "name": "set",
-                    "params": "x, y, w, h",
-                    "params_typed": "float x, float y, float w, float h",
-                    "return_type": "Rect&",
-                    "desc": "Set rectangle properties",
-                    "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
-                },
-                {
-                    "name": "set",
-                    "params": "pos, w, h",
-                    "params_typed": "Vec2 pos, float w, float h",
-                    "return_type": "Rect&",
-                    "desc": "Set rectangle properties",
-                    "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
-                },
-                {
-                    "name": "contains",
-                    "params": "x, y",
-                    "params_typed": "float x, float y",
-                    "return_type": "bool",
-                    "desc": "Check if point is inside",
-                    "snippet": "contains(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "intersects",
-                    "params": "other",
-                    "params_typed": "Rect other",
-                    "return_type": "bool",
-                    "desc": "Check intersection",
-                    "snippet": "intersects(${1:other})"
-                }
-            ]
-        },
-        {
-            "name": "Scene Graph",
-            "functions": [
-                {
-                    "name": "Node",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a base scene node",
-                    "snippet": "Node()"
-                },
-                {
-                    "name": "addChild",
-                    "params": "child",
-                    "params_typed": "shared_ptr<Node> child",
-                    "return_type": "void",
-                    "desc": "Add a child node",
-                    "snippet": "addChild(${1:child})"
-                },
-                {
-                    "name": "setPosition",
-                    "params": "x, y",
-                    "params_typed": "float x, float y",
-                    "return_type": "void",
-                    "desc": "Set position",
-                    "snippet": "setPosition(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "setPosition",
-                    "params": "pos",
-                    "params_typed": "Vec3 pos",
-                    "return_type": "void",
-                    "desc": "Set position",
-                    "snippet": "setPosition(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "RectNode",
-                    "params": "",
-                    "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a 2D rectangle node",
-                    "snippet": "RectNode()"
-                },
-                {
-                    "name": "setSize",
-                    "params": "w, h",
-                    "params_typed": "float w, float h",
-                    "return_type": "void",
-                    "desc": "Set size",
-                    "snippet": "setSize(${1:w}, ${2:h})"
                 }
             ]
         },
@@ -2343,19 +2120,19 @@
             "name": "3D Camera",
             "functions": [
                 {
-                    "name": "EasyCam",
+                    "name": "createEasyCam",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create an easy-to-use 3D camera",
-                    "snippet": "EasyCam()"
+                    "return_type": "EasyCam@",
+                    "desc": "Create an EasyCam instance",
+                    "snippet": "createEasyCam()"
                 },
                 {
                     "name": "begin",
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Apply camera transform",
+                    "desc": "Apply camera transform (start 3D mode)",
                     "snippet": "begin()"
                 },
                 {
@@ -2363,8 +2140,184 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Restore previous transform",
+                    "desc": "Restore previous transform (end 3D mode)",
                     "snippet": "end()"
+                },
+                {
+                    "name": "reset",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset camera to default position",
+                    "snippet": "reset()"
+                },
+                {
+                    "name": "setTarget",
+                    "params": "x, y, z",
+                    "params_typed": "float x, float y, float z",
+                    "return_type": "void",
+                    "desc": "Set camera look-at target",
+                    "snippet": "setTarget(${1:0}, ${2:0}, ${3:0})"
+                },
+                {
+                    "name": "setTarget",
+                    "params": "target",
+                    "params_typed": "const Vec3 &in target",
+                    "return_type": "void",
+                    "desc": "Set camera look-at target",
+                    "snippet": "setTarget(${1:0}, ${2:0}, ${3:0})"
+                },
+                {
+                    "name": "getTarget",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Vec3",
+                    "desc": "Get camera look-at target",
+                    "snippet": "getTarget()"
+                },
+                {
+                    "name": "setDistance",
+                    "params": "distance",
+                    "params_typed": "float distance",
+                    "return_type": "void",
+                    "desc": "Set distance from target",
+                    "snippet": "setDistance(${1:400})"
+                },
+                {
+                    "name": "getDistance",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get distance from target",
+                    "snippet": "getDistance()"
+                },
+                {
+                    "name": "setFov",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "void",
+                    "desc": "Set field of view in radians",
+                    "snippet": "setFov(${1:0.785})"
+                },
+                {
+                    "name": "getFov",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get field of view in radians",
+                    "snippet": "getFov()"
+                },
+                {
+                    "name": "setFovDeg",
+                    "params": "degrees",
+                    "params_typed": "float degrees",
+                    "return_type": "void",
+                    "desc": "Set field of view in degrees",
+                    "snippet": "setFovDeg(${1:45})"
+                },
+                {
+                    "name": "setNearClip",
+                    "params": "nearClip",
+                    "params_typed": "float nearClip",
+                    "return_type": "void",
+                    "desc": "Set near clipping plane",
+                    "snippet": "setNearClip(${1:0.1})"
+                },
+                {
+                    "name": "setFarClip",
+                    "params": "farClip",
+                    "params_typed": "float farClip",
+                    "return_type": "void",
+                    "desc": "Set far clipping plane",
+                    "snippet": "setFarClip(${1:10000})"
+                },
+                {
+                    "name": "enableMouseInput",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Enable mouse input for camera control",
+                    "snippet": "enableMouseInput()"
+                },
+                {
+                    "name": "disableMouseInput",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Disable mouse input for camera control",
+                    "snippet": "disableMouseInput()"
+                },
+                {
+                    "name": "isMouseInputEnabled",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if mouse input is enabled",
+                    "snippet": "isMouseInputEnabled()"
+                },
+                {
+                    "name": "mousePressed",
+                    "params": "x, y, button",
+                    "params_typed": "int x, int y, int button",
+                    "return_type": "void",
+                    "desc": "Handle mouse press event",
+                    "snippet": "mousePressed(${1:x}, ${2:y}, ${3:button})"
+                },
+                {
+                    "name": "mouseReleased",
+                    "params": "x, y, button",
+                    "params_typed": "int x, int y, int button",
+                    "return_type": "void",
+                    "desc": "Handle mouse release event",
+                    "snippet": "mouseReleased(${1:x}, ${2:y}, ${3:button})"
+                },
+                {
+                    "name": "mouseDragged",
+                    "params": "x, y, button",
+                    "params_typed": "int x, int y, int button",
+                    "return_type": "void",
+                    "desc": "Handle mouse drag event",
+                    "snippet": "mouseDragged(${1:x}, ${2:y}, ${3:button})"
+                },
+                {
+                    "name": "mouseScrolled",
+                    "params": "dx, dy",
+                    "params_typed": "float dx, float dy",
+                    "return_type": "void",
+                    "desc": "Handle mouse scroll event (for zoom)",
+                    "snippet": "mouseScrolled(${1:dx}, ${2:dy})"
+                },
+                {
+                    "name": "getPosition",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Vec3",
+                    "desc": "Get camera position",
+                    "snippet": "getPosition()"
+                },
+                {
+                    "name": "setSensitivity",
+                    "params": "sensitivity",
+                    "params_typed": "float sensitivity",
+                    "return_type": "void",
+                    "desc": "Set rotation sensitivity",
+                    "snippet": "setSensitivity(${1:1.0})"
+                },
+                {
+                    "name": "setZoomSensitivity",
+                    "params": "sensitivity",
+                    "params_typed": "float sensitivity",
+                    "return_type": "void",
+                    "desc": "Set zoom sensitivity",
+                    "snippet": "setZoomSensitivity(${1:10.0})"
+                },
+                {
+                    "name": "setPanSensitivity",
+                    "params": "sensitivity",
+                    "params_typed": "float sensitivity",
+                    "return_type": "void",
+                    "desc": "Set pan sensitivity",
+                    "snippet": "setPanSensitivity(${1:1.0})"
                 }
             ]
         },
@@ -2372,20 +2325,132 @@
             "name": "Math - 3D",
             "functions": [
                 {
-                    "name": "Mat4",
+                    "name": "Mat4_identity",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a 4x4 matrix",
-                    "snippet": "Mat4()"
+                    "return_type": "Mat4",
+                    "desc": "Create an identity matrix",
+                    "snippet": "Mat4_identity()"
                 },
                 {
-                    "name": "Quaternion",
+                    "name": "Mat4_translate",
+                    "params": "x, y, z",
+                    "params_typed": "float x, float y, float z",
+                    "return_type": "Mat4",
+                    "desc": "Create a translation matrix",
+                    "snippet": "Mat4_translate(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "Mat4_translate",
+                    "params": "v",
+                    "params_typed": "Vec3 v",
+                    "return_type": "Mat4",
+                    "desc": "Create a translation matrix",
+                    "snippet": "Mat4_translate(${1:x}, ${2:y}, ${3:z})"
+                },
+                {
+                    "name": "Mat4_rotateX",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "Mat4",
+                    "desc": "Create X-axis rotation matrix",
+                    "snippet": "Mat4_rotateX(${1:radians})"
+                },
+                {
+                    "name": "Mat4_rotateY",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "Mat4",
+                    "desc": "Create Y-axis rotation matrix",
+                    "snippet": "Mat4_rotateY(${1:radians})"
+                },
+                {
+                    "name": "Mat4_rotateZ",
+                    "params": "radians",
+                    "params_typed": "float radians",
+                    "return_type": "Mat4",
+                    "desc": "Create Z-axis rotation matrix",
+                    "snippet": "Mat4_rotateZ(${1:radians})"
+                },
+                {
+                    "name": "Mat4_scale",
+                    "params": "s",
+                    "params_typed": "float s",
+                    "return_type": "Mat4",
+                    "desc": "Create a scaling matrix",
+                    "snippet": "Mat4_scale(${1:s})"
+                },
+                {
+                    "name": "Mat4_scale",
+                    "params": "sx, sy, sz",
+                    "params_typed": "float sx, float sy, float sz",
+                    "return_type": "Mat4",
+                    "desc": "Create a scaling matrix",
+                    "snippet": "Mat4_scale(${1:s})"
+                },
+                {
+                    "name": "Mat4_lookAt",
+                    "params": "eye, target, up",
+                    "params_typed": "Vec3 eye, Vec3 target, Vec3 up",
+                    "return_type": "Mat4",
+                    "desc": "Create a view matrix",
+                    "snippet": "Mat4_lookAt(${1:eye}, ${2:target}, ${3:up})"
+                },
+                {
+                    "name": "Mat4_ortho",
+                    "params": "left, right, bottom, top, near, far",
+                    "params_typed": "float left, float right, float bottom, float top, float nearPlane, float farPlane",
+                    "return_type": "Mat4",
+                    "desc": "Create an orthographic projection matrix",
+                    "snippet": "Mat4_ortho(${1:left}, ${2:right}, ${3:bottom}, ${4:top}, ${5:near}, ${6:far})"
+                },
+                {
+                    "name": "Mat4_perspective",
+                    "params": "fov, aspect, near, far",
+                    "params_typed": "float fovY, float aspect, float nearPlane, float farPlane",
+                    "return_type": "Mat4",
+                    "desc": "Create a perspective projection matrix",
+                    "snippet": "Mat4_perspective(${1:fov}, ${2:aspect}, ${3:near}, ${4:far})"
+                },
+                {
+                    "name": "Quaternion_identity",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a quaternion",
-                    "snippet": "Quaternion()"
+                    "return_type": "Quaternion",
+                    "desc": "Create an identity quaternion",
+                    "snippet": "Quaternion_identity()"
+                },
+                {
+                    "name": "Quaternion_fromAxisAngle",
+                    "params": "axis, radians",
+                    "params_typed": "Vec3 axis, float radians",
+                    "return_type": "Quaternion",
+                    "desc": "Create quaternion from axis-angle",
+                    "snippet": "Quaternion_fromAxisAngle(${1:axis}, ${2:radians})"
+                },
+                {
+                    "name": "Quaternion_fromEuler",
+                    "params": "pitch, yaw, roll",
+                    "params_typed": "float pitch, float yaw, float roll",
+                    "return_type": "Quaternion",
+                    "desc": "Create quaternion from Euler angles",
+                    "snippet": "Quaternion_fromEuler(${1:pitch}, ${2:yaw}, ${3:roll})"
+                },
+                {
+                    "name": "Quaternion_fromEuler",
+                    "params": "euler",
+                    "params_typed": "Vec3 euler",
+                    "return_type": "Quaternion",
+                    "desc": "Create quaternion from Euler angles",
+                    "snippet": "Quaternion_fromEuler(${1:pitch}, ${2:yaw}, ${3:roll})"
+                },
+                {
+                    "name": "Quaternion_slerp",
+                    "params": "a, b, t",
+                    "params_typed": "Quaternion a, Quaternion b, float t",
+                    "return_type": "Quaternion",
+                    "desc": "Spherical linear interpolation",
+                    "snippet": "Quaternion_slerp(${1:a}, ${2:b}, ${3:t})"
                 }
             ]
         },
@@ -2454,12 +2519,12 @@
             "name": "Graphics - Texture & GPU",
             "functions": [
                 {
-                    "name": "Texture",
+                    "name": "createTexture",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a texture",
-                    "snippet": "Texture()"
+                    "return_type": "Texture@",
+                    "desc": "Create a texture (TrussSketch factory)",
+                    "snippet": "Texture@ tex = createTexture();"
                 },
                 {
                     "name": "load",
@@ -2468,14 +2533,6 @@
                     "return_type": "bool",
                     "desc": "Load image from file",
                     "snippet": "load(${1:\"image.png\"})"
-                },
-                {
-                    "name": "loadFromPixels",
-                    "params": "pixels",
-                    "params_typed": "const Pixels& pixels",
-                    "return_type": "bool",
-                    "desc": "Load from pixel data",
-                    "snippet": "loadFromPixels(${1:pixels})"
                 },
                 {
                     "name": "bind",
@@ -2515,12 +2572,12 @@
             "name": "Graphics - FBO",
             "functions": [
                 {
-                    "name": "Fbo",
+                    "name": "createFbo",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create an FBO",
-                    "snippet": "Fbo()"
+                    "return_type": "Fbo@",
+                    "desc": "Create an FBO (TrussSketch factory)",
+                    "snippet": "Fbo@ fbo = createFbo();"
                 },
                 {
                     "name": "allocate",
@@ -2553,14 +2610,6 @@
                     "return_type": "Texture&",
                     "desc": "Get internal texture",
                     "snippet": "getTexture()"
-                },
-                {
-                    "name": "readToPixels",
-                    "params": "pixels",
-                    "params_typed": "Pixels& pixels",
-                    "return_type": "void",
-                    "desc": "Read pixels to CPU memory",
-                    "snippet": "readToPixels(${1:pixels})"
                 }
             ]
         },
@@ -2568,12 +2617,12 @@
             "name": "Types - Pixels",
             "functions": [
                 {
-                    "name": "Pixels",
+                    "name": "createPixels",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create pixel buffer",
-                    "snippet": "Pixels()"
+                    "return_type": "Pixels@",
+                    "desc": "Create pixel buffer (TrussSketch factory)",
+                    "snippet": "Pixels@ px = createPixels();"
                 },
                 {
                     "name": "allocate",
@@ -2605,12 +2654,12 @@
             "name": "Types - Mesh",
             "functions": [
                 {
-                    "name": "Mesh",
+                    "name": "createMesh",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
+                    "return_type": "Mesh@",
                     "desc": "Create a new Mesh",
-                    "snippet": "Mesh()"
+                    "snippet": "Mesh@ mesh = createMesh();"
                 },
                 {
                     "name": "setMode",
@@ -2703,15 +2752,15 @@
             ]
         },
         {
-            "name": "Types - Polyline",
+            "name": "Types - Path",
             "functions": [
                 {
-                    "name": "Polyline",
+                    "name": "createPath",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a new Polyline (Path)",
-                    "snippet": "Polyline()"
+                    "return_type": "Path@",
+                    "desc": "Create a new Path",
+                    "snippet": "Path@ path = createPath();"
                 },
                 {
                     "name": "addVertex",
@@ -2775,60 +2824,132 @@
             "name": "Types - StrokeMesh",
             "functions": [
                 {
-                    "name": "StrokeMesh",
+                    "name": "createStrokeMesh",
                     "params": "",
                     "params_typed": "",
-                    "return_type": "",
-                    "desc": "Create a new StrokeMesh",
-                    "snippet": "StrokeMesh()"
+                    "return_type": "StrokeMesh@",
+                    "desc": "Create a new StrokeMesh instance",
+                    "snippet": "createStrokeMesh()"
                 },
                 {
                     "name": "setWidth",
                     "params": "width",
                     "params_typed": "float width",
-                    "return_type": "void",
-                    "desc": "Set stroke width",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set stroke width (method chaining)",
                     "snippet": "setWidth(${1:5.0})"
                 },
                 {
                     "name": "setColor",
                     "params": "color",
-                    "params_typed": "Color color",
-                    "return_type": "void",
-                    "desc": "Set stroke color",
+                    "params_typed": "const Color &in color",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set stroke color (method chaining)",
                     "snippet": "setColor(${1:color})"
                 },
                 {
                     "name": "setCapType",
                     "params": "type",
                     "params_typed": "int type",
-                    "return_type": "void",
-                    "desc": "Set cap type (CAP_BUTT, CAP_ROUND, CAP_SQUARE)",
-                    "snippet": "setCapType(${1:CAP_ROUND})"
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set cap type: Butt, Round, Square (method chaining)",
+                    "snippet": "setCapType(${1:Round})"
                 },
                 {
                     "name": "setJoinType",
                     "params": "type",
                     "params_typed": "int type",
-                    "return_type": "void",
-                    "desc": "Set join type (JOIN_MITER, JOIN_ROUND, JOIN_BEVEL)",
-                    "snippet": "setJoinType(${1:JOIN_ROUND})"
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set join type: Miter, Round, Bevel (method chaining)",
+                    "snippet": "setJoinType(${1:Round})"
+                },
+                {
+                    "name": "setMiterLimit",
+                    "params": "limit",
+                    "params_typed": "float limit",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set miter limit for sharp corners (method chaining)",
+                    "snippet": "setMiterLimit(${1:10.0})"
                 },
                 {
                     "name": "addVertex",
                     "params": "x, y",
                     "params_typed": "float x, float y",
-                    "return_type": "void",
-                    "desc": "Add a vertex",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Add a vertex (method chaining)",
                     "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertex",
+                    "params": "x, y, z",
+                    "params_typed": "float x, float y, float z",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Add a vertex (method chaining)",
+                    "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertex",
+                    "params": "v",
+                    "params_typed": "const Vec2 &in v",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Add a vertex (method chaining)",
+                    "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertex",
+                    "params": "v",
+                    "params_typed": "const Vec3 &in v",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Add a vertex (method chaining)",
+                    "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertexWithWidth",
+                    "params": "x, y, width",
+                    "params_typed": "float x, float y, float width",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Add a vertex with variable width (method chaining)",
+                    "snippet": "addVertexWithWidth(${1:x}, ${2:y}, ${3:width})"
+                },
+                {
+                    "name": "setShape",
+                    "params": "path",
+                    "params_typed": "Path@ path",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set shape from Path (method chaining)",
+                    "snippet": "setShape(${1:path})"
+                },
+                {
+                    "name": "setClosed",
+                    "params": "closed",
+                    "params_typed": "bool closed",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Set whether the stroke is closed (method chaining)",
+                    "snippet": "setClosed(${1:true})"
+                },
+                {
+                    "name": "clear",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "StrokeMesh&",
+                    "desc": "Clear all vertices (method chaining)",
+                    "snippet": "clear()"
                 },
                 {
                     "name": "update",
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Update the internal mesh",
+                    "desc": "Update the internal mesh (required before draw)",
                     "snippet": "update()"
+                },
+                {
+                    "name": "draw",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Draw the stroke mesh",
+                    "snippet": "draw()"
                 }
             ]
         }
@@ -3127,14 +3248,14 @@
             ],
             "static_methods": [
                 {
-                    "name": "fromAngle",
+                    "name": "Vec2_fromAngle",
                     "return": "Vec2",
                     "signatures": [
                         "float radians",
                         "float radians, float length"
                     ],
                     "desc": "Create Vec2 from angle",
-                    "snippet": "Vec2::fromAngle(${1:radians})"
+                    "snippet": "Vec2_fromAngle(${1:radians})"
                 }
             ]
         },
@@ -3374,34 +3495,34 @@
             ],
             "static_methods": [
                 {
-                    "name": "fromHex",
+                    "name": "Color_fromHex",
                     "return": "Color",
                     "signatures": [
-                        "uint32_t hex",
-                        "uint32_t hex, bool hasAlpha"
+                        "uint hex",
+                        "uint hex, bool hasAlpha"
                     ],
                     "desc": "Create from hex value",
-                    "snippet": "Color::fromHex(${1:0xRRGGBB})"
+                    "snippet": "Color_fromHex(${1:0xRRGGBB})"
                 },
                 {
-                    "name": "fromHSB",
+                    "name": "Color_fromHSB",
                     "return": "Color",
                     "signatures": [
                         "float h, float s, float b",
                         "float h, float s, float b, float a"
                     ],
                     "desc": "Create from HSB (H: 0-TAU)",
-                    "snippet": "Color::fromHSB(${1:h}, ${2:s}, ${3:b})"
+                    "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
-                    "name": "fromBytes",
+                    "name": "Color_fromBytes",
                     "return": "Color",
                     "signatures": [
                         "int r, int g, int b",
                         "int r, int g, int b, int a"
                     ],
                     "desc": "Create from 0-255 values",
-                    "snippet": "Color::fromBytes(${1:r}, ${2:g}, ${3:b})"
+                    "snippet": "Color_fromBytes(${1:r}, ${2:g}, ${3:b})"
                 }
             ]
         },
@@ -3500,6 +3621,125 @@
                     ],
                     "desc": "Check if intersects with another rect",
                     "snippet": "intersects(${1:other})"
+                }
+            ]
+        },
+        {
+            "name": "Mat4",
+            "desc": "4x4 matrix for 3D transformations",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "Mat4()"
+            },
+            "methods": [
+                {
+                    "name": "transposed",
+                    "return": "Mat4",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get transposed matrix",
+                    "snippet": "transposed()"
+                },
+                {
+                    "name": "inverted",
+                    "return": "Mat4",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get inverse matrix",
+                    "snippet": "inverted()"
+                }
+            ]
+        },
+        {
+            "name": "Quaternion",
+            "desc": "Unit quaternion for 3D rotations",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "float w, float x, float y, float z"
+                ],
+                "snippet": "Quaternion()"
+            },
+            "properties": [
+                {
+                    "name": "w",
+                    "type": "float",
+                    "desc": "W component"
+                },
+                {
+                    "name": "x",
+                    "type": "float",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "float",
+                    "desc": "Y component"
+                },
+                {
+                    "name": "z",
+                    "type": "float",
+                    "desc": "Z component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "rotate",
+                    "return": "Vec3",
+                    "signatures": [
+                        "Vec3 v"
+                    ],
+                    "desc": "Rotate a vector",
+                    "snippet": "rotate(${1:v})"
+                },
+                {
+                    "name": "toEuler",
+                    "return": "Vec3",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to Euler angles",
+                    "snippet": "toEuler()"
+                },
+                {
+                    "name": "toMatrix",
+                    "return": "Mat4",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to rotation matrix",
+                    "snippet": "toMatrix()"
+                },
+                {
+                    "name": "normalized",
+                    "return": "Quaternion",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get normalized quaternion",
+                    "snippet": "normalized()"
+                },
+                {
+                    "name": "length",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get quaternion length",
+                    "snippet": "length()"
+                },
+                {
+                    "name": "conjugate",
+                    "return": "Quaternion",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get conjugate quaternion",
+                    "snippet": "conjugate()"
                 }
             ]
         },
@@ -3654,12 +3894,6 @@
         {
             "name": "Image",
             "desc": "Image with CPU pixels and GPU texture",
-            "constructor": {
-                "signatures": [
-                    ""
-                ],
-                "snippet": "Image()"
-            },
             "methods": [
                 {
                     "name": "load",
@@ -3810,11 +4044,23 @@
                     "name": "draw",
                     "return": "void",
                     "signatures": [
+                        "",
                         "float x, float y",
                         "float x, float y, float w, float h"
                     ],
                     "desc": "Draw image",
                     "snippet": "draw(${1:x}, ${2:y})"
+                }
+            ],
+            "static_methods": [
+                {
+                    "name": "createImage",
+                    "return": "Image@",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Create a new Image instance",
+                    "snippet": "createImage()"
                 }
             ]
         },
@@ -4211,9 +4457,10 @@
                 },
                 {
                     "name": "addVertices",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
-                        "vector<Vec3> verts"
+                        "array<Vec3>@ verts",
+                        "array<Vec2>@ verts"
                     ],
                     "desc": "Add multiple vertices",
                     "snippet": "addVertices(${1:verts})"
@@ -4248,9 +4495,9 @@
                 },
                 {
                     "name": "addColors",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
-                        "vector<Color> cols"
+                        "array<Color>@ cols"
                     ],
                     "desc": "Add multiple vertex colors",
                     "snippet": "addColors(${1:colors})"
@@ -4293,9 +4540,9 @@
                 },
                 {
                     "name": "addIndices",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
-                        "vector<int> indices"
+                        "array<uint>@ indices"
                     ],
                     "desc": "Add multiple indices",
                     "snippet": "addIndices(${1:indices})"
@@ -4348,9 +4595,9 @@
                 },
                 {
                     "name": "addNormals",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
-                        "vector<Vec3> normals"
+                        "array<Vec3>@ normals"
                     ],
                     "desc": "Add multiple normals",
                     "snippet": "addNormals(${1:normals})"
@@ -4502,7 +4749,7 @@
                 },
                 {
                     "name": "translate",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
                         "float x, float y, float z",
                         "Vec3 offset"
@@ -4512,7 +4759,7 @@
                 },
                 {
                     "name": "rotateX",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
                         "float radians"
                     ],
@@ -4521,7 +4768,7 @@
                 },
                 {
                     "name": "rotateY",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
                         "float radians"
                     ],
@@ -4530,7 +4777,7 @@
                 },
                 {
                     "name": "rotateZ",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
                         "float radians"
                     ],
@@ -4539,7 +4786,7 @@
                 },
                 {
                     "name": "scale",
-                    "return": "void",
+                    "return": "Mesh@",
                     "signatures": [
                         "float s",
                         "float x, float y, float z"
@@ -4588,7 +4835,7 @@
             ]
         },
         {
-            "name": "Polyline",
+            "name": "Path",
             "desc": "Path/Polyline for drawing lines and curves",
             "constructor": {
                 "signatures": [
@@ -4596,7 +4843,7 @@
                     "vector<Vec2> verts",
                     "vector<Vec3> verts"
                 ],
-                "snippet": "Polyline()"
+                "snippet": "Path()"
             },
             "methods": [
                 {
@@ -4613,10 +4860,10 @@
                 },
                 {
                     "name": "addVertices",
-                    "return": "void",
+                    "return": "Path@",
                     "signatures": [
-                        "vector<Vec2> verts",
-                        "vector<Vec3> verts"
+                        "array<Vec3>@ verts",
+                        "array<Vec2>@ verts"
                     ],
                     "desc": "Add multiple vertices",
                     "snippet": "addVertices(${1:verts})"
@@ -4749,13 +4996,13 @@
                     "snippet": "draw()"
                 },
                 {
-                    "name": "getBoundingBox",
-                    "return": "void",
+                    "name": "getBounds",
+                    "return": "Rect",
                     "signatures": [
-                        "float minX, float minY, float maxX, float maxY"
+                        ""
                     ],
-                    "desc": "Get bounding box (output parameters)",
-                    "snippet": "getBoundingBox(${1:minX}, ${2:minY}, ${3:maxX}, ${4:maxY})"
+                    "desc": "Get bounding box as Rect",
+                    "snippet": "getBounds()"
                 },
                 {
                     "name": "getPerimeter",
