@@ -624,82 +624,158 @@
         }
 
         .modal {
-            background: #252526;
-            border-radius: 8px;
-            padding: 24px;
+            border-radius: 16px;
+            padding: 28px;
             max-width: 400px;
             width: 90%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            animation: modal-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #1e1e2e;
+        }
+
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                0deg,
+                rgba(100, 50, 75, 0.95),
+                rgba(75, 50, 100, 0.95),
+                rgba(50, 75, 110, 0.95),
+                rgba(50, 100, 90, 0.95),
+                rgba(75, 100, 50, 0.95),
+                rgba(100, 90, 50, 0.95),
+                rgba(100, 65, 65, 0.95),
+                rgba(100, 50, 75, 0.95)
+            );
+            background-size: 100% 400%;
+            animation: rainbow-flow 4s ease infinite,
+                       rainbow-rotate 6s linear infinite;
+            z-index: 0;
+        }
+
+        .modal > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes rainbow-flow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes rainbow-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .wiggle-emoji {
+            display: inline-block;
+            animation: wiggle 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-10deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        @keyframes modal-pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .modal h2 {
-            margin: 0 0 16px 0;
-            font-size: 18px;
+            margin: 0 0 8px 0;
+            font-size: 24px;
             color: white;
         }
 
         .modal p {
-            margin: 0 0 16px 0;
-            color: #aaa;
+            margin: 0 0 20px 0;
+            color: #b8b8c8;
             font-size: 14px;
+            line-height: 1.5;
         }
 
         .modal-buttons {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .modal-btn {
             flex: 1;
             min-width: 100px;
-            padding: 10px 16px;
+            padding: 12px 18px;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-btn:active {
+            transform: translateY(0);
         }
 
         .modal-btn-x {
-            background: #1d9bf0;
+            background: linear-gradient(135deg, #1d9bf0 0%, #0d8bd9 100%);
             color: white;
+            box-shadow: 0 4px 12px rgba(29, 155, 240, 0.3);
         }
 
         .modal-btn-x:hover {
-            background: #1a8cd8;
+            box-shadow: 0 6px 16px rgba(29, 155, 240, 0.4);
         }
 
         .modal-btn-bluesky {
-            background: #0085ff;
+            background: linear-gradient(135deg, #0085ff 0%, #0066cc 100%);
             color: white;
+            box-shadow: 0 4px 12px rgba(0, 133, 255, 0.3);
         }
 
         .modal-btn-bluesky:hover {
-            background: #0070dd;
+            box-shadow: 0 6px 16px rgba(0, 133, 255, 0.4);
         }
 
         .modal-btn-copy {
-            background: #3c3c3c;
+            background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
             color: white;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
         }
 
         .modal-btn-copy:hover {
-            background: #4c4c4c;
+            box-shadow: 0 6px 16px rgba(88, 101, 242, 0.4);
         }
 
         .modal-btn-close {
             background: transparent;
             color: #888;
             width: 100%;
-            margin-top: 8px;
+            margin-top: 12px;
+            font-weight: 500;
         }
 
         .modal-btn-close:hover {
             color: white;
+            transform: none;
         }
 
     </style>
@@ -816,60 +892,60 @@
         // i18n - Localization
         const i18n = {
             en: {
-                videoSaved: 'Video Saved!',
-                shareDesc: 'Share your creation on social media. Don\'t forget to attach the downloaded video!',
-                close: 'Close',
+                videoSaved: '🎬 Nice one!',
+                shareDesc: 'Your video is ready! Share it with the world ✨\nJust attach the downloaded file!',
+                close: 'Maybe later',
                 copy: 'Copy',
-                assetWarning: 'This project contains assets (images, etc.) that cannot be included in the share URL.\n\nOnly the source code will be shared. Continue?',
-                shareText: 'Made with TrussSketch!',
+                assetWarning: 'Heads up! This project has assets (images, etc.) that can\'t be shared via URL.\n\nOnly the code will be shared. Cool?',
+                shareText: 'Made with TrussSketch ✨',
             },
             ja: {
-                videoSaved: '動画を保存しました！',
-                shareDesc: 'SNSでシェアしよう！ダウンロードした動画を添付してね。',
-                close: '閉じる',
+                videoSaved: '🎬 できた！',
+                shareDesc: '動画の準備完了！みんなにシェアしよう ✨\nダウンロードしたファイルを添付してね！',
+                close: 'あとで',
                 copy: 'コピー',
-                assetWarning: 'このプロジェクトにはアセット（画像など）が含まれていますが、シェアURLには含めることができません。\n\nソースコードのみがシェアされます。続行しますか？',
-                shareText: 'TrussSketchで作ったよ！',
+                assetWarning: 'ちょっと待って！このプロジェクトにはアセット（画像など）があるけど、URLには含められないんだ。\n\nコードだけシェアするけどOK？',
+                shareText: 'TrussSketchで作ったよ ✨',
             },
             'zh-Hans': {
-                videoSaved: '视频已保存！',
-                shareDesc: '在社交媒体上分享你的作品吧！别忘了附上下载的视频。',
-                close: '关闭',
+                videoSaved: '🎬 搞定！',
+                shareDesc: '视频准备好啦！快分享给大家吧 ✨\n别忘了附上下载的文件哦！',
+                close: '稍后再说',
                 copy: '复制',
-                assetWarning: '此项目包含无法包含在分享链接中的资源（图片等）。\n\n只会分享源代码。是否继续？',
-                shareText: '用TrussSketch制作！',
+                assetWarning: '注意！这个项目有一些资源（图片等）没办法通过链接分享。\n\n只分享代码，可以吗？',
+                shareText: '用TrussSketch做的 ✨',
             },
             'zh-Hant': {
-                videoSaved: '影片已儲存！',
-                shareDesc: '在社群媒體上分享你的作品吧！別忘了附上下載的影片。',
-                close: '關閉',
+                videoSaved: '🎬 完成！',
+                shareDesc: '影片準備好啦！快分享給大家吧 ✨\n別忘了附上下載的檔案喔！',
+                close: '稍後再說',
                 copy: '複製',
-                assetWarning: '此專案包含無法包含在分享連結中的資源（圖片等）。\n\n只會分享原始碼。是否繼續？',
-                shareText: '用TrussSketch製作！',
+                assetWarning: '注意！這個專案有一些資源（圖片等）沒辦法透過連結分享。\n\n只分享程式碼，可以嗎？',
+                shareText: '用TrussSketch做的 ✨',
             },
             ko: {
-                videoSaved: '영상이 저장되었습니다!',
-                shareDesc: 'SNS에 공유해보세요! 다운로드한 영상을 첨부하는 것을 잊지 마세요.',
-                close: '닫기',
+                videoSaved: '🎬 완성!',
+                shareDesc: '영상 준비 완료! 세상에 공유해보세요 ✨\n다운로드한 파일을 첨부해주세요!',
+                close: '나중에',
                 copy: '복사',
-                assetWarning: '이 프로젝트에는 공유 URL에 포함할 수 없는 에셋(이미지 등)이 있습니다.\n\n소스 코드만 공유됩니다. 계속하시겠습니까?',
-                shareText: 'TrussSketch로 만들었어요!',
+                assetWarning: '잠깐! 이 프로젝트에는 URL로 공유할 수 없는 에셋(이미지 등)이 있어요.\n\n코드만 공유할까요?',
+                shareText: 'TrussSketch로 만들었어요 ✨',
             },
             es: {
-                videoSaved: '¡Video guardado!',
-                shareDesc: '¡Comparte tu creación en redes sociales! No olvides adjuntar el video descargado.',
-                close: 'Cerrar',
+                videoSaved: '🎬 ¡Genial!',
+                shareDesc: '¡Tu video está listo! Compártelo con el mundo ✨\n¡Solo adjunta el archivo descargado!',
+                close: 'Luego',
                 copy: 'Copiar',
-                assetWarning: 'Este proyecto contiene recursos (imágenes, etc.) que no se pueden incluir en la URL de compartir.\n\nSolo se compartirá el código fuente. ¿Continuar?',
-                shareText: '¡Hecho con TrussSketch!',
+                assetWarning: '¡Ojo! Este proyecto tiene recursos (imágenes, etc.) que no se pueden compartir por URL.\n\n¿Compartimos solo el código?',
+                shareText: 'Hecho con TrussSketch ✨',
             },
             pt: {
-                videoSaved: 'Vídeo salvo!',
-                shareDesc: 'Compartilhe sua criação nas redes sociais! Não esqueça de anexar o vídeo baixado.',
-                close: 'Fechar',
+                videoSaved: '🎬 Ficou show!',
+                shareDesc: 'Seu vídeo está pronto! Compartilha com o mundo ✨\nÉ só anexar o arquivo baixado!',
+                close: 'Depois',
                 copy: 'Copiar',
-                assetWarning: 'Este projeto contém recursos (imagens, etc.) que não podem ser incluídos na URL de compartilhamento.\n\nApenas o código-fonte será compartilhado. Continuar?',
-                shareText: 'Feito com TrussSketch!',
+                assetWarning: 'Opa! Este projeto tem recursos (imagens, etc.) que não dá pra compartilhar por URL.\n\nCompartilhar só o código?',
+                shareText: 'Feito com TrussSketch ✨',
             }
         };
 
@@ -2053,7 +2129,7 @@ void draw() {
 
         // Share modal functions
         function showShareModal() {
-            document.getElementById('shareModalTitle').textContent = t('videoSaved');
+            document.getElementById('shareModalTitle').innerHTML = t('videoSaved') + ' <span class="wiggle-emoji">🎉</span>';
             document.getElementById('shareModalDesc').textContent = t('shareDesc');
             document.getElementById('shareModalCopy').lastChild.textContent = ' ' + t('copy');
             document.getElementById('shareModalClose').textContent = t('close');
