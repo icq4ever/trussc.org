@@ -299,6 +299,163 @@
             fill: currentColor;
         }
 
+        /* File panel (left sidebar) */
+        .file-panel {
+            width: 200px;
+            min-width: 200px;
+            flex-shrink: 0;
+            background: #252526;
+            border-right: 1px solid #3c3c3c;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: width 0.2s, min-width 0.2s;
+        }
+
+        .file-panel.collapsed {
+            width: 0;
+            min-width: 0;
+            border-right: none;
+        }
+
+        .file-panel-header {
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #888;
+            border-bottom: 1px solid #3c3c3c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-panel-section {
+            padding: 4px 0;
+        }
+
+        .file-panel-section-header {
+            padding: 4px 12px;
+            font-size: 11px;
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .file-panel-section-header:hover {
+            background: #2a2a2a;
+        }
+
+        .file-panel-section-header svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            transition: transform 0.15s;
+        }
+
+        .file-panel-section.collapsed .file-panel-section-header svg {
+            transform: rotate(-90deg);
+        }
+
+        .file-panel-section.collapsed .file-panel-items {
+            display: none;
+        }
+
+        .file-panel-item {
+            padding: 4px 12px 4px 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #ccc;
+        }
+
+        .file-panel-item:hover {
+            background: #2a2d2e;
+        }
+
+        .file-panel-item.active {
+            background: #094771;
+        }
+
+        .file-panel-item-icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .file-panel-item-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-panel-item-size {
+            margin-left: auto;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .file-panel-item-delete {
+            opacity: 0;
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+        }
+
+        .file-panel-item:hover .file-panel-item-delete {
+            opacity: 0.5;
+        }
+
+        .file-panel-item-delete:hover {
+            opacity: 1 !important;
+            background: #5a5a5a;
+        }
+
+        .file-panel-item-delete svg {
+            width: 10px;
+            height: 10px;
+            fill: currentColor;
+        }
+
+        .file-panel-drop-zone {
+            margin: 8px;
+            padding: 16px;
+            border: 2px dashed #3c3c3c;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .file-panel-drop-zone:hover {
+            border-color: #007acc;
+            background: rgba(0, 122, 204, 0.1);
+        }
+
+        .file-panel-drop-zone.drag-over {
+            border-color: #007acc;
+            background: rgba(0, 122, 204, 0.2);
+        }
+
+        .btn-files {
+            background: #3c3c3c;
+            padding: 6px 10px;
+        }
+
+        .btn-files.active {
+            background: #007acc;
+        }
+
         #editor {
             flex: 1;
             width: 100%;
@@ -440,7 +597,8 @@
             </button>
             <div class="controls-spacer"></div>
             <!-- File controls -->
-            <button class="btn" onclick="saveScript()">Save</button>
+            <button class="btn btn-files" id="filesBtn" onclick="toggleFilePanel()">Files</button>
+            <button class="btn" id="saveBtn">Save</button>
             <button class="btn" onclick="loadScript()">Load</button>
             <button class="btn" id="shareBtn" onclick="shareScript()">Share</button>
             <a href="reference/" class="btn btn-help" style="text-decoration:none;" title="API Reference">?</a>
@@ -448,6 +606,32 @@
     </div>
 
     <div class="main">
+        <div class="file-panel collapsed" id="filePanel">
+            <div class="file-panel-header">
+                <span>Explorer</span>
+            </div>
+            <div class="file-panel-section" id="sourcesSection">
+                <div class="file-panel-section-header" onclick="toggleSection('sourcesSection')">
+                    <svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    Sources
+                </div>
+                <div class="file-panel-items" id="sourcesList">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+            <div class="file-panel-section" id="assetsSection">
+                <div class="file-panel-section-header" onclick="toggleSection('assetsSection')">
+                    <svg viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    Assets
+                </div>
+                <div class="file-panel-items" id="assetsList">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+            <div class="file-panel-drop-zone" id="dropZone" onclick="addAssetFromPicker()">
+                Drop files here<br>or click to add
+            </div>
+        </div>
         <div class="editor-panel" id="editorPanel">
             <div class="file-tabs" id="fileTabs">
                 <!-- Tabs will be generated by JavaScript -->
@@ -505,6 +689,332 @@
         const files = new Map();  // filename -> { model: Monaco.ITextModel, savedContent: string }
         let currentFile = 'main.as';
 
+        // Assets management (images, sounds, etc.)
+        const assets = new Map();  // filename -> { blob: Blob, url: string (object URL) }
+
+        // File panel state
+        let filePanelOpen = false;
+
+        // Toggle file panel visibility
+        function toggleFilePanel() {
+            filePanelOpen = !filePanelOpen;
+            const panel = document.getElementById('filePanel');
+            const btn = document.getElementById('filesBtn');
+            panel.classList.toggle('collapsed', !filePanelOpen);
+            btn.classList.toggle('active', filePanelOpen);
+            if (filePanelOpen) {
+                renderFilePanel();
+            }
+        }
+
+        // Toggle section collapse
+        function toggleSection(sectionId) {
+            document.getElementById(sectionId).classList.toggle('collapsed');
+        }
+
+        // Get file icon based on extension
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const icons = {
+                'as': '<svg viewBox="0 0 16 16"><path d="M4 2h5l3 3v9H4V2z" fill="none" stroke="#569cd6" stroke-width="1.2"/></svg>',
+                'tcs': '<svg viewBox="0 0 16 16"><path d="M4 2h5l3 3v9H4V2z" fill="none" stroke="#569cd6" stroke-width="1.2"/></svg>',
+                'png': '<svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="#89d185" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#89d185"/></svg>',
+                'jpg': '<svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="#89d185" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#89d185"/></svg>',
+                'jpeg': '<svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="#89d185" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#89d185"/></svg>',
+                'gif': '<svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="#89d185" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#89d185"/></svg>',
+                'mp3': '<svg viewBox="0 0 16 16"><circle cx="8" cy="10" r="3" fill="none" stroke="#ce9178" stroke-width="1.2"/><path d="M11 10V4" stroke="#ce9178" stroke-width="1.2"/></svg>',
+                'wav': '<svg viewBox="0 0 16 16"><circle cx="8" cy="10" r="3" fill="none" stroke="#ce9178" stroke-width="1.2"/><path d="M11 10V4" stroke="#ce9178" stroke-width="1.2"/></svg>',
+                'ogg': '<svg viewBox="0 0 16 16"><circle cx="8" cy="10" r="3" fill="none" stroke="#ce9178" stroke-width="1.2"/><path d="M11 10V4" stroke="#ce9178" stroke-width="1.2"/></svg>',
+                'json': '<svg viewBox="0 0 16 16"><path d="M4 2h5l3 3v9H4V2z" fill="none" stroke="#dcdcaa" stroke-width="1.2"/></svg>',
+            };
+            return icons[ext] || '<svg viewBox="0 0 16 16"><path d="M4 2h5l3 3v9H4V2z" fill="none" stroke="#888" stroke-width="1.2"/></svg>';
+        }
+
+        // Format file size
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1024 / 1024).toFixed(1) + ' MB';
+        }
+
+        // Render file panel
+        function renderFilePanel() {
+            // Sources
+            const sourcesList = document.getElementById('sourcesList');
+            sourcesList.innerHTML = '';
+            for (const [name, file] of files) {
+                const item = document.createElement('div');
+                item.className = 'file-panel-item' + (name === currentFile ? ' active' : '');
+                const displayName = name.replace(/\.as$/, '');
+                item.innerHTML = `
+                    <span class="file-panel-item-icon">${getFileIcon(name)}</span>
+                    <span class="file-panel-item-name">${displayName}</span>
+                `;
+                item.onclick = () => switchToFile(name);
+                sourcesList.appendChild(item);
+            }
+
+            // Assets
+            const assetsList = document.getElementById('assetsList');
+            assetsList.innerHTML = '';
+            if (assets.size === 0) {
+                assetsList.innerHTML = '<div class="file-panel-item" style="color:#666;cursor:default;">No assets</div>';
+            } else {
+                for (const [name, asset] of assets) {
+                    const item = document.createElement('div');
+                    item.className = 'file-panel-item';
+                    item.innerHTML = `
+                        <span class="file-panel-item-icon">${getFileIcon(name)}</span>
+                        <span class="file-panel-item-name">${name}</span>
+                        <span class="file-panel-item-size">${formatSize(asset.blob.size)}</span>
+                        <span class="file-panel-item-delete" onclick="event.stopPropagation(); removeAsset('${name}')">
+                            <svg viewBox="0 0 16 16"><path d="M4 4l8 8m0-8l-8 8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+                        </span>
+                    `;
+                    item.onclick = () => previewAsset(name);
+                    item.ondblclick = () => insertAssetPath(name);
+                    assetsList.appendChild(item);
+                }
+            }
+        }
+
+        // Add asset file
+        function addAsset(file) {
+            const name = file.name;
+            if (assets.has(name)) {
+                if (!confirm(`"${name}" already exists. Replace?`)) return;
+                URL.revokeObjectURL(assets.get(name).url);
+            }
+            const url = URL.createObjectURL(file);
+            assets.set(name, { blob: file, url });
+            renderFilePanel();
+            logToConsole('Added asset: ' + name, 'success');
+
+            // Mount to Emscripten virtual filesystem if available
+            mountAssetToFS(name, file);
+        }
+
+        // Mount asset to Emscripten virtual filesystem
+        async function mountAssetToFS(name, blob) {
+            if (!window.Module || !window.Module.FS) return;
+
+            try {
+                const FS = window.Module.FS;
+                const data = new Uint8Array(await blob.arrayBuffer());
+
+                // Create parent directories if needed
+                const parts = name.split('/');
+                let path = '';
+                for (let i = 0; i < parts.length - 1; i++) {
+                    path += '/' + parts[i];
+                    try {
+                        FS.mkdir(path);
+                    } catch (e) {
+                        // Directory might already exist
+                    }
+                }
+
+                // Write file (overwrite if exists)
+                const filePath = '/' + name;
+                try {
+                    FS.unlink(filePath);
+                } catch (e) {
+                    // File doesn't exist, that's fine
+                }
+                FS.createDataFile('/', name, data, true, true);
+                console.log('Mounted asset to FS:', filePath);
+            } catch (e) {
+                console.warn('Failed to mount asset to FS:', name, e);
+            }
+        }
+
+        // Mount all assets to Emscripten FS (called after runtime init)
+        async function mountAllAssetsToFS() {
+            for (const [name, asset] of assets) {
+                await mountAssetToFS(name, asset.blob);
+            }
+        }
+
+        // Hook fetch to serve assets from memory
+        (function() {
+            const originalFetch = window.fetch;
+            window.fetch = function(input, init) {
+                const url = typeof input === 'string' ? input : input.url;
+
+                // Extract filename from URL
+                const filename = url.split('/').pop().split('?')[0];
+
+                // Check if it's in our assets map
+                if (assets.has(filename)) {
+                    const asset = assets.get(filename);
+                    console.log('Serving from assets:', filename);
+                    return Promise.resolve(new Response(asset.blob));
+                }
+
+                // Also check with path
+                for (const [name, asset] of assets) {
+                    if (url.endsWith(name) || url.endsWith('/' + name)) {
+                        console.log('Serving from assets:', name);
+                        return Promise.resolve(new Response(asset.blob));
+                    }
+                }
+
+                // Fall back to original fetch
+                return originalFetch.apply(this, arguments);
+            };
+        })();
+
+        // Remove asset
+        function removeAsset(name) {
+            if (!confirm(`Delete "${name}"?`)) return;
+            const asset = assets.get(name);
+            if (asset) {
+                URL.revokeObjectURL(asset.url);
+                assets.delete(name);
+            }
+            // Also remove from Emscripten FS
+            if (window.Module && window.Module.FS) {
+                try {
+                    window.Module.FS.unlink('/' + name);
+                } catch (e) { /* ignore */ }
+            }
+            renderFilePanel();
+            logToConsole('Removed asset: ' + name, 'notice');
+        }
+
+        // Preview asset (for images)
+        function previewAsset(name) {
+            const asset = assets.get(name);
+            if (!asset) return;
+            const ext = name.split('.').pop().toLowerCase();
+            if (['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext)) {
+                window.open(asset.url, '_blank');
+            }
+        }
+
+        // Insert asset path into editor
+        function insertAssetPath(name) {
+            if (editor) {
+                const selection = editor.getSelection();
+                editor.executeEdits('', [{
+                    range: selection,
+                    text: `"${name}"`
+                }]);
+                editor.focus();
+            }
+        }
+
+        // Add asset from file picker
+        function addAssetFromPicker() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.multiple = true;
+            input.accept = 'image/*,audio/*,.json,.txt';
+            input.onchange = (e) => {
+                for (const file of e.target.files) {
+                    addAsset(file);
+                }
+            };
+            input.click();
+        }
+
+        // Setup drop zone
+        function setupDropZone() {
+            const dropZone = document.getElementById('dropZone');
+            const filePanel = document.getElementById('filePanel');
+
+            // Drop zone events
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            dropZone.addEventListener('dragenter', () => dropZone.classList.add('drag-over'));
+            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+            dropZone.addEventListener('dragover', () => dropZone.classList.add('drag-over'));
+            dropZone.addEventListener('drop', (e) => {
+                dropZone.classList.remove('drag-over');
+                handleDrop(e.dataTransfer);
+            });
+
+            // Also handle drops on the whole file panel
+            filePanel.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+            filePanel.addEventListener('dragleave', (e) => {
+                if (!filePanel.contains(e.relatedTarget)) {
+                    dropZone.classList.remove('drag-over');
+                }
+            });
+            filePanel.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                handleDrop(e.dataTransfer);
+            });
+        }
+
+        // Handle dropped files/folders
+        async function handleDrop(dataTransfer) {
+            const items = dataTransfer.items;
+            if (!items) return;
+
+            for (const item of items) {
+                if (item.kind === 'file') {
+                    const entry = item.webkitGetAsEntry ? item.webkitGetAsEntry() : null;
+                    if (entry) {
+                        await processEntry(entry, '');
+                    } else {
+                        const file = item.getAsFile();
+                        if (file) processFile(file, '');
+                    }
+                }
+            }
+        }
+
+        // Process file system entry (file or directory)
+        async function processEntry(entry, basePath) {
+            if (entry.isFile) {
+                return new Promise((resolve) => {
+                    entry.file((file) => {
+                        processFile(file, basePath);
+                        resolve();
+                    });
+                });
+            } else if (entry.isDirectory) {
+                const reader = entry.createReader();
+                return new Promise((resolve) => {
+                    reader.readEntries(async (entries) => {
+                        for (const e of entries) {
+                            await processEntry(e, basePath + entry.name + '/');
+                        }
+                        resolve();
+                    });
+                });
+            }
+        }
+
+        // Process a single file
+        function processFile(file, basePath) {
+            const ext = file.name.split('.').pop().toLowerCase();
+            const fullPath = basePath + file.name;
+
+            // Source files
+            if (ext === 'as' || ext === 'tcs') {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    addFile(file.name.replace(/\.tcs$/, '.as'), e.target.result);
+                };
+                reader.readAsText(file);
+            }
+            // Asset files
+            else if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'mp3', 'wav', 'ogg', 'json', 'txt'].includes(ext)) {
+                addAsset(new File([file], fullPath.replace(/^(data|src)\//, ''), { type: file.type }));
+            }
+        }
+
         // Warn before leaving if there are unsaved changes
         window.addEventListener('beforeunload', (e) => {
             if (isModified) {
@@ -527,10 +1037,11 @@
         // Drag and drop state
         let draggedTab = null;
 
-        // Render file tabs
+        // Render file tabs (and update file panel if open)
         function renderFileTabs() {
             const container = document.getElementById('fileTabs');
             container.innerHTML = '';
+            if (filePanelOpen) renderFilePanel();
 
             for (const [name, file] of files) {
                 const tab = document.createElement('div');
@@ -1031,6 +1542,9 @@ void draw() {
             editor.setModel(files.get(currentFile).model);
             renderFileTabs();
 
+            // Setup drop zone for assets
+            setupDropZone();
+
             // Mark editor as ready and try auto-run
             editorReady = true;
             tryAutoRun();
@@ -1277,43 +1791,172 @@ void draw() {
             isModified = false;
         }
 
-        // Save script to file
-        async function saveScript() {
-            const data = getSaveData();
+        // Saved directory handle for overwrite saves
+        let savedDirHandle = null;
+
+        // Check if project is simple (single source, no assets)
+        function isSimpleProject() {
+            return files.size === 1 && assets.size === 0;
+        }
+
+        // Generate index.html for CDN embed
+        function generateIndexHtml(projectName) {
+            const mainFile = files.keys().next().value || 'main.as';
+            // Get canvas CSS size from editor or use defaults
+            // canvas.width is framebuffer size, so divide by devicePixelRatio for CSS size
+            const dpr = window.devicePixelRatio || 1;
+            const canvasWidth = canvas ? Math.round(canvas.width / dpr) : 800;
+            const canvasHeight = canvas ? Math.round(canvas.height / dpr) : 600;
+            // Note: </scr + ipt> split to avoid breaking outer script tag
+            return `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${projectName}</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #1e1e1e; }
+        truss-sketch { max-width: 100vw; max-height: 100vh; }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.trussc.org/sketch.js"><` + `/script>
+    <truss-sketch src="src/${mainFile.replace(/\.as$/, '.tcs')}" data-base="./data/" width="${canvasWidth}" height="${canvasHeight}"></truss-sketch>
+</body>
+</html>`;
+        }
+
+        // Write project to directory
+        async function writeToDirectory(dirHandle, projectName) {
+            // Create src/ directory
+            const srcHandle = await dirHandle.getDirectoryHandle('src', { create: true });
+            for (const [name, file] of files) {
+                const fileName = name.replace(/\.as$/, '.tcs');
+                const fileHandle = await srcHandle.getFileHandle(fileName, { create: true });
+                const writable = await fileHandle.createWritable();
+                await writable.write(file.model.getValue());
+                await writable.close();
+            }
+
+            // Create data/ directory if there are assets
+            if (assets.size > 0) {
+                const dataHandle = await dirHandle.getDirectoryHandle('data', { create: true });
+                const assetNames = [];
+                for (const [name, asset] of assets) {
+                    assetNames.push(name);
+                    // Handle subdirectories in asset names
+                    const parts = name.split('/');
+                    let currentDir = dataHandle;
+                    for (let i = 0; i < parts.length - 1; i++) {
+                        currentDir = await currentDir.getDirectoryHandle(parts[i], { create: true });
+                    }
+                    const fileHandle = await currentDir.getFileHandle(parts[parts.length - 1], { create: true });
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(asset.blob);
+                    await writable.close();
+                }
+
+                // Create manifest.json in data/
+                console.log('Creating manifest.json with files:', assetNames);
+                const manifestHandle = await dataHandle.getFileHandle('manifest.json', { create: true });
+                const manifestWritable = await manifestHandle.createWritable();
+                await manifestWritable.write(JSON.stringify({ files: assetNames }, null, 2));
+                await manifestWritable.close();
+                console.log('manifest.json created');
+            }
+
+            // Create index.html
+            const indexHandle = await dirHandle.getFileHandle('index.html', { create: true });
+            const writable = await indexHandle.createWritable();
+            await writable.write(generateIndexHtml(projectName));
+            await writable.close();
+        }
+
+        // Save script to file or directory
+        async function saveScript(forceNew = false) {
             const projectName = getProjectName();
 
-            // Use File System Access API if available
-            if ('showSaveFilePicker' in window) {
+            // Simple project: single .tcs file
+            if (isSimpleProject()) {
+                const data = getSaveData();
+
+                if ('showSaveFilePicker' in window) {
+                    try {
+                        const handle = await window.showSaveFilePicker({
+                            suggestedName: projectName + '.tcs',
+                            types: [{
+                                description: 'TrussSketch Files',
+                                accept: { 'text/plain': ['.tcs'] }
+                            }]
+                        });
+                        const writable = await handle.createWritable();
+                        await writable.write(data);
+                        await writable.close();
+                        logToConsole('Saved: ' + handle.name, 'success');
+                        markAllSaved();
+                        return;
+                    } catch (e) {
+                        if (e.name === 'AbortError') return;
+                    }
+                }
+
+                // Fallback
+                const blob = new Blob([data], { type: 'application/octet-stream' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = projectName + '.tcs';
+                a.click();
+                URL.revokeObjectURL(url);
+                logToConsole('Saved: ' + projectName + '.tcs', 'success');
+                markAllSaved();
+                return;
+            }
+
+            // Complex project: directory with src/, data/, index.html
+            if ('showDirectoryPicker' in window) {
                 try {
-                    const handle = await window.showSaveFilePicker({
-                        suggestedName: projectName + '.tcs',
-                        types: [{
-                            description: 'TrussSketch Files',
-                            accept: { 'text/plain': ['.tcs'] }
-                        }]
-                    });
-                    const writable = await handle.createWritable();
-                    await writable.write(data);
-                    await writable.close();
-                    logToConsole('Script saved: ' + handle.name, 'success');
+                    // Use existing handle or pick new one
+                    if (!savedDirHandle || forceNew) {
+                        savedDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+                    }
+
+                    await writeToDirectory(savedDirHandle, projectName);
+                    logToConsole('Saved to folder: ' + savedDirHandle.name, 'success');
                     markAllSaved();
                     return;
                 } catch (e) {
-                    if (e.name === 'AbortError') return; // User cancelled
+                    if (e.name === 'AbortError') return;
+                    logToConsole('Save error: ' + e.message, 'error');
                 }
             }
 
-            // Fallback for browsers without File System Access API
-            const blob = new Blob([data], { type: 'application/octet-stream' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = projectName + '.tcs';
-            a.click();
-            URL.revokeObjectURL(url);
-            logToConsole('Script saved to file!', 'success');
-            markAllSaved();
+            // Fallback: Download as ZIP (TODO: implement with JSZip)
+            logToConsole('Directory save not supported in this browser. Use Chrome or Edge.', 'error');
         }
+
+        // Save button Shift key handling
+        (function() {
+            const saveBtn = document.getElementById('saveBtn');
+            if (!saveBtn) return;
+
+            // Update button text based on Shift key
+            function updateSaveButton(e) {
+                if (e.shiftKey) {
+                    saveBtn.textContent = 'Save New';
+                } else {
+                    saveBtn.textContent = 'Save';
+                }
+            }
+
+            document.addEventListener('keydown', updateSaveButton);
+            document.addEventListener('keyup', updateSaveButton);
+
+            // Override onclick to check Shift
+            saveBtn.onclick = (e) => {
+                saveScript(e.shiftKey);
+            };
+        })();
 
         // Load files from parsed data
         function loadFilesFromData(data, sourceName) {
@@ -1470,6 +2113,8 @@ void draw() {
                 logToConsole('TrussSketch engine ready!', 'success');
                 // Focus canvas when clicked (required for keyboard input)
                 canvas.addEventListener('mousedown', () => canvas.focus());
+                // Mount any pre-loaded assets to virtual filesystem
+                mountAllAssetsToFS();
                 // Mark engine as ready and try auto-run
                 engineReady = true;
                 tryAutoRun();
