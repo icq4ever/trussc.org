@@ -408,6 +408,13 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        },
+        {
+          "name": "noWindowModeExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": false,
+          "autoScreenshot": false
         }
       ]
     },
@@ -474,6 +481,18 @@
           "width": 960,
           "height": 600,
           "webSupported": false
+        }
+      ]
+    },
+    "tcxHap": {
+      "visible": true,
+      "items": [
+        {
+          "name": "example-hap",
+          "width": 1280,
+          "height": 720,
+          "webSupported": false,
+          "autoScreenshot": false
         }
       ]
     },
