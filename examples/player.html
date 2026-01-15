@@ -162,6 +162,10 @@
                     thumbImg.className = 'player-thumb-bg';
                     thumbImg.src = thumb;
                     thumbImg.alt = title;
+                    thumbImg.onerror = function() {
+                        this.style.display = 'none';
+                        wrapper.classList.add('no-thumb');
+                    };
                     wrapper.appendChild(thumbImg);
 
                     // オーバーレイ

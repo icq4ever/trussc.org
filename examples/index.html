@@ -130,7 +130,7 @@
                 return `
                 <a href="${playerUrl}" class="example-card${isWebSupported(example) ? '' : ' not-web-supported'}">
                     <div class="example-thumb">
-                        <img src="${thumb}" alt="${title}" loading="lazy">
+                        <img src="${thumb}" alt="${title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-thumb');">
                         ${isWebSupported(example) ? '' : '<div class="example-unsupported-overlay">Native only</div>'}
                     </div>
                     <div class="example-info">
