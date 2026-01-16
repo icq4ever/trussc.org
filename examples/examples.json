@@ -372,6 +372,12 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        },
+        {
+          "name": "fileExample",
+          "width": 800,
+          "height": 600,
+          "webSupported": false
         }
       ]
     },
@@ -515,6 +521,29 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        }
+      ]
+    },
+    "tcxQuadWarp": {
+      "visible": true,
+      "items": [
+        {
+          "name": "example-quadWarp",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        }
+      ]
+    },
+    "tcxTcv": {
+      "visible": false,
+      "items": [
+        {
+          "name": "example-tcvPlayer",
+          "width": 960,
+          "height": 600,
+          "webSupported": false,
+          "autoScreenshot": false
         }
       ]
     }
