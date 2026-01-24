@@ -26,6 +26,12 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        },
+        {
+          "name": "coordinateConversionExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
         }
       ]
     },
@@ -103,6 +109,12 @@
         },
         {
           "name": "polylinesExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
+          "name": "roundedRectExample",
           "width": 960,
           "height": 600,
           "webSupported": true

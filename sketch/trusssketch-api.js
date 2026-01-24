@@ -194,6 +194,38 @@
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
+                    "name": "drawRectRounded",
+                    "params": "x, y, w, h, radius",
+                    "params_typed": "float x, float y, float w, float h, float radius",
+                    "return_type": "void",
+                    "desc": "Draw rounded rectangle (circular arc corners)",
+                    "snippet": "drawRectRounded(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
+                },
+                {
+                    "name": "drawRectRounded",
+                    "params": "pos, size, radius",
+                    "params_typed": "Vec3 pos, Vec2 size, float radius",
+                    "return_type": "void",
+                    "desc": "Draw rounded rectangle (circular arc corners)",
+                    "snippet": "drawRectRounded(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
+                },
+                {
+                    "name": "drawRectSquircle",
+                    "params": "x, y, w, h, radius",
+                    "params_typed": "float x, float y, float w, float h, float radius",
+                    "return_type": "void",
+                    "desc": "Draw squircle rectangle (curvature-continuous corners, iOS-style)",
+                    "snippet": "drawRectSquircle(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
+                },
+                {
+                    "name": "drawRectSquircle",
+                    "params": "pos, size, radius",
+                    "params_typed": "Vec3 pos, Vec2 size, float radius",
+                    "return_type": "void",
+                    "desc": "Draw squircle rectangle (curvature-continuous corners, iOS-style)",
+                    "snippet": "drawRectSquircle(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
+                },
+                {
                     "name": "drawCircle",
                     "params": "x, y, radius",
                     "params_typed": "float x, float y, float radius",
@@ -528,6 +560,14 @@
                     "return_type": "Rect",
                     "desc": "Get text bounding box",
                     "snippet": "getBitmapStringBBox(${1:\"text\"}, ${2:x}, ${3:y})"
+                },
+                {
+                    "name": "setFps",
+                    "params": "fps",
+                    "params_typed": "float fps",
+                    "return_type": "void",
+                    "desc": "Set target frame rate (VSYNC = -1.0)",
+                    "snippet": "setFps(${1:60.0})"
                 }
             ]
         },
@@ -645,6 +685,14 @@
                     "return_type": "void",
                     "desc": "Restore previous style state",
                     "snippet": "popStyle()"
+                },
+                {
+                    "name": "resetStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset style to default values (white color, fill enabled, stroke disabled)",
+                    "snippet": "resetStyle()"
                 },
                 {
                     "name": "getColor",
@@ -998,6 +1046,14 @@
                     "return_type": "uint64_t",
                     "desc": "Unix time in microseconds",
                     "snippet": "getSystemTimeMicros()"
+                },
+                {
+                    "name": "getUnixTime",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "uint64_t",
+                    "desc": "Current Unix timestamp in seconds",
+                    "snippet": "getUnixTime()"
                 },
                 {
                     "name": "getTimestampString",
@@ -1423,6 +1479,30 @@
                     "return_type": "float",
                     "desc": "Fractional part",
                     "snippet": "fract(${1:x})"
+                },
+                {
+                    "name": "wrap",
+                    "params": "value, min, max",
+                    "params_typed": "float value, float min, float max",
+                    "return_type": "float",
+                    "desc": "Wrap value within range [min, max)",
+                    "snippet": "wrap(${1:value}, ${2:min}, ${3:max})"
+                },
+                {
+                    "name": "angleDifference",
+                    "params": "angle1, angle2",
+                    "params_typed": "float angle1, float angle2",
+                    "return_type": "float",
+                    "desc": "Shortest angle difference in radians [-TAU/2, TAU/2]",
+                    "snippet": "angleDifference(${1:angle1}, ${2:angle2})"
+                },
+                {
+                    "name": "angleDifferenceDeg",
+                    "params": "deg1, deg2",
+                    "params_typed": "float deg1, float deg2",
+                    "return_type": "float",
+                    "desc": "Shortest angle difference in degrees [-180, 180]",
+                    "snippet": "angleDifferenceDeg(${1:deg1}, ${2:deg2})"
                 }
             ]
         },
@@ -1526,6 +1606,163 @@
                     "return_type": "void",
                     "desc": "Play a beep sound",
                     "snippet": "beep()"
+                },
+                {
+                    "name": "toInt",
+                    "params": "str",
+                    "params_typed": "const string& str",
+                    "return_type": "int",
+                    "desc": "Convert string to int",
+                    "snippet": "toInt(${1:str})"
+                },
+                {
+                    "name": "toFloat",
+                    "params": "str",
+                    "params_typed": "const string& str",
+                    "return_type": "float",
+                    "desc": "Convert string to float",
+                    "snippet": "toFloat(${1:str})"
+                },
+                {
+                    "name": "splitString",
+                    "params": "source, delimiter",
+                    "params_typed": "const string& source, const string& delimiter",
+                    "return_type": "vector<string>",
+                    "desc": "Split string by delimiter",
+                    "snippet": "splitString(${1:str}, ${2:delimiter})"
+                },
+                {
+                    "name": "joinString",
+                    "params": "elements, delimiter",
+                    "params_typed": "const vector<string>& elements, const string& delimiter",
+                    "return_type": "string",
+                    "desc": "Join strings with delimiter",
+                    "snippet": "joinString(${1:elements}, ${2:delimiter})"
+                },
+                {
+                    "name": "stringReplace",
+                    "params": "input, search, replace",
+                    "params_typed": "string& input, const string& searchStr, const string& replaceStr",
+                    "return_type": "void",
+                    "desc": "Replace substring in place",
+                    "snippet": "stringReplace(${1:str}, ${2:search}, ${3:replace})"
+                },
+                {
+                    "name": "toLower",
+                    "params": "src",
+                    "params_typed": "const string& src",
+                    "return_type": "string",
+                    "desc": "Convert to lower case",
+                    "snippet": "toLower(${1:str})"
+                },
+                {
+                    "name": "toUpper",
+                    "params": "src",
+                    "params_typed": "const string& src",
+                    "return_type": "string",
+                    "desc": "Convert to upper case",
+                    "snippet": "toUpper(${1:str})"
+                }
+            ]
+        },
+        {
+            "name": "File",
+            "functions": [
+                {
+                    "name": "getDataPath",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get full path relative to data directory",
+                    "snippet": "getDataPath(${1:path})"
+                },
+                {
+                    "name": "getAbsolutePath",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get absolute path",
+                    "snippet": "getAbsolutePath(${1:path})"
+                },
+                {
+                    "name": "getFileName",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get filename from path",
+                    "snippet": "getFileName(${1:path})"
+                },
+                {
+                    "name": "getBaseName",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get filename without extension",
+                    "snippet": "getBaseName(${1:path})"
+                },
+                {
+                    "name": "getFileExtension",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get file extension without dot",
+                    "snippet": "getFileExtension(${1:path})"
+                },
+                {
+                    "name": "getParentDirectory",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "string",
+                    "desc": "Get parent directory",
+                    "snippet": "getParentDirectory(${1:path})"
+                },
+                {
+                    "name": "joinPath",
+                    "params": "dir, file",
+                    "params_typed": "const string& dir, const string& file",
+                    "return_type": "string",
+                    "desc": "Join directory and filename",
+                    "snippet": "joinPath(${1:dir}, ${2:file})"
+                },
+                {
+                    "name": "fileExists",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "bool",
+                    "desc": "Check if file exists",
+                    "snippet": "fileExists(${1:path})"
+                },
+                {
+                    "name": "directoryExists",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "bool",
+                    "desc": "Check if directory exists",
+                    "snippet": "directoryExists(${1:path})"
+                },
+                {
+                    "name": "listDirectory",
+                    "params": "path",
+                    "params_typed": "const string& path",
+                    "return_type": "vector<string>",
+                    "desc": "List files in directory",
+                    "snippet": "listDirectory(${1:path})"
+                },
+                {
+                    "name": "createFileWriter",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "FileWriter@",
+                    "desc": "Create a file writer (TrussSketch factory)",
+                    "snippet": "FileWriter@ writer = createFileWriter();"
+                },
+                {
+                    "name": "createFileReader",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "FileReader@",
+                    "desc": "Create a file reader (TrussSketch factory)",
+                    "snippet": "FileReader@ reader = createFileReader();"
                 }
             ]
         },
@@ -5252,6 +5489,178 @@
                     ],
                     "desc": "Get font size",
                     "snippet": "getSize()"
+                }
+            ]
+        },
+        {
+            "name": "FileWriter",
+            "desc": "Streaming file writer with immediate flush",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "FileWriter()"
+            },
+            "methods": [
+                {
+                    "name": "open",
+                    "return": "bool",
+                    "signatures": [
+                        "string path",
+                        "string path, bool append"
+                    ],
+                    "desc": "Open file for writing",
+                    "snippet": "open(${1:\"path\"})"
+                },
+                {
+                    "name": "close",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Close file",
+                    "snippet": "close()"
+                },
+                {
+                    "name": "isOpen",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if file is open",
+                    "snippet": "isOpen()"
+                },
+                {
+                    "name": "write",
+                    "return": "FileWriter&",
+                    "signatures": [
+                        "string text",
+                        "char c",
+                        "void* data, size_t size"
+                    ],
+                    "desc": "Write data to file",
+                    "snippet": "write(${1:text})"
+                },
+                {
+                    "name": "writeLine",
+                    "return": "FileWriter&",
+                    "signatures": [
+                        "",
+                        "string text"
+                    ],
+                    "desc": "Write line with newline",
+                    "snippet": "writeLine(${1:text})"
+                },
+                {
+                    "name": "flush",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Flush buffer to disk",
+                    "snippet": "flush()"
+                }
+            ]
+        },
+        {
+            "name": "FileReader",
+            "desc": "Streaming file reader for large files",
+            "constructor": {
+                "signatures": [
+                    ""
+                ],
+                "snippet": "FileReader()"
+            },
+            "methods": [
+                {
+                    "name": "open",
+                    "return": "bool",
+                    "signatures": [
+                        "string path"
+                    ],
+                    "desc": "Open file for reading",
+                    "snippet": "open(${1:\"path\"})"
+                },
+                {
+                    "name": "close",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Close file",
+                    "snippet": "close()"
+                },
+                {
+                    "name": "isOpen",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if file is open",
+                    "snippet": "isOpen()"
+                },
+                {
+                    "name": "eof",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if at end of file",
+                    "snippet": "eof()"
+                },
+                {
+                    "name": "readLine",
+                    "return": "string",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Read one line",
+                    "snippet": "readLine()"
+                },
+                {
+                    "name": "readChar",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Read one character (-1 at EOF)",
+                    "snippet": "readChar()"
+                },
+                {
+                    "name": "read",
+                    "return": "size_t",
+                    "signatures": [
+                        "void* buffer, size_t size"
+                    ],
+                    "desc": "Read binary data",
+                    "snippet": "read(${1:buffer}, ${2:size})"
+                },
+                {
+                    "name": "seek",
+                    "return": "void",
+                    "signatures": [
+                        "size_t pos"
+                    ],
+                    "desc": "Seek to position",
+                    "snippet": "seek(${1:pos})"
+                },
+                {
+                    "name": "tell",
+                    "return": "size_t",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get current position",
+                    "snippet": "tell()"
+                },
+                {
+                    "name": "remaining",
+                    "return": "size_t",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get remaining bytes",
+                    "snippet": "remaining()"
                 }
             ]
         }

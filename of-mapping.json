@@ -69,6 +69,12 @@
           "notes_ja": ""
         },
         {
+          "of": "ofDrawRectRounded",
+          "tc": "drawRectRounded(x, y, w, h, radius)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
           "of": "ofDrawCircle",
           "tc": "drawCircle(x, y, radius)",
           "notes": "",
@@ -131,6 +137,12 @@
         {
           "of": "ofDrawBitmapString",
           "tc": "drawBitmapString(text, x, y)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofSetFrameRate",
+          "tc": "setFps(fps)",
           "notes": "",
           "notes_ja": ""
         },
@@ -279,6 +291,24 @@
         {
           "of": "ofSign",
           "tc": "sign(x)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofWrap",
+          "tc": "wrap(value, min, max)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofAngleDifferenceRadians",
+          "tc": "angleDifference(angle1, angle2)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofAngleDifferenceDegrees",
+          "tc": "angleDifferenceDeg(deg1, deg2)",
           "notes": "",
           "notes_ja": ""
         },
@@ -499,6 +529,48 @@
         {
           "of": "ofToString",
           "tc": "toString(value)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofToInt",
+          "tc": "toInt(str)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofToFloat",
+          "tc": "toFloat(str)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofSplitString",
+          "tc": "splitString(source, delimiter)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofJoinString",
+          "tc": "joinString(elements, delimiter)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofStringReplace",
+          "tc": "stringReplace(input, search, replace)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofToLower",
+          "tc": "toLower(src)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofToUpper",
+          "tc": "toUpper(src)",
           "notes": "",
           "notes_ja": ""
         }
