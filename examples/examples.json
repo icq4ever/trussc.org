@@ -65,6 +65,12 @@
           "width": 960,
           "height": 600,
           "webSupported": true
+        },
+        {
+          "name": "exitExample",
+          "width": 480,
+          "height": 200,
+          "webSupported": false
         }
       ]
     },
