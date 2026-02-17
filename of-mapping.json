@@ -25,6 +25,30 @@
           "notes_ja": ""
         },
         {
+          "of": "ofExit",
+          "tc": "requestExitApp()",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofSystemLoadDialog",
+          "tc": "loadDialog(title, message, defaultPath, folderSelection)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofSystemSaveDialog",
+          "tc": "saveDialog(title, message, defaultPath, defaultName)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofSystemAlertDialog",
+          "tc": "alertDialog(title, message)",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
           "of": "ofGetMouseX",
           "tc": "getMouseX()",
           "notes": "",
@@ -39,6 +63,12 @@
         {
           "of": "ofGetMousePressed",
           "tc": "isMousePressed()",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofGetKeyPressed",
+          "tc": "isKeyPressed(key)",
           "notes": "",
           "notes_ja": ""
         }

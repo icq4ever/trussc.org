@@ -562,6 +562,22 @@
                     "snippet": "getBitmapStringBBox(${1:\"text\"}, ${2:x}, ${3:y})"
                 },
                 {
+                    "name": "setBitmapLineHeight",
+                    "params": "height",
+                    "params_typed": "float height",
+                    "return_type": "void",
+                    "desc": "Set line height for bitmap string newlines (default: 16)",
+                    "snippet": "setBitmapLineHeight(${1:16})"
+                },
+                {
+                    "name": "getBitmapLineHeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get line height for bitmap string newlines",
+                    "snippet": "getBitmapLineHeight()"
+                },
+                {
                     "name": "setFps",
                     "params": "fps",
                     "params_typed": "float fps",
@@ -951,6 +967,14 @@
                     "return_type": "bool",
                     "desc": "Is mouse button pressed",
                     "snippet": "isMousePressed()"
+                },
+                {
+                    "name": "isKeyPressed",
+                    "params": "key",
+                    "params_typed": "int key",
+                    "return_type": "bool",
+                    "desc": "Is specific key currently pressed",
+                    "snippet": "isKeyPressed(${1:key})"
                 }
             ]
         },
