@@ -975,6 +975,62 @@
                     "return_type": "bool",
                     "desc": "Is specific key currently pressed",
                     "snippet": "isKeyPressed(${1:key})"
+                },
+                {
+                    "name": "showCursor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Show the mouse cursor (default)",
+                    "snippet": "showCursor()"
+                },
+                {
+                    "name": "hideCursor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Hide the mouse cursor",
+                    "snippet": "hideCursor()"
+                },
+                {
+                    "name": "setCursor",
+                    "params": "cursor",
+                    "params_typed": "Cursor cursor",
+                    "return_type": "void",
+                    "desc": "Set the mouse cursor shape",
+                    "snippet": "setCursor(${1:Cursor::Hand})"
+                },
+                {
+                    "name": "getCursor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Cursor",
+                    "desc": "Get the current mouse cursor shape",
+                    "snippet": "getCursor()"
+                },
+                {
+                    "name": "bindCursorImage",
+                    "params": "cursor, width, height, pixels, hotspotX, hotspotY",
+                    "params_typed": "Cursor cursor, int width, int height, const unsigned char* pixels, int hotspotX = 0, int hotspotY = 0",
+                    "return_type": "void",
+                    "desc": "Bind a custom image to a cursor slot (RGBA pixels or Image)",
+                    "snippet": "bindCursorImage(${1:Cursor::Custom0}, ${2:image})"
+                },
+                {
+                    "name": "bindCursorImage",
+                    "params": "cursor, image, hotspotX, hotspotY",
+                    "params_typed": "Cursor cursor, const Image& image, int hotspotX = 0, int hotspotY = 0",
+                    "return_type": "void",
+                    "desc": "Bind a custom image to a cursor slot (RGBA pixels or Image)",
+                    "snippet": "bindCursorImage(${1:Cursor::Custom0}, ${2:image})"
+                },
+                {
+                    "name": "unbindCursorImage",
+                    "params": "cursor",
+                    "params_typed": "Cursor cursor",
+                    "return_type": "void",
+                    "desc": "Unbind a custom cursor image, restoring the system default",
+                    "snippet": "unbindCursorImage(${1:Cursor::Custom0})"
                 }
             ]
         },
@@ -3315,6 +3371,81 @@
             "name": "Wave::Silent",
             "value": "6",
             "desc": "Silent (no sound)"
+        },
+        {
+            "name": "Cursor::Default",
+            "value": "0",
+            "desc": "System default cursor"
+        },
+        {
+            "name": "Cursor::Arrow",
+            "value": "1",
+            "desc": "Arrow cursor"
+        },
+        {
+            "name": "Cursor::IBeam",
+            "value": "2",
+            "desc": "Text input cursor"
+        },
+        {
+            "name": "Cursor::Crosshair",
+            "value": "3",
+            "desc": "Crosshair cursor"
+        },
+        {
+            "name": "Cursor::Hand",
+            "value": "4",
+            "desc": "Pointing hand cursor"
+        },
+        {
+            "name": "Cursor::ResizeEW",
+            "value": "5",
+            "desc": "East-west resize cursor"
+        },
+        {
+            "name": "Cursor::ResizeNS",
+            "value": "6",
+            "desc": "North-south resize cursor"
+        },
+        {
+            "name": "Cursor::ResizeNWSE",
+            "value": "7",
+            "desc": "NW-SE diagonal resize cursor"
+        },
+        {
+            "name": "Cursor::ResizeNESW",
+            "value": "8",
+            "desc": "NE-SW diagonal resize cursor"
+        },
+        {
+            "name": "Cursor::ResizeAll",
+            "value": "9",
+            "desc": "Move/resize all directions cursor"
+        },
+        {
+            "name": "Cursor::NotAllowed",
+            "value": "10",
+            "desc": "Not allowed cursor"
+        },
+        {
+            "name": "Cursor::Custom0",
+            "value": "11",
+            "desc": "Custom cursor slot 0 (bind image first)"
+        },
+        {
+            "name": "Cursor::Custom1",
+            "value": "12",
+            "desc": "Custom cursor slot 1"
+        },
+        {
+            "name": "Cursor::Custom2",
+            "value": "13",
+            "desc": "Custom cursor slot 2"
+        },
+        {
+            "name": "Cursor::Custom3",
+            "value": "14",
+            "desc": "Custom cursor slot 3"
         }
     ],
     "keywords": [

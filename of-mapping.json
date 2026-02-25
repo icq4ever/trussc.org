@@ -71,6 +71,18 @@
           "tc": "isKeyPressed(key)",
           "notes": "",
           "notes_ja": ""
+        },
+        {
+          "of": "ofShowCursor",
+          "tc": "showCursor()",
+          "notes": "",
+          "notes_ja": ""
+        },
+        {
+          "of": "ofHideCursor",
+          "tc": "hideCursor()",
+          "notes": "",
+          "notes_ja": ""
         }
       ]
     },

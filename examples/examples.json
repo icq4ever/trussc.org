@@ -175,6 +175,12 @@
       "visible": true,
       "items": [
         {
+          "name": "cursorExample",
+          "width": 960,
+          "height": 600,
+          "webSupported": true
+        },
+        {
           "name": "dragDropExample",
           "width": 960,
           "height": 600,
