@@ -1902,9 +1902,21 @@ void draw() {
                 canvas.addEventListener('mousedown', () => canvas.focus());
                 // Mount any pre-loaded assets to virtual filesystem
                 mountAllAssetsToFS();
-                // Mark engine as ready and try auto-run
-                engineReady = true;
-                tryAutoRun();
+                // Poll until C++ app is fully initialized.
+                // With WebGPU + ASYNCIFY, main() completes asynchronously
+                // after onRuntimeInitialized, so g_app may not be set yet.
+                (function waitForApp() {
+                    try {
+                        if (Module.ccall('isAppReady', 'number', [], [])) {
+                            engineReady = true;
+                            tryAutoRun();
+                        } else {
+                            setTimeout(waitForApp, 50);
+                        }
+                    } catch(e) {
+                        setTimeout(waitForApp, 50);
+                    }
+                })();
             },
             print: function(text) {
                 logToConsole(text);
