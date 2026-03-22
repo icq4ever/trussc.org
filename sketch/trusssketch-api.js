@@ -76,7 +76,7 @@
                     "params": "key",
                     "params_typed": "int key",
                     "return_type": "void",
-                    "desc": "Key pressed",
+                    "desc": "Key pressed. Use KEY_* constants for special keys, or uppercase char literals for printable keys (e.g. key == 'A', key == '1')",
                     "snippet": "void keyPressed(int key) {\n\t$0\n}"
                 },
                 {
@@ -145,7 +145,7 @@
                     "params": "h, s, b",
                     "params_typed": "float h, float s, float b",
                     "return_type": "void",
-                    "desc": "Set color from HSB (H: 0-TAU)",
+                    "desc": "Set color from HSB (H: 0-1)",
                     "snippet": "setColorHSB(${1:0.0}, ${2:1.0}, ${3:1.0})"
                 },
                 {
@@ -286,7 +286,15 @@
                     "params": "x1, y1, x2, y2",
                     "params_typed": "float x1, float y1, float x2, float y2",
                     "return_type": "void",
-                    "desc": "Draw line",
+                    "desc": "Draw line (2D or 3D)",
+                    "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
+                },
+                {
+                    "name": "drawLine",
+                    "params": "x1, y1, z1, x2, y2, z2",
+                    "params_typed": "float x1, float y1, float z1, float x2, float y2, float z2",
+                    "return_type": "void",
+                    "desc": "Draw line (2D or 3D)",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -294,7 +302,7 @@
                     "params": "p1, p2",
                     "params_typed": "Vec3 p1, Vec3 p2",
                     "return_type": "void",
-                    "desc": "Draw line",
+                    "desc": "Draw line (2D or 3D)",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -472,6 +480,22 @@
                     "return_type": "void",
                     "desc": "End drawing a stroke",
                     "snippet": "endStroke()"
+                },
+                {
+                    "name": "beginLines",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Begin batch line drawing. Add vertex pairs with vertex(), then call endLines(). Each pair of vertices draws one independent line segment. Use setColor() between vertices for per-line colors.",
+                    "snippet": "beginLines()"
+                },
+                {
+                    "name": "endLines",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "End batch line drawing and render all accumulated line segments",
+                    "snippet": "endLines()"
                 },
                 {
                     "name": "drawStroke",
@@ -1359,12 +1383,12 @@
                     "snippet": "clamp(${1:v}, ${2:min}, ${3:max})"
                 },
                 {
-                    "name": "map",
+                    "name": "remap",
                     "params": "v, inMin, inMax, outMin, outMax",
                     "params_typed": "float v, float inMin, float inMax, float outMin, float outMax",
                     "return_type": "float",
-                    "desc": "Map value between ranges",
-                    "snippet": "map(${1:v}, ${2:inMin}, ${3:inMax}, ${4:outMin}, ${5:outMax})"
+                    "desc": "Remap value from one range to another",
+                    "snippet": "remap(${1:v}, ${2:inMin}, ${3:inMax}, ${4:outMin}, ${5:outMax})"
                 }
             ]
         },
@@ -2299,11 +2323,35 @@
             "name": "Types - Color",
             "functions": [
                 {
+                    "name": "toHSB",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "ColorHSB",
+                    "desc": "Convert to HSB color space (H: 0-1, S: 0-1, B: 0-1)",
+                    "snippet": "toHSB()"
+                },
+                {
+                    "name": "toOKLab",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "ColorOKLab",
+                    "desc": "Convert to OKLab color space (perceptually uniform)",
+                    "snippet": "toOKLab()"
+                },
+                {
+                    "name": "toOKLCH",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "ColorOKLCH",
+                    "desc": "Convert to OKLCH color space (L: 0-1, C: 0-0.4, H: 0-1)",
+                    "snippet": "toOKLCH()"
+                },
+                {
                     "name": "Color_fromHSB",
                     "params": "h, s, b",
                     "params_typed": "float h, float s, float b",
                     "return_type": "Color",
-                    "desc": "Create Color from HSB",
+                    "desc": "Create Color from HSB (H: 0-1, S: 0-1, B: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -2311,7 +2359,7 @@
                     "params": "h, s, b, a",
                     "params_typed": "float h, float s, float b, float a",
                     "return_type": "Color",
-                    "desc": "Create Color from HSB",
+                    "desc": "Create Color from HSB (H: 0-1, S: 0-1, B: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -2361,6 +2409,80 @@
                     "return_type": "Color",
                     "desc": "Create Color from OKLab",
                     "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
+                }
+            ]
+        },
+        {
+            "name": "Types - ColorHSB",
+            "functions": [
+                {
+                    "name": "ColorHSB",
+                    "params": "h, s, b",
+                    "params_typed": "float h, float s, float b",
+                    "return_type": "",
+                    "desc": "HSB color type (H: 0-1, S: 0-1, B: 0-1). Use toRGB() to convert to Color",
+                    "snippet": "ColorHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "ColorHSB",
+                    "params": "h, s, b, a",
+                    "params_typed": "float h, float s, float b, float a",
+                    "return_type": "",
+                    "desc": "HSB color type (H: 0-1, S: 0-1, B: 0-1). Use toRGB() to convert to Color",
+                    "snippet": "ColorHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "toRGB",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Color",
+                    "desc": "Convert ColorHSB to Color (RGB)",
+                    "snippet": "toRGB()"
+                },
+                {
+                    "name": "lerp",
+                    "params": "target, t",
+                    "params_typed": "ColorHSB target, float t",
+                    "return_type": "ColorHSB",
+                    "desc": "Interpolate in HSB space (shortest hue path)",
+                    "snippet": "lerp(${1:target}, ${2:t})"
+                }
+            ]
+        },
+        {
+            "name": "Types - ColorOKLCH",
+            "functions": [
+                {
+                    "name": "ColorOKLCH",
+                    "params": "L, C, H",
+                    "params_typed": "float L, float C, float H",
+                    "return_type": "",
+                    "desc": "OKLCH color type (L: 0-1, C: 0-0.4, H: 0-1). Perceptually uniform",
+                    "snippet": "ColorOKLCH(${1:L}, ${2:C}, ${3:H})"
+                },
+                {
+                    "name": "ColorOKLCH",
+                    "params": "L, C, H, a",
+                    "params_typed": "float L, float C, float H, float a",
+                    "return_type": "",
+                    "desc": "OKLCH color type (L: 0-1, C: 0-0.4, H: 0-1). Perceptually uniform",
+                    "snippet": "ColorOKLCH(${1:L}, ${2:C}, ${3:H})"
+                },
+                {
+                    "name": "toRGB",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "Color",
+                    "desc": "Convert ColorOKLCH to Color (RGB)",
+                    "snippet": "toRGB()"
+                },
+                {
+                    "name": "lerp",
+                    "params": "target, t",
+                    "params_typed": "ColorOKLCH target, float t",
+                    "return_type": "ColorOKLCH",
+                    "desc": "Interpolate in OKLCH space (shortest hue path, perceptually uniform)",
+                    "snippet": "lerp(${1:target}, ${2:t})"
                 }
             ]
         },
@@ -3446,6 +3568,111 @@
             "name": "Cursor::Custom3",
             "value": "14",
             "desc": "Custom cursor slot 3"
+        },
+        {
+            "name": "KEY_SPACE",
+            "value": "32",
+            "desc": "Space key"
+        },
+        {
+            "name": "KEY_ESCAPE",
+            "value": "256",
+            "desc": "Escape key"
+        },
+        {
+            "name": "KEY_ENTER",
+            "value": "257",
+            "desc": "Enter/Return key"
+        },
+        {
+            "name": "KEY_TAB",
+            "value": "258",
+            "desc": "Tab key"
+        },
+        {
+            "name": "KEY_BACKSPACE",
+            "value": "259",
+            "desc": "Backspace key"
+        },
+        {
+            "name": "KEY_DELETE",
+            "value": "261",
+            "desc": "Delete key"
+        },
+        {
+            "name": "KEY_RIGHT",
+            "value": "262",
+            "desc": "Right arrow key"
+        },
+        {
+            "name": "KEY_LEFT",
+            "value": "263",
+            "desc": "Left arrow key"
+        },
+        {
+            "name": "KEY_DOWN",
+            "value": "264",
+            "desc": "Down arrow key"
+        },
+        {
+            "name": "KEY_UP",
+            "value": "265",
+            "desc": "Up arrow key"
+        },
+        {
+            "name": "KEY_LEFT_SHIFT",
+            "value": "340",
+            "desc": "Left Shift key"
+        },
+        {
+            "name": "KEY_RIGHT_SHIFT",
+            "value": "344",
+            "desc": "Right Shift key"
+        },
+        {
+            "name": "KEY_LEFT_CONTROL",
+            "value": "341",
+            "desc": "Left Control key"
+        },
+        {
+            "name": "KEY_RIGHT_CONTROL",
+            "value": "345",
+            "desc": "Right Control key"
+        },
+        {
+            "name": "KEY_LEFT_ALT",
+            "value": "342",
+            "desc": "Left Alt/Option key"
+        },
+        {
+            "name": "KEY_RIGHT_ALT",
+            "value": "346",
+            "desc": "Right Alt/Option key"
+        },
+        {
+            "name": "KEY_LEFT_SUPER",
+            "value": "343",
+            "desc": "Left Super/Command key"
+        },
+        {
+            "name": "KEY_RIGHT_SUPER",
+            "value": "347",
+            "desc": "Right Super/Command key"
+        },
+        {
+            "name": "MOUSE_BUTTON_LEFT",
+            "value": "0",
+            "desc": "Left mouse button"
+        },
+        {
+            "name": "MOUSE_BUTTON_RIGHT",
+            "value": "1",
+            "desc": "Right mouse button"
+        },
+        {
+            "name": "MOUSE_BUTTON_MIDDLE",
+            "value": "2",
+            "desc": "Middle mouse button"
         }
     ],
     "keywords": [
@@ -3883,6 +4110,24 @@
                     ],
                     "desc": "Get clamped copy (0.0-1.0)",
                     "snippet": "clamped()"
+                },
+                {
+                    "name": "toHSB",
+                    "return": "ColorHSB",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to HSB (H: 0-1, S: 0-1, B: 0-1)",
+                    "snippet": "toHSB()"
+                },
+                {
+                    "name": "toOKLCH",
+                    "return": "ColorOKLCH",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to OKLCH (L: 0-1, C: 0-0.4, H: 0-1)",
+                    "snippet": "toOKLCH()"
                 }
             ],
             "static_methods": [
@@ -3903,7 +4148,7 @@
                         "float h, float s, float b",
                         "float h, float s, float b, float a"
                     ],
-                    "desc": "Create from HSB (H: 0-TAU)",
+                    "desc": "Create from HSB (H: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {

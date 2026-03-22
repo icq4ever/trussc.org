@@ -314,7 +314,7 @@
         },
         {
           "of": "ofMap",
-          "tc": "map(v, inMin, inMax, outMin, outMax)",
+          "tc": "remap(v, inMin, inMax, outMin, outMax)",
           "notes": "",
           "notes_ja": ""
         },
