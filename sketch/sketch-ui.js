@@ -498,6 +498,13 @@
             const dropZone = document.getElementById('dropZone');
             const filePanel = document.getElementById('filePanel');
 
+            // Prevent browser default file handling on the whole page
+            document.addEventListener('dragover', (e) => e.preventDefault());
+            document.addEventListener('drop', (e) => {
+                e.preventDefault();
+                handleDrop(e.dataTransfer);
+            });
+
             // Drop zone events
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                 dropZone.addEventListener(eventName, (e) => {
@@ -536,18 +543,14 @@
             const items = dataTransfer.items;
             if (!items) return;
 
-            // Check if it's a .tcsproj or .tcs file drop
+            // .tcsproj drop → replace entire project
             const firstFile = items[0].getAsFile ? items[0].getAsFile() : null;
             if (firstFile && firstFile.name.endsWith('.tcsproj')) {
                 await loadProjectFromZip(firstFile);
                 return;
             }
-            if (firstFile && firstFile.name.endsWith('.tcs')) {
-                await loadSingleTcsFile(firstFile);
-                return;
-            }
 
-            // Other file drop(s) — add as assets or source
+            // .tcs and other files → add as tab or asset
             for (const item of items) {
                 if (item.kind === 'file') {
                     const file = item.getAsFile();
@@ -1709,7 +1712,8 @@ void draw() {
                 } else {
                     logToConsole('Unsupported file type. Use .tcsproj or .tcs', 'error');
                 }
-            }
+            };
+            input.click();
         }
 
         // Share script via short URL (with fallback to long URL)
