@@ -104,10 +104,29 @@
     <!-- Content -->
     <main class="container" style="max-width: 800px;">
 
+        <!-- Deploy from Saved Project -->
+        <section class="embed-section">
+            <h2>Deploy Your Sketch</h2>
+            <p>The easiest way to publish your sketch on the web:</p>
+            <ol style="color: var(--color-text-muted); line-height: 2;">
+                <li>Save your project from the <a href="./" style="color: var(--color-primary-light);">Sketch Editor</a> (you'll get a <code>.tcsproj</code> file)</li>
+                <li>Unzip the <code>.tcsproj</code> file — it's a standard ZIP archive</li>
+                <li>Upload the extracted folder to any static hosting (GitHub Pages, Netlify, Vercel, etc.)</li>
+                <li>Open <code>index.html</code> — done!</li>
+            </ol>
+            <p>The extracted folder contains:</p>
+            <div class="embed-code"><span class="comment">myProject/</span>
+├── <span class="string">src/</span>          <span class="comment"># Your .tcs script files</span>
+├── <span class="string">data/</span>         <span class="comment"># Assets (images, sounds) if any</span>
+├── <span class="string">index.html</span>    <span class="comment"># Ready-to-deploy web page</span>
+└── <span class="string">truss-project.json</span>  <span class="comment"># Project manifest (for re-importing into editor)</span></div>
+            <p>The <code>index.html</code> loads the TrussSketch runtime from CDN, so no build step is needed. You can also edit the HTML to customize the page layout.</p>
+        </section>
+
         <!-- Quick Start -->
         <section class="embed-section">
-            <h2>Quick Start</h2>
-            <p>Include the script and write your sketch code:</p>
+            <h2>Embed in an Existing Page</h2>
+            <p>Want to add a sketch to your own HTML? Include the script and write your sketch code:</p>
             <div class="embed-code">
 <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="string">"https://cdn.trussc.org/sketch.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
 <span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="string">"text/tcs"</span><span class="tag">&gt;</span>
@@ -201,7 +220,7 @@
             <ul class="file-list">
                 <li><a href="https://cdn.trussc.org/sketch.js" download>sketch.js</a> - Loader script</li>
                 <li><a href="https://cdn.trussc.org/TrussSketch.js" download>TrussSketch.js</a> - Runtime</li>
-                <li><a href="https://cdn.trussc.org/TrussSketch.wasm" download>TrussSketch.wasm</a> - WebAssembly (~2.8MB)</li>
+                <li><a href="https://cdn.trussc.org/TrussSketch.wasm" download>TrussSketch.wasm</a> - WebAssembly (~3.4MB)</li>
             </ul>
             <p>Place them in the same directory and reference your local sketch.js.</p>
         </section>
