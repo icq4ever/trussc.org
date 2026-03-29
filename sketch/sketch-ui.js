@@ -6,7 +6,7 @@
         // Check if project is in initial state (default code, unmodified)
         function isInitialState() {
             if (files.size !== 1) return false;
-            const mainFile = files.get('main.as');
+            const mainFile = files.get('main.tcs');
             if (!mainFile) return false;
             return !isModified && mainFile.model.getValue() === defaultCode;
         }
@@ -39,10 +39,10 @@
                         if (entry) {
                             const content = await entry.async('string');
                             const fileName = filePath.split('/').pop();
-                            const asName = fileName.replace(/\.tcs$/, '.as');
+                            const tcsName = fileName;
                             const model = monaco.editor.createModel(content, 'trusssketch');
                             model.onDidChangeContent(() => checkModified());
-                            files.set(asName, { model, savedContent: content });
+                            files.set(tcsName, { model, savedContent: content });
                         }
                     }
                 } else {
@@ -51,10 +51,10 @@
                         if (path.startsWith('src/') && path.endsWith('.tcs') && !entry.dir) {
                             const content = await entry.async('string');
                             const fileName = path.split('/').pop();
-                            const asName = fileName.replace(/\.tcs$/, '.as');
+                            const tcsName = fileName;
                             const model = monaco.editor.createModel(content, 'trusssketch');
                             model.onDidChangeContent(() => checkModified());
-                            files.set(asName, { model, savedContent: content });
+                            files.set(tcsName, { model, savedContent: content });
                         }
                     }
                 }
@@ -74,7 +74,7 @@
                     currentFile = files.keys().next().value;
                     editor.setModel(files.get(currentFile).model);
                 } else {
-                    addFile('main.as', '');
+                    addFile('main.tcs', '');
                 }
 
                 renderFileTabs();
@@ -99,12 +99,12 @@
             files.clear();
             assets.clear();
 
-            const asName = file.name.replace(/\.tcs$/, '.as');
+            const tcsName = file.name;
             const model = monaco.editor.createModel(content, 'trusssketch');
             model.onDidChangeContent(() => checkModified());
-            files.set(asName, { model, savedContent: content });
+            files.set(tcsName, { model, savedContent: content });
 
-            currentFile = asName;
+            currentFile = tcsName;
             editor.setModel(model);
             renderFileTabs();
             renderFilePanel();
@@ -216,7 +216,7 @@
 
         // Multi-file management
         const files = new Map();  // filename -> { model: Monaco.ITextModel, savedContent: string }
-        let currentFile = 'main.as';
+        let currentFile = 'main.tcs';
 
         // Assets management (images, sounds, etc.)
         const assets = new Map();  // filename -> { blob: Blob, url: string (object URL) }
@@ -320,7 +320,7 @@
             for (const [name, file] of files) {
                 const item = document.createElement('div');
                 item.className = 'file-panel-item' + (name === currentFile ? ' active' : '');
-                const displayName = name.replace(/\.as$/, '');
+                const displayName = name.replace(/\.tcs$/, '');
                 item.innerHTML = `
                     <span class="file-panel-item-icon">${getFileIcon(name)}</span>
                     <span class="file-panel-item-name">${displayName}</span>
@@ -587,9 +587,9 @@
             if (ext === 'as' || ext === 'tcs') {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    const name = file.name.replace(/\.tcs$/, '.as');
+                    const name = file.name;
                     
-                    // If initial state, replace main.as
+                    // If initial state, replace main.tcs
                     if (isInitialState()) {
                         // Clear existing
                         for (const [n, f] of files) f.model.dispose();
@@ -643,7 +643,7 @@
                 tab.className = 'file-tab' + (name === currentFile ? ' active' : '');
                 tab.draggable = true;
                 tab.dataset.filename = name;
-                const displayName = name.replace(/\.as$/, '');
+                const displayName = name.replace(/\.tcs$/, '');
                 tab.innerHTML = `
                     <span class="file-tab-name">${displayName}</span>
                     ${files.size > 1 ? `<span class="file-tab-close" onclick="event.stopPropagation(); removeFile('${name}')">
@@ -723,14 +723,14 @@
                 // Generate default name: newfile, newfile-1, newfile-2, ...
                 let defaultName = 'newfile';
                 let suffix = 0;
-                while (files.has(defaultName + '.as')) {
+                while (files.has(defaultName + '.tcs')) {
                     suffix++;
                     defaultName = 'newfile-' + suffix;
                 }
                 name = prompt('Enter file name:', defaultName);
                 if (!name) return;
             }
-            if (!name.endsWith('.as')) name += '.as';
+            if (!name.endsWith('.tcs')) name += '.tcs';
             if (files.has(name)) {
                 logToConsole('File already exists: ' + name, 'error');
                 return;
@@ -769,11 +769,11 @@
 
         // Rename a file
         function renameFile(oldName) {
-            const oldDisplayName = oldName.replace(/\.as$/, '');
+            const oldDisplayName = oldName.replace(/\.tcs$/, '');
             const newName = prompt('Rename file:', oldDisplayName);
             if (!newName || newName === oldDisplayName) return;
 
-            const finalName = newName.endsWith('.as') ? newName : newName + '.as';
+            const finalName = newName.endsWith('.tcs') ? newName : newName + '.tcs';
             if (files.has(finalName)) {
                 logToConsole('File already exists: ' + finalName, 'error');
                 return;
@@ -849,7 +849,7 @@ void draw() {
                     try {
                         const parsed = JSON.parse(data);
                         if (parsed.files && typeof parsed.files === 'object') {
-                            return parsed;  // Multi-file format: { files: { "main.as": "...", ... } }
+                            return parsed;  // Multi-file format: { files: { "main.tcs": "...", ... } }
                         }
                     } catch (e) {
                         // Not JSON, treat as single-file code
@@ -1153,8 +1153,8 @@ void draw() {
                 const content = (typeof hashData === 'string') ? hashData : defaultCode;
                 const model = monaco.editor.createModel(content, 'trusssketch');
                 model.onDidChangeContent(() => checkModified());
-                // Use random name for new projects, 'main.as' for loaded single-file
-                const fileName = hashData ? 'main.as' : (generateRandomName() + '.as');
+                // Use random name for new projects, 'main.tcs' for loaded single-file
+                const fileName = hashData ? 'main.tcs' : (generateRandomName() + '.tcs');
                 files.set(fileName, { model, savedContent: content });
                 currentFile = fileName;
             }
@@ -1481,10 +1481,10 @@ void draw() {
             return JSON.stringify(data, null, 2);
         }
 
-        // Get project name (first tab name without .as)
+        // Get project name (first tab name without .tcs)
         function getProjectName() {
             const firstName = files.keys().next().value || 'sketch';
-            return firstName.replace(/\.as$/, '');
+            return firstName.replace(/\.tcs$/, '');
         }
 
         // Mark all files as saved
@@ -1504,7 +1504,7 @@ void draw() {
 
         // Generate index.html for web deployment
         function generateIndexHtml(projectName) {
-            const mainFile = files.keys().next().value || 'main.as';
+            const mainFile = files.keys().next().value || 'main.tcs';
             const dpr = window.devicePixelRatio || 1;
             const canvasWidth = canvas ? Math.round(canvas.width / dpr) : 800;
             const canvasHeight = canvas ? Math.round(canvas.height / dpr) : 600;
@@ -1529,7 +1529,7 @@ void draw() {
 </head>
 <body>
     <script src="https://cdn.trussc.org/sketch.js"><` + `/script>
-    <truss-sketch src="src/${mainFile.replace(/\.as$/, '.tcs')}" data-base="./data/" width="${canvasWidth}" height="${canvasHeight}"></truss-sketch>
+    <truss-sketch src="src/${mainFile}" data-base="./data/" width="${canvasWidth}" height="${canvasHeight}"></truss-sketch>
 </body>
 </html>`;
         }
@@ -1540,7 +1540,7 @@ void draw() {
 
             // src/ — script files
             for (const [name, file] of files) {
-                const fileName = name.replace(/\.as$/, '.tcs');
+                const fileName = name;
                 zip.file('src/' + fileName, file.model.getValue());
             }
 
@@ -1559,7 +1559,7 @@ void draw() {
 
             // truss-project.json — project manifest
             const projectConfig = {
-                files: Array.from(files.keys()).map(name => 'src/' + name.replace(/\.as$/, '.tcs'))
+                files: Array.from(files.keys()).map(name => 'src/' + name)
             };
             zip.file('truss-project.json', JSON.stringify(projectConfig, null, 2));
 
@@ -1683,8 +1683,8 @@ void draw() {
                 const content = typeof data === 'string' ? data : JSON.stringify(data);
                 const model = monaco.editor.createModel(content, 'trusssketch');
                 model.onDidChangeContent(() => checkModified());
-                files.set('main.as', { model, savedContent: content });
-                currentFile = 'main.as';
+                files.set('main.tcs', { model, savedContent: content });
+                currentFile = 'main.tcs';
             }
 
             editor.setModel(files.get(currentFile).model);
