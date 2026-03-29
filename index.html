@@ -31,7 +31,7 @@
                 <li><a href="https://gemini.google.com/gem/16aq3ccVPl33j6xSMyE7MWXDjaZvauL0I" target="_blank" rel="noopener">Ask AI</a></li>
                 <li><a href="https://github.com/TrussC-org/TrussC/blob/main/docs/GET_STARTED.md" class="nav-cta" target="_blank" rel="noopener">Get Started</a></li>
                 <li class="lang-dropdown">
-                    <button class="nav-lang" onclick="this.parentElement.classList.toggle('open')">🌐 ▾</button>
+                    <button class="nav-lang" onclick="this.parentElement.classList.toggle('open')"><img src="assets/images/globe.svg" alt="" class="lang-icon"> ▾</button>
                     <ul class="lang-menu">
                         <li><a href="/" class="active">EN</a></li>
                         <li><a href="/ja/">日本語</a></li>
@@ -99,11 +99,8 @@
 <pre><code><span class="code-preprocessor">#include</span> <span class="code-string">"tcApp.h"</span>
 
 <span class="code-keyword">void</span> tcApp::<span class="code-function">setup</span>() {
-    <span class="code-comment">// Set loop mode</span>
-    setLoopMode(LoopMode::Game);
-
     <span class="code-comment">// Load an image</span>
-    image = make_shared&lt;Texture&gt;(<span class="code-string">"test.png"</span>);
+    image.load(<span class="code-string">"test.png"</span>);
 }
 
 <span class="code-keyword">void</span> tcApp::<span class="code-function">update</span>() {
@@ -111,12 +108,12 @@
 }
 
 <span class="code-keyword">void</span> tcApp::<span class="code-function">draw</span>() {
-    clear(<span class="code-number">0.1f</span>, <span class="code-number">0.1f</span>, <span class="code-number">0.1f</span>);
+    clear(<span class="code-number">0.1f</span>);
 
     pushMatrix();
     translate(<span class="code-number">640</span>, <span class="code-number">360</span>);
     rotate(angle);
-    image-&gt;draw(<span class="code-number">-50</span>, <span class="code-number">-50</span>, <span class="code-number">100</span>, <span class="code-number">100</span>);
+    image.draw(<span class="code-number">-50</span>, <span class="code-number">-50</span>, <span class="code-number">100</span>, <span class="code-number">100</span>);
     popMatrix();
 }</code></pre>
                 </div>
@@ -131,15 +128,12 @@
                             </svg>
                         </button>
                     </div>
-<pre><code><span class="code-preprocessor">#include</span> <span class="code-string">"TrussC.h"</span>
-<span class="code-preprocessor">#include</span> <span class="code-string">"tcApp.h"</span>
+<pre><code><span class="code-preprocessor">#include</span> <span class="code-string">"tcApp.h"</span>
 
-<span class="code-comment">// Define backend implementation</span>
-<span class="code-preprocessor">#define</span> SOKOL_IMPL
-<span class="code-preprocessor">#include</span> <span class="code-string">"sokol_app.h"</span>
-
-<span class="code-comment">// That's it!</span>
-<span class="code-function">TC_MAIN</span>(tcApp)</code></pre>
+<span class="code-keyword">int</span> <span class="code-function">main</span>() {
+    <span class="code-keyword">return</span> tc::runApp&lt;tcApp&gt;(tc::WindowSettings()
+        .setSize(<span class="code-number">960</span>, <span class="code-number">600</span>));
+}</code></pre>
                 </div>
             </div>
         </div>
