@@ -853,8 +853,8 @@ void draw() {
             // Define TrussSketch language (AngelScript-like)
             monaco.languages.register({ id: 'trusssketch' });
             monaco.languages.setMonarchTokensProvider('trusssketch', {
-                keywords: ['void', 'if', 'else', 'for', 'while', 'return', 'break', 'continue', 'true', 'false', 'null', 'const'],
-                typeKeywords: ['int', 'float', 'string', 'bool'],
+                keywords: ['void', 'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'return', 'break', 'continue', 'true', 'false', 'null', 'const', 'class', 'this', 'cast', 'funcdef', 'interface', 'mixin', 'enum', 'import', 'from', 'typedef', 'auto', 'in', 'out', 'inout', 'override', 'final', 'get', 'set', 'private', 'protected', 'shared', 'external', 'not', 'and', 'or', 'xor', 'is'],
+                typeKeywords: ['int', 'int8', 'int16', 'int64', 'uint', 'uint8', 'uint16', 'uint64', 'float', 'double', 'string', 'bool', 'array', 'Vec2', 'Vec3', 'Color', 'Rect', 'Mat4', 'Quaternion', 'Pixels', 'Texture', 'Fbo', 'Sound', 'Font', 'Mesh', 'Path', 'StrokeMesh', 'Image', 'EasyCam', 'ChipSoundNote', 'ChipSoundBundle', 'FileWriter', 'FileReader', 'Tween'],
                 operators: ['+', '-', '*', '/', '%', '=', '==', '!=', '<', '>', '<=', '>=', '&&', '||', '!'],
                 symbols: /[=><!~?:&|+\-*\/\^%]+/,
                 tokenizer: {
