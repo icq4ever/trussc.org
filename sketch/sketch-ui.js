@@ -12,69 +12,61 @@
         }
 
         // Load project from directory handle
-        async function loadProjectFromDirectory(dirHandle) {
+        // Load project from .tcsproj (ZIP) file
+        async function loadProjectFromZip(file) {
             try {
-                // Check for truss-project.json
+                const zip = await JSZip.loadAsync(file);
+
+                // Find truss-project.json for file ordering
                 let config = null;
-                try {
-                    const configHandle = await dirHandle.getFileHandle('truss-project.json', { create: false });
-                    const file = await configHandle.getFile();
-                    const text = await file.text();
-                    config = JSON.parse(text);
-                } catch (e) {
-                    logToConsole('Error: truss-project.json not found in this folder.', 'error');
-                    return;
+                const configEntry = zip.file('truss-project.json');
+                if (configEntry) {
+                    config = JSON.parse(await configEntry.async('string'));
                 }
 
                 // Clear current project
-                for (const [name, file] of files) {
-                    file.model.dispose();
+                for (const [name, f] of files) {
+                    f.model.dispose();
                 }
                 files.clear();
                 assets.clear();
 
-                // Load source files in order
-                if (config.files) {
-                    // Try to get src directory handle
-                    let srcHandle = dirHandle;
-                    try {
-                        srcHandle = await dirHandle.getDirectoryHandle('src', { create: false });
-                    } catch (e) {
-                        // Files might be in root if flat structure
-                    }
-
+                // Load source files
+                if (config && config.files) {
+                    // Load in order specified by config
                     for (const filePath of config.files) {
-                        // filePath is like "src/main.tcs"
-                        const parts = filePath.split('/');
-                        const fileName = parts.pop(); // "main.tcs"
-                        const asName = fileName.replace(/\.tcs$/, '.as');
-                        
-                        try {
-                            const fileHandle = await srcHandle.getFileHandle(fileName, { create: false });
-                            const file = await fileHandle.getFile();
-                            const content = await file.text();
-                            
+                        const entry = zip.file(filePath);
+                        if (entry) {
+                            const content = await entry.async('string');
+                            const fileName = filePath.split('/').pop();
+                            const asName = fileName.replace(/\.tcs$/, '.as');
                             const model = monaco.editor.createModel(content, 'trusssketch');
                             model.onDidChangeContent(() => checkModified());
                             files.set(asName, { model, savedContent: content });
-                        } catch (e) {
-                            logToConsole('Failed to load: ' + fileName, 'error');
+                        }
+                    }
+                } else {
+                    // No config: load all .tcs files from src/
+                    for (const [path, entry] of Object.entries(zip.files)) {
+                        if (path.startsWith('src/') && path.endsWith('.tcs') && !entry.dir) {
+                            const content = await entry.async('string');
+                            const fileName = path.split('/').pop();
+                            const asName = fileName.replace(/\.tcs$/, '.as');
+                            const model = monaco.editor.createModel(content, 'trusssketch');
+                            model.onDidChangeContent(() => checkModified());
+                            files.set(asName, { model, savedContent: content });
                         }
                     }
                 }
 
-                // Load assets (if data directory exists)
-                try {
-                    const dataHandle = await dirHandle.getDirectoryHandle('data', { create: false });
-                    // Iterate all files in data/
-                    for await (const entry of dataHandle.values()) {
-                        if (entry.kind === 'file') {
-                            const file = await entry.getFile();
-                            addAsset(file);
-                        }
+                // Load assets from data/
+                for (const [path, entry] of Object.entries(zip.files)) {
+                    if (path.startsWith('data/') && !entry.dir && !path.endsWith('manifest.json')) {
+                        const blob = await entry.async('blob');
+                        const name = path.replace(/^data\//, '');
+                        const file = new File([blob], name);
+                        addAsset(file);
                     }
-                } catch (e) {
-                    // No data directory, ignore
                 }
 
                 // Setup editor
@@ -82,18 +74,43 @@
                     currentFile = files.keys().next().value;
                     editor.setModel(files.get(currentFile).model);
                 } else {
-                    addFile('main.as', ''); // Fallback
+                    addFile('main.as', '');
                 }
-                
+
                 renderFileTabs();
                 renderFilePanel();
                 isModified = false;
-                logToConsole('Project loaded: ' + dirHandle.name, 'success');
+                logToConsole('Project loaded: ' + file.name, 'success');
                 runScript();
 
             } catch (e) {
                 logToConsole('Load error: ' + e.message, 'error');
             }
+        }
+
+        // Load a single .tcs file
+        async function loadSingleTcsFile(file) {
+            const content = await file.text();
+
+            // Clear current project
+            for (const [name, f] of files) {
+                f.model.dispose();
+            }
+            files.clear();
+            assets.clear();
+
+            const asName = file.name.replace(/\.tcs$/, '.as');
+            const model = monaco.editor.createModel(content, 'trusssketch');
+            model.onDidChangeContent(() => checkModified());
+            files.set(asName, { model, savedContent: content });
+
+            currentFile = asName;
+            editor.setModel(model);
+            renderFileTabs();
+            renderFilePanel();
+            isModified = false;
+            logToConsole('Loaded: ' + file.name, 'success');
+            runScript();
         }
 
         // Auto-run when both editor and engine are ready
@@ -519,26 +536,18 @@
             const items = dataTransfer.items;
             if (!items) return;
 
-            // Check if it's a folder drop
-            const entry = items[0].webkitGetAsEntry ? items[0].webkitGetAsEntry() : null;
-            if (entry && entry.isDirectory) {
-                // Folder drop -> Project load
-                // Need to convert FileSystemDirectoryEntry to FileSystemDirectoryHandle if possible
-                // Chrome supports getAsFileSystemHandle()
-                if (items[0].getAsFileSystemHandle) {
-                    try {
-                        const handle = await items[0].getAsFileSystemHandle();
-                        await loadProjectFromDirectory(handle);
-                    } catch (e) {
-                        logToConsole('Error loading folder: ' + e.message, 'error');
-                    }
-                } else {
-                    logToConsole('Folder drop not fully supported in this browser. Use Load button.', 'error');
-                }
+            // Check if it's a .tcsproj or .tcs file drop
+            const firstFile = items[0].getAsFile ? items[0].getAsFile() : null;
+            if (firstFile && firstFile.name.endsWith('.tcsproj')) {
+                await loadProjectFromZip(firstFile);
+                return;
+            }
+            if (firstFile && firstFile.name.endsWith('.tcs')) {
+                await loadSingleTcsFile(firstFile);
                 return;
             }
 
-            // File drop(s)
+            // Other file drop(s) — add as assets or source
             for (const item of items) {
                 if (item.kind === 'file') {
                     const file = item.getAsFile();
@@ -711,7 +720,14 @@
         // Add a new file
         function addFile(name = null, content = '') {
             if (!name) {
-                name = prompt('Enter file name:', 'utils');
+                // Generate default name: newfile, newfile-1, newfile-2, ...
+                let defaultName = 'newfile';
+                let suffix = 0;
+                while (files.has(defaultName + '.as')) {
+                    suffix++;
+                    defaultName = 'newfile-' + suffix;
+                }
+                name = prompt('Enter file name:', defaultName);
                 if (!name) return;
             }
             if (!name.endsWith('.as')) name += '.as';
@@ -1479,24 +1495,28 @@ void draw() {
             isModified = false;
         }
 
-        // Saved directory handle for overwrite saves
-        let savedDirHandle = null;
+        // No longer used (was for directory save)
 
         // Check if project is simple (single source, no assets)
         function isSimpleProject() {
             return files.size === 1 && assets.size === 0;
         }
 
-        // Generate index.html for CDN embed
+        // Generate index.html for web deployment
         function generateIndexHtml(projectName) {
             const mainFile = files.keys().next().value || 'main.as';
-            // Get canvas CSS size from editor or use defaults
-            // canvas.width is framebuffer size, so divide by devicePixelRatio for CSS size
             const dpr = window.devicePixelRatio || 1;
             const canvasWidth = canvas ? Math.round(canvas.width / dpr) : 800;
             const canvasHeight = canvas ? Math.round(canvas.height / dpr) : 600;
             // Note: </scr + ipt> split to avoid breaking outer script tag
             return `<!DOCTYPE html>
+<!--
+    Web deployment sample for TrussSketch.
+    To publish your sketch on the web:
+    1. Upload this folder to any static hosting (GitHub Pages, Netlify, etc.)
+    2. Open index.html in a browser — that's it!
+    The sketch runtime is loaded from CDN, so no build step is needed.
+-->
 <html>
 <head>
     <meta charset="UTF-8">
@@ -1514,80 +1534,57 @@ void draw() {
 </html>`;
         }
 
-        // Write project to directory
-        async function writeToDirectory(dirHandle, projectName) {
-            // Create src/ directory
-            const srcHandle = await dirHandle.getDirectoryHandle('src', { create: true });
+        // Build ZIP blob for project
+        async function buildProjectZip(projectName) {
+            const zip = new JSZip();
+
+            // src/ — script files
             for (const [name, file] of files) {
                 const fileName = name.replace(/\.as$/, '.tcs');
-                const fileHandle = await srcHandle.getFileHandle(fileName, { create: true });
-                const writable = await fileHandle.createWritable();
-                await writable.write(file.model.getValue());
-                await writable.close();
+                zip.file('src/' + fileName, file.model.getValue());
             }
 
-            // Create data/ directory if there are assets
+            // data/ — assets
             if (assets.size > 0) {
-                const dataHandle = await dirHandle.getDirectoryHandle('data', { create: true });
                 const assetNames = [];
                 for (const [name, asset] of assets) {
                     assetNames.push(name);
-                    // Handle subdirectories in asset names
-                    const parts = name.split('/');
-                    let currentDir = dataHandle;
-                    for (let i = 0; i < parts.length - 1; i++) {
-                        currentDir = await currentDir.getDirectoryHandle(parts[i], { create: true });
-                    }
-                    const fileHandle = await currentDir.getFileHandle(parts[parts.length - 1], { create: true });
-                    const writable = await fileHandle.createWritable();
-                    await writable.write(asset.blob);
-                    await writable.close();
+                    zip.file('data/' + name, asset.blob);
                 }
-
-                // Create manifest.json in data/
-                console.log('Creating manifest.json with files:', assetNames);
-                const manifestHandle = await dataHandle.getFileHandle('manifest.json', { create: true });
-                const manifestWritable = await manifestHandle.createWritable();
-                await manifestWritable.write(JSON.stringify({ files: assetNames }, null, 2));
-                await manifestWritable.close();
-                console.log('manifest.json created');
+                zip.file('data/manifest.json', JSON.stringify({ files: assetNames }, null, 2));
             }
 
-            // Create index.html
-            const indexHandle = await dirHandle.getFileHandle('index.html', { create: true });
-            const writable = await indexHandle.createWritable();
-            await writable.write(generateIndexHtml(projectName));
-            await writable.close();
+            // index.html — web deploy sample
+            zip.file('index.html', generateIndexHtml(projectName));
 
-            // Create truss-project.json (Project manifest with file order)
+            // truss-project.json — project manifest
             const projectConfig = {
-                files: Array.from(files.keys()).map(name => "src/" + name.replace(/\.as$/, '.tcs'))
+                files: Array.from(files.keys()).map(name => 'src/' + name.replace(/\.as$/, '.tcs'))
             };
-            const configHandle = await dirHandle.getFileHandle('truss-project.json', { create: true });
-            const configWritable = await configHandle.createWritable();
-            await configWritable.write(JSON.stringify(projectConfig, null, 2));
-            await configWritable.close();
+            zip.file('truss-project.json', JSON.stringify(projectConfig, null, 2));
+
+            return await zip.generateAsync({ type: 'blob' });
         }
 
-        // Save script to file or directory
+        // Save project as .tcsproj (ZIP)
         async function saveScript(forceNew = false) {
             const projectName = getProjectName();
+            const fileName = projectName + '.tcsproj';
 
-            // Simple project: single .tcs file
-            if (isSimpleProject()) {
-                const data = getSaveData();
+            try {
+                const blob = await buildProjectZip(projectName);
 
                 if ('showSaveFilePicker' in window) {
                     try {
                         const handle = await window.showSaveFilePicker({
-                            suggestedName: projectName + '.tcs',
+                            suggestedName: fileName,
                             types: [{
-                                description: 'TrussSketch Files',
-                                accept: { 'text/plain': ['.tcs'] }
+                                description: 'TrussSketch Project',
+                                accept: { 'application/zip': ['.tcsproj'] }
                             }]
                         });
                         const writable = await handle.createWritable();
-                        await writable.write(data);
+                        await writable.write(blob);
                         await writable.close();
                         logToConsole('Saved: ' + handle.name, 'success');
                         markAllSaved();
@@ -1597,39 +1594,18 @@ void draw() {
                     }
                 }
 
-                // Fallback
-                const blob = new Blob([data], { type: 'application/octet-stream' });
+                // Fallback: download link
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = projectName + '.tcs';
+                a.download = fileName;
                 a.click();
                 URL.revokeObjectURL(url);
-                logToConsole('Saved: ' + projectName + '.tcs', 'success');
+                logToConsole('Saved: ' + fileName, 'success');
                 markAllSaved();
-                return;
+            } catch (e) {
+                logToConsole('Save error: ' + e.message, 'error');
             }
-
-            // Complex project: directory with src/, data/, index.html
-            if ('showDirectoryPicker' in window) {
-                try {
-                    // Use existing handle or pick new one
-                    if (!savedDirHandle || forceNew) {
-                        savedDirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
-                    }
-
-                    await writeToDirectory(savedDirHandle, projectName);
-                    logToConsole('Saved to folder: ' + savedDirHandle.name, 'success');
-                    markAllSaved();
-                    return;
-                } catch (e) {
-                    if (e.name === 'AbortError') return;
-                    logToConsole('Save error: ' + e.message, 'error');
-                }
-            }
-
-            // Fallback: Download as ZIP (TODO: implement with JSZip)
-            logToConsole('Directory save not supported in this browser. Use Chrome or Edge.', 'error');
         }
 
         // Save button Shift key handling
@@ -1719,85 +1695,20 @@ void draw() {
 
         // Load script (Directory picker)
         async function loadScript() {
-            if ('showDirectoryPicker' in window) {
-                try {
-                    const dirHandle = await window.showDirectoryPicker();
-                    await loadProjectFromDirectory(dirHandle);
-                } catch (e) {
-                    if (e.name !== 'AbortError') {
-                        logToConsole('Load error: ' + e.message, 'error');
-                    }
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.tcsproj,.tcs';
+            input.onchange = async function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                if (file.name.endsWith('.tcsproj')) {
+                    await loadProjectFromZip(file);
+                } else if (file.name.endsWith('.tcs')) {
+                    await loadSingleTcsFile(file);
+                } else {
+                    logToConsole('Unsupported file type. Use .tcsproj or .tcs', 'error');
                 }
-            } else {
-                // Fallback for browsers without directory picker (e.g. Firefox)
-                const input = document.createElement('input');
-                input.type = 'file';
-                input.webkitdirectory = true; // Folder selection
-                input.onchange = async function(e) {
-                    // This is harder because we get a flat list of files
-                    // We need to reconstruct the structure or just find truss-project.json
-                    const fileList = Array.from(e.target.files);
-                    const configFile = fileList.find(f => f.name === 'truss-project.json' || f.webkitRelativePath.endsWith('/truss-project.json'));
-                    
-                    if (!configFile) {
-                        logToConsole('Error: truss-project.json not found in selected folder.', 'error');
-                        return;
-                    }
-
-                    try {
-                        const configText = await configFile.text();
-                        const config = JSON.parse(configText);
-                        
-                        // Clear current project
-                        for (const [name, file] of files) {
-                            file.model.dispose();
-                        }
-                        files.clear();
-                        assets.clear();
-
-                        // Load sources based on config
-                        if (config.files) {
-                            for (const filePath of config.files) {
-                                // Find file in fileList matching the relative path
-                                const targetPath = filePath; // "src/main.tcs"
-                                const sourceFile = fileList.find(f => f.webkitRelativePath.endsWith('/' + targetPath) || (f.name === filePath.split('/').pop()));
-                                
-                                if (sourceFile) {
-                                    const asName = sourceFile.name.replace(/\.tcs$/, '.as');
-                                    const content = await sourceFile.text();
-                                    const model = monaco.editor.createModel(content, 'trusssketch');
-                                    model.onDidChangeContent(() => checkModified());
-                                    files.set(asName, { model, savedContent: content });
-                                }
-                            }
-                        }
-                        
-                        // Load assets (anything in data/)
-                        for (const file of fileList) {
-                            if (file.webkitRelativePath.includes('/data/')) {
-                                addAsset(file);
-                            }
-                        }
-
-                        // Setup editor
-                        if (files.size > 0) {
-                            currentFile = files.keys().next().value;
-                            editor.setModel(files.get(currentFile).model);
-                        } else {
-                            addFile('main.as', '');
-                        }
-                        
-                        renderFileTabs();
-                        renderFilePanel();
-                        isModified = false;
-                        logToConsole('Project loaded.', 'success');
-                        runScript();
-
-                    } catch (err) {
-                        logToConsole('Load error: ' + err.message, 'error');
-                    }
-                };
-                input.click();
             }
         }
 
