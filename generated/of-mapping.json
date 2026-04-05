@@ -97,6 +97,20 @@
           "notes": "",
           "notes_ja": "",
           "notes_ko": ""
+        },
+        {
+          "of": "ofGetWindowMode",
+          "tc": "isFullscreen()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofSetFullscreen",
+          "tc": "setFullscreen(fullscreen)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
         }
       ]
     },
@@ -213,6 +227,13 @@
           "notes_ko": ""
         },
         {
+          "of": "ofDrawBitmapStringHighlight",
+          "tc": "drawBitmapStringHighlight(text, x, y, background, foreground)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
           "of": "ofSetFrameRate",
           "tc": "setFps(fps)",
           "notes": "",
@@ -243,6 +264,27 @@
         {
           "of": "ofSetCircleResolution",
           "tc": "setCircleResolution(resolution)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofPushStyle",
+          "tc": "pushStyle()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofPopStyle",
+          "tc": "popStyle()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofEnableBlendMode",
+          "tc": "setBlendMode(mode)",
           "notes": "",
           "notes_ja": "",
           "notes_ko": ""

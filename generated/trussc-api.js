@@ -37,6 +37,24 @@ const TrussCAPI = {
                     "desc": "Called every frame after update",
                     "desc_ja": "毎フレーム、updateの後に呼ばれる",
                     "snippet": "void draw() {\n\t$0\n}"
+                },
+                {
+                    "name": "cleanup",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Called once before exit (optional user callback for cleanup)",
+                    "desc_ja": "終了前に一度呼ばれる（オプショナルなクリーンアップコールバック）",
+                    "snippet": "void cleanup() {\n\t$0\n}"
+                },
+                {
+                    "name": "runApp",
+                    "params": "settings",
+                    "params_typed": "const WindowSettings& settings = WindowSettings()",
+                    "return_type": "int",
+                    "desc": "Start the application main loop. Called from main()",
+                    "desc_ja": "アプリケーションのメインループを開始。main()から呼ぶ",
+                    "snippet": "runApp(${1:settings})"
                 }
             ]
         },
@@ -597,6 +615,24 @@ const TrussCAPI = {
                     "snippet": "drawBitmapString(${1:\"text\"}, ${2:x}, ${3:y})"
                 },
                 {
+                    "name": "drawBitmapStringHighlight",
+                    "params": "text, x, y, background, foreground",
+                    "params_typed": "const string& text, float x, float y, const Color& background = Color(0,0,0), const Color& foreground = Color(1,1,1)",
+                    "return_type": "void",
+                    "desc": "Draw text with background highlight",
+                    "desc_ja": "背景ハイライト付きでテキストを描画",
+                    "snippet": "drawBitmapStringHighlight(${1:\"text\"}, ${2:x}, ${3:y})"
+                },
+                {
+                    "name": "getBitmapStringBounds",
+                    "params": "text, width, height",
+                    "params_typed": "const string& text, float& width, float& height",
+                    "return_type": "void",
+                    "desc": "Get bitmap string bounding box size",
+                    "desc_ja": "ビットマップ文字列のバウンディングボックスサイズを取得",
+                    "snippet": "getBitmapStringBounds(${1:\"text\"}, ${2:w}, ${3:h})"
+                },
+                {
                     "name": "setTextAlign",
                     "params": "horizontal",
                     "params_typed": "TextAlign horizontal",
@@ -844,6 +880,96 @@ const TrussCAPI = {
                     "desc": "Get current fill color",
                     "desc_ja": "現在の塗りつぶし色を取得",
                     "snippet": "getColor()"
+                },
+                {
+                    "name": "setScissor",
+                    "params": "x, y, w, h",
+                    "params_typed": "float x, float y, float w, float h",
+                    "return_type": "void",
+                    "desc": "Set scissor clipping rectangle. Also available via RectNode::setClipping(true)",
+                    "desc_ja": "シザー（クリッピング）矩形を設定。RectNode::setClipping(true)でも使用可",
+                    "snippet": "setScissor(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "resetScissor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset (disable) scissor clipping",
+                    "desc_ja": "シザー（クリッピング）を解除",
+                    "snippet": "resetScissor()"
+                },
+                {
+                    "name": "pushScissor",
+                    "params": "x, y, w, h",
+                    "params_typed": "float x, float y, float w, float h",
+                    "return_type": "void",
+                    "desc": "Push scissor clipping rectangle onto stack",
+                    "desc_ja": "シザー矩形をスタックにプッシュ",
+                    "snippet": "pushScissor(${1:x}, ${2:y}, ${3:w}, ${4:h})"
+                },
+                {
+                    "name": "popScissor",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Pop scissor clipping rectangle from stack",
+                    "desc_ja": "シザー矩形をスタックからポップ",
+                    "snippet": "popScissor()"
+                },
+                {
+                    "name": "setBlendMode",
+                    "params": "mode",
+                    "params_typed": "BlendMode mode",
+                    "return_type": "void",
+                    "desc": "Set blend mode. BlendMode::Alpha (default), Add, Multiply, Screen, Subtract, Disabled",
+                    "desc_ja": "ブレンドモードを設定。BlendMode::Alpha（デフォルト）, Add, Multiply, Screen, Subtract, Disabled",
+                    "snippet": "setBlendMode(${1:BlendMode::Add})"
+                },
+                {
+                    "name": "getBlendMode",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "BlendMode",
+                    "desc": "Get current blend mode",
+                    "desc_ja": "現在のブレンドモードを取得",
+                    "snippet": "getBlendMode()"
+                },
+                {
+                    "name": "resetBlendMode",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset blend mode to Alpha (default)",
+                    "desc_ja": "ブレンドモードをAlpha（デフォルト）にリセット",
+                    "snippet": "resetBlendMode()"
+                },
+                {
+                    "name": "pushStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Push current style (color, fill, stroke, blend) onto stack",
+                    "desc_ja": "現在のスタイル（色、塗り、ストローク、ブレンド）をスタックにプッシュ",
+                    "snippet": "pushStyle()"
+                },
+                {
+                    "name": "popStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Pop style from stack, restoring previous state",
+                    "desc_ja": "スタイルをスタックからポップし、前の状態を復元",
+                    "snippet": "popStyle()"
+                },
+                {
+                    "name": "resetStyle",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Reset all style settings to defaults",
+                    "desc_ja": "全スタイル設定をデフォルトにリセット",
+                    "snippet": "resetStyle()"
                 }
             ]
         },
@@ -1199,6 +1325,69 @@ const TrussCAPI = {
                     "snippet": "getGlobalMousePos()"
                 },
                 {
+                    "name": "getGlobalMouseX",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get global mouse X (screen coordinates, not window-relative)",
+                    "desc_ja": "グローバルマウスX座標（スクリーン座標、ウィンドウ相対ではない）",
+                    "snippet": "getGlobalMouseX()"
+                },
+                {
+                    "name": "getGlobalMouseY",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get global mouse Y (screen coordinates, not window-relative)",
+                    "desc_ja": "グローバルマウスY座標（スクリーン座標、ウィンドウ相対ではない）",
+                    "snippet": "getGlobalMouseY()"
+                },
+                {
+                    "name": "getGlobalPMouseX",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get previous frame global mouse X",
+                    "desc_ja": "前フレームのグローバルマウスX座標",
+                    "snippet": "getGlobalPMouseX()"
+                },
+                {
+                    "name": "getGlobalPMouseY",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get previous frame global mouse Y",
+                    "desc_ja": "前フレームのグローバルマウスY座標",
+                    "snippet": "getGlobalPMouseY()"
+                },
+                {
+                    "name": "getMouseButton",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get currently pressed mouse button",
+                    "desc_ja": "現在押されているマウスボタンを取得",
+                    "snippet": "getMouseButton()"
+                },
+                {
+                    "name": "setTouchAsMouse",
+                    "params": "enabled",
+                    "params_typed": "bool enabled",
+                    "return_type": "void",
+                    "desc": "Enable/disable touch events firing as mouse events (for Android/iOS)",
+                    "desc_ja": "タッチイベントをマウスイベントとして発火させるか設定（Android/iOS用）",
+                    "snippet": "setTouchAsMouse(${1:true})"
+                },
+                {
+                    "name": "getTouchAsMouse",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Get touchAsMouse state",
+                    "desc_ja": "touchAsMouseの状態を取得",
+                    "snippet": "getTouchAsMouse()"
+                },
+                {
                     "name": "isMousePressed",
                     "params": "",
                     "params_typed": "",
@@ -1304,6 +1493,15 @@ const TrussCAPI = {
                     "snippet": "getFrameRate()"
                 },
                 {
+                    "name": "getFps",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get current FPS (alias for getFrameRate)",
+                    "desc_ja": "現在のFPSを取得（getFrameRateのエイリアス）",
+                    "snippet": "getFps()"
+                },
+                {
                     "name": "getFrameCount",
                     "params": "",
                     "params_typed": "",
@@ -1344,6 +1542,42 @@ const TrussCAPI = {
                     "desc": "Release sokol_gl vertex/command buffers (auto re-allocated on next draw)",
                     "desc_ja": "sokol_glのバッファを解放（次の描画時に自動再確保）",
                     "snippet": "releaseSglBuffers()"
+                },
+                {
+                    "name": "getMemoryUsage",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "size_t",
+                    "desc": "Get process memory usage in bytes (platform-specific)",
+                    "desc_ja": "プロセスのメモリ使用量をバイトで取得（プラットフォーム固有）",
+                    "snippet": "getMemoryUsage()"
+                },
+                {
+                    "name": "getFboCount",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "size_t",
+                    "desc": "Get number of active FBO objects",
+                    "desc_ja": "アクティブなFBOオブジェクト数を取得",
+                    "snippet": "getFboCount()"
+                },
+                {
+                    "name": "getTextureCount",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "size_t",
+                    "desc": "Get number of active Texture objects",
+                    "desc_ja": "アクティブなTextureオブジェクト数を取得",
+                    "snippet": "getTextureCount()"
+                },
+                {
+                    "name": "getNodeCount",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "size_t",
+                    "desc": "Get number of active Node objects in scene graph",
+                    "desc_ja": "シーングラフ内のアクティブなNodeオブジェクト数を取得",
+                    "snippet": "getNodeCount()"
                 }
             ]
         },
@@ -2010,6 +2244,96 @@ const TrussCAPI = {
                     "desc": "Get text from clipboard",
                     "desc_ja": "クリップボードから取得",
                     "snippet": "getClipboardString()"
+                },
+                {
+                    "name": "getDpiScale",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get display DPI scale factor (e.g. 2.0 for Retina)",
+                    "desc_ja": "ディスプレイのDPIスケール係数を取得（Retinaなら2.0等）",
+                    "snippet": "getDpiScale()"
+                },
+                {
+                    "name": "getFramebufferWidth",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get framebuffer width in pixels (window width * DPI scale)",
+                    "desc_ja": "フレームバッファ幅をピクセルで取得（ウィンドウ幅 × DPIスケール）",
+                    "snippet": "getFramebufferWidth()"
+                },
+                {
+                    "name": "getFramebufferHeight",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get framebuffer height in pixels (window height * DPI scale)",
+                    "desc_ja": "フレームバッファ高さをピクセルで取得（ウィンドウ高さ × DPIスケール）",
+                    "snippet": "getFramebufferHeight()"
+                },
+                {
+                    "name": "getAspectRatio",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get window aspect ratio (width / height)",
+                    "desc_ja": "ウィンドウのアスペクト比を取得（幅 / 高さ）",
+                    "snippet": "getAspectRatio()"
+                },
+                {
+                    "name": "setOrientation",
+                    "params": "mask",
+                    "params_typed": "Orientation mask",
+                    "return_type": "void",
+                    "desc": "Set allowed screen orientations (mobile). Values: Orientation::Portrait, Landscape, All",
+                    "desc_ja": "画面の向きを設定（モバイル用）。Orientation::Portrait, Landscape, All",
+                    "snippet": "setOrientation(${1:Orientation::All})"
+                },
+                {
+                    "name": "setIndependentFps",
+                    "params": "updateFps, drawFps",
+                    "params_typed": "float updateFps, float drawFps",
+                    "return_type": "void",
+                    "desc": "Set independent update and draw frame rates",
+                    "desc_ja": "updateとdrawのフレームレートを個別に設定",
+                    "snippet": "setIndependentFps(${1:60}, ${2:30})"
+                },
+                {
+                    "name": "grabScreen",
+                    "params": "outPixels",
+                    "params_typed": "Pixels& outPixels",
+                    "return_type": "bool",
+                    "desc": "Capture current screen to Pixels",
+                    "desc_ja": "現在の画面をPixelsにキャプチャ",
+                    "snippet": "grabScreen(${1:pixels})"
+                },
+                {
+                    "name": "isFullscreen",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if window is fullscreen",
+                    "desc_ja": "フルスクリーンかどうか確認",
+                    "snippet": "isFullscreen()"
+                },
+                {
+                    "name": "setFullscreen",
+                    "params": "fullscreen",
+                    "params_typed": "bool fullscreen",
+                    "return_type": "void",
+                    "desc": "Set fullscreen mode",
+                    "desc_ja": "フルスクリーンを設定",
+                    "snippet": "setFullscreen(${1:true})"
+                },
+                {
+                    "name": "redraw",
+                    "params": "count",
+                    "params_typed": "int count = 1",
+                    "return_type": "void",
+                    "desc": "Request extra redraws (useful for event-driven rendering)",
+                    "desc_ja": "追加の再描画を要求（イベント駆動レンダリング用）",
+                    "snippet": "redraw()"
                 }
             ]
         },
@@ -2115,6 +2439,15 @@ const TrussCAPI = {
                     "desc": "Convert to upper case",
                     "desc_ja": "大文字に変換",
                     "snippet": "toUpper(${1:str})"
+                },
+                {
+                    "name": "intersectRect",
+                    "params": "x1, y1, w1, h1, x2, y2, w2, h2, ox, oy, ow, oh",
+                    "params_typed": "float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2, float& ox, float& oy, float& ow, float& oh",
+                    "return_type": "void",
+                    "desc": "Compute intersection of two rectangles",
+                    "desc_ja": "2つの矩形の交差部分を計算",
+                    "snippet": "intersectRect(${1:x1}, ${2:y1}, ${3:w1}, ${4:h1}, ${5:x2}, ${6:y2}, ${7:w2}, ${8:h2}, ${9:ox}, ${10:oy}, ${11:ow}, ${12:oh})"
                 }
             ]
         },
@@ -3747,6 +4080,24 @@ const TrussCAPI = {
                     "desc": "Set far clipping plane",
                     "desc_ja": "遠クリップ面を設定",
                     "snippet": "setFarClip(${1:10000})"
+                },
+                {
+                    "name": "getNearClip",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get near clipping plane distance",
+                    "desc_ja": "近クリップ面の距離を取得",
+                    "snippet": "getNearClip()"
+                },
+                {
+                    "name": "getFarClip",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "float",
+                    "desc": "Get far clipping plane distance",
+                    "desc_ja": "遠クリップ面の距離を取得",
+                    "snippet": "getFarClip()"
                 },
                 {
                     "name": "enableMouseInput",
