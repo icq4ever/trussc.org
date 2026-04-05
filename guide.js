@@ -31,11 +31,11 @@ async function loadApiMapping() {
 }
 
 /**
- * Render API tables from JSON data
+ * Render a list of categories as collapsible API tables
  */
-function renderApiTables(data, lang, container) {
+function renderCategoryTables(categories, lang, colHeaders) {
     const notesLabel = { en: 'Notes', ja: '備考', ko: '비고' };
-    const html = data.categories.map(cat => {
+    return categories.map(cat => {
         const categoryName = lang === 'ja' ? cat.name_ja : lang === 'ko' ? (cat.name_ko || cat.name) : cat.name;
         const rows = cat.mappings.map(m => {
             const notes = lang === 'ja' ? (m.notes_ja || m.notes) : lang === 'ko' ? (m.notes_ko || m.notes) : m.notes;
@@ -52,8 +52,8 @@ function renderApiTables(data, lang, container) {
                     <table class="api-table">
                         <thead>
                             <tr>
-                                <th>openFrameworks</th>
-                                <th>TrussC</th>
+                                <th>${colHeaders[0]}</th>
+                                <th>${colHeaders[1]}</th>
                                 <th>${notesLabel[lang] || 'Notes'}</th>
                             </tr>
                         </thead>
@@ -65,6 +65,32 @@ function renderApiTables(data, lang, container) {
             </div>
         `;
     }).join('\n');
+}
+
+/**
+ * Render API tables from JSON data
+ */
+function renderApiTables(data, lang, container) {
+    const sectionLabels = {
+        en: ['Functions', 'Types'],
+        ja: ['関数', '型'],
+        ko: ['함수', '타입']
+    };
+    const labels = sectionLabels[lang] || sectionLabels.en;
+
+    let html = '';
+
+    // Functions section
+    if (data.functions && data.functions.length > 0) {
+        html += `<h3 class="api-section-heading">${labels[0]}</h3>`;
+        html += renderCategoryTables(data.functions, lang, ['openFrameworks', 'TrussC']);
+    }
+
+    // Types section
+    if (data.types && data.types.length > 0) {
+        html += `<h3 class="api-section-heading">${labels[1]}</h3>`;
+        html += renderCategoryTables(data.types, lang, ['openFrameworks', 'TrussC']);
+    }
 
     container.innerHTML = html;
 }
