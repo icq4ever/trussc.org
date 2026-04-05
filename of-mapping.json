@@ -317,7 +317,7 @@
     {
       "id": "math",
       "name": "Math",
-      "name_ja": "수학",
+      "name_ja": "数学",
       "name_ko": "수학",
       "order": 4,
       "mappings": [
@@ -352,8 +352,8 @@
         {
           "of": "ofLerp",
           "tc": "lerp(a, b, t)",
-          "notes": "",
-          "notes_ja": "",
+          "notes": "std::lerp (C++20)",
+          "notes_ja": "std::lerp (C++20)",
           "notes_ko": ""
         },
         {
