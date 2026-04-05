@@ -34,7 +34,7 @@ git checkout angelscript
 
 ## Task 2: Update API Reference JS
 
-**File:** `sketch/trusssketch-api.js`
+**File:** `generated/trusssketch-api.js`
 
 ### Changes needed:
 - This file is auto-generated from `TrussC/docs/api-definition.yaml`
