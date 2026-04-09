@@ -5,11 +5,12 @@
 // Do not edit directly - edit api-definition.yaml instead
 
 const TrussCAPI = {
-    "version": "v0.4.0",
+    "version": "v0.4.1",
     "categories": [
         {
             "name": "Lifecycle",
             "name_ja": "ライフサイクル",
+            "name_ko": "라이프사이클",
             "functions": [
                 {
                     "name": "setup",
@@ -18,6 +19,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Called once at start",
                     "desc_ja": "開始時に一度呼ばれる",
+                    "desc_ko": "시작 시 한 번 호출됨",
                     "snippet": "void setup() {\n\t$0\n}"
                 },
                 {
@@ -27,6 +29,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Called every frame before draw",
                     "desc_ja": "毎フレーム、drawの前に呼ばれる",
+                    "desc_ko": "매 프레임 draw 이전에 호출됨",
                     "snippet": "void update() {\n\t$0\n}"
                 },
                 {
@@ -36,6 +39,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Called every frame after update",
                     "desc_ja": "毎フレーム、updateの後に呼ばれる",
+                    "desc_ko": "매 프레임 update 이후에 호출됨",
                     "snippet": "void draw() {\n\t$0\n}"
                 },
                 {
@@ -45,6 +49,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Called once before exit (optional user callback for cleanup)",
                     "desc_ja": "終了前に一度呼ばれる（オプショナルなクリーンアップコールバック）",
+                    "desc_ko": "종료 직전 한 번 호출됨 (선택적 정리용 콜백)",
                     "snippet": "void cleanup() {\n\t$0\n}"
                 },
                 {
@@ -54,6 +59,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Start the application main loop. Called from main()",
                     "desc_ja": "アプリケーションのメインループを開始。main()から呼ぶ",
+                    "desc_ko": "어플리케이션 메인 루프 시작. main()에서 호출",
                     "snippet": "runApp(${1:settings})"
                 }
             ]
@@ -61,6 +67,7 @@ const TrussCAPI = {
         {
             "name": "Events",
             "name_ja": "イベント",
+            "name_ko": "이벤트",
             "functions": [
                 {
                     "name": "mousePressed",
@@ -69,6 +76,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Mouse button pressed",
                     "desc_ja": "マウスボタンが押された",
+                    "desc_ko": "마우스 버튼이 눌렸을 때",
                     "snippet": "void mousePressed(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
@@ -78,6 +86,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Mouse button released",
                     "desc_ja": "マウスボタンが離された",
+                    "desc_ko": "마우스 버튼이 떼졌을 때",
                     "snippet": "void mouseReleased(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
@@ -87,6 +96,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Mouse moved",
                     "desc_ja": "マウスが移動した",
+                    "desc_ko": "마우스가 움직였을 때",
                     "snippet": "void mouseMoved(float x, float y) {\n\t$0\n}"
                 },
                 {
@@ -96,6 +106,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Mouse dragged",
                     "desc_ja": "マウスがドラッグされた",
+                    "desc_ko": "마우스가 드래그되었을 때",
                     "snippet": "void mouseDragged(float x, float y, int button) {\n\t$0\n}"
                 },
                 {
@@ -105,6 +116,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Key pressed. Use KEY_* constants for special keys, or uppercase char literals for printable keys (e.g. key == 'A', key == '1')",
                     "desc_ja": "キーが押された。特殊キーはKEY_*定数、印字可能キーは大文字リテラル（例: key == 'A', key == '1'）で比較",
+                    "desc_ko": "키가 눌렸을 때. 특수 키는 KEY_* 상수, 출력 가능한 키는 대문자 리터럴(예: key == 'A', key == '1')로 비교",
                     "snippet": "void keyPressed(int key) {\n\t$0\n}"
                 },
                 {
@@ -114,6 +126,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Key released",
                     "desc_ja": "キーが離された",
+                    "desc_ko": "키가 떼졌을 때",
                     "snippet": "void keyReleased(int key) {\n\t$0\n}"
                 },
                 {
@@ -123,6 +136,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Window resized",
                     "desc_ja": "ウィンドウがリサイズされた",
+                    "desc_ko": "윈도우 크기가 변경되었을 때",
                     "snippet": "void windowResized(int width, int height) {\n\t$0\n}"
                 }
             ]
@@ -130,6 +144,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Color",
             "name_ja": "グラフィックス - 色",
+            "name_ko": "그래픽 - 색상",
             "functions": [
                 {
                     "name": "clear",
@@ -138,6 +153,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Clear screen. No args = transparent black (0,0,0,0)",
                     "desc_ja": "画面をクリア。引数なし = 透明黒 (0,0,0,0)",
+                    "desc_ko": "화면을 지움. 인자 없음 = 투명한 검정 (0,0,0,0)",
                     "snippet": "clear(${1:0.0})"
                 },
                 {
@@ -147,6 +163,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Clear screen. No args = transparent black (0,0,0,0)",
                     "desc_ja": "画面をクリア。引数なし = 透明黒 (0,0,0,0)",
+                    "desc_ko": "화면을 지움. 인자 없음 = 투명한 검정 (0,0,0,0)",
                     "snippet": "clear(${1:0.0})"
                 },
                 {
@@ -156,6 +173,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Clear screen. No args = transparent black (0,0,0,0)",
                     "desc_ja": "画面をクリア。引数なし = 透明黒 (0,0,0,0)",
+                    "desc_ko": "화면을 지움. 인자 없음 = 투명한 검정 (0,0,0,0)",
                     "snippet": "clear(${1:0.0})"
                 },
                 {
@@ -165,6 +183,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "desc_ja": "描画色を設定 (0.0-1.0)",
+                    "desc_ko": "그리기 색상을 설정 (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
                 {
@@ -174,6 +193,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "desc_ja": "描画色を設定 (0.0-1.0)",
+                    "desc_ko": "그리기 색상을 설정 (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
                 {
@@ -183,6 +203,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set drawing color (0.0-1.0)",
                     "desc_ja": "描画色を設定 (0.0-1.0)",
+                    "desc_ko": "그리기 색상을 설정 (0.0-1.0)",
                     "snippet": "setColor(${1:1.0}, ${2:1.0}, ${3:1.0})"
                 },
                 {
@@ -192,6 +213,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set color from HSB (H: 0-1)",
                     "desc_ja": "HSBで色を設定 (H: 0-1)",
+                    "desc_ko": "HSB로 색상을 설정 (H: 0-1)",
                     "snippet": "setColorHSB(${1:0.0}, ${2:1.0}, ${3:1.0})"
                 },
                 {
@@ -201,6 +223,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set color from OKLCH",
                     "desc_ja": "OKLCHで色を設定",
+                    "desc_ko": "OKLCH로 색상을 설정",
                     "snippet": "setColorOKLCH(${1:0.7}, ${2:0.15}, ${3:0.0})"
                 },
                 {
@@ -210,6 +233,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set color from OKLab",
                     "desc_ja": "OKLabで色を設定",
+                    "desc_ko": "OKLab으로 색상을 설정",
                     "snippet": "setColorOKLab(${1:0.7}, ${2:0.0}, ${3:0.0})"
                 }
             ]
@@ -217,6 +241,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Shapes",
             "name_ja": "グラフィックス - 図形",
+            "name_ko": "그래픽 - 도형",
             "functions": [
                 {
                     "name": "drawRect",
@@ -225,6 +250,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw rectangle",
                     "desc_ja": "矩形を描画",
+                    "desc_ko": "사각형 그리기",
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -234,6 +260,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw rectangle",
                     "desc_ja": "矩形を描画",
+                    "desc_ko": "사각형 그리기",
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -243,6 +270,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw rectangle",
                     "desc_ja": "矩形を描画",
+                    "desc_ko": "사각형 그리기",
                     "snippet": "drawRect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -252,6 +280,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw rounded rectangle (circular arc corners)",
                     "desc_ja": "角丸矩形を描画（円弧コーナー）",
+                    "desc_ko": "둥근 모서리 사각형 그리기 (원호 모서리)",
                     "snippet": "drawRectRounded(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
                 },
                 {
@@ -261,6 +290,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw rounded rectangle (circular arc corners)",
                     "desc_ja": "角丸矩形を描画（円弧コーナー）",
+                    "desc_ko": "둥근 모서리 사각형 그리기 (원호 모서리)",
                     "snippet": "drawRectRounded(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
                 },
                 {
@@ -270,6 +300,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw squircle rectangle (curvature-continuous corners, iOS-style)",
                     "desc_ja": "スクワークル矩形を描画（曲率連続コーナー、iOS風）",
+                    "desc_ko": "스쿼클 사각형 그리기 (곡률 연속 모서리, iOS 스타일)",
                     "snippet": "drawRectSquircle(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
                 },
                 {
@@ -279,6 +310,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw squircle rectangle (curvature-continuous corners, iOS-style)",
                     "desc_ja": "スクワークル矩形を描画（曲率連続コーナー、iOS風）",
+                    "desc_ko": "스쿼클 사각형 그리기 (곡률 연속 모서리, iOS 스타일)",
                     "snippet": "drawRectSquircle(${1:x}, ${2:y}, ${3:w}, ${4:h}, ${5:radius})"
                 },
                 {
@@ -288,6 +320,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw circle",
                     "desc_ja": "円を描画",
+                    "desc_ko": "원 그리기",
                     "snippet": "drawCircle(${1:x}, ${2:y}, ${3:radius})"
                 },
                 {
@@ -297,6 +330,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw circle",
                     "desc_ja": "円を描画",
+                    "desc_ko": "원 그리기",
                     "snippet": "drawCircle(${1:x}, ${2:y}, ${3:radius})"
                 },
                 {
@@ -306,6 +340,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw ellipse",
                     "desc_ja": "楕円を描画",
+                    "desc_ko": "타원 그리기",
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -315,6 +350,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw ellipse",
                     "desc_ja": "楕円を描画",
+                    "desc_ko": "타원 그리기",
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -324,6 +360,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw ellipse",
                     "desc_ja": "楕円を描画",
+                    "desc_ko": "타원 그리기",
                     "snippet": "drawEllipse(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -333,6 +370,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a single point",
                     "desc_ja": "点を描画",
+                    "desc_ko": "점 그리기",
                     "snippet": "drawPoint(${1:x}, ${2:y})"
                 },
                 {
@@ -342,6 +380,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a single point",
                     "desc_ja": "点を描画",
+                    "desc_ko": "점 그리기",
                     "snippet": "drawPoint(${1:x}, ${2:y})"
                 },
                 {
@@ -351,6 +390,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw line (2D or 3D)",
                     "desc_ja": "線を描画（2Dまたは3D）",
+                    "desc_ko": "선 그리기 (2D 또는 3D)",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -360,6 +400,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw line (2D or 3D)",
                     "desc_ja": "線を描画（2Dまたは3D）",
+                    "desc_ko": "선 그리기 (2D 또는 3D)",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -369,6 +410,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw line (2D or 3D)",
                     "desc_ja": "線を描画（2Dまたは3D）",
+                    "desc_ko": "선 그리기 (2D 또는 3D)",
                     "snippet": "drawLine(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -378,6 +420,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw triangle",
                     "desc_ja": "三角形を描画",
+                    "desc_ko": "삼각형 그리기",
                     "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
                 },
                 {
@@ -387,6 +430,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw triangle",
                     "desc_ja": "三角形を描画",
+                    "desc_ko": "삼각형 그리기",
                     "snippet": "drawTriangle(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}, ${5:x3}, ${6:y3})"
                 },
                 {
@@ -396,6 +440,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -405,6 +450,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -414,6 +460,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -423,6 +470,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -432,6 +480,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -441,6 +490,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D box (respects fill/noFill)",
                     "desc_ja": "3Dボックスを描画（fill/noFillに対応）",
+                    "desc_ko": "3D 박스 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawBox(${1:size})"
                 },
                 {
@@ -450,6 +500,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D sphere (respects fill/noFill)",
                     "desc_ja": "3D球体を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 구 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawSphere(${1:radius})"
                 },
                 {
@@ -459,6 +510,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D sphere (respects fill/noFill)",
                     "desc_ja": "3D球体を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 구 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawSphere(${1:radius})"
                 },
                 {
@@ -468,6 +520,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D sphere (respects fill/noFill)",
                     "desc_ja": "3D球体を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 구 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawSphere(${1:radius})"
                 },
                 {
@@ -477,6 +530,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D cone (respects fill/noFill)",
                     "desc_ja": "3D円錐を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 원뿔 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawCone(${1:radius}, ${2:height})"
                 },
                 {
@@ -486,6 +540,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D cone (respects fill/noFill)",
                     "desc_ja": "3D円錐を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 원뿔 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawCone(${1:radius}, ${2:height})"
                 },
                 {
@@ -495,6 +550,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw 3D cone (respects fill/noFill)",
                     "desc_ja": "3D円錐を描画（fill/noFillに対応）",
+                    "desc_ko": "3D 원뿔 그리기 (fill/noFill 적용됨)",
                     "snippet": "drawCone(${1:radius}, ${2:height})"
                 },
                 {
@@ -504,6 +560,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Begin drawing a shape",
                     "desc_ja": "図形の描画を開始",
+                    "desc_ko": "도형 그리기 시작",
                     "snippet": "beginShape()"
                 },
                 {
@@ -513,6 +570,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점 추가",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
                 {
@@ -522,6 +580,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점 추가",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
                 {
@@ -531,6 +590,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점 추가",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
                 {
@@ -540,6 +600,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점 추가",
                     "snippet": "vertex(${1:x}, ${2:y})"
                 },
                 {
@@ -549,6 +610,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "End drawing a shape",
                     "desc_ja": "図形の描画を終了",
+                    "desc_ko": "도형 그리기 종료",
                     "snippet": "endShape()"
                 },
                 {
@@ -558,6 +620,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Begin drawing a stroke (uses StrokeMesh internally)",
                     "desc_ja": "ストローク描画を開始（内部でStrokeMeshを使用）",
+                    "desc_ko": "stroke 그리기 시작 (내부적으로 StrokeMesh 사용)",
                     "snippet": "beginStroke()"
                 },
                 {
@@ -567,6 +630,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "End drawing a stroke",
                     "desc_ja": "ストローク描画を終了",
+                    "desc_ko": "stroke 그리기 종료",
                     "snippet": "endStroke()"
                 },
                 {
@@ -576,6 +640,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Begin batch line drawing. Add vertex pairs with vertex(), then call endLines(). Each pair of vertices draws one independent line segment. Use setColor() between vertices for per-line colors.",
                     "desc_ja": "バッチ線描画を開始。vertex()で頂点ペアを追加し、endLines()で描画。2頂点で1本の独立した線分。setColor()で頂点ごとに色を変更可能",
+                    "desc_ko": "배치 선 그리기 시작. vertex()로 정점 쌍을 추가한 뒤 endLines()를 호출. 각 정점 쌍이 독립적인 선분 하나를 그림. 정점 사이에 setColor()로 선마다 색상 지정 가능",
                     "snippet": "beginLines()"
                 },
                 {
@@ -585,6 +650,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "End batch line drawing and render all accumulated line segments",
                     "desc_ja": "バッチ線描画を終了し、蓄積された全線分を描画",
+                    "desc_ko": "배치 선 그리기 종료. 누적된 모든 선을 렌더링",
                     "snippet": "endLines()"
                 },
                 {
@@ -594,6 +660,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a single stroke segment (thick line with cap/join)",
                     "desc_ja": "単一のストロークを描画（太線、端点/結合スタイル対応）",
+                    "desc_ko": "단일 stroke 세그먼트를 그림 (캡/조인이 있는 굵은 선)",
                     "snippet": "drawStroke(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -603,6 +670,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a single stroke segment (thick line with cap/join)",
                     "desc_ja": "単一のストロークを描画（太線、端点/結合スタイル対応）",
+                    "desc_ko": "단일 stroke 세그먼트를 그림 (캡/조인이 있는 굵은 선)",
                     "snippet": "drawStroke(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -612,6 +680,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw text",
                     "desc_ja": "テキストを描画",
+                    "desc_ko": "비트맵 텍스트 그리기",
                     "snippet": "drawBitmapString(${1:\"text\"}, ${2:x}, ${3:y})"
                 },
                 {
@@ -621,6 +690,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw text with background highlight",
                     "desc_ja": "背景ハイライト付きでテキストを描画",
+                    "desc_ko": "배경 하이라이트와 함께 비트맵 텍스트 그리기",
                     "snippet": "drawBitmapStringHighlight(${1:\"text\"}, ${2:x}, ${3:y})"
                 },
                 {
@@ -630,6 +700,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Get bitmap string bounding box size",
                     "desc_ja": "ビットマップ文字列のバウンディングボックスサイズを取得",
+                    "desc_ko": "비트맵 문자열의 바운딩 박스 크기를 얻음",
                     "snippet": "getBitmapStringBounds(${1:\"text\"}, ${2:w}, ${3:h})"
                 },
                 {
@@ -639,6 +710,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set text alignment",
                     "desc_ja": "テキストの配置を設定",
+                    "desc_ko": "텍스트 정렬을 설정",
                     "snippet": "setTextAlign(TextAlign::${1:Left})"
                 },
                 {
@@ -648,6 +720,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set text alignment",
                     "desc_ja": "テキストの配置を設定",
+                    "desc_ko": "텍스트 정렬을 설정",
                     "snippet": "setTextAlign(TextAlign::${1:Left})"
                 },
                 {
@@ -657,6 +730,7 @@ const TrussCAPI = {
                     "return_type": "TextAlign",
                     "desc": "Get horizontal text alignment",
                     "desc_ja": "水平方向のテキスト配置を取得",
+                    "desc_ko": "수평 텍스트 정렬을 얻음",
                     "snippet": "getTextAlignH()"
                 },
                 {
@@ -666,6 +740,7 @@ const TrussCAPI = {
                     "return_type": "TextAlign",
                     "desc": "Get vertical text alignment",
                     "desc_ja": "垂直方向のテキスト配置を取得",
+                    "desc_ko": "수직 텍스트 정렬을 얻음",
                     "snippet": "getTextAlignV()"
                 },
                 {
@@ -675,6 +750,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get bitmap font height",
                     "desc_ja": "ビットマップフォントの高さを取得",
+                    "desc_ko": "비트맵 폰트 높이를 얻음",
                     "snippet": "getBitmapFontHeight()"
                 },
                 {
@@ -684,6 +760,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get text width",
                     "desc_ja": "テキストの幅を取得",
+                    "desc_ko": "비트맵 텍스트 너비를 얻음",
                     "snippet": "getBitmapStringWidth(${1:\"text\"})"
                 },
                 {
@@ -693,6 +770,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get text height",
                     "desc_ja": "テキストの高さを取得",
+                    "desc_ko": "비트맵 텍스트 높이를 얻음",
                     "snippet": "getBitmapStringHeight(${1:\"text\"})"
                 },
                 {
@@ -702,6 +780,7 @@ const TrussCAPI = {
                     "return_type": "Rect",
                     "desc": "Get text bounding box",
                     "desc_ja": "テキストのバウンディングボックスを取得",
+                    "desc_ko": "비트맵 텍스트 바운딩 박스를 얻음",
                     "snippet": "getBitmapStringBBox(${1:\"text\"}, ${2:x}, ${3:y})"
                 },
                 {
@@ -711,6 +790,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set line height for bitmap string newlines (default: 16)",
                     "desc_ja": "ビットマップ文字列の改行時の行の高さを設定（デフォルト: 16）",
+                    "desc_ko": "비트맵 문자열 개행 시의 줄 높이를 설정 (기본값: 16)",
                     "snippet": "setBitmapLineHeight(${1:16})"
                 },
                 {
@@ -720,6 +800,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get line height for bitmap string newlines",
                     "desc_ja": "ビットマップ文字列の改行時の行の高さを取得",
+                    "desc_ko": "비트맵 문자열 개행 시의 줄 높이를 얻음",
                     "snippet": "getBitmapLineHeight()"
                 },
                 {
@@ -729,6 +810,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set target frame rate (VSYNC = -1.0)",
                     "desc_ja": "ターゲットフレームレートを設定 (VSYNC = -1.0)",
+                    "desc_ko": "목표 프레임레이트를 설정 (VSYNC = -1.0)",
                     "snippet": "setFps(${1:60.0})"
                 }
             ]
@@ -736,6 +818,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Style",
             "name_ja": "グラフィックス - スタイル",
+            "name_ko": "그래픽 - 스타일",
             "functions": [
                 {
                     "name": "fill",
@@ -744,6 +827,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable fill mode (shapes are solid, no outline)",
                     "desc_ja": "塗りつぶしモードを有効化（シェイプは塗りつぶし、輪郭なし）",
+                    "desc_ko": "채우기 모드 활성화 (도형이 채워지고 외곽선 없음)",
                     "snippet": "fill()"
                 },
                 {
@@ -753,6 +837,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable stroke mode (shapes show outline only)",
                     "desc_ja": "ストロークモードを有効化（シェイプは輪郭のみ）",
+                    "desc_ko": "stroke 모드 활성화 (도형은 외곽선만 표시)",
                     "snippet": "noFill()"
                 },
                 {
@@ -762,6 +847,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set stroke width",
                     "desc_ja": "ストロークの太さを設定",
+                    "desc_ko": "stroke 두께를 설정",
                     "snippet": "setStrokeWeight(${1:1.0})"
                 },
                 {
@@ -771,6 +857,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get current stroke width",
                     "desc_ja": "現在のストロークの太さを取得",
+                    "desc_ko": "현재 storke 두께를 얻음",
                     "snippet": "getStrokeWeight()"
                 },
                 {
@@ -780,6 +867,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set stroke cap style (Butt, Round, Square)",
                     "desc_ja": "ストローク端点のスタイルを設定",
+                    "desc_ko": "stroke 끝점 스타일을 설정 (Butt, Round, Square)",
                     "snippet": "setStrokeCap(StrokeCap::${1:Round})"
                 },
                 {
@@ -789,6 +877,7 @@ const TrussCAPI = {
                     "return_type": "StrokeCap",
                     "desc": "Get current stroke cap style",
                     "desc_ja": "現在のストローク端点スタイルを取得",
+                    "desc_ko": "현재 stroke 끝점 스타일을 얻음",
                     "snippet": "getStrokeCap()"
                 },
                 {
@@ -798,6 +887,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set stroke join style (Miter, Round, Bevel)",
                     "desc_ja": "ストローク結合部のスタイルを設定",
+                    "desc_ko": "stroke 결합부 스타일을 설정 (Miter, Round, Bevel)",
                     "snippet": "setStrokeJoin(StrokeJoin::${1:Round})"
                 },
                 {
@@ -807,6 +897,7 @@ const TrussCAPI = {
                     "return_type": "StrokeJoin",
                     "desc": "Get current stroke join style",
                     "desc_ja": "現在のストローク結合部スタイルを取得",
+                    "desc_ko": "현재 stroke 결합부 스타일을 얻음",
                     "snippet": "getStrokeJoin()"
                 },
                 {
@@ -816,6 +907,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if fill mode is enabled",
                     "desc_ja": "塗りつぶしモードが有効か確認",
+                    "desc_ko": "채우기 모드 활성 여부 확인",
                     "snippet": "isFillEnabled()"
                 },
                 {
@@ -825,6 +917,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if stroke mode is enabled",
                     "desc_ja": "ストロークモードが有効か確認",
+                    "desc_ko": "stroke 모드 활성 여부 확인",
                     "snippet": "isStrokeEnabled()"
                 },
                 {
@@ -834,6 +927,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set circle segment count",
                     "desc_ja": "円の分割数を設定",
+                    "desc_ko": "원의 분할 개수를 설정",
                     "snippet": "setCircleResolution(${1:32})"
                 },
                 {
@@ -843,6 +937,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get circle segment count",
                     "desc_ja": "円の分割数を取得",
+                    "desc_ko": "원의 분할 개수를 얻음",
                     "snippet": "getCircleResolution()"
                 },
                 {
@@ -852,6 +947,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Save current style state (color, stroke, fill)",
                     "desc_ja": "現在のスタイル状態を保存（色、ストローク、塗りつぶし）",
+                    "desc_ko": "현재 스타일 상태를 저장 (색상, 스트로크, 채우기)",
                     "snippet": "pushStyle()"
                 },
                 {
@@ -861,6 +957,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Restore previous style state",
                     "desc_ja": "保存したスタイル状態を復元",
+                    "desc_ko": "이전 스타일 상태를 복원",
                     "snippet": "popStyle()"
                 },
                 {
@@ -870,6 +967,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset style to default values (white color, fill enabled, stroke disabled)",
                     "desc_ja": "スタイルをデフォルト値にリセット（白色、塗りつぶし有効、ストローク無効）",
+                    "desc_ko": "스타일을 기본값으로 초기화 (흰색, 채우기 활성, 스트로크 비활성)",
                     "snippet": "resetStyle()"
                 },
                 {
@@ -879,6 +977,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Get current fill color",
                     "desc_ja": "現在の塗りつぶし色を取得",
+                    "desc_ko": "현재 채우기 색상을 얻음",
                     "snippet": "getColor()"
                 },
                 {
@@ -888,6 +987,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set scissor clipping rectangle. Also available via RectNode::setClipping(true)",
                     "desc_ja": "シザー（クリッピング）矩形を設定。RectNode::setClipping(true)でも使用可",
+                    "desc_ko": "시저(클리핑) 사각형을 설정. RectNode::setClipping(true)로도 사용 가능",
                     "snippet": "setScissor(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -897,6 +997,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset (disable) scissor clipping",
                     "desc_ja": "シザー（クリッピング）を解除",
+                    "desc_ko": "시저(클리핑)를 해제",
                     "snippet": "resetScissor()"
                 },
                 {
@@ -906,6 +1007,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Push scissor clipping rectangle onto stack",
                     "desc_ja": "シザー矩形をスタックにプッシュ",
+                    "desc_ko": "시저 사각형을 스택에 푸시",
                     "snippet": "pushScissor(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -915,6 +1017,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Pop scissor clipping rectangle from stack",
                     "desc_ja": "シザー矩形をスタックからポップ",
+                    "desc_ko": "시저 사각형을 스택에서 복원",
                     "snippet": "popScissor()"
                 },
                 {
@@ -924,6 +1027,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set blend mode. BlendMode::Alpha (default), Add, Multiply, Screen, Subtract, Disabled",
                     "desc_ja": "ブレンドモードを設定。BlendMode::Alpha（デフォルト）, Add, Multiply, Screen, Subtract, Disabled",
+                    "desc_ko": "블렌드 모드를 설정. BlendMode::Alpha (기본값), Add, Multiply, Screen, Subtract, Disabled",
                     "snippet": "setBlendMode(${1:BlendMode::Add})"
                 },
                 {
@@ -933,6 +1037,7 @@ const TrussCAPI = {
                     "return_type": "BlendMode",
                     "desc": "Get current blend mode",
                     "desc_ja": "現在のブレンドモードを取得",
+                    "desc_ko": "현재 블렌드 모드를 얻음",
                     "snippet": "getBlendMode()"
                 },
                 {
@@ -942,6 +1047,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset blend mode to Alpha (default)",
                     "desc_ja": "ブレンドモードをAlpha（デフォルト）にリセット",
+                    "desc_ko": "블렌드 모드를 Alpha (기본값)로 초기화",
                     "snippet": "resetBlendMode()"
                 },
                 {
@@ -951,6 +1057,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Push current style (color, fill, stroke, blend) onto stack",
                     "desc_ja": "現在のスタイル（色、塗り、ストローク、ブレンド）をスタックにプッシュ",
+                    "desc_ko": "현재 스타일(색상, 채우기, 스트로크, 블렌드)을 스택에 푸시",
                     "snippet": "pushStyle()"
                 },
                 {
@@ -960,6 +1067,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Pop style from stack, restoring previous state",
                     "desc_ja": "スタイルをスタックからポップし、前の状態を復元",
+                    "desc_ko": "스택에서 스타일을 꺼내서 이전 상태로 복원",
                     "snippet": "popStyle()"
                 },
                 {
@@ -969,6 +1077,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset all style settings to defaults",
                     "desc_ja": "全スタイル設定をデフォルトにリセット",
+                    "desc_ko": "모든 스타일 설정을 기본값으로 초기화",
                     "snippet": "resetStyle()"
                 }
             ]
@@ -976,6 +1085,7 @@ const TrussCAPI = {
         {
             "name": "Transform",
             "name_ja": "変換",
+            "name_ko": "변환",
             "functions": [
                 {
                     "name": "translate",
@@ -984,6 +1094,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Move origin",
                     "desc_ja": "原点を移動",
+                    "desc_ko": "원점을 이동",
                     "snippet": "translate(${1:x}, ${2:y})"
                 },
                 {
@@ -993,6 +1104,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Move origin",
                     "desc_ja": "原点を移動",
+                    "desc_ko": "원점을 이동",
                     "snippet": "translate(${1:x}, ${2:y})"
                 },
                 {
@@ -1002,6 +1114,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
                     "desc_ja": "ラジアンで回転（単軸、オイラー角、またはクォータニオン）",
+                    "desc_ko": "라디안으로 회전 (단일 축, 오일러 각도 또는 쿼터니언)",
                     "snippet": "rotate(${1:radians})"
                 },
                 {
@@ -1011,6 +1124,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
                     "desc_ja": "ラジアンで回転（単軸、オイラー角、またはクォータニオン）",
+                    "desc_ko": "라디안으로 회전 (단일 축, 오일러 각도 또는 쿼터니언)",
                     "snippet": "rotate(${1:radians})"
                 },
                 {
@@ -1020,6 +1134,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
                     "desc_ja": "ラジアンで回転（単軸、オイラー角、またはクォータニオン）",
+                    "desc_ko": "라디안으로 회전 (단일 축, 오일러 각도 또는 쿼터니언)",
                     "snippet": "rotate(${1:radians})"
                 },
                 {
@@ -1029,6 +1144,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by radians (single axis, euler angles, or quaternion)",
                     "desc_ja": "ラジアンで回転（単軸、オイラー角、またはクォータニオン）",
+                    "desc_ko": "라디안으로 회전 (단일 축, 오일러 각도 또는 쿼터니언)",
                     "snippet": "rotate(${1:radians})"
                 },
                 {
@@ -1038,6 +1154,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by degrees",
                     "desc_ja": "度で回転",
+                    "desc_ko": "도(degree)로 회전",
                     "snippet": "rotateDeg(${1:degrees})"
                 },
                 {
@@ -1047,6 +1164,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by degrees",
                     "desc_ja": "度で回転",
+                    "desc_ko": "도(degree)로 회전",
                     "snippet": "rotateDeg(${1:degrees})"
                 },
                 {
@@ -1056,6 +1174,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate by degrees",
                     "desc_ja": "度で回転",
+                    "desc_ko": "도(degree)로 회전",
                     "snippet": "rotateDeg(${1:degrees})"
                 },
                 {
@@ -1065,6 +1184,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around X axis",
                     "desc_ja": "X軸周りに回転",
+                    "desc_ko": "X축을 중심으로 회전",
                     "snippet": "rotateX(${1:radians})"
                 },
                 {
@@ -1074,6 +1194,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around Y axis",
                     "desc_ja": "Y軸周りに回転",
+                    "desc_ko": "Y축을 중심으로 회전",
                     "snippet": "rotateY(${1:radians})"
                 },
                 {
@@ -1083,6 +1204,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around Z axis",
                     "desc_ja": "Z軸周りに回転",
+                    "desc_ko": "Z축을 중심으로 회전",
                     "snippet": "rotateZ(${1:radians})"
                 },
                 {
@@ -1092,6 +1214,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around X axis (degrees)",
                     "desc_ja": "X軸周りに回転（度）",
+                    "desc_ko": "X축을 중심으로 회전 (도)",
                     "snippet": "rotateXDeg(${1:degrees})"
                 },
                 {
@@ -1101,6 +1224,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around Y axis (degrees)",
                     "desc_ja": "Y軸周りに回転（度）",
+                    "desc_ko": "Y축을 중심으로 회전 (도)",
                     "snippet": "rotateYDeg(${1:degrees})"
                 },
                 {
@@ -1110,6 +1234,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Rotate around Z axis (degrees)",
                     "desc_ja": "Z軸周りに回転（度）",
+                    "desc_ko": "Z축을 중심으로 회전 (도)",
                     "snippet": "rotateZDeg(${1:degrees})"
                 },
                 {
@@ -1119,6 +1244,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Scale",
                     "desc_ja": "拡大縮小",
+                    "desc_ko": "크기 조절",
                     "snippet": "scale(${1:s})"
                 },
                 {
@@ -1128,6 +1254,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Scale",
                     "desc_ja": "拡大縮小",
+                    "desc_ko": "크기 조절",
                     "snippet": "scale(${1:s})"
                 },
                 {
@@ -1137,6 +1264,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Save transform state",
                     "desc_ja": "変換状態を保存",
+                    "desc_ko": "변환 상태를 저장",
                     "snippet": "pushMatrix()"
                 },
                 {
@@ -1146,6 +1274,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Restore transform state",
                     "desc_ja": "変換状態を復元",
+                    "desc_ko": "변환 상태를 복원",
                     "snippet": "popMatrix()"
                 },
                 {
@@ -1155,6 +1284,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Get current transformation matrix",
                     "desc_ja": "現在の変換行列を取得",
+                    "desc_ko": "현재 변환 행렬을 얻음",
                     "snippet": "getCurrentMatrix()"
                 },
                 {
@@ -1164,6 +1294,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset transformation matrix to identity",
                     "desc_ja": "変換行列をリセット",
+                    "desc_ko": "변환 행렬을 단위 행렬로 초기화",
                     "snippet": "resetMatrix()"
                 },
                 {
@@ -1173,6 +1304,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set transformation matrix directly",
                     "desc_ja": "変換行列を直接設定",
+                    "desc_ko": "변환 행렬을 직접 설정",
                     "snippet": "setMatrix(${1:mat})"
                 }
             ]
@@ -1180,6 +1312,7 @@ const TrussCAPI = {
         {
             "name": "Window & Input",
             "name_ja": "ウィンドウと入力",
+            "name_ko": "윈도우 & 입력",
             "functions": [
                 {
                     "name": "getWindowWidth",
@@ -1188,6 +1321,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get canvas width",
                     "desc_ja": "キャンバスの幅を取得",
+                    "desc_ko": "캔버스 너비를 얻음",
                     "snippet": "getWindowWidth()"
                 },
                 {
@@ -1197,6 +1331,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get canvas height",
                     "desc_ja": "キャンバスの高さを取得",
+                    "desc_ko": "캔버스 높이를 얻음",
                     "snippet": "getWindowHeight()"
                 },
                 {
@@ -1206,6 +1341,7 @@ const TrussCAPI = {
                     "return_type": "Vec2",
                     "desc": "Get canvas size as Vec2",
                     "desc_ja": "キャンバスのサイズをVec2で取得",
+                    "desc_ko": "캔버스 크기를 Vec2로 얻음",
                     "snippet": "getWindowSize()"
                 },
                 {
@@ -1214,7 +1350,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Request application exit. Can be cancelled by listening to events().exitRequested and setting args.cancel = true",
-                    "desc_ja": "アプリケーション終了を要求。events().exitRequestedをリッスンしてargs.cancel = trueでキャンセル可能"
+                    "desc_ja": "アプリケーション終了を要求。events().exitRequestedをリッスンしてargs.cancel = trueでキャンセル可能",
+                    "desc_ko": "어플리케이션 종료를 요청. events().exitRequested를 수신하고 args.cancel = true로 설정하면 취소 가능"
                 },
                 {
                     "name": "exitApp",
@@ -1222,7 +1359,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Immediately exit the application (cannot be cancelled)",
-                    "desc_ja": "アプリケーションを即座に終了（キャンセル不可）"
+                    "desc_ja": "アプリケーションを即座に終了（キャンセル不可）",
+                    "desc_ko": "어플리케이션을 즉시 종료 (취소 불가)"
                 },
                 {
                     "name": "loadDialog",
@@ -1230,7 +1368,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title = \"\", const string& message = \"\", const string& defaultPath = \"\", bool folderSelection = false",
                     "return_type": "FileDialogResult",
                     "desc": "Show file open dialog. Returns FileDialogResult with filePath, fileName, success",
-                    "desc_ja": "ファイル選択ダイアログを表示。FileDialogResult（filePath, fileName, success）を返す"
+                    "desc_ja": "ファイル選択ダイアログを表示。FileDialogResult（filePath, fileName, success）を返す",
+                    "desc_ko": "파일 열기 대화상자 표시. filePath, fileName, success가 담긴 FileDialogResult 반환"
                 },
                 {
                     "name": "saveDialog",
@@ -1238,7 +1377,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title = \"\", const string& message = \"\", const string& defaultPath = \"\", const string& defaultName = \"\"",
                     "return_type": "FileDialogResult",
                     "desc": "Show file save dialog. Returns FileDialogResult with filePath, fileName, success",
-                    "desc_ja": "ファイル保存ダイアログを表示。FileDialogResult（filePath, fileName, success）を返す"
+                    "desc_ja": "ファイル保存ダイアログを表示。FileDialogResult（filePath, fileName, success）を返す",
+                    "desc_ko": "파일 저장 대화상자 표시. filePath, fileName, success가 담긴 FileDialogResult 반환"
                 },
                 {
                     "name": "alertDialog",
@@ -1246,7 +1386,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message",
                     "return_type": "void",
                     "desc": "Show alert dialog with OK button",
-                    "desc_ja": "OKボタン付きのアラートダイアログを表示"
+                    "desc_ja": "OKボタン付きのアラートダイアログを表示",
+                    "desc_ko": "OK 버튼이 있는 알림 대화상자 표시"
                 },
                 {
                     "name": "confirmDialog",
@@ -1254,7 +1395,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message",
                     "return_type": "bool",
                     "desc": "Show Yes/No confirmation dialog. Returns true if Yes clicked",
-                    "desc_ja": "Yes/No確認ダイアログを表示。Yesが押されたらtrueを返す"
+                    "desc_ja": "Yes/No確認ダイアログを表示。Yesが押されたらtrueを返す",
+                    "desc_ko": "Yes/No 확인 대화상자 표시. Yes를 누르면 true 반환"
                 },
                 {
                     "name": "loadDialogAsync",
@@ -1262,7 +1404,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message, const string& defaultPath, bool folderSelection, function<void(const FileDialogResult&)> callback",
                     "return_type": "void",
                     "desc": "Show file open dialog asynchronously. Callback receives FileDialogResult",
-                    "desc_ja": "ファイル選択ダイアログを非同期で表示。コールバックにFileDialogResultが渡される"
+                    "desc_ja": "ファイル選択ダイアログを非同期で表示。コールバックにFileDialogResultが渡される",
+                    "desc_ko": "파일 열기 대화상자를 비동기로 표시. 콜백에 FileDialogResult가 전달됨"
                 },
                 {
                     "name": "saveDialogAsync",
@@ -1270,7 +1413,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message, const string& defaultPath, const string& defaultName, function<void(const FileDialogResult&)> callback",
                     "return_type": "void",
                     "desc": "Show file save dialog asynchronously. Callback receives FileDialogResult",
-                    "desc_ja": "ファイル保存ダイアログを非同期で表示。コールバックにFileDialogResultが渡される"
+                    "desc_ja": "ファイル保存ダイアログを非同期で表示。コールバックにFileDialogResultが渡される",
+                    "desc_ko": "파일 저장 대화상자를 비동기로 표시. 콜백에 FileDialogResult가 전달됨"
                 },
                 {
                     "name": "alertDialogAsync",
@@ -1278,7 +1422,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message, function<void()> callback = nullptr",
                     "return_type": "void",
                     "desc": "Show alert dialog asynchronously. Callback is called when dismissed",
-                    "desc_ja": "アラートダイアログを非同期で表示。閉じた時にコールバックが呼ばれる"
+                    "desc_ja": "アラートダイアログを非同期で表示。閉じた時にコールバックが呼ばれる",
+                    "desc_ko": "알림 대화상자를 비동기로 표시. 닫힐 때 콜백 호출"
                 },
                 {
                     "name": "confirmDialogAsync",
@@ -1286,7 +1431,8 @@ const TrussCAPI = {
                     "params_typed": "const string& title, const string& message, function<void(bool)> callback",
                     "return_type": "void",
                     "desc": "Show Yes/No dialog asynchronously. Callback receives true if Yes clicked",
-                    "desc_ja": "Yes/No確認ダイアログを非同期で表示。Yesが押されたらコールバックにtrueが渡される"
+                    "desc_ja": "Yes/No確認ダイアログを非同期で表示。Yesが押されたらコールバックにtrueが渡される",
+                    "desc_ko": "Yes/No 대화상자를 비동기로 표시. Yes를 누르면 콜백에 true 전달"
                 },
                 {
                     "name": "getMouseX",
@@ -1295,6 +1441,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get mouse X position",
                     "desc_ja": "マウスのX座標を取得",
+                    "desc_ko": "마우스 X 좌표를 얻음",
                     "snippet": "getMouseX()"
                 },
                 {
@@ -1304,6 +1451,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get mouse Y position",
                     "desc_ja": "マウスのY座標を取得",
+                    "desc_ko": "마우스 Y 좌표를 얻음",
                     "snippet": "getMouseY()"
                 },
                 {
@@ -1313,6 +1461,7 @@ const TrussCAPI = {
                     "return_type": "Vec2",
                     "desc": "Get mouse position as Vec2",
                     "desc_ja": "マウス座標をVec2で取得",
+                    "desc_ko": "마우스 좌표를 Vec2로 얻음",
                     "snippet": "getMousePos()"
                 },
                 {
@@ -1322,6 +1471,7 @@ const TrussCAPI = {
                     "return_type": "Vec2",
                     "desc": "Get global mouse position as Vec2",
                     "desc_ja": "グローバルマウス座標をVec2で取得",
+                    "desc_ko": "전역 마우스 좌표를 Vec2로 얻음",
                     "snippet": "getGlobalMousePos()"
                 },
                 {
@@ -1331,6 +1481,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get global mouse X (screen coordinates, not window-relative)",
                     "desc_ja": "グローバルマウスX座標（スクリーン座標、ウィンドウ相対ではない）",
+                    "desc_ko": "전역 마우스 X (스크린 좌표, 윈도우 상대 좌표가 아님)",
                     "snippet": "getGlobalMouseX()"
                 },
                 {
@@ -1340,6 +1491,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get global mouse Y (screen coordinates, not window-relative)",
                     "desc_ja": "グローバルマウスY座標（スクリーン座標、ウィンドウ相対ではない）",
+                    "desc_ko": "전역 마우스 Y (스크린 좌표, 윈도우 상대 좌표가 아님)",
                     "snippet": "getGlobalMouseY()"
                 },
                 {
@@ -1349,6 +1501,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get previous frame global mouse X",
                     "desc_ja": "前フレームのグローバルマウスX座標",
+                    "desc_ko": "이전 프레임의 전역 마우스 X 좌표",
                     "snippet": "getGlobalPMouseX()"
                 },
                 {
@@ -1358,6 +1511,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get previous frame global mouse Y",
                     "desc_ja": "前フレームのグローバルマウスY座標",
+                    "desc_ko": "이전 프레임의 전역 마우스 Y 좌표",
                     "snippet": "getGlobalPMouseY()"
                 },
                 {
@@ -1367,6 +1521,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get currently pressed mouse button",
                     "desc_ja": "現在押されているマウスボタンを取得",
+                    "desc_ko": "현재 눌린 마우스 버튼을 얻음",
                     "snippet": "getMouseButton()"
                 },
                 {
@@ -1376,6 +1531,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable/disable touch events firing as mouse events (for Android/iOS)",
                     "desc_ja": "タッチイベントをマウスイベントとして発火させるか設定（Android/iOS用）",
+                    "desc_ko": "터치 이벤트를 마우스 이벤트로 발생시킬지 설정 (Android/iOS용)",
                     "snippet": "setTouchAsMouse(${1:true})"
                 },
                 {
@@ -1385,6 +1541,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Get touchAsMouse state",
                     "desc_ja": "touchAsMouseの状態を取得",
+                    "desc_ko": "touchAsMouse 상태를 얻음",
                     "snippet": "getTouchAsMouse()"
                 },
                 {
@@ -1394,6 +1551,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Is mouse button pressed",
                     "desc_ja": "マウスボタンが押されているか",
+                    "desc_ko": "마우스 버튼이 눌려 있는지",
                     "snippet": "isMousePressed()"
                 },
                 {
@@ -1403,6 +1561,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Is specific key currently pressed",
                     "desc_ja": "指定キーが押されているか",
+                    "desc_ko": "지정한 키가 현재 눌려 있는지",
                     "snippet": "isKeyPressed(${1:key})"
                 },
                 {
@@ -1412,6 +1571,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Show the mouse cursor (default)",
                     "desc_ja": "マウスカーソルを表示（デフォルト）",
+                    "desc_ko": "마우스 커서를 표시 (기본값)",
                     "snippet": "showCursor()"
                 },
                 {
@@ -1421,6 +1581,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Hide the mouse cursor",
                     "desc_ja": "マウスカーソルを隠す",
+                    "desc_ko": "마우스 커서를 숨김",
                     "snippet": "hideCursor()"
                 },
                 {
@@ -1430,6 +1591,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set the mouse cursor shape",
                     "desc_ja": "マウスカーソルの形状を設定",
+                    "desc_ko": "마우스 커서 모양을 설정",
                     "snippet": "setCursor(${1:Cursor::Hand})"
                 },
                 {
@@ -1439,6 +1601,7 @@ const TrussCAPI = {
                     "return_type": "Cursor",
                     "desc": "Get the current mouse cursor shape",
                     "desc_ja": "現在のマウスカーソル形状を取得",
+                    "desc_ko": "현재 마우스 커서 모양을 얻음",
                     "snippet": "getCursor()"
                 },
                 {
@@ -1448,6 +1611,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Bind a custom image to a cursor slot (RGBA pixels or Image)",
                     "desc_ja": "カスタム画像をカーソルスロットにバインド（RGBAピクセルまたはImage）",
+                    "desc_ko": "커서 슬롯에 커스텀 이미지를 바인딩 (RGBA 픽셀 또는 Image)",
                     "snippet": "bindCursorImage(${1:Cursor::Custom0}, ${2:image})"
                 },
                 {
@@ -1457,6 +1621,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Bind a custom image to a cursor slot (RGBA pixels or Image)",
                     "desc_ja": "カスタム画像をカーソルスロットにバインド（RGBAピクセルまたはImage）",
+                    "desc_ko": "커서 슬롯에 커스텀 이미지를 바인딩 (RGBA 픽셀 또는 Image)",
                     "snippet": "bindCursorImage(${1:Cursor::Custom0}, ${2:image})"
                 },
                 {
@@ -1466,6 +1631,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Unbind a custom cursor image, restoring the system default",
                     "desc_ja": "カスタムカーソル画像を解除し、システムデフォルトに戻す",
+                    "desc_ko": "커스텀 커서 이미지를 해제하고 시스템 기본값으로 복원",
                     "snippet": "unbindCursorImage(${1:Cursor::Custom0})"
                 }
             ]
@@ -1473,6 +1639,7 @@ const TrussCAPI = {
         {
             "name": "Time - Frame",
             "name_ja": "時間 - フレーム",
+            "name_ko": "시간 - 프레임",
             "functions": [
                 {
                     "name": "getDeltaTime",
@@ -1481,6 +1648,7 @@ const TrussCAPI = {
                     "return_type": "double",
                     "desc": "Seconds since last frame",
                     "desc_ja": "前フレームからの経過秒数",
+                    "desc_ko": "이전 프레임으로부터의 경과 시간(초)",
                     "snippet": "getDeltaTime()"
                 },
                 {
@@ -1490,6 +1658,7 @@ const TrussCAPI = {
                     "return_type": "double",
                     "desc": "Current FPS",
                     "desc_ja": "現在のFPS",
+                    "desc_ko": "현재 FPS",
                     "snippet": "getFrameRate()"
                 },
                 {
@@ -1499,6 +1668,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get current FPS (alias for getFrameRate)",
                     "desc_ja": "現在のFPSを取得（getFrameRateのエイリアス）",
+                    "desc_ko": "현재 FPS를 얻음 (getFrameRate의 별칭)",
                     "snippet": "getFps()"
                 },
                 {
@@ -1508,6 +1678,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Total frames rendered",
                     "desc_ja": "描画されたフレーム数",
+                    "desc_ko": "렌더링된 총 프레임 수",
                     "snippet": "getFrameCount()"
                 }
             ]
@@ -1515,6 +1686,7 @@ const TrussCAPI = {
         {
             "name": "Memory",
             "name_ja": "メモリ",
+            "name_ko": "메모리",
             "functions": [
                 {
                     "name": "getSokolMemoryBytes",
@@ -1523,6 +1695,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Total bytes allocated by sokol libraries",
                     "desc_ja": "sokolライブラリの総メモリ使用量（バイト）",
+                    "desc_ko": "sokol 라이브러리로부터 할단된 총 바이트",
                     "snippet": "getSokolMemoryBytes()"
                 },
                 {
@@ -1532,6 +1705,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Number of active allocations in sokol libraries",
                     "desc_ja": "sokolライブラリのアクティブなアロケーション数",
+                    "desc_ko": "sokol 라이브러리의 활성 할당 개수",
                     "snippet": "getSokolMemoryAllocs()"
                 },
                 {
@@ -1541,6 +1715,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Release sokol_gl vertex/command buffers (auto re-allocated on next draw)",
                     "desc_ja": "sokol_glのバッファを解放（次の描画時に自動再確保）",
+                    "desc_ko": "sokol_gl의 정점/커맨드 버퍼를 해제 (다음 드로우 시 자동 재할당)",
                     "snippet": "releaseSglBuffers()"
                 },
                 {
@@ -1550,6 +1725,7 @@ const TrussCAPI = {
                     "return_type": "size_t",
                     "desc": "Get process memory usage in bytes (platform-specific)",
                     "desc_ja": "プロセスのメモリ使用量をバイトで取得（プラットフォーム固有）",
+                    "desc_ko": "프로세스의 메모리 사용량을 바이트로 얻음 (플랫폼-고유)",
                     "snippet": "getMemoryUsage()"
                 },
                 {
@@ -1559,6 +1735,7 @@ const TrussCAPI = {
                     "return_type": "size_t",
                     "desc": "Get number of active FBO objects",
                     "desc_ja": "アクティブなFBOオブジェクト数を取得",
+                    "desc_ko": "활성 FBO 객체 개수를 얻음",
                     "snippet": "getFboCount()"
                 },
                 {
@@ -1568,6 +1745,7 @@ const TrussCAPI = {
                     "return_type": "size_t",
                     "desc": "Get number of active Texture objects",
                     "desc_ja": "アクティブなTextureオブジェクト数を取得",
+                    "desc_ko": "활성 Texture 객체 개수를 얻음",
                     "snippet": "getTextureCount()"
                 },
                 {
@@ -1577,6 +1755,7 @@ const TrussCAPI = {
                     "return_type": "size_t",
                     "desc": "Get number of active Node objects in scene graph",
                     "desc_ja": "シーングラフ内のアクティブなNodeオブジェクト数を取得",
+                    "desc_ko": "씬 그래프의 활성 Node 객체 개수를 얻음",
                     "snippet": "getNodeCount()"
                 }
             ]
@@ -1584,6 +1763,7 @@ const TrussCAPI = {
         {
             "name": "Time - Elapsed",
             "name_ja": "時間 - 経過",
+            "name_ko": "시간 - 경과",
             "functions": [
                 {
                     "name": "getElapsedTimef",
@@ -1592,6 +1772,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Elapsed seconds (float)",
                     "desc_ja": "経過秒数（float）",
+                    "desc_ko": "경과 시간(초, float)",
                     "snippet": "getElapsedTimef()"
                 },
                 {
@@ -1601,6 +1782,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Elapsed seconds (alias for getElapsedTimef)",
                     "desc_ja": "経過秒数（getElapsedTimefのエイリアス）",
+                    "desc_ko": "경과 시간(초, getElapsedTimef의 별칭)",
                     "snippet": "getElapsedTime()"
                 },
                 {
@@ -1610,6 +1792,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Elapsed milliseconds (int64)",
                     "desc_ja": "経過ミリ秒（int64）",
+                    "desc_ko": "경과 시간(밀리초, int64)",
                     "snippet": "getElapsedTimeMillis()"
                 },
                 {
@@ -1619,6 +1802,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Elapsed microseconds (int64)",
                     "desc_ja": "経過マイクロ秒（int64）",
+                    "desc_ko": "경과 시간(마이크로초, int64)",
                     "snippet": "getElapsedTimeMicros()"
                 },
                 {
@@ -1628,6 +1812,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset elapsed time",
                     "desc_ja": "経過時間をリセット",
+                    "desc_ko": "경과 시간을 초기화",
                     "snippet": "resetElapsedTimeCounter()"
                 }
             ]
@@ -1635,6 +1820,7 @@ const TrussCAPI = {
         {
             "name": "Time - System",
             "name_ja": "時間 - システム",
+            "name_ko": "시간 - 시스템",
             "functions": [
                 {
                     "name": "getSystemTimeMillis",
@@ -1643,6 +1829,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Unix time in milliseconds",
                     "desc_ja": "Unix時間（ミリ秒）",
+                    "desc_ko": "Unix 시간(밀리초)",
                     "snippet": "getSystemTimeMillis()"
                 },
                 {
@@ -1652,6 +1839,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Unix time in microseconds",
                     "desc_ja": "Unix時間（マイクロ秒）",
+                    "desc_ko": "Unix 시간(마이크로초)",
                     "snippet": "getSystemTimeMicros()"
                 },
                 {
@@ -1661,6 +1849,7 @@ const TrussCAPI = {
                     "return_type": "uint64_t",
                     "desc": "Current Unix timestamp in seconds",
                     "desc_ja": "現在のUnixタイムスタンプ（秒）",
+                    "desc_ko": "현재 Unix 타임스탬프(초)",
                     "snippet": "getUnixTime()"
                 },
                 {
@@ -1670,6 +1859,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Formatted timestamp",
                     "desc_ja": "フォーマット済みタイムスタンプ",
+                    "desc_ko": "포맷된 타임스탬프",
                     "snippet": "getTimestampString()"
                 },
                 {
@@ -1679,6 +1869,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Formatted timestamp",
                     "desc_ja": "フォーマット済みタイムスタンプ",
+                    "desc_ko": "포맷된 타임스탬프",
                     "snippet": "getTimestampString()"
                 }
             ]
@@ -1686,6 +1877,7 @@ const TrussCAPI = {
         {
             "name": "Time - Current",
             "name_ja": "時間 - 現在",
+            "name_ko": "시간 - 현재",
             "functions": [
                 {
                     "name": "getSeconds",
@@ -1694,6 +1886,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current seconds (0-59)",
                     "desc_ja": "現在の秒 (0-59)",
+                    "desc_ko": "현재 초 (0-59)",
                     "snippet": "getSeconds()"
                 },
                 {
@@ -1703,6 +1896,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current minutes (0-59)",
                     "desc_ja": "現在の分 (0-59)",
+                    "desc_ko": "현재 분 (0-59)",
                     "snippet": "getMinutes()"
                 },
                 {
@@ -1712,6 +1906,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current hours (0-23)",
                     "desc_ja": "現在の時 (0-23)",
+                    "desc_ko": "현재 시 (0-23)",
                     "snippet": "getHours()"
                 },
                 {
@@ -1721,6 +1916,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current year",
                     "desc_ja": "現在の年",
+                    "desc_ko": "현재 연도",
                     "snippet": "getYear()"
                 },
                 {
@@ -1730,6 +1926,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current month (1-12)",
                     "desc_ja": "現在の月 (1-12)",
+                    "desc_ko": "현재 월 (1-12)",
                     "snippet": "getMonth()"
                 },
                 {
@@ -1739,6 +1936,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Current day (1-31)",
                     "desc_ja": "現在の日 (1-31)",
+                    "desc_ko": "현재 일 (1-31)",
                     "snippet": "getDay()"
                 },
                 {
@@ -1748,6 +1946,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Weekday (0=Sun, 6=Sat)",
                     "desc_ja": "曜日 (0=日, 6=土)",
+                    "desc_ko": "요일 (0=일, 6=토)",
                     "snippet": "getWeekday()"
                 }
             ]
@@ -1755,6 +1954,7 @@ const TrussCAPI = {
         {
             "name": "Math - Random & Noise",
             "name_ja": "数学 - 乱数とノイズ",
+            "name_ko": "수학 - 난수 & 노이즈",
             "functions": [
                 {
                     "name": "random",
@@ -1763,6 +1963,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Random number",
                     "desc_ja": "乱数",
+                    "desc_ko": "난수",
                     "snippet": "random()"
                 },
                 {
@@ -1772,6 +1973,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Random number",
                     "desc_ja": "乱数",
+                    "desc_ko": "난수",
                     "snippet": "random()"
                 },
                 {
@@ -1781,6 +1983,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Random number",
                     "desc_ja": "乱数",
+                    "desc_ko": "난수",
                     "snippet": "random()"
                 },
                 {
@@ -1790,6 +1993,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Random integer",
                     "desc_ja": "整数の乱数",
+                    "desc_ko": "정수 난수",
                     "snippet": "randomInt(${1:max})"
                 },
                 {
@@ -1799,6 +2003,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Random integer",
                     "desc_ja": "整数の乱数",
+                    "desc_ko": "정수 난수",
                     "snippet": "randomInt(${1:max})"
                 },
                 {
@@ -1808,6 +2013,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set random seed",
                     "desc_ja": "乱数シードを設定",
+                    "desc_ko": "난수 시드를 설정",
                     "snippet": "randomSeed(${1:seed})"
                 },
                 {
@@ -1817,6 +2023,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise",
                     "desc_ja": "パーリンノイズ",
+                    "desc_ko": "Perlin 노이즈",
                     "snippet": "noise(${1:x})"
                 },
                 {
@@ -1826,6 +2033,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise",
                     "desc_ja": "パーリンノイズ",
+                    "desc_ko": "Perlin 노이즈",
                     "snippet": "noise(${1:x})"
                 },
                 {
@@ -1835,6 +2043,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise",
                     "desc_ja": "パーリンノイズ",
+                    "desc_ko": "Perlin 노이즈",
                     "snippet": "noise(${1:x})"
                 },
                 {
@@ -1844,6 +2053,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "desc_ja": "パーリンノイズ (-1.0〜1.0)",
+                    "desc_ko": "Perlin 노이즈 (-1.0~1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
                 {
@@ -1853,6 +2063,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "desc_ja": "パーリンノイズ (-1.0〜1.0)",
+                    "desc_ko": "Perlin 노이즈 (-1.0~1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
                 {
@@ -1862,6 +2073,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "desc_ja": "パーリンノイズ (-1.0〜1.0)",
+                    "desc_ko": "Perlin 노이즈 (-1.0~1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
                 {
@@ -1871,6 +2083,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Perlin noise (-1.0 to 1.0)",
                     "desc_ja": "パーリンノイズ (-1.0〜1.0)",
+                    "desc_ko": "Perlin 노이즈 (-1.0~1.0)",
                     "snippet": "signedNoise(${1:x})"
                 },
                 {
@@ -1880,6 +2093,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Fractal Brownian Motion noise",
                     "desc_ja": "フラクタルノイズ",
+                    "desc_ko": "Fractal Brownian Motion 노이즈",
                     "snippet": "fbm(${1:x}, ${2:y})"
                 },
                 {
@@ -1889,6 +2103,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Fractal Brownian Motion noise",
                     "desc_ja": "フラクタルノイズ",
+                    "desc_ko": "Fractal Brownian Motion 노이즈",
                     "snippet": "fbm(${1:x}, ${2:y})"
                 }
             ]
@@ -1896,6 +2111,7 @@ const TrussCAPI = {
         {
             "name": "Math - Interpolation",
             "name_ja": "数学 - 補間",
+            "name_ko": "수학 - 보간",
             "functions": [
                 {
                     "name": "lerp",
@@ -1904,6 +2120,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Linear interpolation",
                     "desc_ja": "線形補間",
+                    "desc_ko": "선형 보간",
                     "snippet": "lerp(${1:a}, ${2:b}, ${3:t})"
                 },
                 {
@@ -1913,6 +2130,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Clamp value to range",
                     "desc_ja": "値を範囲に制限",
+                    "desc_ko": "값을 범위 내로 제한",
                     "snippet": "clamp(${1:v}, ${2:min}, ${3:max})"
                 },
                 {
@@ -1922,6 +2140,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Remap value from one range to another",
                     "desc_ja": "値を範囲間でリマッピング",
+                    "desc_ko": "값을 한 범위에서 다른 범위로 리매핑",
                     "snippet": "remap(${1:v}, ${2:inMin}, ${3:inMax}, ${4:outMin}, ${5:outMax})"
                 }
             ]
@@ -1929,6 +2148,7 @@ const TrussCAPI = {
         {
             "name": "Math - Trigonometry",
             "name_ja": "数学 - 三角関数",
+            "name_ko": "수학 - 삼각함수",
             "functions": [
                 {
                     "name": "sin",
@@ -1937,6 +2157,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Sine",
                     "desc_ja": "正弦",
+                    "desc_ko": "사인",
                     "snippet": "sin(${1:x})"
                 },
                 {
@@ -1946,6 +2167,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Cosine",
                     "desc_ja": "余弦",
+                    "desc_ko": "코사인",
                     "snippet": "cos(${1:x})"
                 },
                 {
@@ -1955,6 +2177,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Tangent",
                     "desc_ja": "正接",
+                    "desc_ko": "탄젠트",
                     "snippet": "tan(${1:x})"
                 },
                 {
@@ -1964,6 +2187,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Arc sine",
                     "desc_ja": "逆正弦",
+                    "desc_ko": "역-사인",
                     "snippet": "asin(${1:x})"
                 },
                 {
@@ -1973,6 +2197,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Arc cosine",
                     "desc_ja": "逆余弦",
+                    "desc_ko": "역-코사인",
                     "snippet": "acos(${1:x})"
                 },
                 {
@@ -1982,6 +2207,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Arc tangent",
                     "desc_ja": "逆正接",
+                    "desc_ko": "역-탄젠트",
                     "snippet": "atan(${1:x})"
                 },
                 {
@@ -1991,6 +2217,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Arc tangent of y/x",
                     "desc_ja": "y/xの逆正接",
+                    "desc_ko": "y/x의 역-탄젠트",
                     "snippet": "atan2(${1:y}, ${2:x})"
                 },
                 {
@@ -2000,6 +2227,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Degrees to radians",
                     "desc_ja": "度からラジアンへ",
+                    "desc_ko": "도(degree)를 라디안으로 변환",
                     "snippet": "deg2rad(${1:degrees})"
                 },
                 {
@@ -2009,6 +2237,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Radians to degrees",
                     "desc_ja": "ラジアンから度へ",
+                    "desc_ko": "라디안을 도(degree)로 변환",
                     "snippet": "rad2deg(${1:radians})"
                 }
             ]
@@ -2016,6 +2245,7 @@ const TrussCAPI = {
         {
             "name": "Math - General",
             "name_ja": "数学 - 一般",
+            "name_ko": "수학 - 일반",
             "functions": [
                 {
                     "name": "abs",
@@ -2024,6 +2254,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Absolute value",
                     "desc_ja": "絶対値",
+                    "desc_ko": "절댓값",
                     "snippet": "abs(${1:x})"
                 },
                 {
@@ -2033,6 +2264,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Square root",
                     "desc_ja": "平方根",
+                    "desc_ko": "제곱근",
                     "snippet": "sqrt(${1:x})"
                 },
                 {
@@ -2042,6 +2274,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Square (x*x)",
                     "desc_ja": "二乗 (x*x)",
+                    "desc_ko": "제곱 (x*x)",
                     "snippet": "sq(${1:x})"
                 },
                 {
@@ -2051,6 +2284,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Power (x^y)",
                     "desc_ja": "累乗 (x^y)",
+                    "desc_ko": "거듭제곱 (x^y)",
                     "snippet": "pow(${1:x}, ${2:y})"
                 },
                 {
@@ -2060,6 +2294,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Natural logarithm",
                     "desc_ja": "自然対数",
+                    "desc_ko": "자연로그",
                     "snippet": "log(${1:x})"
                 },
                 {
@@ -2069,6 +2304,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Exponential (e^x)",
                     "desc_ja": "指数関数 (e^x)",
+                    "desc_ko": "지수함수 (e^x)",
                     "snippet": "exp(${1:x})"
                 },
                 {
@@ -2078,6 +2314,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Minimum",
                     "desc_ja": "最小値",
+                    "desc_ko": "최솟값",
                     "snippet": "min(${1:a}, ${2:b})"
                 },
                 {
@@ -2087,6 +2324,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Maximum",
                     "desc_ja": "最大値",
+                    "desc_ko": "최댓값",
                     "snippet": "max(${1:a}, ${2:b})"
                 },
                 {
@@ -2096,6 +2334,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Round down",
                     "desc_ja": "切り捨て",
+                    "desc_ko": "내림",
                     "snippet": "floor(${1:x})"
                 },
                 {
@@ -2105,6 +2344,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Round up",
                     "desc_ja": "切り上げ",
+                    "desc_ko": "올림",
                     "snippet": "ceil(${1:x})"
                 },
                 {
@@ -2114,6 +2354,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Round to nearest",
                     "desc_ja": "四捨五入",
+                    "desc_ko": "반올림",
                     "snippet": "round(${1:x})"
                 },
                 {
@@ -2123,6 +2364,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Floating-point modulo",
                     "desc_ja": "浮動小数点剰余",
+                    "desc_ko": "부동소수점 나머지",
                     "snippet": "fmod(${1:x}, ${2:y})"
                 },
                 {
@@ -2132,6 +2374,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Sign (-1, 0, 1)",
                     "desc_ja": "符号 (-1, 0, 1)",
+                    "desc_ko": "부호 (-1, 0, 1)",
                     "snippet": "sign(${1:x})"
                 },
                 {
@@ -2141,6 +2384,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Fractional part",
                     "desc_ja": "小数部",
+                    "desc_ko": "소수부",
                     "snippet": "fract(${1:x})"
                 },
                 {
@@ -2150,6 +2394,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Wrap value within range [min, max)",
                     "desc_ja": "値を範囲内にラップ [min, max)",
+                    "desc_ko": "값을 [min, max) 범위 안으로 랩핑",
                     "snippet": "wrap(${1:value}, ${2:min}, ${3:max})"
                 },
                 {
@@ -2159,6 +2404,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Shortest angle difference in radians [-TAU/2, TAU/2]",
                     "desc_ja": "最短角度差（ラジアン）[-TAU/2, TAU/2]",
+                    "desc_ko": "최단 각도 차이(라디안) [-TAU/2, TAU/2]",
                     "snippet": "angleDifference(${1:angle1}, ${2:angle2})"
                 },
                 {
@@ -2168,6 +2414,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Shortest angle difference in degrees [-180, 180]",
                     "desc_ja": "最短角度差（度）[-180, 180]",
+                    "desc_ko": "최단 각도 차이(도) [-180, 180]",
                     "snippet": "angleDifferenceDeg(${1:deg1}, ${2:deg2})"
                 }
             ]
@@ -2175,6 +2422,7 @@ const TrussCAPI = {
         {
             "name": "Math - Geometry",
             "name_ja": "数学 - 幾何",
+            "name_ko": "수학 - 기하학",
             "functions": [
                 {
                     "name": "dist",
@@ -2183,6 +2431,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Distance between points",
                     "desc_ja": "2点間の距離",
+                    "desc_ko": "두 점 사이의 거리",
                     "snippet": "dist(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 },
                 {
@@ -2192,6 +2441,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Squared distance",
                     "desc_ja": "距離の二乗",
+                    "desc_ko": "거리의 제곱",
                     "snippet": "distSquared(${1:x1}, ${2:y1}, ${3:x2}, ${4:y2})"
                 }
             ]
@@ -2199,6 +2449,7 @@ const TrussCAPI = {
         {
             "name": "Window & System",
             "name_ja": "ウィンドウとシステム",
+            "name_ko": "윈도우 & 시스템",
             "functions": [
                 {
                     "name": "setWindowTitle",
@@ -2207,6 +2458,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set window title",
                     "desc_ja": "ウィンドウのタイトルを設定",
+                    "desc_ko": "윈도우 제목을 설정",
                     "snippet": "setWindowTitle(${1:\"title\"})"
                 },
                 {
@@ -2216,7 +2468,28 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set window size",
                     "desc_ja": "ウィンドウのサイズを設定",
+                    "desc_ko": "윈도우 크기를 설정",
                     "snippet": "setWindowSize(${1:800}, ${2:600})"
+                },
+                {
+                    "name": "getWindowPosition",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "IVec2",
+                    "desc": "Get window position in screen coordinates (top-left origin). macOS/Windows only; other platforms return (-1, -1)",
+                    "desc_ja": "スクリーン座標でのウィンドウ位置を取得（左上原点）。macOS/Windowsのみ対応、他は(-1, -1)を返す",
+                    "desc_ko": "윈도우 위치를 스크린 좌표(좌상단 원점)로 얻음. macOS/Windows만 지원, 그 외 플랫폼은 (-1, -1) 반환",
+                    "snippet": "getWindowPosition()"
+                },
+                {
+                    "name": "setWindowPosition",
+                    "params": "x, y",
+                    "params_typed": "int x, int y",
+                    "return_type": "void",
+                    "desc": "Set window position in screen coordinates (top-left origin). macOS/Windows only; no-op on other platforms",
+                    "desc_ja": "スクリーン座標でウィンドウ位置を設定（左上原点）。macOS/Windowsのみ対応、他はno-op",
+                    "desc_ko": "윈도우 위치를 스크린 좌표(좌상단 원점)로 설정. macOS/Windows만 지원, 그 외 플랫폼은 동작하지 않음",
+                    "snippet": "setWindowPosition(${1:100}, ${2:100})"
                 },
                 {
                     "name": "toggleFullscreen",
@@ -2225,6 +2498,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Toggle fullscreen mode",
                     "desc_ja": "フルスクリーンを切り替え",
+                    "desc_ko": "전체 화면 모드 토글",
                     "snippet": "toggleFullscreen()"
                 },
                 {
@@ -2234,6 +2508,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Copy text to clipboard",
                     "desc_ja": "クリップボードにコピー",
+                    "desc_ko": "텍스트를 클립보드에 복사",
                     "snippet": "setClipboardString(${1:\"text\"})"
                 },
                 {
@@ -2243,6 +2518,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get text from clipboard",
                     "desc_ja": "クリップボードから取得",
+                    "desc_ko": "클립보드에서 텍스트를 얻음",
                     "snippet": "getClipboardString()"
                 },
                 {
@@ -2252,6 +2528,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get display DPI scale factor (e.g. 2.0 for Retina)",
                     "desc_ja": "ディスプレイのDPIスケール係数を取得（Retinaなら2.0等）",
+                    "desc_ko": "디스플레이 DPI 스케일 계수를 얻음 (Retina는 2.0 등)",
                     "snippet": "getDpiScale()"
                 },
                 {
@@ -2261,6 +2538,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get framebuffer width in pixels (window width * DPI scale)",
                     "desc_ja": "フレームバッファ幅をピクセルで取得（ウィンドウ幅 × DPIスケール）",
+                    "desc_ko": "프레임버퍼 너비를 픽셀로 얻음 (윈도우 너비 × DPI 스케일)",
                     "snippet": "getFramebufferWidth()"
                 },
                 {
@@ -2270,6 +2548,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get framebuffer height in pixels (window height * DPI scale)",
                     "desc_ja": "フレームバッファ高さをピクセルで取得（ウィンドウ高さ × DPIスケール）",
+                    "desc_ko": "프레임버퍼 높이를 픽셀로 얻음 (윈도우 높이 × DPI 스케일)",
                     "snippet": "getFramebufferHeight()"
                 },
                 {
@@ -2279,6 +2558,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get window aspect ratio (width / height)",
                     "desc_ja": "ウィンドウのアスペクト比を取得（幅 / 高さ）",
+                    "desc_ko": "윈도우 종횡비를 얻음 (너비 / 높이)",
                     "snippet": "getAspectRatio()"
                 },
                 {
@@ -2288,6 +2568,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set allowed screen orientations (mobile). Values: Orientation::Portrait, Landscape, All",
                     "desc_ja": "画面の向きを設定（モバイル用）。Orientation::Portrait, Landscape, All",
+                    "desc_ko": "허용되는 화면 방향을 설정 (모바일). 값: Orientation::Portrait, Landscape, All",
                     "snippet": "setOrientation(${1:Orientation::All})"
                 },
                 {
@@ -2297,6 +2578,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set independent update and draw frame rates",
                     "desc_ja": "updateとdrawのフレームレートを個別に設定",
+                    "desc_ko": "update와 draw의 프레임레이트를 독립적으로 설정",
                     "snippet": "setIndependentFps(${1:60}, ${2:30})"
                 },
                 {
@@ -2306,6 +2588,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Capture current screen to Pixels",
                     "desc_ja": "現在の画面をPixelsにキャプチャ",
+                    "desc_ko": "현재 화면을 Pixels에 캡처",
                     "snippet": "grabScreen(${1:pixels})"
                 },
                 {
@@ -2315,6 +2598,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if window is fullscreen",
                     "desc_ja": "フルスクリーンかどうか確認",
+                    "desc_ko": "윈도우가 전체 화면인지 확인",
                     "snippet": "isFullscreen()"
                 },
                 {
@@ -2324,6 +2608,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set fullscreen mode",
                     "desc_ja": "フルスクリーンを設定",
+                    "desc_ko": "전체 화면 모드를 설정",
                     "snippet": "setFullscreen(${1:true})"
                 },
                 {
@@ -2333,6 +2618,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Request extra redraws (useful for event-driven rendering)",
                     "desc_ja": "追加の再描画を要求（イベント駆動レンダリング用）",
+                    "desc_ko": "추가 다시그리기를 요청 (이벤트 기반 렌더링에 유용)",
                     "snippet": "redraw()"
                 }
             ]
@@ -2340,6 +2626,7 @@ const TrussCAPI = {
         {
             "name": "Utility",
             "name_ja": "ユーティリティ",
+            "name_ko": "유틸리티",
             "functions": [
                 {
                     "name": "logNotice",
@@ -2348,6 +2635,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Print to console",
                     "desc_ja": "コンソールに出力",
+                    "desc_ko": "콘솔에 출력",
                     "snippet": "logNotice(${1:\"message\"})"
                 },
                 {
@@ -2357,6 +2645,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Convert to string",
                     "desc_ja": "文字列に変換",
+                    "desc_ko": "문자열로 변환",
                     "snippet": "toString(${1:value})"
                 },
                 {
@@ -2366,6 +2655,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Play a beep sound",
                     "desc_ja": "ビープ音を再生",
+                    "desc_ko": "비프음 재생",
                     "snippet": "beep()"
                 },
                 {
@@ -2375,6 +2665,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Play a beep sound",
                     "desc_ja": "ビープ音を再生",
+                    "desc_ko": "비프음 재생",
                     "snippet": "beep()"
                 },
                 {
@@ -2384,6 +2675,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Convert string to int",
                     "desc_ja": "文字列を整数に変換",
+                    "desc_ko": "문자열을 정수로 변환",
                     "snippet": "toInt(${1:str})"
                 },
                 {
@@ -2393,6 +2685,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Convert string to float",
                     "desc_ja": "文字列を浮動小数点数に変換",
+                    "desc_ko": "문자열을 부동소수점으로 변환",
                     "snippet": "toFloat(${1:str})"
                 },
                 {
@@ -2402,6 +2695,7 @@ const TrussCAPI = {
                     "return_type": "vector<string>",
                     "desc": "Split string by delimiter",
                     "desc_ja": "文字列をデリミタで分割",
+                    "desc_ko": "구분자로 문자열을 분할",
                     "snippet": "splitString(${1:str}, ${2:delimiter})"
                 },
                 {
@@ -2411,6 +2705,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Join strings with delimiter",
                     "desc_ja": "文字列配列をデリミタで結合",
+                    "desc_ko": "문자열 배열을 구분자로 결합",
                     "snippet": "joinString(${1:elements}, ${2:delimiter})"
                 },
                 {
@@ -2420,6 +2715,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Replace substring in place",
                     "desc_ja": "部分文字列を置換（直接変更）",
+                    "desc_ko": "부분 문자열을 직접 치환",
                     "snippet": "stringReplace(${1:str}, ${2:search}, ${3:replace})"
                 },
                 {
@@ -2429,6 +2725,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Convert to lower case",
                     "desc_ja": "小文字に変換",
+                    "desc_ko": "소문자로 변환",
                     "snippet": "toLower(${1:str})"
                 },
                 {
@@ -2438,6 +2735,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Convert to upper case",
                     "desc_ja": "大文字に変換",
+                    "desc_ko": "대문자로 변환",
                     "snippet": "toUpper(${1:str})"
                 },
                 {
@@ -2447,6 +2745,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Compute intersection of two rectangles",
                     "desc_ja": "2つの矩形の交差部分を計算",
+                    "desc_ko": "두 사각형의 교차 영역을 계산",
                     "snippet": "intersectRect(${1:x1}, ${2:y1}, ${3:w1}, ${4:h1}, ${5:x2}, ${6:y2}, ${7:w2}, ${8:h2}, ${9:ox}, ${10:oy}, ${11:ow}, ${12:oh})"
                 }
             ]
@@ -2454,6 +2753,7 @@ const TrussCAPI = {
         {
             "name": "File",
             "name_ja": "ファイル",
+            "name_ko": "파일",
             "functions": [
                 {
                     "name": "getDataPath",
@@ -2462,6 +2762,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get full path relative to data directory",
                     "desc_ja": "データディレクトリからの相対パスを取得",
+                    "desc_ko": "데이터 디렉토리 기준의 전체 경로를 얻음",
                     "snippet": "getDataPath(${1:path})"
                 },
                 {
@@ -2471,6 +2772,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get absolute path",
                     "desc_ja": "絶対パスを取得",
+                    "desc_ko": "절대 경로를 얻음",
                     "snippet": "getAbsolutePath(${1:path})"
                 },
                 {
@@ -2480,6 +2782,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get filename from path",
                     "desc_ja": "パスからファイル名を取得",
+                    "desc_ko": "경로에서 파일명을 얻음",
                     "snippet": "getFileName(${1:path})"
                 },
                 {
@@ -2489,6 +2792,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get filename without extension",
                     "desc_ja": "拡張子なしのファイル名を取得",
+                    "desc_ko": "확장자를 제외한 파일명을 얻음",
                     "snippet": "getBaseName(${1:path})"
                 },
                 {
@@ -2498,6 +2802,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get file extension without dot",
                     "desc_ja": "拡張子を取得（ドットなし）",
+                    "desc_ko": "파일 확장자를 얻음 (점 제외)",
                     "snippet": "getFileExtension(${1:path})"
                 },
                 {
@@ -2507,6 +2812,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get parent directory",
                     "desc_ja": "親ディレクトリを取得",
+                    "desc_ko": "부모 디렉토리를 얻음",
                     "snippet": "getParentDirectory(${1:path})"
                 },
                 {
@@ -2516,6 +2822,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Join directory and filename",
                     "desc_ja": "ディレクトリとファイル名を結合",
+                    "desc_ko": "디렉토리와 파일명을 결합",
                     "snippet": "joinPath(${1:dir}, ${2:file})"
                 },
                 {
@@ -2525,6 +2832,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Get absolute path",
                     "desc_ja": "絶対パスを取得",
+                    "desc_ko": "절대 경로를 얻음",
                     "snippet": "getAbsolutePath(${1:path})"
                 },
                 {
@@ -2534,6 +2842,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if file exists",
                     "desc_ja": "ファイルが存在するか確認",
+                    "desc_ko": "파일 존재 여부를 확인",
                     "snippet": "fileExists(${1:path})"
                 },
                 {
@@ -2543,6 +2852,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if directory exists",
                     "desc_ja": "ディレクトリが存在するか確認",
+                    "desc_ko": "디렉토리 존재 여부를 확인",
                     "snippet": "directoryExists(${1:path})"
                 },
                 {
@@ -2552,6 +2862,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Create directory (and parents)",
                     "desc_ja": "ディレクトリを作成（親も含む）",
+                    "desc_ko": "디렉토리를 생성 (상위 포함)",
                     "snippet": "createDirectory(${1:path})"
                 },
                 {
@@ -2561,6 +2872,7 @@ const TrussCAPI = {
                     "return_type": "vector<string>",
                     "desc": "List files in directory",
                     "desc_ja": "ディレクトリ内のファイル一覧",
+                    "desc_ko": "디렉토리 내 파일 목록",
                     "snippet": "listDirectory(${1:path})"
                 },
                 {
@@ -2570,6 +2882,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Remove file",
                     "desc_ja": "ファイルを削除",
+                    "desc_ko": "파일을 삭제",
                     "snippet": "removeFile(${1:path})"
                 },
                 {
@@ -2579,6 +2892,7 @@ const TrussCAPI = {
                     "return_type": "int64_t",
                     "desc": "Get file size in bytes",
                     "desc_ja": "ファイルサイズを取得（バイト）",
+                    "desc_ko": "파일 크기를 바이트로 얻음",
                     "snippet": "getFileSize(${1:path})"
                 },
                 {
@@ -2588,6 +2902,7 @@ const TrussCAPI = {
                     "return_type": "string",
                     "desc": "Load entire text file",
                     "desc_ja": "テキストファイルを読み込む",
+                    "desc_ko": "텍스트 파일 전체를 로드",
                     "snippet": "loadTextFile(${1:path})"
                 },
                 {
@@ -2597,6 +2912,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Save string to text file",
                     "desc_ja": "文字列をファイルに保存",
+                    "desc_ko": "문자열을 텍스트 파일로 저장",
                     "snippet": "saveTextFile(${1:path}, ${2:content})"
                 },
                 {
@@ -2606,6 +2922,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Append string to file",
                     "desc_ja": "ファイルに追記",
+                    "desc_ko": "파일에 문자열을 추가",
                     "snippet": "appendToFile(${1:path}, ${2:content})"
                 },
                 {
@@ -2615,6 +2932,7 @@ const TrussCAPI = {
                     "return_type": "FileWriter@",
                     "desc": "Create a file writer (TrussSketch factory)",
                     "desc_ja": "ファイルライターを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "파일 라이터를 생성 (TrussSketch 팩토리)",
                     "snippet": "FileWriter@ writer = createFileWriter();"
                 },
                 {
@@ -2624,6 +2942,7 @@ const TrussCAPI = {
                     "return_type": "FileReader@",
                     "desc": "Create a file reader (TrussSketch factory)",
                     "desc_ja": "ファイルリーダーを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "파일 리더를 생성 (TrussSketch 팩토리)",
                     "snippet": "FileReader@ reader = createFileReader();"
                 }
             ]
@@ -2631,6 +2950,7 @@ const TrussCAPI = {
         {
             "name": "Sound",
             "name_ja": "サウンド",
+            "name_ko": "사운드",
             "functions": [
                 {
                     "name": "Sound",
@@ -2639,6 +2959,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a sound player",
                     "desc_ja": "サウンドプレイヤーを作成",
+                    "desc_ko": "사운드 플레이어를 생성",
                     "snippet": "Sound()"
                 },
                 {
@@ -2648,6 +2969,7 @@ const TrussCAPI = {
                     "return_type": "Sound@",
                     "desc": "Create a sound player (TrussSketch factory)",
                     "desc_ja": "サウンドプレイヤーを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "사운드 플레이어를 생성 (TrussSketch 팩토리)",
                     "snippet": "Sound@ snd = createSound();"
                 },
                 {
@@ -2657,6 +2979,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Load sound file",
                     "desc_ja": "サウンドファイルを読み込む",
+                    "desc_ko": "사운드 파일을 로드",
                     "snippet": "load(${1:\"sound.wav\"})"
                 },
                 {
@@ -2666,6 +2989,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Play sound",
                     "desc_ja": "再生",
+                    "desc_ko": "사운드 재생",
                     "snippet": "play()"
                 },
                 {
@@ -2675,6 +2999,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Stop sound",
                     "desc_ja": "停止",
+                    "desc_ko": "사운드 정지",
                     "snippet": "stop()"
                 },
                 {
@@ -2684,6 +3009,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set volume (0.0-1.0)",
                     "desc_ja": "音量を設定",
+                    "desc_ko": "음량을 설정 (0.0-1.0)",
                     "snippet": "setVolume(${1:0.8})"
                 },
                 {
@@ -2693,6 +3019,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable/disable looping",
                     "desc_ja": "ループ再生を設定",
+                    "desc_ko": "반복 재생을 활성/비활성",
                     "snippet": "setLoop(${1:true})"
                 }
             ]
@@ -2700,6 +3027,7 @@ const TrussCAPI = {
         {
             "name": "ChipSound",
             "name_ja": "チップサウンド",
+            "name_ko": "칩사운드",
             "functions": [
                 {
                     "name": "ChipSoundNote",
@@ -2708,6 +3036,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a chip sound note (8-bit style sound)",
                     "desc_ja": "チップサウンドノートを作成（8bitスタイルのサウンド）",
+                    "desc_ko": "칩 사운드 노트를 생성 (8비트 스타일 사운드)",
                     "snippet": "ChipSoundNote note;"
                 },
                 {
@@ -2717,6 +3046,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set wave type (Sin, Square, Triangle, Sawtooth, Noise, PinkNoise)",
                     "desc_ja": "波形タイプを設定",
+                    "desc_ko": "파형 타입을 설정 (Sin, Square, Triangle, Sawtooth, Noise, PinkNoise)",
                     "snippet": "wave(Wave::Square)"
                 },
                 {
@@ -2726,6 +3056,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set frequency in Hz",
                     "desc_ja": "周波数を設定（Hz）",
+                    "desc_ko": "주파수를 Hz로 설정",
                     "snippet": "hz(${1:440})"
                 },
                 {
@@ -2735,6 +3066,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set note duration in seconds",
                     "desc_ja": "ノートの長さを設定（秒）",
+                    "desc_ko": "노트 길이를 초 단위로 설정",
                     "snippet": "duration(${1:0.5})"
                 },
                 {
@@ -2744,6 +3076,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set volume (0.0-1.0)",
                     "desc_ja": "音量を設定",
+                    "desc_ko": "음량을 설정 (0.0-1.0)",
                     "snippet": "volume(${1:0.8})"
                 },
                 {
@@ -2753,6 +3086,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set attack time (ADSR envelope)",
                     "desc_ja": "アタック時間を設定",
+                    "desc_ko": "어택 시간을 설정 (ADSR 엔벨로프)",
                     "snippet": "attack(${1:0.01})"
                 },
                 {
@@ -2762,6 +3096,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set decay time (ADSR envelope)",
                     "desc_ja": "ディケイ時間を設定",
+                    "desc_ko": "디케이 시간을 설정 (ADSR 엔벨로프)",
                     "snippet": "decay(${1:0.1})"
                 },
                 {
@@ -2771,6 +3106,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set sustain level (0.0-1.0)",
                     "desc_ja": "サスティンレベルを設定",
+                    "desc_ko": "서스테인 레벨을 설정 (0.0-1.0)",
                     "snippet": "sustain(${1:0.7})"
                 },
                 {
@@ -2780,6 +3116,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set release time (ADSR envelope)",
                     "desc_ja": "リリース時間を設定",
+                    "desc_ko": "릴리스 시간을 설정 (ADSR 엔벨로프)",
                     "snippet": "release(${1:0.2})"
                 },
                 {
@@ -2789,6 +3126,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundNote&",
                     "desc": "Set ADSR envelope (attack, decay, sustain, release)",
                     "desc_ja": "ADSRエンベロープを設定",
+                    "desc_ko": "ADSR 엔벨로프 설정 (어택, 디케이, 서스테인, 릴리스)",
                     "snippet": "adsr(${1:0.01}, ${2:0.1}, ${3:0.7}, ${4:0.2})"
                 },
                 {
@@ -2798,6 +3136,7 @@ const TrussCAPI = {
                     "return_type": "Sound@",
                     "desc": "Build and return Sound object from note",
                     "desc_ja": "ノートからSoundオブジェクトを生成",
+                    "desc_ko": "노트로부터 Sound 객체를 생성하여 반환",
                     "snippet": "build()"
                 },
                 {
@@ -2807,6 +3146,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundBundle@",
                     "desc": "Create a chip sound bundle for sequencing multiple notes",
                     "desc_ja": "複数ノートのシーケンス用バンドルを作成",
+                    "desc_ko": "여러 노트를 시퀀싱하기 위한 칩 사운드 번들을 생성",
                     "snippet": "ChipSoundBundle@ bundle = createChipBundle();"
                 },
                 {
@@ -2816,6 +3156,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundBundle&",
                     "desc": "Add a note at specified time (seconds)",
                     "desc_ja": "指定時間にノートを追加",
+                    "desc_ko": "지정한 시간(초)에 노트를 추가",
                     "snippet": "add(${1:note}, ${2:0.0})"
                 },
                 {
@@ -2825,6 +3166,7 @@ const TrussCAPI = {
                     "return_type": "ChipSoundBundle&",
                     "desc": "Clear all notes from bundle",
                     "desc_ja": "バンドル内の全ノートをクリア",
+                    "desc_ko": "번들의 모든 노트를 지움",
                     "snippet": "clear()"
                 },
                 {
@@ -2834,6 +3176,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get the total duration of the bundle",
                     "desc_ja": "バンドルの総再生時間を取得",
+                    "desc_ko": "번들의 총 재생 시간을 얻음",
                     "snippet": "getDuration()"
                 }
             ]
@@ -2841,6 +3184,7 @@ const TrussCAPI = {
         {
             "name": "Font",
             "name_ja": "フォント",
+            "name_ko": "폰트",
             "functions": [
                 {
                     "name": "createFont",
@@ -2849,6 +3193,7 @@ const TrussCAPI = {
                     "return_type": "Font@",
                     "desc": "Create a TrueType font",
                     "desc_ja": "TrueTypeフォントを作成",
+                    "desc_ko": "TrueType 폰트를 생성",
                     "snippet": "Font@ font = createFont();"
                 },
                 {
@@ -2858,6 +3203,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Load TTF font file",
                     "desc_ja": "TTFフォントを読み込む",
+                    "desc_ko": "TTF 폰트 파일을 로드",
                     "snippet": "load(FONT_SANS, ${1:24})"
                 },
                 {
@@ -2867,6 +3213,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if font is loaded",
                     "desc_ja": "フォントが読み込まれているか",
+                    "desc_ko": "폰트가 로드되었는지 확인",
                     "snippet": "isLoaded()"
                 },
                 {
@@ -2876,6 +3223,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw text at position",
                     "desc_ja": "テキストを描画",
+                    "desc_ko": "지정한 위치에 텍스트를 그림",
                     "snippet": "drawString(${1:\"Hello\"}, ${2:100}, ${3:100})"
                 },
                 {
@@ -2885,6 +3233,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get text width in pixels",
                     "desc_ja": "テキストの幅を取得",
+                    "desc_ko": "텍스트 너비를 픽셀로 얻음",
                     "snippet": "getWidth(${1:\"text\"})"
                 },
                 {
@@ -2894,6 +3243,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get text height in pixels",
                     "desc_ja": "テキストの高さを取得",
+                    "desc_ko": "텍스트 높이를 픽셀로 얻음",
                     "snippet": "getHeight(${1:\"text\"})"
                 },
                 {
@@ -2903,6 +3253,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get line height",
                     "desc_ja": "行の高さを取得",
+                    "desc_ko": "줄 높이를 얻음",
                     "snippet": "getLineHeight()"
                 },
                 {
@@ -2912,6 +3263,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get font size",
                     "desc_ja": "フォントサイズを取得",
+                    "desc_ko": "폰트 크기를 얻음",
                     "snippet": "getSize()"
                 }
             ]
@@ -2919,6 +3271,7 @@ const TrussCAPI = {
         {
             "name": "Animation",
             "name_ja": "アニメーション",
+            "name_ko": "애니메이션",
             "functions": [
                 {
                     "name": "ease",
@@ -2927,6 +3280,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Apply easing to value (0-1)",
                     "desc_ja": "イージングを適用 (0-1)",
+                    "desc_ko": "값에 easing 적용 (0-1)",
                     "snippet": "ease(${1:t}, EaseType::${2:Cubic}, EaseMode::${3:InOut})"
                 },
                 {
@@ -2936,6 +3290,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Apply ease-in to value (0-1)",
                     "desc_ja": "イーズインを適用 (0-1)",
+                    "desc_ko": "값에 ease-in 적용 (0-1)",
                     "snippet": "easeIn(${1:t}, EaseType::${2:Cubic})"
                 },
                 {
@@ -2945,6 +3300,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Apply ease-out to value (0-1)",
                     "desc_ja": "イーズアウトを適用 (0-1)",
+                    "desc_ko": "값에 ease-out 적용 (0-1)",
                     "snippet": "easeOut(${1:t}, EaseType::${2:Cubic})"
                 },
                 {
@@ -2954,6 +3310,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Apply ease-in-out to value (0-1)",
                     "desc_ja": "イーズインアウトを適用 (0-1)",
+                    "desc_ko": "값에 ease-in-out 적용 (0-1)",
                     "snippet": "easeInOut(${1:t}, EaseType::${2:Cubic})"
                 },
                 {
@@ -2963,6 +3320,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Create a tween object",
                     "desc_ja": "トゥイーンを作成",
+                    "desc_ko": "tween 객체를 생성",
                     "snippet": "createTween()"
                 },
                 {
@@ -2972,6 +3330,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Set start value",
                     "desc_ja": "開始値を設定",
+                    "desc_ko": "시작 값을 설정",
                     "snippet": "from(${1:0.0})"
                 },
                 {
@@ -2981,6 +3340,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Set end value",
                     "desc_ja": "終了値を設定",
+                    "desc_ko": "끝 값을 설정",
                     "snippet": "to(${1:1.0})"
                 },
                 {
@@ -2990,6 +3350,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Set animation duration",
                     "desc_ja": "再生時間を設定",
+                    "desc_ko": "애니메이션 길이를 설정",
                     "snippet": "duration(${1:1.0})"
                 },
                 {
@@ -2999,6 +3360,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Set easing type",
                     "desc_ja": "イージングタイプを設定",
+                    "desc_ko": "easing 타입을 설정",
                     "snippet": "ease(EaseType::${1:Cubic})"
                 },
                 {
@@ -3008,6 +3370,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Start animation (chainable)",
                     "desc_ja": "開始（チェーン可能）",
+                    "desc_ko": "애니메이션 시작 (체이닝 가능)",
                     "snippet": "start()"
                 },
                 {
@@ -3017,6 +3380,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Pause animation (chainable)",
                     "desc_ja": "一時停止（チェーン可能）",
+                    "desc_ko": "애니메이션 일시정지 (체이닝 가능)",
                     "snippet": "pause()"
                 },
                 {
@@ -3026,6 +3390,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Resume animation (chainable)",
                     "desc_ja": "再開（チェーン可能）",
+                    "desc_ko": "애니메이션 재개 (체이닝 가능)",
                     "snippet": "resume()"
                 },
                 {
@@ -3035,6 +3400,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Reset animation (chainable)",
                     "desc_ja": "リセット（チェーン可能）",
+                    "desc_ko": "애니메이션 리셋 (체이닝 가능)",
                     "snippet": "reset()"
                 },
                 {
@@ -3044,6 +3410,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Jump to end (chainable)",
                     "desc_ja": "終了位置にジャンプ（チェーン可能）",
+                    "desc_ko": "끝 위치로 점프 (체이닝 가능)",
                     "snippet": "finish()"
                 },
                 {
@@ -3053,6 +3420,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Set loop count (-1=infinite, 0=none, N=repeat N times)",
                     "desc_ja": "ループ回数を設定 (-1=無限, 0=なし, N=N回繰り返し)",
+                    "desc_ko": "반복 횟수 설정 (-1=무한, 0=없음, N=N번 반복)",
                     "snippet": "loop(${1:-1})"
                 },
                 {
@@ -3062,6 +3430,7 @@ const TrussCAPI = {
                     "return_type": "Tween@",
                     "desc": "Enable yoyo (reverse direction each loop)",
                     "desc_ja": "ヨーヨー（ループごとに方向反転）を有効化",
+                    "desc_ko": "요요 활성화 (반복마다 방향 반전)",
                     "snippet": "yoyo()"
                 },
                 {
@@ -3071,6 +3440,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get current tween value",
                     "desc_ja": "現在の値を取得",
+                    "desc_ko": "현재 트윈 값을 얻음",
                     "snippet": "getValue()"
                 },
                 {
@@ -3080,6 +3450,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get progress (0-1)",
                     "desc_ja": "進行度を取得 (0-1)",
+                    "desc_ko": "진행도를 얻음 (0-1)",
                     "snippet": "getProgress()"
                 },
                 {
@@ -3089,6 +3460,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get elapsed time",
                     "desc_ja": "経過時間を取得",
+                    "desc_ko": "경과 시간을 얻음",
                     "snippet": "getElapsed()"
                 },
                 {
@@ -3098,6 +3470,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get duration",
                     "desc_ja": "再生時間を取得",
+                    "desc_ko": "재생 시간을 얻음",
                     "snippet": "getDuration()"
                 },
                 {
@@ -3107,6 +3480,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if playing",
                     "desc_ja": "再生中か確認",
+                    "desc_ko": "재생 중인지 확인",
                     "snippet": "isPlaying()"
                 },
                 {
@@ -3116,6 +3490,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if complete",
                     "desc_ja": "完了したか確認",
+                    "desc_ko": "완료되었는지 확인",
                     "snippet": "isComplete()"
                 },
                 {
@@ -3125,6 +3500,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get start value",
                     "desc_ja": "開始値を取得",
+                    "desc_ko": "시작 값을 얻음",
                     "snippet": "getStart()"
                 },
                 {
@@ -3134,6 +3510,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get end value",
                     "desc_ja": "終了値を取得",
+                    "desc_ko": "끝 값을 얻음",
                     "snippet": "getEnd()"
                 },
                 {
@@ -3143,6 +3520,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get number of completed loop iterations",
                     "desc_ja": "完了したループ回数を取得",
+                    "desc_ko": "완료된 반복 횟수를 얻음",
                     "snippet": "getLoopCount()"
                 }
             ]
@@ -3150,6 +3528,7 @@ const TrussCAPI = {
         {
             "name": "Types - Vec2",
             "name_ja": "型 - Vec2",
+            "name_ko": "타입 - Vec2",
             "functions": [
                 {
                     "name": "Vec2",
@@ -3158,6 +3537,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 2D vector (type constructor)",
                     "desc_ja": "2Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "2D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec2(${1:x}, ${2:y})"
                 },
                 {
@@ -3167,6 +3547,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 2D vector (type constructor)",
                     "desc_ja": "2Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "2D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec2(${1:x}, ${2:y})"
                 },
                 {
@@ -3176,6 +3557,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 2D vector (type constructor)",
                     "desc_ja": "2Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "2D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec2(${1:x}, ${2:y})"
                 },
                 {
@@ -3185,6 +3567,7 @@ const TrussCAPI = {
                     "return_type": "Vec2&",
                     "desc": "Set vector components (type method)",
                     "desc_ja": "ベクトルの成分を設定（型メソッド）",
+                    "desc_ko": "벡터 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y})"
                 },
                 {
@@ -3194,6 +3577,7 @@ const TrussCAPI = {
                     "return_type": "Vec2&",
                     "desc": "Set vector components (type method)",
                     "desc_ja": "ベクトルの成分を設定（型メソッド）",
+                    "desc_ko": "벡터 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y})"
                 },
                 {
@@ -3203,6 +3587,7 @@ const TrussCAPI = {
                     "return_type": "Vec2",
                     "desc": "Create Vec2 from angle",
                     "desc_ja": "角度からVec2を作成",
+                    "desc_ko": "각도로부터 Vec2를 생성",
                     "snippet": "Vec2_fromAngle(${1:radians})"
                 },
                 {
@@ -3212,6 +3597,7 @@ const TrussCAPI = {
                     "return_type": "Vec2",
                     "desc": "Create Vec2 from angle",
                     "desc_ja": "角度からVec2を作成",
+                    "desc_ko": "각도로부터 Vec2를 생성",
                     "snippet": "Vec2_fromAngle(${1:radians})"
                 }
             ]
@@ -3219,6 +3605,7 @@ const TrussCAPI = {
         {
             "name": "Types - Vec3",
             "name_ja": "型 - Vec3",
+            "name_ko": "타입 - Vec3",
             "functions": [
                 {
                     "name": "Vec3",
@@ -3227,6 +3614,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 3D vector (type constructor)",
                     "desc_ja": "3Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "3D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -3236,6 +3624,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 3D vector (type constructor)",
                     "desc_ja": "3Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "3D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -3245,6 +3634,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create 3D vector (type constructor)",
                     "desc_ja": "3Dベクトルを作成（型コンストラクタ）",
+                    "desc_ko": "3D 벡터를 생성 (타입 생성자)",
                     "snippet": "Vec3(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -3254,6 +3644,7 @@ const TrussCAPI = {
                     "return_type": "Vec3&",
                     "desc": "Set vector components (type method)",
                     "desc_ja": "ベクトルの成分を設定（型メソッド）",
+                    "desc_ko": "벡터 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -3263,6 +3654,7 @@ const TrussCAPI = {
                     "return_type": "Vec3&",
                     "desc": "Set vector components (type method)",
                     "desc_ja": "ベクトルの成分を設定（型メソッド）",
+                    "desc_ko": "벡터 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y}, ${3:z})"
                 }
             ]
@@ -3270,6 +3662,7 @@ const TrussCAPI = {
         {
             "name": "Types - Color",
             "name_ja": "型 - Color",
+            "name_ko": "타입 - Color",
             "functions": [
                 {
                     "name": "Color",
@@ -3278,6 +3671,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create color (type constructor)",
                     "desc_ja": "色を作成（型コンストラクタ）",
+                    "desc_ko": "색상을 생성 (타입 생성자)",
                     "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3287,6 +3681,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create color (type constructor)",
                     "desc_ja": "色を作成（型コンストラクタ）",
+                    "desc_ko": "색상을 생성 (타입 생성자)",
                     "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3296,6 +3691,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create color (type constructor)",
                     "desc_ja": "色を作成（型コンストラクタ）",
+                    "desc_ko": "색상을 생성 (타입 생성자)",
                     "snippet": "Color(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3305,6 +3701,7 @@ const TrussCAPI = {
                     "return_type": "Color&",
                     "desc": "Set color components (type method)",
                     "desc_ja": "色の成分を設定（型メソッド）",
+                    "desc_ko": "색상 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3314,6 +3711,7 @@ const TrussCAPI = {
                     "return_type": "Color&",
                     "desc": "Set color components (type method)",
                     "desc_ja": "色の成分を設定（型メソッド）",
+                    "desc_ko": "색상 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3323,6 +3721,7 @@ const TrussCAPI = {
                     "return_type": "Color&",
                     "desc": "Set color components (type method)",
                     "desc_ja": "色の成分を設定（型メソッド）",
+                    "desc_ko": "색상 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3332,6 +3731,7 @@ const TrussCAPI = {
                     "return_type": "Color&",
                     "desc": "Set color components (type method)",
                     "desc_ja": "色の成分を設定（型メソッド）",
+                    "desc_ko": "색상 성분을 설정 (타입 메서드)",
                     "snippet": "set(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
@@ -3341,6 +3741,7 @@ const TrussCAPI = {
                     "return_type": "ColorHSB",
                     "desc": "Convert to HSB color space (H: 0-1, S: 0-1, B: 0-1)",
                     "desc_ja": "HSB色空間に変換 (H: 0-1, S: 0-1, B: 0-1)",
+                    "desc_ko": "HSB 색공간으로 변환 (H: 0-1, S: 0-1, B: 0-1)",
                     "snippet": "toHSB()"
                 },
                 {
@@ -3350,6 +3751,7 @@ const TrussCAPI = {
                     "return_type": "ColorOKLab",
                     "desc": "Convert to OKLab color space (perceptually uniform)",
                     "desc_ja": "OKLab色空間に変換（知覚的に均一）",
+                    "desc_ko": "OKLab 색공간으로 변환 (지각적으로 균일)",
                     "snippet": "toOKLab()"
                 },
                 {
@@ -3359,6 +3761,7 @@ const TrussCAPI = {
                     "return_type": "ColorOKLCH",
                     "desc": "Convert to OKLCH color space (L: 0-1, C: 0-0.4, H: 0-1)",
                     "desc_ja": "OKLCH色空間に変換 (L: 0-1, C: 0-0.4, H: 0-1)",
+                    "desc_ko": "OKLCH 색공간으로 변환 (L: 0-1, C: 0-0.4, H: 0-1)",
                     "snippet": "toOKLCH()"
                 },
                 {
@@ -3368,6 +3771,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from HSB (H: 0-1, S: 0-1, B: 0-1)",
                     "desc_ja": "HSBからColorを作成 (H: 0-1, S: 0-1, B: 0-1)",
+                    "desc_ko": "HSB로부터 Color를 생성 (H: 0-1, S: 0-1, B: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3377,6 +3781,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from HSB (H: 0-1, S: 0-1, B: 0-1)",
                     "desc_ja": "HSBからColorを作成 (H: 0-1, S: 0-1, B: 0-1)",
+                    "desc_ko": "HSB로부터 Color를 생성 (H: 0-1, S: 0-1, B: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3386,6 +3791,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from HSB (alias for Color_fromHSB)",
                     "desc_ja": "HSBからColorを作成（Color_fromHSBのエイリアス）",
+                    "desc_ko": "HSB로부터 Color를 생성 (Color_fromHSB의 별칭)",
                     "snippet": "colorFromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3395,6 +3801,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from HSB (alias for Color_fromHSB)",
                     "desc_ja": "HSBからColorを作成（Color_fromHSBのエイリアス）",
+                    "desc_ko": "HSB로부터 Color를 생성 (Color_fromHSB의 별칭)",
                     "snippet": "colorFromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3404,6 +3811,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from OKLCH",
                     "desc_ja": "OKLCHからColorを作成",
+                    "desc_ko": "OKLCH로부터 Color를 생성",
                     "snippet": "Color_fromOKLCH(${1:L}, ${2:C}, ${3:H})"
                 },
                 {
@@ -3413,6 +3821,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from OKLCH",
                     "desc_ja": "OKLCHからColorを作成",
+                    "desc_ko": "OKLCH로부터 Color를 생성",
                     "snippet": "Color_fromOKLCH(${1:L}, ${2:C}, ${3:H})"
                 },
                 {
@@ -3422,6 +3831,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from OKLab",
                     "desc_ja": "OKLabからColorを作成",
+                    "desc_ko": "OKLab으로부터 Color를 생성",
                     "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
                 },
                 {
@@ -3431,6 +3841,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Create Color from OKLab",
                     "desc_ja": "OKLabからColorを作成",
+                    "desc_ko": "OKLab으로부터 Color를 생성",
                     "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
                 }
             ]
@@ -3438,6 +3849,7 @@ const TrussCAPI = {
         {
             "name": "Types - ColorHSB",
             "name_ja": "型 - ColorHSB",
+            "name_ko": "타입 - ColorHSB",
             "functions": [
                 {
                     "name": "ColorHSB",
@@ -3446,6 +3858,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "HSB color type (H: 0-1, S: 0-1, B: 0-1). Use toRGB() to convert to Color",
                     "desc_ja": "HSBカラー型 (H: 0-1, S: 0-1, B: 0-1)。toRGB()でColorに変換",
+                    "desc_ko": "HSB 색상 타입 (H: 0-1, S: 0-1, B: 0-1). toRGB()로 Color로 변환",
                     "snippet": "ColorHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3455,6 +3868,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "HSB color type (H: 0-1, S: 0-1, B: 0-1). Use toRGB() to convert to Color",
                     "desc_ja": "HSBカラー型 (H: 0-1, S: 0-1, B: 0-1)。toRGB()でColorに変換",
+                    "desc_ko": "HSB 색상 타입 (H: 0-1, S: 0-1, B: 0-1). toRGB()로 Color로 변환",
                     "snippet": "ColorHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
@@ -3464,6 +3878,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Convert ColorHSB to Color (RGB)",
                     "desc_ja": "ColorHSBをColor (RGB) に変換",
+                    "desc_ko": "ColorHSB를 Color (RGB)로 변환",
                     "snippet": "toRGB()"
                 },
                 {
@@ -3473,6 +3888,7 @@ const TrussCAPI = {
                     "return_type": "ColorHSB",
                     "desc": "Interpolate in HSB space (shortest hue path)",
                     "desc_ja": "HSB空間で補間（色相は最短経路）",
+                    "desc_ko": "HSB 공간에서 보간 (색상은 최단 경로)",
                     "snippet": "lerp(${1:target}, ${2:t})"
                 }
             ]
@@ -3480,6 +3896,7 @@ const TrussCAPI = {
         {
             "name": "Types - ColorOKLCH",
             "name_ja": "型 - ColorOKLCH",
+            "name_ko": "타입 - ColorOKLCH",
             "functions": [
                 {
                     "name": "ColorOKLCH",
@@ -3488,6 +3905,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "OKLCH color type (L: 0-1, C: 0-0.4, H: 0-1). Perceptually uniform",
                     "desc_ja": "OKLCHカラー型 (L: 0-1, C: 0-0.4, H: 0-1)。知覚的に均一",
+                    "desc_ko": "OKLCH 색상 타입 (L: 0-1, C: 0-0.4, H: 0-1). 지각적으로 균일",
                     "snippet": "ColorOKLCH(${1:L}, ${2:C}, ${3:H})"
                 },
                 {
@@ -3497,6 +3915,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "OKLCH color type (L: 0-1, C: 0-0.4, H: 0-1). Perceptually uniform",
                     "desc_ja": "OKLCHカラー型 (L: 0-1, C: 0-0.4, H: 0-1)。知覚的に均一",
+                    "desc_ko": "OKLCH 색상 타입 (L: 0-1, C: 0-0.4, H: 0-1). 지각적으로 균일",
                     "snippet": "ColorOKLCH(${1:L}, ${2:C}, ${3:H})"
                 },
                 {
@@ -3506,6 +3925,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Convert ColorOKLCH to Color (RGB)",
                     "desc_ja": "ColorOKLCHをColor (RGB) に変換",
+                    "desc_ko": "ColorOKLCH를 Color (RGB)로 변환",
                     "snippet": "toRGB()"
                 },
                 {
@@ -3515,6 +3935,7 @@ const TrussCAPI = {
                     "return_type": "ColorOKLCH",
                     "desc": "Interpolate in OKLCH space (shortest hue path, perceptually uniform)",
                     "desc_ja": "OKLCH空間で補間（色相は最短経路、知覚的に均一）",
+                    "desc_ko": "OKLCH 공간에서 보간 (색상은 최단 경로, 지각적으로 균일)",
                     "snippet": "lerp(${1:target}, ${2:t})"
                 }
             ]
@@ -3522,6 +3943,7 @@ const TrussCAPI = {
         {
             "name": "Types - Rect",
             "name_ja": "型 - Rect",
+            "name_ko": "타입 - Rect",
             "functions": [
                 {
                     "name": "Rect",
@@ -3530,6 +3952,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a rectangle (type constructor)",
                     "desc_ja": "矩形を作成（型コンストラクタ）",
+                    "desc_ko": "사각형을 생성 (타입 생성자)",
                     "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -3539,6 +3962,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a rectangle (type constructor)",
                     "desc_ja": "矩形を作成（型コンストラクタ）",
+                    "desc_ko": "사각형을 생성 (타입 생성자)",
                     "snippet": "Rect(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -3548,6 +3972,7 @@ const TrussCAPI = {
                     "return_type": "Rect&",
                     "desc": "Set rectangle properties (type method)",
                     "desc_ja": "矩形のプロパティを設定（型メソッド）",
+                    "desc_ko": "사각형 속성을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -3557,6 +3982,7 @@ const TrussCAPI = {
                     "return_type": "Rect&",
                     "desc": "Set rectangle properties (type method)",
                     "desc_ja": "矩形のプロパティを設定（型メソッド）",
+                    "desc_ko": "사각형 속성을 설정 (타입 메서드)",
                     "snippet": "set(${1:x}, ${2:y}, ${3:w}, ${4:h})"
                 },
                 {
@@ -3566,6 +3992,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if point is inside (type method)",
                     "desc_ja": "点が内部にあるか判定（型メソッド）",
+                    "desc_ko": "점이 내부에 있는지 확인 (타입 메서드)",
                     "snippet": "contains(${1:x}, ${2:y})"
                 },
                 {
@@ -3575,6 +4002,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check intersection (type method)",
                     "desc_ja": "交差判定（型メソッド）",
+                    "desc_ko": "교차 여부 확인 (타입 메서드)",
                     "snippet": "intersects(${1:other})"
                 }
             ]
@@ -3582,6 +4010,7 @@ const TrussCAPI = {
         {
             "name": "Scene Graph",
             "name_ja": "シーングラフ",
+            "name_ko": "씬 그래프",
             "functions": [
                 {
                     "name": "Node",
@@ -3590,6 +4019,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a base scene node (C++ only - uses shared_ptr)",
                     "desc_ja": "ベースノードを作成（C++のみ - shared_ptr使用）",
+                    "desc_ko": "기본 씬 노드를 생성 (C++ 전용 - shared_ptr 사용)",
                     "snippet": "Node()"
                 },
                 {
@@ -3599,6 +4029,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a child node (C++ only)",
                     "desc_ja": "子ノードを追加（C++のみ）",
+                    "desc_ko": "자식 노드를 추가 (C++ 전용)",
                     "snippet": "addChild(${1:child})"
                 },
                 {
@@ -3608,6 +4039,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Mark node for deferred removal from scene graph (C++ only)",
                     "desc_ja": "ノードを削除予約する（次のupdate時にツリーから除去、C++のみ）",
+                    "desc_ko": "노드를 지연 제거 대상으로 표시 (다음 update에서 트리에서 제거, C++ 전용)",
                     "snippet": "destroy()"
                 },
                 {
@@ -3617,6 +4049,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if node is marked for destruction (C++ only)",
                     "desc_ja": "ノードが削除予約されているか（C++のみ）",
+                    "desc_ko": "노드가 제거 대상으로 표시되었는지 확인 (C++ 전용)",
                     "snippet": "isDead()"
                 },
                 {
@@ -3626,6 +4059,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set position (C++ only)",
                     "desc_ja": "位置を設定（C++のみ）",
+                    "desc_ko": "위치를 설정 (C++ 전용)",
                     "snippet": "setPosition(${1:x}, ${2:y})"
                 },
                 {
@@ -3635,6 +4069,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set position (C++ only)",
                     "desc_ja": "位置を設定（C++のみ）",
+                    "desc_ko": "위치를 설정 (C++ 전용)",
                     "snippet": "setPosition(${1:x}, ${2:y})"
                 },
                 {
@@ -3644,6 +4079,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a 2D rectangle node (C++ only - uses shared_ptr)",
                     "desc_ja": "矩形ノードを作成（C++のみ - shared_ptr使用）",
+                    "desc_ko": "2D 사각형 노드를 생성 (C++ 전용 - shared_ptr 사용)",
                     "snippet": "RectNode()"
                 },
                 {
@@ -3653,6 +4089,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set size (C++ only)",
                     "desc_ja": "サイズを設定（C++のみ）",
+                    "desc_ko": "크기를 설정 (C++ 전용)",
                     "snippet": "setSize(${1:w}, ${2:h})"
                 },
                 {
@@ -3662,6 +4099,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable/disable scissor clipping for RectNode (C++ only)",
                     "desc_ja": "RectNodeのシザークリッピングを有効/無効化（C++のみ）",
+                    "desc_ko": "RectNode의 시저 클리핑을 활성/비활성 (C++ 전용)",
                     "snippet": "setClipping(${1:true})"
                 },
                 {
@@ -3671,6 +4109,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable mouse/key events for this node (C++ only)",
                     "desc_ja": "このノードのマウス/キーイベントを有効化（C++のみ）",
+                    "desc_ko": "이 노드의 마우스/키 이벤트를 활성화 (C++ 전용)",
                     "snippet": "enableEvents()"
                 },
                 {
@@ -3680,6 +4119,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Scrollable container node with clipping (C++ only)",
                     "desc_ja": "クリッピング付きスクロール可能コンテナノード（C++のみ）",
+                    "desc_ko": "클리핑이 있는 스크롤 가능 컨테이너 노드 (C++ 전용)",
                     "snippet": "make_shared<ScrollContainer>()"
                 },
                 {
@@ -3689,6 +4129,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set content node for ScrollContainer (C++ only)",
                     "desc_ja": "ScrollContainerのコンテンツノードを設定（C++のみ）",
+                    "desc_ko": "ScrollContainer의 콘텐츠 노드를 설정 (C++ 전용)",
                     "snippet": "setContent(${1:content})"
                 },
                 {
@@ -3698,6 +4139,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set vertical scroll position (C++ only)",
                     "desc_ja": "縦スクロール位置を設定（C++のみ）",
+                    "desc_ko": "수직 스크롤 위치를 설정 (C++ 전용)",
                     "snippet": "setScrollY(${1:0})"
                 },
                 {
@@ -3707,6 +4149,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Visual scroll indicator for ScrollContainer (C++ only)",
                     "desc_ja": "ScrollContainer用のスクロールバー表示（C++のみ）",
+                    "desc_ko": "ScrollContainer용 시각적 스크롤 인디케이터 (C++ 전용)",
                     "snippet": "make_shared<ScrollBar>(${1:container}, ScrollBar::Vertical)"
                 },
                 {
@@ -3716,6 +4159,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Layout modifier for automatic child arrangement (C++ only)",
                     "desc_ja": "子ノードの自動配置用レイアウトMod（C++のみ）",
+                    "desc_ko": "자식 노드 자동 배치를 위한 레이아웃 모디파이어 (C++ 전용)",
                     "snippet": "addMod<LayoutMod>(LayoutDirection::Vertical, ${1:8.0f})"
                 },
                 {
@@ -3725,6 +4169,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Recalculate layout (call after adding/removing children) (C++ only)",
                     "desc_ja": "レイアウトを再計算（子の追加/削除後に呼ぶ）（C++のみ）",
+                    "desc_ko": "레이아웃을 재계산 (자식 추가/제거 후 호출) (C++ 전용)",
                     "snippet": "updateLayout()"
                 },
                 {
@@ -3734,6 +4179,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Animation modifier for Node properties (position, scale, rotation) with easing (C++ only)",
                     "desc_ja": "Nodeプロパティ（位置、スケール、回転）のイージングアニメーションMod（C++のみ）",
+                    "desc_ko": "Node 속성(위치, 스케일, 회전)에 이징 애니메이션을 적용하는 모디파이어 (C++ 전용)",
                     "snippet": "addMod<TweenMod>()"
                 },
                 {
@@ -3743,6 +4189,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate position to target (TweenMod method) (C++ only)",
                     "desc_ja": "位置を目標値へアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "위치를 목표값으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "moveTo(${1:x}, ${2:y})"
                 },
                 {
@@ -3752,6 +4199,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate position to target (TweenMod method) (C++ only)",
                     "desc_ja": "位置を目標値へアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "위치를 목표값으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "moveTo(${1:x}, ${2:y})"
                 },
                 {
@@ -3761,6 +4209,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate position by relative amount (TweenMod method) (C++ only)",
                     "desc_ja": "位置を相対量だけアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "위치를 상대적인 양만큼 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "moveBy(${1:dx}, ${2:dy})"
                 },
                 {
@@ -3770,6 +4219,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate scale to target (TweenMod method) (C++ only)",
                     "desc_ja": "スケールを目標値へアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "스케일을 목표값으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "scaleTo(${1:scale})"
                 },
                 {
@@ -3779,6 +4229,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate scale to target (TweenMod method) (C++ only)",
                     "desc_ja": "スケールを目標値へアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "스케일을 목표값으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "scaleTo(${1:scale})"
                 },
                 {
@@ -3788,6 +4239,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate scale by relative multiplier (TweenMod method) (C++ only)",
                     "desc_ja": "スケールを相対倍率でアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "스케일을 상대 배율로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "scaleBy(${1:factor})"
                 },
                 {
@@ -3797,6 +4249,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate rotation to target angle or quaternion (TweenMod method) (C++ only)",
                     "desc_ja": "回転を目標角度またはクォータニオンへアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "회전을 목표 각도 또는 쿼터니언으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "rotateTo(${1:radians})"
                 },
                 {
@@ -3806,6 +4259,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate rotation to target angle or quaternion (TweenMod method) (C++ only)",
                     "desc_ja": "回転を目標角度またはクォータニオンへアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "회전을 목표 각도 또는 쿼터니언으로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "rotateTo(${1:radians})"
                 },
                 {
@@ -3815,6 +4269,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Animate rotation by relative angle (TweenMod method) (C++ only)",
                     "desc_ja": "回転を相対角度でアニメーション（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "회전을 상대 각도로 애니메이션 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "rotateBy(${1:radians})"
                 },
                 {
@@ -3824,6 +4279,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Set animation duration (TweenMod method) (C++ only)",
                     "desc_ja": "アニメーション時間を設定（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "애니메이션 길이를 설정 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "duration(${1:1.0f})"
                 },
                 {
@@ -3833,6 +4289,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Set easing function (TweenMod method). Types: Linear, Quad, Cubic, Quart, Quint, Sine, Expo, Circ, Back, Elastic, Bounce. Modes: In, Out, InOut (C++ only)",
                     "desc_ja": "イージング関数を設定（TweenModメソッド）。Types: Linear, Quad, Cubic, Quart, Quint, Sine, Expo, Circ, Back, Elastic, Bounce。Modes: In, Out, InOut（C++のみ）",
+                    "desc_ko": "easing 함수를 설정 (TweenMod 메서드). Types: Linear, Quad, Cubic, Quart, Quint, Sine, Expo, Circ, Back, Elastic, Bounce. Modes: In, Out, InOut (C++ 전용)",
                     "snippet": "ease(EaseType::${1:Cubic}, EaseMode::${2:InOut})"
                 },
                 {
@@ -3842,6 +4299,7 @@ const TrussCAPI = {
                     "return_type": "TweenMod&",
                     "desc": "Set delay before animation starts (TweenMod method) (C++ only)",
                     "desc_ja": "アニメーション開始前の遅延を設定（TweenModメソッド）（C++のみ）",
+                    "desc_ko": "애니메이션 시작 전 지연을 설정 (TweenMod 메서드) (C++ 전용)",
                     "snippet": "delay(${1:0.5f})"
                 }
             ]
@@ -3849,6 +4307,7 @@ const TrussCAPI = {
         {
             "name": "3D Setup",
             "name_ja": "3Dセットアップ",
+            "name_ko": "3D 셋업",
             "functions": [
                 {
                     "name": "setupScreenPerspective",
@@ -3857,6 +4316,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up perspective projection (oF-style default 3D)",
                     "desc_ja": "パースペクティブ投影を設定（oF風デフォルト3D）",
+                    "desc_ko": "원근 투영을 설정 (oF 스타일 기본 3D)",
                     "snippet": "setupScreenPerspective()"
                 },
                 {
@@ -3866,6 +4326,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up perspective projection (oF-style default 3D)",
                     "desc_ja": "パースペクティブ投影を設定（oF風デフォルト3D）",
+                    "desc_ko": "원근 투영을 설정 (oF 스타일 기본 3D)",
                     "snippet": "setupScreenPerspective()"
                 },
                 {
@@ -3875,6 +4336,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up perspective projection (oF-style default 3D)",
                     "desc_ja": "パースペクティブ投影を設定（oF風デフォルト3D）",
+                    "desc_ko": "원근 투영을 설정 (oF 스타일 기본 3D)",
                     "snippet": "setupScreenPerspective()"
                 },
                 {
@@ -3884,6 +4346,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up orthographic projection (2D mode)",
                     "desc_ja": "正投影を設定（2Dモード）",
+                    "desc_ko": "정사영 투영을 설정 (2D 모드)",
                     "snippet": "setupScreenOrtho()"
                 },
                 {
@@ -3893,6 +4356,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up screen projection with specified FOV (0 = ortho, >0 = perspective)",
                     "desc_ja": "指定したFOVで画面投影を設定（0 = 正投影、0より大 = パースペクティブ）",
+                    "desc_ko": "지정한 FOV로 화면 투영을 설정 (0 = 정사영, 0보다 크면 원근)",
                     "snippet": "setupScreenFov(${1:45.0})"
                 },
                 {
@@ -3902,6 +4366,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set up screen projection with specified FOV (0 = ortho, >0 = perspective)",
                     "desc_ja": "指定したFOVで画面投影を設定（0 = 正投影、0より大 = パースペクティブ）",
+                    "desc_ko": "지정한 FOV로 화면 투영을 설정 (0 = 정사영, 0보다 크면 원근)",
                     "snippet": "setupScreenFov(${1:45.0})"
                 },
                 {
@@ -3911,6 +4376,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set default screen FOV (applied at frame start)",
                     "desc_ja": "デフォルトのスクリーンFOVを設定（フレーム開始時に適用）",
+                    "desc_ko": "기본 스크린 FOV를 설정 (프레임 시작 시 적용)",
                     "snippet": "setDefaultScreenFov(${1:45.0})"
                 },
                 {
@@ -3920,6 +4386,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get current default screen FOV",
                     "desc_ja": "現在のデフォルトスクリーンFOVを取得",
+                    "desc_ko": "현재 기본 스크린 FOV를 얻음",
                     "snippet": "getDefaultScreenFov()"
                 },
                 {
@@ -3929,6 +4396,7 @@ const TrussCAPI = {
                     "return_type": "Vec3",
                     "desc": "Convert world coordinate to screen coordinate (x, y = screen pos, z = depth 0-1)",
                     "desc_ja": "ワールド座標をスクリーン座標に変換（x, y = 画面位置, z = 深度 0-1）",
+                    "desc_ko": "월드 좌표를 스크린 좌표로 변환 (x, y = 스크린 위치, z = 깊이 0-1)",
                     "snippet": "worldToScreen(${1:worldPos})"
                 },
                 {
@@ -3938,6 +4406,7 @@ const TrussCAPI = {
                     "return_type": "Vec3",
                     "desc": "Convert screen coordinate to world coordinate on Z plane",
                     "desc_ja": "スクリーン座標をワールド座標に変換（Z平面上）",
+                    "desc_ko": "스크린 좌표를 Z 평면상의 월드 좌표로 변환",
                     "snippet": "screenToWorld(${1:screenPos}, ${2:0.0f})"
                 },
                 {
@@ -3947,6 +4416,7 @@ const TrussCAPI = {
                     "return_type": "Vec3",
                     "desc": "Convert screen coordinate to world coordinate on Z plane",
                     "desc_ja": "スクリーン座標をワールド座標に変換（Z平面上）",
+                    "desc_ko": "스크린 좌표를 Z 평면상의 월드 좌표로 변환",
                     "snippet": "screenToWorld(${1:screenPos}, ${2:0.0f})"
                 }
             ]
@@ -3954,6 +4424,7 @@ const TrussCAPI = {
         {
             "name": "3D Camera",
             "name_ja": "3Dカメラ",
+            "name_ko": "3D 카메라",
             "functions": [
                 {
                     "name": "createEasyCam",
@@ -3962,6 +4433,7 @@ const TrussCAPI = {
                     "return_type": "EasyCam@",
                     "desc": "Create an EasyCam instance",
                     "desc_ja": "EasyCamインスタンスを作成",
+                    "desc_ko": "EasyCam 인스턴스를 생성",
                     "snippet": "createEasyCam()"
                 },
                 {
@@ -3971,6 +4443,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Apply camera transform (start 3D mode)",
                     "desc_ja": "カメラ視点を適用（3Dモード開始）",
+                    "desc_ko": "카메라 변환을 적용 (3D 모드 시작)",
                     "snippet": "begin()"
                 },
                 {
@@ -3980,6 +4453,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Restore previous transform (end 3D mode)",
                     "desc_ja": "カメラ視点を解除（3Dモード終了）",
+                    "desc_ko": "이전 변환으로 복원 (3D 모드 종료)",
                     "snippet": "end()"
                 },
                 {
@@ -3989,6 +4463,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Reset camera to default position",
                     "desc_ja": "カメラをデフォルト位置にリセット",
+                    "desc_ko": "카메라를 기본 위치로 초기화",
                     "snippet": "reset()"
                 },
                 {
@@ -3998,6 +4473,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set camera look-at target",
                     "desc_ja": "カメラの注視点を設定",
+                    "desc_ko": "카메라의 look-at 타겟을 설정",
                     "snippet": "setTarget(${1:0}, ${2:0}, ${3:0})"
                 },
                 {
@@ -4007,6 +4483,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set camera look-at target",
                     "desc_ja": "カメラの注視点を設定",
+                    "desc_ko": "카메라의 look-at 타겟을 설정",
                     "snippet": "setTarget(${1:0}, ${2:0}, ${3:0})"
                 },
                 {
@@ -4016,6 +4493,7 @@ const TrussCAPI = {
                     "return_type": "Vec3",
                     "desc": "Get camera look-at target",
                     "desc_ja": "カメラの注視点を取得",
+                    "desc_ko": "카메라의 look-at 타겟을 얻음",
                     "snippet": "getTarget()"
                 },
                 {
@@ -4025,6 +4503,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set distance from target",
                     "desc_ja": "注視点からの距離を設定",
+                    "desc_ko": "타겟으로부터의 거리를 설정",
                     "snippet": "setDistance(${1:400})"
                 },
                 {
@@ -4034,6 +4513,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get distance from target",
                     "desc_ja": "注視点からの距離を取得",
+                    "desc_ko": "타겟으로부터의 거리를 얻음",
                     "snippet": "getDistance()"
                 },
                 {
@@ -4043,6 +4523,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set field of view in radians",
                     "desc_ja": "視野角をラジアンで設定",
+                    "desc_ko": "시야각을 라디안으로 설정",
                     "snippet": "setFov(${1:0.785})"
                 },
                 {
@@ -4052,6 +4533,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get field of view in radians",
                     "desc_ja": "視野角をラジアンで取得",
+                    "desc_ko": "시야각을 라디안으로 얻음",
                     "snippet": "getFov()"
                 },
                 {
@@ -4061,6 +4543,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set field of view in degrees",
                     "desc_ja": "視野角を度数で設定",
+                    "desc_ko": "시야각을 도(degree)로 설정",
                     "snippet": "setFovDeg(${1:45})"
                 },
                 {
@@ -4070,6 +4553,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set near clipping plane",
                     "desc_ja": "近クリップ面を設定",
+                    "desc_ko": "근평면(near clip plane)을 설정",
                     "snippet": "setNearClip(${1:0.1})"
                 },
                 {
@@ -4079,6 +4563,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set far clipping plane",
                     "desc_ja": "遠クリップ面を設定",
+                    "desc_ko": "원평면(far clip plane)을 설정",
                     "snippet": "setFarClip(${1:10000})"
                 },
                 {
@@ -4088,6 +4573,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get near clipping plane distance",
                     "desc_ja": "近クリップ面の距離を取得",
+                    "desc_ko": "근평면 거리를 얻음",
                     "snippet": "getNearClip()"
                 },
                 {
@@ -4097,6 +4583,7 @@ const TrussCAPI = {
                     "return_type": "float",
                     "desc": "Get far clipping plane distance",
                     "desc_ja": "遠クリップ面の距離を取得",
+                    "desc_ko": "원평면 거리를 얻음",
                     "snippet": "getFarClip()"
                 },
                 {
@@ -4106,6 +4593,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Enable mouse input for camera control",
                     "desc_ja": "マウス入力によるカメラ操作を有効化",
+                    "desc_ko": "카메라 조작을 위한 마우스 입력 활성화",
                     "snippet": "enableMouseInput()"
                 },
                 {
@@ -4115,6 +4603,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Disable mouse input for camera control",
                     "desc_ja": "マウス入力によるカメラ操作を無効化",
+                    "desc_ko": "카메라 조작을 위한 마우스 입력 비활성화",
                     "snippet": "disableMouseInput()"
                 },
                 {
@@ -4124,6 +4613,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Check if mouse input is enabled",
                     "desc_ja": "マウス入力が有効かどうか確認",
+                    "desc_ko": "마우스 입력이 활성화되어 있는지 확인",
                     "snippet": "isMouseInputEnabled()"
                 },
                 {
@@ -4133,6 +4623,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Handle mouse press event",
                     "desc_ja": "マウス押下イベントを処理",
+                    "desc_ko": "마우스 누름 이벤트 처리",
                     "snippet": "mousePressed(${1:x}, ${2:y}, ${3:button})"
                 },
                 {
@@ -4142,6 +4633,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Handle mouse release event",
                     "desc_ja": "マウス離上イベントを処理",
+                    "desc_ko": "마우스 떼기 이벤트 처리",
                     "snippet": "mouseReleased(${1:x}, ${2:y}, ${3:button})"
                 },
                 {
@@ -4151,6 +4643,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Handle mouse drag event",
                     "desc_ja": "マウスドラッグイベントを処理",
+                    "desc_ko": "마우스 드래그 이벤트 처리",
                     "snippet": "mouseDragged(${1:x}, ${2:y}, ${3:button})"
                 },
                 {
@@ -4160,6 +4653,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Handle mouse scroll event (for zoom)",
                     "desc_ja": "マウススクロールイベントを処理（ズーム用）",
+                    "desc_ko": "마우스 스크롤 이벤트 처리 (줌용)",
                     "snippet": "mouseScrolled(${1:dx}, ${2:dy})"
                 },
                 {
@@ -4169,6 +4663,7 @@ const TrussCAPI = {
                     "return_type": "Vec3",
                     "desc": "Get camera position",
                     "desc_ja": "カメラ位置を取得",
+                    "desc_ko": "카메라 위치를 얻음",
                     "snippet": "getPosition()"
                 },
                 {
@@ -4178,6 +4673,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set rotation sensitivity",
                     "desc_ja": "回転感度を設定",
+                    "desc_ko": "회전 감도를 설정",
                     "snippet": "setSensitivity(${1:1.0})"
                 },
                 {
@@ -4187,6 +4683,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set zoom sensitivity",
                     "desc_ja": "ズーム感度を設定",
+                    "desc_ko": "줌 감도를 설정",
                     "snippet": "setZoomSensitivity(${1:10.0})"
                 },
                 {
@@ -4196,6 +4693,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set pan sensitivity",
                     "desc_ja": "パン感度を設定",
+                    "desc_ko": "팬 감도를 설정",
                     "snippet": "setPanSensitivity(${1:1.0})"
                 }
             ]
@@ -4203,6 +4701,7 @@ const TrussCAPI = {
         {
             "name": "Math - 3D",
             "name_ja": "数学 - 3D",
+            "name_ko": "수학 - 3D",
             "functions": [
                 {
                     "name": "Mat4_identity",
@@ -4211,6 +4710,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create an identity matrix",
                     "desc_ja": "単位行列を作成",
+                    "desc_ko": "단위 행렬을 생성",
                     "snippet": "Mat4_identity()"
                 },
                 {
@@ -4220,6 +4720,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a translation matrix",
                     "desc_ja": "平行移動行列を作成",
+                    "desc_ko": "이동 행렬을 생성",
                     "snippet": "Mat4_translate(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -4229,6 +4730,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a translation matrix",
                     "desc_ja": "平行移動行列を作成",
+                    "desc_ko": "이동 행렬을 생성",
                     "snippet": "Mat4_translate(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -4238,6 +4740,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create X-axis rotation matrix",
                     "desc_ja": "X軸回転行列を作成",
+                    "desc_ko": "X축 회전 행렬을 생성",
                     "snippet": "Mat4_rotateX(${1:radians})"
                 },
                 {
@@ -4247,6 +4750,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create Y-axis rotation matrix",
                     "desc_ja": "Y軸回転行列を作成",
+                    "desc_ko": "Y축 회전 행렬을 생성",
                     "snippet": "Mat4_rotateY(${1:radians})"
                 },
                 {
@@ -4256,6 +4760,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create Z-axis rotation matrix",
                     "desc_ja": "Z軸回転行列を作成",
+                    "desc_ko": "Z축 회전 행렬을 생성",
                     "snippet": "Mat4_rotateZ(${1:radians})"
                 },
                 {
@@ -4265,6 +4770,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a scaling matrix",
                     "desc_ja": "スケーリング行列を作成",
+                    "desc_ko": "스케일 행렬을 생성",
                     "snippet": "Mat4_scale(${1:s})"
                 },
                 {
@@ -4274,6 +4780,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a scaling matrix",
                     "desc_ja": "スケーリング行列を作成",
+                    "desc_ko": "스케일 행렬을 생성",
                     "snippet": "Mat4_scale(${1:s})"
                 },
                 {
@@ -4283,6 +4790,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a view matrix",
                     "desc_ja": "ビュー行列を作成",
+                    "desc_ko": "뷰 행렬을 생성",
                     "snippet": "Mat4_lookAt(${1:eye}, ${2:target}, ${3:up})"
                 },
                 {
@@ -4292,6 +4800,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create an orthographic projection matrix",
                     "desc_ja": "正投影行列を作成",
+                    "desc_ko": "정사영 투영 행렬을 생성",
                     "snippet": "Mat4_ortho(${1:left}, ${2:right}, ${3:bottom}, ${4:top}, ${5:near}, ${6:far})"
                 },
                 {
@@ -4301,6 +4810,7 @@ const TrussCAPI = {
                     "return_type": "Mat4",
                     "desc": "Create a perspective projection matrix",
                     "desc_ja": "透視投影行列を作成",
+                    "desc_ko": "원근 투영 행렬을 생성",
                     "snippet": "Mat4_perspective(${1:fov}, ${2:aspect}, ${3:near}, ${4:far})"
                 },
                 {
@@ -4310,6 +4820,7 @@ const TrussCAPI = {
                     "return_type": "Quaternion",
                     "desc": "Create an identity quaternion",
                     "desc_ja": "単位クォータニオンを作成",
+                    "desc_ko": "단위 쿼터니언을 생성",
                     "snippet": "Quaternion_identity()"
                 },
                 {
@@ -4319,6 +4830,7 @@ const TrussCAPI = {
                     "return_type": "Quaternion",
                     "desc": "Create quaternion from axis-angle",
                     "desc_ja": "軸-角度からクォータニオンを作成",
+                    "desc_ko": "축-각도로부터 쿼터니언을 생성",
                     "snippet": "Quaternion_fromAxisAngle(${1:axis}, ${2:radians})"
                 },
                 {
@@ -4328,6 +4840,7 @@ const TrussCAPI = {
                     "return_type": "Quaternion",
                     "desc": "Create quaternion from Euler angles",
                     "desc_ja": "オイラー角からクォータニオンを作成",
+                    "desc_ko": "오일러 각도로부터 쿼터니언을 생성",
                     "snippet": "Quaternion_fromEuler(${1:pitch}, ${2:yaw}, ${3:roll})"
                 },
                 {
@@ -4337,6 +4850,7 @@ const TrussCAPI = {
                     "return_type": "Quaternion",
                     "desc": "Create quaternion from Euler angles",
                     "desc_ja": "オイラー角からクォータニオンを作成",
+                    "desc_ko": "오일러 각도로부터 쿼터니언을 생성",
                     "snippet": "Quaternion_fromEuler(${1:pitch}, ${2:yaw}, ${3:roll})"
                 },
                 {
@@ -4346,6 +4860,7 @@ const TrussCAPI = {
                     "return_type": "Quaternion",
                     "desc": "Spherical linear interpolation",
                     "desc_ja": "球面線形補間",
+                    "desc_ko": "구면 선형 보간",
                     "snippet": "Quaternion_slerp(${1:a}, ${2:b}, ${3:t})"
                 }
             ]
@@ -4353,6 +4868,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Advanced",
             "name_ja": "グラフィックス - 高度",
+            "name_ko": "그래픽 - 고급",
             "functions": [
                 {
                     "name": "drawMesh",
@@ -4361,6 +4877,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a mesh",
                     "desc_ja": "メッシュを描画",
+                    "desc_ko": "메쉬를 그림",
                     "snippet": "drawMesh(${1:mesh})"
                 },
                 {
@@ -4370,6 +4887,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a polyline",
                     "desc_ja": "ポリラインを描画",
+                    "desc_ko": "폴리라인을 그림",
                     "snippet": "drawPolyline(${1:polyline})"
                 },
                 {
@@ -4379,6 +4897,7 @@ const TrussCAPI = {
                     "return_type": "Mesh",
                     "desc": "Create a box mesh",
                     "desc_ja": "ボックスメッシュを作成",
+                    "desc_ko": "박스 메쉬를 생성",
                     "snippet": "createBox(${1:size})"
                 },
                 {
@@ -4388,6 +4907,7 @@ const TrussCAPI = {
                     "return_type": "Mesh",
                     "desc": "Create a box mesh",
                     "desc_ja": "ボックスメッシュを作成",
+                    "desc_ko": "박스 메쉬를 생성",
                     "snippet": "createBox(${1:size})"
                 },
                 {
@@ -4397,6 +4917,7 @@ const TrussCAPI = {
                     "return_type": "Mesh",
                     "desc": "Create a sphere mesh",
                     "desc_ja": "球体メッシュを作成",
+                    "desc_ko": "구 메쉬를 생성",
                     "snippet": "createSphere(${1:radius})"
                 },
                 {
@@ -4406,6 +4927,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a texture",
                     "desc_ja": "テクスチャを描画",
+                    "desc_ko": "텍스처를 그림",
                     "snippet": "drawTexture(${1:tex}, ${2:x}, ${3:y})"
                 },
                 {
@@ -4415,6 +4937,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw a texture",
                     "desc_ja": "テクスチャを描画",
+                    "desc_ko": "텍스처를 그림",
                     "snippet": "drawTexture(${1:tex}, ${2:x}, ${3:y})"
                 }
             ]
@@ -4422,6 +4945,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Texture & GPU",
             "name_ja": "グラフィックス - テクスチャとGPU",
+            "name_ko": "그래픽 - 텍스처 & GPU",
             "functions": [
                 {
                     "name": "Texture",
@@ -4430,6 +4954,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a texture",
                     "desc_ja": "テクスチャを作成",
+                    "desc_ko": "텍스처를 생성",
                     "snippet": "Texture()"
                 },
                 {
@@ -4439,6 +4964,7 @@ const TrussCAPI = {
                     "return_type": "Texture@",
                     "desc": "Create a texture (TrussSketch factory)",
                     "desc_ja": "テクスチャを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "텍스처를 생성 (TrussSketch 팩토리)",
                     "snippet": "Texture@ tex = createTexture();"
                 },
                 {
@@ -4448,6 +4974,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Load image from file",
                     "desc_ja": "ファイルから画像を読み込む",
+                    "desc_ko": "파일에서 이미지를 로드",
                     "snippet": "load(${1:\"image.png\"})"
                 },
                 {
@@ -4457,6 +4984,7 @@ const TrussCAPI = {
                     "return_type": "bool",
                     "desc": "Load from pixel data",
                     "desc_ja": "ピクセルデータから読み込む",
+                    "desc_ko": "픽셀 데이터에서 로드",
                     "snippet": "loadFromPixels(${1:pixels})"
                 },
                 {
@@ -4466,6 +4994,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Bind texture",
                     "desc_ja": "テクスチャをバインド",
+                    "desc_ko": "텍스처를 바인딩",
                     "snippet": "bind(${1:0})"
                 },
                 {
@@ -4475,6 +5004,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Unbind texture",
                     "desc_ja": "テクスチャのバインド解除",
+                    "desc_ko": "텍스처 바인딩을 해제",
                     "snippet": "unbind(${1:0})"
                 },
                 {
@@ -4484,6 +5014,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get width",
                     "desc_ja": "幅を取得",
+                    "desc_ko": "너비를 얻음",
                     "snippet": "getWidth()"
                 },
                 {
@@ -4493,6 +5024,7 @@ const TrussCAPI = {
                     "return_type": "int",
                     "desc": "Get height",
                     "desc_ja": "高さを取得",
+                    "desc_ko": "높이를 얻음",
                     "snippet": "getHeight()"
                 }
             ]
@@ -4500,6 +5032,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - FBO",
             "name_ja": "グラフィックス - FBO",
+            "name_ko": "그래픽 - FBO",
             "functions": [
                 {
                     "name": "Fbo",
@@ -4508,6 +5041,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create an FBO",
                     "desc_ja": "FBOを作成",
+                    "desc_ko": "FBO를 생성",
                     "snippet": "Fbo()"
                 },
                 {
@@ -4517,6 +5051,7 @@ const TrussCAPI = {
                     "return_type": "Fbo@",
                     "desc": "Create an FBO (TrussSketch factory)",
                     "desc_ja": "FBOを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "FBO를 생성 (TrussSketch 팩토리)",
                     "snippet": "Fbo@ fbo = createFbo();"
                 },
                 {
@@ -4526,6 +5061,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Allocate buffer",
                     "desc_ja": "バッファを確保",
+                    "desc_ko": "버퍼를 할당",
                     "snippet": "allocate(${1:800}, ${2:600})"
                 },
                 {
@@ -4535,6 +5071,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Begin drawing to FBO. No args = preserve previous content. With args = clear with specified color",
                     "desc_ja": "FBOへの描画を開始。引数なし = 前の内容を保持。引数あり = 指定色でクリア",
+                    "desc_ko": "FBO 그리기 시작. 인자 없음 = 이전 내용 유지. 인자 있음 = 지정한 색으로 클리어",
                     "snippet": "begin()"
                 },
                 {
@@ -4544,6 +5081,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Begin drawing to FBO. No args = preserve previous content. With args = clear with specified color",
                     "desc_ja": "FBOへの描画を開始。引数なし = 前の内容を保持。引数あり = 指定色でクリア",
+                    "desc_ko": "FBO 그리기 시작. 인자 없음 = 이전 내용 유지. 인자 있음 = 지정한 색으로 클리어",
                     "snippet": "begin()"
                 },
                 {
@@ -4553,6 +5091,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "End drawing to FBO",
                     "desc_ja": "FBOへの描画を終了",
+                    "desc_ko": "FBO 그리기 종료",
                     "snippet": "end()"
                 },
                 {
@@ -4562,6 +5101,7 @@ const TrussCAPI = {
                     "return_type": "Texture&",
                     "desc": "Get internal texture",
                     "desc_ja": "内部テクスチャを取得",
+                    "desc_ko": "내부 텍스처를 얻음",
                     "snippet": "getTexture()"
                 },
                 {
@@ -4571,6 +5111,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Read pixels to CPU memory",
                     "desc_ja": "ピクセルをCPUメモリに読み出す",
+                    "desc_ko": "픽셀을 CPU 메모리로 읽음",
                     "snippet": "readToPixels(${1:pixels})"
                 }
             ]
@@ -4578,6 +5119,7 @@ const TrussCAPI = {
         {
             "name": "Graphics - Shader",
             "name_ja": "グラフィックス - シェーダー",
+            "name_ko": "그래픽 - 셰이더",
             "functions": [
                 {
                     "name": "Shader",
@@ -4585,7 +5127,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "",
                     "desc": "Create a shader (base class, inheritable)",
-                    "desc_ja": "シェーダーを作成（基底クラス、継承可能）"
+                    "desc_ja": "シェーダーを作成（基底クラス、継承可能）",
+                    "desc_ko": "셰이더를 생성 (베이스 클래스, 상속 가능)"
                 },
                 {
                     "name": "load",
@@ -4593,7 +5136,8 @@ const TrussCAPI = {
                     "params_typed": "const sg_shader_desc* (*descFn)(sg_backend)",
                     "return_type": "bool",
                     "desc": "Load from sokol-shdc generated function",
-                    "desc_ja": "sokol-shdc生成関数からロード"
+                    "desc_ja": "sokol-shdc生成関数からロード",
+                    "desc_ko": "sokol-shdc로 생성된 함수에서 로드"
                 },
                 {
                     "name": "isLoaded",
@@ -4601,7 +5145,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "bool",
                     "desc": "Check if shader is loaded",
-                    "desc_ja": "シェーダーが読み込まれているか確認"
+                    "desc_ja": "シェーダーが読み込まれているか確認",
+                    "desc_ko": "셰이더가 로드되었는지 확인"
                 },
                 {
                     "name": "begin",
@@ -4609,7 +5154,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Begin shader (pushes to stack)",
-                    "desc_ja": "シェーダーを開始（スタックにプッシュ）"
+                    "desc_ja": "シェーダーを開始（スタックにプッシュ）",
+                    "desc_ko": "셰이더 시작 (스택에 푸시)"
                 },
                 {
                     "name": "end",
@@ -4617,7 +5163,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "End shader (pops from stack)",
-                    "desc_ja": "シェーダーを終了（スタックからポップ）"
+                    "desc_ja": "シェーダーを終了（スタックからポップ）",
+                    "desc_ko": "셰이더 종료 (스택에서 팝)"
                 },
                 {
                     "name": "pushShader",
@@ -4625,7 +5172,8 @@ const TrussCAPI = {
                     "params_typed": "Shader& shader",
                     "return_type": "void",
                     "desc": "Push shader to stack (subsequent draws use this shader)",
-                    "desc_ja": "シェーダーをスタックにプッシュ（以降の描画にこのシェーダーを使用）"
+                    "desc_ja": "シェーダーをスタックにプッシュ（以降の描画にこのシェーダーを使用）",
+                    "desc_ko": "셰이더를 스택에 푸시 (이후 드로우에 사용)"
                 },
                 {
                     "name": "popShader",
@@ -4633,7 +5181,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "void",
                     "desc": "Pop shader from stack",
-                    "desc_ja": "シェーダーをスタックからポップ"
+                    "desc_ja": "シェーダーをスタックからポップ",
+                    "desc_ko": "셰이더를 스택에서 꺼냄"
                 },
                 {
                     "name": "setUniform",
@@ -4641,7 +5190,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, float value",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setUniform",
@@ -4649,7 +5199,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, const Vec2& v",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setUniform",
@@ -4657,7 +5208,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, const Vec3& v",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setUniform",
@@ -4665,7 +5217,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, const Vec4& v",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setUniform",
@@ -4673,7 +5226,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, const Color& c",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setUniform",
@@ -4681,7 +5235,8 @@ const TrussCAPI = {
                     "params_typed": "int slot, const vector<float>& v",
                     "return_type": "void",
                     "desc": "Set uniform variable by slot",
-                    "desc_ja": "スロット番号でUniform変数を設定"
+                    "desc_ja": "スロット番号でUniform変数を設定",
+                    "desc_ko": "슬롯별로 유니폼 변수를 설정"
                 },
                 {
                     "name": "setTexture",
@@ -4689,13 +5244,15 @@ const TrussCAPI = {
                     "params_typed": "int slot, sg_view view, sg_sampler sampler",
                     "return_type": "void",
                     "desc": "Bind texture to slot",
-                    "desc_ja": "スロットにテクスチャをバインド"
+                    "desc_ja": "スロットにテクスチャをバインド",
+                    "desc_ko": "슬롯에 텍스처를 바인딩"
                 }
             ]
         },
         {
             "name": "Types - Pixels",
             "name_ja": "型 - Pixels",
+            "name_ko": "타입 - Pixels",
             "functions": [
                 {
                     "name": "Pixels",
@@ -4704,6 +5261,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create pixel buffer",
                     "desc_ja": "ピクセルバッファを作成",
+                    "desc_ko": "픽셀 버퍼를 생성",
                     "snippet": "Pixels()"
                 },
                 {
@@ -4713,6 +5271,7 @@ const TrussCAPI = {
                     "return_type": "Pixels@",
                     "desc": "Create pixel buffer (TrussSketch factory)",
                     "desc_ja": "ピクセルバッファを作成（TrussSketch用ファクトリ）",
+                    "desc_ko": "픽셀 버퍼를 생성 (TrussSketch 팩토리)",
                     "snippet": "Pixels@ px = createPixels();"
                 },
                 {
@@ -4722,6 +5281,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Allocate memory",
                     "desc_ja": "メモリを確保",
+                    "desc_ko": "메모리를 할당",
                     "snippet": "allocate(${1:800}, ${2:600}, ${3:4})"
                 },
                 {
@@ -4730,7 +5290,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "uint8_t*",
                     "desc": "Get raw data pointer",
-                    "desc_ja": "生データポインタを取得"
+                    "desc_ja": "生データポインタを取得",
+                    "desc_ko": "원본 데이터 포인터를 얻음"
                 },
                 {
                     "name": "getColor",
@@ -4739,6 +5300,7 @@ const TrussCAPI = {
                     "return_type": "Color",
                     "desc": "Get color at pixel",
                     "desc_ja": "指定座標の色を取得",
+                    "desc_ko": "픽셀의 색상을 얻음",
                     "snippet": "getColor(${1:x}, ${2:y})"
                 },
                 {
@@ -4748,6 +5310,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set color at pixel",
                     "desc_ja": "指定座標の色を設定",
+                    "desc_ko": "픽셀의 색상을 설정",
                     "snippet": "setColor(${1:x}, ${2:y}, ${3:color})"
                 },
                 {
@@ -4756,13 +5319,15 @@ const TrussCAPI = {
                     "params_typed": "const string& path",
                     "return_type": "bool",
                     "desc": "Save to file",
-                    "desc_ja": "ファイルに保存"
+                    "desc_ja": "ファイルに保存",
+                    "desc_ko": "파일로 저장"
                 }
             ]
         },
         {
             "name": "Types - Mesh",
             "name_ja": "型 - Mesh",
+            "name_ko": "타입 - Mesh",
             "functions": [
                 {
                     "name": "createMesh",
@@ -4771,6 +5336,7 @@ const TrussCAPI = {
                     "return_type": "Mesh@",
                     "desc": "Create a new Mesh",
                     "desc_ja": "メッシュを作成",
+                    "desc_ko": "새 Mesh를 생성",
                     "snippet": "Mesh@ mesh = createMesh();"
                 },
                 {
@@ -4780,6 +5346,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a new Mesh (constructor)",
                     "desc_ja": "メッシュを作成（コンストラクタ）",
+                    "desc_ko": "새 Mesh를 생성 (생성자)",
                     "snippet": "Mesh()"
                 },
                 {
@@ -4789,6 +5356,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Set primitive mode (MESH_TRIANGLES, etc.)",
                     "desc_ja": "描画モードを設定",
+                    "desc_ko": "프리미티브 모드 설정 (MESH_TRIANGLES 등)",
                     "snippet": "setMode(${1:MESH_TRIANGLES})"
                 },
                 {
@@ -4798,6 +5366,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점을 추가",
                     "snippet": "addVertex(${1:x}, ${2:y}, ${3:0})"
                 },
                 {
@@ -4807,6 +5376,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점을 추가",
                     "snippet": "addVertex(${1:x}, ${2:y}, ${3:0})"
                 },
                 {
@@ -4816,6 +5386,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a color for the vertex",
                     "desc_ja": "頂点カラーを追加",
+                    "desc_ko": "정점에 색상을 추가",
                     "snippet": "addColor(${1:1}, ${2:1}, ${3:1}, ${4:1})"
                 },
                 {
@@ -4825,6 +5396,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a color for the vertex",
                     "desc_ja": "頂点カラーを追加",
+                    "desc_ko": "정점에 색상을 추가",
                     "snippet": "addColor(${1:1}, ${2:1}, ${3:1}, ${4:1})"
                 },
                 {
@@ -4834,6 +5406,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a texture coordinate",
                     "desc_ja": "テクスチャ座標を追加",
+                    "desc_ko": "텍스처 좌표를 추가",
                     "snippet": "addTexCoord(${1:u}, ${2:v})"
                 },
                 {
@@ -4843,6 +5416,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a normal vector",
                     "desc_ja": "法線を追加",
+                    "desc_ko": "법선 벡터를 추가",
                     "snippet": "addNormal(${1:x}, ${2:y}, ${3:z})"
                 },
                 {
@@ -4852,6 +5426,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add an index",
                     "desc_ja": "インデックスを追加",
+                    "desc_ko": "인덱스를 추가",
                     "snippet": "addIndex(${1:index})"
                 },
                 {
@@ -4861,6 +5436,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a triangle (3 indices)",
                     "desc_ja": "三角形を追加（インデックス3つ）",
+                    "desc_ko": "삼각형을 추가 (인덱스 3개)",
                     "snippet": "addTriangle(${1:i1}, ${2:i2}, ${3:i3})"
                 },
                 {
@@ -4870,6 +5446,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Clear all data",
                     "desc_ja": "データをクリア",
+                    "desc_ko": "모든 데이터를 지움",
                     "snippet": "clear()"
                 },
                 {
@@ -4879,6 +5456,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw the mesh",
                     "desc_ja": "メッシュを描画",
+                    "desc_ko": "메쉬를 그림",
                     "snippet": "draw()"
                 }
             ]
@@ -4886,6 +5464,7 @@ const TrussCAPI = {
         {
             "name": "Types - Path",
             "name_ja": "型 - Path",
+            "name_ko": "타입 - Path",
             "functions": [
                 {
                     "name": "createPath",
@@ -4894,6 +5473,7 @@ const TrussCAPI = {
                     "return_type": "Path@",
                     "desc": "Create a new Path",
                     "desc_ja": "パスを作成",
+                    "desc_ko": "새 Path를 생성",
                     "snippet": "Path@ path = createPath();"
                 },
                 {
@@ -4903,6 +5483,7 @@ const TrussCAPI = {
                     "return_type": "",
                     "desc": "Create a new Path (constructor)",
                     "desc_ja": "パスを作成（コンストラクタ）",
+                    "desc_ko": "새 Path를 생성 (생성자)",
                     "snippet": "Path()"
                 },
                 {
@@ -4912,6 +5493,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a vertex",
                     "desc_ja": "頂点を追加",
+                    "desc_ko": "정점을 추가",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
                 {
@@ -4921,6 +5503,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a line segment to point",
                     "desc_ja": "指定点まで線を追加",
+                    "desc_ko": "특정 점까지 선분을 추가",
                     "snippet": "lineTo(${1:x}, ${2:y})"
                 },
                 {
@@ -4930,6 +5513,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a cubic bezier curve",
                     "desc_ja": "3次ベジェ曲線を追加",
+                    "desc_ko": "3차 베지어 곡선을 추가",
                     "snippet": "bezierTo(${1:cx1}, ${2:cy1}, ${3:cx2}, ${4:cy2}, ${5:x}, ${6:y})"
                 },
                 {
@@ -4939,6 +5523,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a quadratic bezier curve",
                     "desc_ja": "2次ベジェ曲線を追加",
+                    "desc_ko": "2차 베지어 곡선을 추가",
                     "snippet": "quadBezierTo(${1:cx}, ${2:cy}, ${3:x}, ${4:y})"
                 },
                 {
@@ -4948,6 +5533,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add a Catmull-Rom curve segment",
                     "desc_ja": "Catmull-Rom曲線を追加",
+                    "desc_ko": "Catmull-Rom 곡선 구간을 추가",
                     "snippet": "curveTo(${1:x}, ${2:y})"
                 },
                 {
@@ -4957,6 +5543,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Add an arc",
                     "desc_ja": "円弧を追加",
+                    "desc_ko": "호를 추가",
                     "snippet": "arc(${1:x}, ${2:y}, ${3:rX}, ${4:rY}, ${5:0}, ${6:360})"
                 },
                 {
@@ -4966,6 +5553,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Close the shape",
                     "desc_ja": "パスを閉じる",
+                    "desc_ko": "도형을 닫음",
                     "snippet": "close()"
                 }
             ]
@@ -4973,6 +5561,7 @@ const TrussCAPI = {
         {
             "name": "Types - StrokeMesh",
             "name_ja": "型 - StrokeMesh",
+            "name_ko": "타입 - StrokeMesh",
             "functions": [
                 {
                     "name": "createStrokeMesh",
@@ -4981,6 +5570,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh@",
                     "desc": "Create a new StrokeMesh instance",
                     "desc_ja": "StrokeMeshインスタンスを作成",
+                    "desc_ko": "새 StrokeMesh 인스턴스를 생성",
                     "snippet": "createStrokeMesh()"
                 },
                 {
@@ -4990,6 +5580,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set stroke width (method chaining)",
                     "desc_ja": "線の太さを設定（メソッドチェーン対応）",
+                    "desc_ko": "스트로크 너비를 설정 (메서드 체이닝)",
                     "snippet": "setWidth(${1:5.0})"
                 },
                 {
@@ -4999,6 +5590,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set stroke color (method chaining)",
                     "desc_ja": "線の色を設定（メソッドチェーン対応）",
+                    "desc_ko": "스트로크 색상을 설정 (메서드 체이닝)",
                     "snippet": "setColor(${1:color})"
                 },
                 {
@@ -5008,6 +5600,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set cap type: Butt, Round, Square (method chaining)",
                     "desc_ja": "端点の形状を設定（メソッドチェーン対応）",
+                    "desc_ko": "캡 타입 설정: Butt, Round, Square (메서드 체이닝)",
                     "snippet": "setCapType(${1:Round})"
                 },
                 {
@@ -5017,6 +5610,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set join type: Miter, Round, Bevel (method chaining)",
                     "desc_ja": "結合部の形状を設定（メソッドチェーン対応）",
+                    "desc_ko": "조인 타입 설정: Miter, Round, Bevel (메서드 체이닝)",
                     "snippet": "setJoinType(${1:Round})"
                 },
                 {
@@ -5026,6 +5620,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set miter limit for sharp corners (method chaining)",
                     "desc_ja": "マイター結合の限界値を設定（メソッドチェーン対応）",
+                    "desc_ko": "날카로운 모서리의 미터 한계를 설정 (메서드 체이닝)",
                     "snippet": "setMiterLimit(${1:10.0})"
                 },
                 {
@@ -5035,6 +5630,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Add a vertex (method chaining)",
                     "desc_ja": "頂点を追加（メソッドチェーン対応）",
+                    "desc_ko": "정점을 추가 (메서드 체이닝)",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
                 {
@@ -5044,6 +5640,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Add a vertex (method chaining)",
                     "desc_ja": "頂点を追加（メソッドチェーン対応）",
+                    "desc_ko": "정점을 추가 (메서드 체이닝)",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
                 {
@@ -5053,6 +5650,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Add a vertex (method chaining)",
                     "desc_ja": "頂点を追加（メソッドチェーン対応）",
+                    "desc_ko": "정점을 추가 (메서드 체이닝)",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
                 {
@@ -5062,6 +5660,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Add a vertex (method chaining)",
                     "desc_ja": "頂点を追加（メソッドチェーン対応）",
+                    "desc_ko": "정점을 추가 (메서드 체이닝)",
                     "snippet": "addVertex(${1:x}, ${2:y})"
                 },
                 {
@@ -5071,6 +5670,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Add a vertex with variable width (method chaining)",
                     "desc_ja": "可変幅で頂点を追加（メソッドチェーン対応）",
+                    "desc_ko": "가변 너비를 가진 정점을 추가 (메서드 체이닝)",
                     "snippet": "addVertexWithWidth(${1:x}, ${2:y}, ${3:width})"
                 },
                 {
@@ -5080,6 +5680,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set shape from Path (method chaining)",
                     "desc_ja": "Pathから形状を設定（メソッドチェーン対応）",
+                    "desc_ko": "Path로부터 도형을 설정 (메서드 체이닝)",
                     "snippet": "setShape(${1:path})"
                 },
                 {
@@ -5089,6 +5690,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Set whether the stroke is closed (method chaining)",
                     "desc_ja": "閉じたストロークかどうかを設定（メソッドチェーン対応）",
+                    "desc_ko": "스트로크가 닫혀 있는지 설정 (메서드 체이닝)",
                     "snippet": "setClosed(${1:true})"
                 },
                 {
@@ -5098,6 +5700,7 @@ const TrussCAPI = {
                     "return_type": "StrokeMesh&",
                     "desc": "Clear all vertices (method chaining)",
                     "desc_ja": "全頂点をクリア（メソッドチェーン対応）",
+                    "desc_ko": "모든 정점을 지움 (메서드 체이닝)",
                     "snippet": "clear()"
                 },
                 {
@@ -5107,6 +5710,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Update the internal mesh (required before draw)",
                     "desc_ja": "内部メッシュを更新（描画前に必須）",
+                    "desc_ko": "내부 메쉬를 업데이트 (그리기 전에 필요)",
                     "snippet": "update()"
                 },
                 {
@@ -5116,6 +5720,7 @@ const TrussCAPI = {
                     "return_type": "void",
                     "desc": "Draw the stroke mesh",
                     "desc_ja": "ストロークメッシュを描画",
+                    "desc_ko": "스트로크 메쉬를 그림",
                     "snippet": "draw()"
                 }
             ]
@@ -5123,6 +5728,7 @@ const TrussCAPI = {
         {
             "name": "Addon: tcxLut (Color Grading)",
             "name_ja": "アドオン: tcxLut（カラーグレーディング）",
+            "name_ko": "애드온: tcxLut (컬러 그레이딩)",
             "functions": [
                 {
                     "name": "tcx::lut::Lut3D",
@@ -5130,7 +5736,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "",
                     "desc": "Create a 3D LUT for color grading",
-                    "desc_ja": "カラーグレーディング用3D LUTを作成"
+                    "desc_ja": "カラーグレーディング用3D LUTを作成",
+                    "desc_ko": "컬러 그레이딩용 3D LUT를 생성"
                 },
                 {
                     "name": "load",
@@ -5138,7 +5745,8 @@ const TrussCAPI = {
                     "params_typed": "const fs::path& path",
                     "return_type": "bool",
                     "desc": "Load .cube file",
-                    "desc_ja": ".cubeファイルを読み込む"
+                    "desc_ja": ".cubeファイルを読み込む",
+                    "desc_ko": ".cube 파일을 로드"
                 },
                 {
                     "name": "allocate",
@@ -5146,7 +5754,8 @@ const TrussCAPI = {
                     "params_typed": "int size, const float* data = nullptr",
                     "return_type": "void",
                     "desc": "Allocate LUT with optional data",
-                    "desc_ja": "LUTをメモリ確保（データ指定可）"
+                    "desc_ja": "LUTをメモリ確保（データ指定可）",
+                    "desc_ko": "선택적 데이터로 LUT를 할당"
                 },
                 {
                     "name": "isAllocated",
@@ -5154,7 +5763,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "bool",
                     "desc": "Check if LUT is allocated",
-                    "desc_ja": "LUTが確保済みか確認"
+                    "desc_ja": "LUTが確保済みか確認",
+                    "desc_ko": "LUT가 할당되었는지 확인"
                 },
                 {
                     "name": "getSize",
@@ -5162,7 +5772,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "int",
                     "desc": "Get LUT size (e.g., 32 for 32x32x32)",
-                    "desc_ja": "LUTサイズを取得（32x32x32なら32）"
+                    "desc_ja": "LUTサイズを取得（32x32x32なら32）",
+                    "desc_ko": "LUT 크기를 얻음 (예: 32x32x32의 경우 32)"
                 },
                 {
                     "name": "tcx::lut::createIdentity",
@@ -5170,7 +5781,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create identity LUT (no color change)",
-                    "desc_ja": "Identity LUTを生成（色変更なし）"
+                    "desc_ja": "Identity LUTを生成（色変更なし）",
+                    "desc_ko": "단위 LUT를 생성 (색상 변화 없음)"
                 },
                 {
                     "name": "tcx::lut::createVintage",
@@ -5178,7 +5790,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create vintage/faded look LUT",
-                    "desc_ja": "ビンテージ/フェード風LUTを生成"
+                    "desc_ja": "ビンテージ/フェード風LUTを生成",
+                    "desc_ko": "빈티지/페이드 룩 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createCinematic",
@@ -5186,7 +5799,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create cinematic orange/teal LUT",
-                    "desc_ja": "シネマティック（オレンジ/ティール）LUTを生成"
+                    "desc_ja": "シネマティック（オレンジ/ティール）LUTを生成",
+                    "desc_ko": "시네마틱 오렌지/틸 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createFilmNoir",
@@ -5194,7 +5808,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create film noir high-contrast B&W LUT",
-                    "desc_ja": "フィルムノワール（高コントラストB&W）LUTを生成"
+                    "desc_ja": "フィルムノワール（高コントラストB&W）LUTを生成",
+                    "desc_ko": "필름 누아르 고대비 흑백 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createWarm",
@@ -5202,7 +5817,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create warm color shift LUT",
-                    "desc_ja": "暖色系LUTを生成"
+                    "desc_ja": "暖色系LUTを生成",
+                    "desc_ko": "따뜻한 색조 시프트 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createCool",
@@ -5210,7 +5826,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create cool color shift LUT",
-                    "desc_ja": "寒色系LUTを生成"
+                    "desc_ja": "寒色系LUTを生成",
+                    "desc_ko": "차가운 색조 시프트 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createCyberpunk",
@@ -5218,7 +5835,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create cyberpunk neon pink/cyan LUT",
-                    "desc_ja": "サイバーパンク（ネオンピンク/シアン）LUTを生成"
+                    "desc_ja": "サイバーパンク（ネオンピンク/シアン）LUTを生成",
+                    "desc_ko": "사이버펑크 네온 핑크/시안 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::createPastel",
@@ -5226,7 +5844,8 @@ const TrussCAPI = {
                     "params_typed": "int size = 32",
                     "return_type": "Lut3D",
                     "desc": "Create soft pastel LUT",
-                    "desc_ja": "パステル調LUTを生成"
+                    "desc_ja": "パステル調LUTを生成",
+                    "desc_ko": "부드러운 파스텔 LUT를 생성"
                 },
                 {
                     "name": "tcx::lut::LutShader",
@@ -5234,7 +5853,8 @@ const TrussCAPI = {
                     "params_typed": "",
                     "return_type": "",
                     "desc": "Create a LUT shader for color grading",
-                    "desc_ja": "カラーグレーディング用LUTシェーダーを作成"
+                    "desc_ja": "カラーグレーディング用LUTシェーダーを作成",
+                    "desc_ko": "컬러 그레이딩용 LUT 셰이더를 생성"
                 },
                 {
                     "name": "setTexture",
@@ -5242,7 +5862,8 @@ const TrussCAPI = {
                     "params_typed": "const T& tex",
                     "return_type": "void",
                     "desc": "Set source texture (VideoGrabber, Texture, Fbo, etc.)",
-                    "desc_ja": "ソーステクスチャを設定（VideoGrabber, Texture, Fboなど）"
+                    "desc_ja": "ソーステクスチャを設定（VideoGrabber, Texture, Fboなど）",
+                    "desc_ko": "소스 텍스처 설정 (VideoGrabber, Texture, Fbo 등)"
                 },
                 {
                     "name": "setLut",
@@ -5250,7 +5871,8 @@ const TrussCAPI = {
                     "params_typed": "const Lut3D& lut",
                     "return_type": "void",
                     "desc": "Set LUT to apply",
-                    "desc_ja": "適用するLUTを設定"
+                    "desc_ja": "適用するLUTを設定",
+                    "desc_ko": "적용할 LUT를 설정"
                 },
                 {
                     "name": "setBlend",
@@ -5258,7 +5880,8 @@ const TrussCAPI = {
                     "params_typed": "float blend",
                     "return_type": "void",
                     "desc": "Set blend amount (0=original, 1=full LUT)",
-                    "desc_ja": "ブレンド量を設定（0=元画像, 1=LUT全適用）"
+                    "desc_ja": "ブレンド量を設定（0=元画像, 1=LUT全適用）",
+                    "desc_ko": "블렌드 양 설정 (0=원본, 1=LUT 완전 적용)"
                 },
                 {
                     "name": "draw",
@@ -5266,7 +5889,8 @@ const TrussCAPI = {
                     "params_typed": "float x, float y",
                     "return_type": "void",
                     "desc": "Draw with LUT applied",
-                    "desc_ja": "LUTを適用して描画"
+                    "desc_ja": "LUTを適用して描画",
+                    "desc_ko": "LUT를 적용하여 그림"
                 },
                 {
                     "name": "draw",
@@ -5274,7 +5898,8 @@ const TrussCAPI = {
                     "params_typed": "float x, float y, float w, float h",
                     "return_type": "void",
                     "desc": "Draw with LUT applied",
-                    "desc_ja": "LUTを適用して描画"
+                    "desc_ja": "LUTを適用して描画",
+                    "desc_ko": "LUT를 적용하여 그림"
                 },
                 {
                     "name": "drawSubsection",
@@ -5282,7 +5907,8 @@ const TrussCAPI = {
                     "params_typed": "float x, float y, float w, float h, float sx, float sy, float sw, float sh",
                     "return_type": "void",
                     "desc": "Draw subsection with LUT applied",
-                    "desc_ja": "LUTを適用して部分描画"
+                    "desc_ja": "LUTを適用して部分描画",
+                    "desc_ko": "LUT를 적용하여 부분을 그림"
                 }
             ]
         }
@@ -5592,6 +6218,7 @@ const TrussCAPI = {
             "name": "Vec2",
             "desc": "2D vector (x, y)",
             "desc_ja": "2Dベクトル (x, y)",
+            "desc_ko": "2D 벡터 (x, y)",
             "constructor": {
                 "signatures": [
                     "",
@@ -5777,6 +6404,7 @@ const TrussCAPI = {
             "name": "Vec3",
             "desc": "3D vector (x, y, z)",
             "desc_ja": "3Dベクトル (x, y, z)",
+            "desc_ko": "3D 벡터 (x, y, z)",
             "constructor": {
                 "signatures": [
                     "",
@@ -5924,9 +6552,99 @@ const TrussCAPI = {
             ]
         },
         {
+            "name": "IVec2",
+            "desc": "2D integer vector (x, y)",
+            "desc_ja": "2D整数ベクトル (x, y)",
+            "desc_ko": "2D 정수 벡터 (x, y)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "int x, int y",
+                    "int v"
+                ],
+                "snippet": "IVec2(${1:x}, ${2:y})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "int",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "int",
+                    "desc": "Y component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "toVec2",
+                    "return": "Vec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to Vec2 (float)",
+                    "snippet": "toVec2()"
+                }
+            ]
+        },
+        {
+            "name": "IVec3",
+            "desc": "3D integer vector (x, y, z)",
+            "desc_ja": "3D整数ベクトル (x, y, z)",
+            "desc_ko": "3D 정수 벡터 (x, y, z)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "int x, int y, int z",
+                    "int v",
+                    "IVec2 v, int z"
+                ],
+                "snippet": "IVec3(${1:x}, ${2:y}, ${3:z})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "int",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "int",
+                    "desc": "Y component"
+                },
+                {
+                    "name": "z",
+                    "type": "int",
+                    "desc": "Z component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "toVec3",
+                    "return": "Vec3",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to Vec3 (float)",
+                    "snippet": "toVec3()"
+                },
+                {
+                    "name": "xy",
+                    "return": "IVec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get XY components as IVec2",
+                    "snippet": "xy()"
+                }
+            ]
+        },
+        {
             "name": "Color",
             "desc": "RGBA color (0.0-1.0 range)",
             "desc_ja": "RGBAカラー (0.0-1.0範囲)",
+            "desc_ko": "RGBA 색상 (0.0-1.0 범위)",
             "constructor": {
                 "signatures": [
                     "",
@@ -6009,6 +6727,15 @@ const TrussCAPI = {
                     "snippet": "clamped()"
                 },
                 {
+                    "name": "toLinear",
+                    "return": "ColorLinear",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to linear RGB color space",
+                    "snippet": "toLinear()"
+                },
+                {
                     "name": "toHSB",
                     "return": "ColorHSB",
                     "signatures": [
@@ -6018,6 +6745,15 @@ const TrussCAPI = {
                     "snippet": "toHSB()"
                 },
                 {
+                    "name": "toOKLab",
+                    "return": "ColorOKLab",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to OKLab (perceptually uniform)",
+                    "snippet": "toOKLab()"
+                },
+                {
                     "name": "toOKLCH",
                     "return": "ColorOKLCH",
                     "signatures": [
@@ -6025,6 +6761,42 @@ const TrussCAPI = {
                     ],
                     "desc": "Convert to OKLCH (L: 0-1, C: 0-0.4, H: 0-1)",
                     "snippet": "toOKLCH()"
+                },
+                {
+                    "name": "lerpLinear",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in linear RGB space",
+                    "snippet": "lerpLinear(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpHSB",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in HSB space",
+                    "snippet": "lerpHSB(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpOKLab",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in OKLab space (perceptually uniform)",
+                    "snippet": "lerpOKLab(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpOKLCH",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in OKLCH space (shortest hue path)",
+                    "snippet": "lerpOKLCH(${1:target}, ${2:t})"
                 }
             ],
             "static_methods": [
@@ -6049,6 +6821,36 @@ const TrussCAPI = {
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
                 },
                 {
+                    "name": "Color_fromOKLab",
+                    "return": "Color",
+                    "signatures": [
+                        "float L, float a, float b",
+                        "float L, float a, float b, float alpha"
+                    ],
+                    "desc": "Create from OKLab (L: 0-1, a: ~-0.4-0.4, b: ~-0.4-0.4)",
+                    "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
+                },
+                {
+                    "name": "Color_fromOKLCH",
+                    "return": "Color",
+                    "signatures": [
+                        "float L, float C, float H",
+                        "float L, float C, float H, float a"
+                    ],
+                    "desc": "Create from OKLCH (L: 0-1, C: 0-0.4, H: 0-1)",
+                    "snippet": "Color_fromOKLCH(${1:L}, ${2:C}, ${3:H})"
+                },
+                {
+                    "name": "Color_fromLinear",
+                    "return": "Color",
+                    "signatures": [
+                        "float r, float g, float b",
+                        "float r, float g, float b, float a"
+                    ],
+                    "desc": "Create from linear RGB",
+                    "snippet": "Color_fromLinear(${1:r}, ${2:g}, ${3:b})"
+                },
+                {
                     "name": "Color_fromBytes",
                     "return": "Color",
                     "signatures": [
@@ -6064,6 +6866,7 @@ const TrussCAPI = {
             "name": "Rect",
             "desc": "Rectangle (x, y, width, height)",
             "desc_ja": "矩形 (x, y, width, height)",
+            "desc_ko": "사각형 (x, y, width, height)",
             "constructor": {
                 "signatures": [
                     "",
@@ -6163,6 +6966,7 @@ const TrussCAPI = {
             "name": "Mat4",
             "desc": "4x4 matrix for 3D transformations",
             "desc_ja": "3D変換用4x4行列",
+            "desc_ko": "3D 변환용 4x4 행렬",
             "constructor": {
                 "signatures": [
                     ""
@@ -6194,6 +6998,7 @@ const TrussCAPI = {
             "name": "Quaternion",
             "desc": "Unit quaternion for 3D rotations",
             "desc_ja": "3D回転用単位クォータニオン",
+            "desc_ko": "3D 회전용 단위 쿼터니언",
             "constructor": {
                 "signatures": [
                     "",
@@ -6284,6 +7089,7 @@ const TrussCAPI = {
             "name": "Pixels",
             "desc": "Pixel buffer for image manipulation",
             "desc_ja": "画像操作用ピクセルバッファ",
+            "desc_ko": "이미지 조작용 픽셀 버퍼",
             "constructor": {
                 "signatures": [
                     ""
@@ -6433,6 +7239,7 @@ const TrussCAPI = {
             "name": "Image",
             "desc": "Image with CPU pixels and GPU texture",
             "desc_ja": "CPUピクセルとGPUテクスチャを持つ画像",
+            "desc_ko": "CPU 픽셀과 GPU 텍스처를 가진 이미지",
             "methods": [
                 {
                     "name": "load",
@@ -6607,6 +7414,7 @@ const TrussCAPI = {
             "name": "Texture",
             "desc": "GPU texture for rendering",
             "desc_ja": "レンダリング用GPUテクスチャ",
+            "desc_ko": "렌더링용 GPU 텍스처",
             "constructor": {
                 "signatures": [
                     ""
@@ -6829,6 +7637,7 @@ const TrussCAPI = {
             "name": "Fbo",
             "desc": "Framebuffer object for offscreen rendering",
             "desc_ja": "オフスクリーンレンダリング用FBO",
+            "desc_ko": "오프스크린 렌더링용 프레임버퍼 객체",
             "constructor": {
                 "signatures": [
                     ""
@@ -6961,6 +7770,7 @@ const TrussCAPI = {
             "name": "Path",
             "desc": "Path/Polyline for lines and curves",
             "desc_ja": "線と曲線のパス/ポリライン",
+            "desc_ko": "선과 곡선을 위한 경로/폴리라인",
             "constructor": {
                 "signatures": [
                     "",
@@ -7143,6 +7953,7 @@ const TrussCAPI = {
             "name": "Mesh",
             "desc": "3D mesh with vertices, colors, normals, indices",
             "desc_ja": "頂点・色・法線・インデックスを持つ3Dメッシュ",
+            "desc_ko": "정점, 색상, 노멀, 인덱스를 가진 3D 메쉬",
             "constructor": {
                 "signatures": [
                     ""
@@ -7562,6 +8373,7 @@ const TrussCAPI = {
             "name": "Sound",
             "desc": "Audio playback",
             "desc_ja": "オーディオ再生",
+            "desc_ko": "오디오 재생",
             "constructor": {
                 "signatures": [
                     ""
@@ -7728,6 +8540,7 @@ const TrussCAPI = {
             "name": "Font",
             "desc": "TrueType font for text rendering",
             "desc_ja": "テキストレンダリング用TrueTypeフォント",
+            "desc_ko": "텍스트 렌더링용 트루타입 폰트",
             "constructor": {
                 "signatures": [
                     ""
@@ -7840,6 +8653,7 @@ const TrussCAPI = {
             "name": "FileWriter",
             "desc": "Streaming file writer with immediate flush",
             "desc_ja": "即時フラッシュ付きストリーミングファイルライター",
+            "desc_ko": "즉시 플러시되는 스트리밍 파일 라이터",
             "constructor": {
                 "signatures": [
                     ""
@@ -7911,6 +8725,7 @@ const TrussCAPI = {
             "name": "FileReader",
             "desc": "Streaming file reader for large files",
             "desc_ja": "大きなファイル用ストリーミングファイルリーダー",
+            "desc_ko": "대용량 파일용 스트리밍 파일 리더",
             "constructor": {
                 "signatures": [
                     ""
@@ -8013,22 +8828,26 @@ const TrussCAPI = {
         {
             "name": "ColorHSB",
             "desc": "HSB color space (H/S/B: 0-1)",
-            "desc_ja": "HSB色空間 (H/S/B: 0-1)"
+            "desc_ja": "HSB色空間 (H/S/B: 0-1)",
+            "desc_ko": "HSB 색공간 (H/S/B: 0-1)"
         },
         {
             "name": "ColorOKLCH",
             "desc": "Perceptually uniform OKLCH color",
-            "desc_ja": "知覚均一なOKLCHカラー"
+            "desc_ja": "知覚均一なOKLCHカラー",
+            "desc_ko": "지각적 균일 OKLCH 색상"
         },
         {
             "name": "ChipSound",
             "desc": "Chip/synthesized sound generation",
-            "desc_ja": "チップ/合成サウンド生成"
+            "desc_ja": "チップ/合成サウンド生成",
+            "desc_ko": "칩/합성 사운드 생성"
         },
         {
             "name": "EasyCam",
             "desc": "3D camera with mouse control",
-            "desc_ja": "マウス操作対応3Dカメラ"
+            "desc_ja": "マウス操作対応3Dカメラ",
+            "desc_ko": "마우스 조작 가능한 3D 카메라"
         }
     ]
 };
