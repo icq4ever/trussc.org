@@ -340,7 +340,7 @@
 <body>
     <div class="topbar">
         <h1><a href="../">TrussC</a> API Reference</h1>
-        <span class="subtitle">See also: <a href="../sketch/reference/">TrussSketch Reference</a></span>
+        <span class="subtitle" id="subtitle">C++ API Reference</span>
         <div class="nav-links">
             <a href="../">Home</a>
             <a href="../examples/">Examples</a>
@@ -360,8 +360,13 @@
         <div class="tooltip" id="tooltip"></div>
     </div>
 
-    <script src="../sketch/trusssketch-api.js"></script>
+    <script src="../generated/trussc-api.js"></script>
     <script>
+        // Show version in subtitle
+        if (TrussCAPI.version) {
+            document.getElementById('subtitle').textContent = 'C++ API Reference — ' + TrussCAPI.version;
+        }
+
         const sidebar = document.getElementById('sidebar-list');
         const detail = document.getElementById('detail');
         const searchInput = document.getElementById('search');
@@ -370,7 +375,7 @@
         const items = [];
 
         // Functions (grouped by category)
-        for (const cat of TrussSketchAPI.categories) {
+        for (const cat of TrussCAPI.categories) {
             for (const fn of cat.functions) {
                 items.push({
                     kind: 'function',
@@ -382,7 +387,7 @@
         }
 
         // Types
-        for (const t of TrussSketchAPI.types) {
+        for (const t of TrussCAPI.types) {
             items.push({
                 kind: 'type',
                 category: 'Types',
@@ -392,7 +397,7 @@
         }
 
         // Constants
-        for (const c of TrussSketchAPI.constants) {
+        for (const c of TrussCAPI.constants) {
             items.push({
                 kind: 'constant',
                 category: 'Constants',
@@ -521,7 +526,7 @@
         function renderFunctionDetail(name, category) {
             // Collect all overloads of this function name
             const overloads = [];
-            for (const cat of TrussSketchAPI.categories) {
+            for (const cat of TrussCAPI.categories) {
                 for (const fn of cat.functions) {
                     if (fn.name === name) {
                         overloads.push({ ...fn, category: cat.name });
@@ -568,7 +573,7 @@
          * Render type detail — constructor, properties, methods, statics
          */
         function renderTypeDetail(name) {
-            const t = TrussSketchAPI.types.find(t => t.name === name);
+            const t = TrussCAPI.types.find(t => t.name === name);
             if (!t) return;
 
             let html = backButton();
@@ -642,7 +647,7 @@
          * Render constant detail
          */
         function renderConstantDetail(name) {
-            const c = TrussSketchAPI.constants.find(c => c.name === name);
+            const c = TrussCAPI.constants.find(c => c.name === name);
             if (!c) return;
 
             let html = backButton();
@@ -665,7 +670,7 @@
             // Functions by category
             html += `<div class="overview-section">`;
             html += `<div class="overview-section-title">Functions</div>`;
-            for (const cat of TrussSketchAPI.categories) {
+            for (const cat of TrussCAPI.categories) {
                 html += `<div class="overview-cat-title">${esc(cat.name)}</div>`;
                 html += `<div class="overview-grid">`;
                 const seen = new Set();
@@ -691,7 +696,7 @@
             html += `<div class="overview-section">`;
             html += `<div class="overview-section-title">Types</div>`;
             html += `<div class="overview-grid">`;
-            for (const t of TrussSketchAPI.types) {
+            for (const t of TrussCAPI.types) {
                 html += `<div class="overview-item ov-type" onclick="navTo('type','${esc(t.name)}')">`;
                 html += `<span class="ov-name">${esc(t.name)}</span>`;
                 if (t.desc) html += `<span class="ov-desc">${esc(t.desc)}</span>`;
@@ -703,7 +708,7 @@
             html += `<div class="overview-section">`;
             html += `<div class="overview-section-title">Constants</div>`;
             html += `<div class="overview-grid">`;
-            for (const c of TrussSketchAPI.constants) {
+            for (const c of TrussCAPI.constants) {
                 html += `<div class="overview-item ov-const" onclick="navTo('constant','${esc(c.name)}')">`;
                 html += `<span class="ov-name">${esc(c.name)}</span>`;
                 html += `<span class="ov-val">= ${esc(String(c.value))}</span>`;

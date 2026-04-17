@@ -445,6 +445,13 @@
           "height": 600,
           "webSupported": false,
           "autoScreenshot": false
+        },
+        {
+          "name": "windowPositionExample",
+          "width": 480,
+          "height": 320,
+          "webSupported": false,
+          "autoScreenshot": false
         }
       ]
     },

@@ -18,7 +18,7 @@ async function loadApiMapping() {
     // Detect language from URL path
     const path = window.location.pathname;
     const lang = path.includes('/ja/') ? 'ja' : path.includes('/ko/') ? 'ko' : 'en';
-    const jsonPath = lang !== 'en' ? '../of-mapping.json' : 'of-mapping.json';
+    const jsonPath = lang !== 'en' ? '../generated/of-mapping.json' : 'generated/of-mapping.json';
 
     try {
         const response = await fetch(jsonPath);

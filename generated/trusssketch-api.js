@@ -102,10 +102,18 @@
             "functions": [
                 {
                     "name": "clear",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Clear screen. No args = transparent black (0,0,0,0)",
+                    "snippet": "clear(${1:0.0})"
+                },
+                {
+                    "name": "clear",
                     "params": "gray",
                     "params_typed": "float gray",
                     "return_type": "void",
-                    "desc": "Clear screen",
+                    "desc": "Clear screen. No args = transparent black (0,0,0,0)",
                     "snippet": "clear(${1:0.0})"
                 },
                 {
@@ -113,7 +121,7 @@
                     "params": "r, g, b",
                     "params_typed": "float r, float g, float b",
                     "return_type": "void",
-                    "desc": "Clear screen",
+                    "desc": "Clear screen. No args = transparent black (0,0,0,0)",
                     "snippet": "clear(${1:0.0})"
                 },
                 {
@@ -1088,6 +1096,32 @@
             ]
         },
         {
+            "name": "Memory",
+            "functions": [
+                {
+                    "name": "getSokolMemoryBytes",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Total bytes allocated by sokol libraries",
+                    "snippet": "getSokolMemoryBytes()"
+                },
+                {
+                    "name": "getSokolMemoryAllocs",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Number of active allocations in sokol libraries",
+                    "snippet": "getSokolMemoryAllocs()"
+                },
+                {
+                    "name": "releaseSglBuffers",
+                    "params_typed": "",
+                    "return_type": "void",
+                    "desc": "Release sokol_gl vertex/command buffers (auto re-allocated on next draw)",
+                    "snippet": "releaseSglBuffers()"
+                }
+            ]
+        },
+        {
             "name": "Time - Elapsed",
             "functions": [
                 {
@@ -1366,14 +1400,6 @@
         {
             "name": "Math - Interpolation",
             "functions": [
-                {
-                    "name": "lerp",
-                    "params": "a, b, t",
-                    "params_typed": "float a, float b, float t",
-                    "return_type": "float",
-                    "desc": "Linear interpolation",
-                    "snippet": "lerp(${1:a}, ${2:b}, ${3:t})"
-                },
                 {
                     "name": "clamp",
                     "params": "v, min, max",
@@ -1673,6 +1699,22 @@
                     "return_type": "string",
                     "desc": "Get text from clipboard",
                     "snippet": "getClipboardString()"
+                },
+                {
+                    "name": "isFullscreen",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "bool",
+                    "desc": "Check if window is fullscreen",
+                    "snippet": "isFullscreen()"
+                },
+                {
+                    "name": "setFullscreen",
+                    "params": "fullscreen",
+                    "params_typed": "bool fullscreen",
+                    "return_type": "void",
+                    "desc": "Set fullscreen mode",
+                    "snippet": "setFullscreen(${1:true})"
                 }
             ]
         },
@@ -2225,12 +2267,20 @@
                     "snippet": "finish()"
                 },
                 {
-                    "name": "update",
-                    "params": "dt",
-                    "params_typed": "float dt",
-                    "return_type": "void",
-                    "desc": "Update animation",
-                    "snippet": "update(getDeltaTime())"
+                    "name": "loop",
+                    "params": "count",
+                    "params_typed": "int count = -1",
+                    "return_type": "Tween@",
+                    "desc": "Set loop count (-1=infinite, 0=none, N=repeat N times)",
+                    "snippet": "loop(${1:-1})"
+                },
+                {
+                    "name": "yoyo",
+                    "params": "enable",
+                    "params_typed": "bool enable = true",
+                    "return_type": "Tween@",
+                    "desc": "Enable yoyo (reverse direction each loop)",
+                    "snippet": "yoyo()"
                 },
                 {
                     "name": "getValue",
@@ -2295,6 +2345,14 @@
                     "return_type": "float",
                     "desc": "Get end value",
                     "snippet": "getEnd()"
+                },
+                {
+                    "name": "getLoopCount",
+                    "params": "",
+                    "params_typed": "",
+                    "return_type": "int",
+                    "desc": "Get number of completed loop iterations",
+                    "snippet": "getLoopCount()"
                 }
             ]
         },
@@ -3031,7 +3089,15 @@
                     "params": "",
                     "params_typed": "",
                     "return_type": "void",
-                    "desc": "Begin drawing to FBO",
+                    "desc": "Begin drawing to FBO. No args = preserve previous content. With args = clear with specified color",
+                    "snippet": "begin()"
+                },
+                {
+                    "name": "begin",
+                    "params": "r, g, b, a",
+                    "params_typed": "float r, float g, float b, float a = 1.0",
+                    "return_type": "void",
+                    "desc": "Begin drawing to FBO. No args = preserve previous content. With args = clear with specified color",
                     "snippet": "begin()"
                 },
                 {
@@ -3696,7 +3762,7 @@
     "types": [
         {
             "name": "Vec2",
-            "desc": "2D vector",
+            "desc": "2D vector (x, y)",
             "constructor": {
                 "signatures": [
                     "",
@@ -3880,7 +3946,7 @@
         },
         {
             "name": "Vec3",
-            "desc": "3D vector",
+            "desc": "3D vector (x, y, z)",
             "constructor": {
                 "signatures": [
                     "",
@@ -4028,8 +4094,93 @@
             ]
         },
         {
+            "name": "IVec2",
+            "desc": "2D integer vector (x, y)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "int x, int y",
+                    "int v"
+                ],
+                "snippet": "IVec2(${1:x}, ${2:y})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "int",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "int",
+                    "desc": "Y component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "toVec2",
+                    "return": "Vec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to Vec2 (float)",
+                    "snippet": "toVec2()"
+                }
+            ]
+        },
+        {
+            "name": "IVec3",
+            "desc": "3D integer vector (x, y, z)",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "int x, int y, int z",
+                    "int v",
+                    "IVec2 v, int z"
+                ],
+                "snippet": "IVec3(${1:x}, ${2:y}, ${3:z})"
+            },
+            "properties": [
+                {
+                    "name": "x",
+                    "type": "int",
+                    "desc": "X component"
+                },
+                {
+                    "name": "y",
+                    "type": "int",
+                    "desc": "Y component"
+                },
+                {
+                    "name": "z",
+                    "type": "int",
+                    "desc": "Z component"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "toVec3",
+                    "return": "Vec3",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to Vec3 (float)",
+                    "snippet": "toVec3()"
+                },
+                {
+                    "name": "xy",
+                    "return": "IVec2",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get XY components as IVec2",
+                    "snippet": "xy()"
+                }
+            ]
+        },
+        {
             "name": "Color",
-            "desc": "RGBA color (0.0-1.0)",
+            "desc": "RGBA color (0.0-1.0 range)",
             "constructor": {
                 "signatures": [
                     "",
@@ -4112,6 +4263,15 @@
                     "snippet": "clamped()"
                 },
                 {
+                    "name": "toLinear",
+                    "return": "ColorLinear",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to linear RGB color space",
+                    "snippet": "toLinear()"
+                },
+                {
                     "name": "toHSB",
                     "return": "ColorHSB",
                     "signatures": [
@@ -4121,6 +4281,15 @@
                     "snippet": "toHSB()"
                 },
                 {
+                    "name": "toOKLab",
+                    "return": "ColorOKLab",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Convert to OKLab (perceptually uniform)",
+                    "snippet": "toOKLab()"
+                },
+                {
                     "name": "toOKLCH",
                     "return": "ColorOKLCH",
                     "signatures": [
@@ -4128,6 +4297,42 @@
                     ],
                     "desc": "Convert to OKLCH (L: 0-1, C: 0-0.4, H: 0-1)",
                     "snippet": "toOKLCH()"
+                },
+                {
+                    "name": "lerpLinear",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in linear RGB space",
+                    "snippet": "lerpLinear(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpHSB",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in HSB space",
+                    "snippet": "lerpHSB(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpOKLab",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in OKLab space (perceptually uniform)",
+                    "snippet": "lerpOKLab(${1:target}, ${2:t})"
+                },
+                {
+                    "name": "lerpOKLCH",
+                    "return": "Color",
+                    "signatures": [
+                        "Color target, float t"
+                    ],
+                    "desc": "Interpolate in OKLCH space (shortest hue path)",
+                    "snippet": "lerpOKLCH(${1:target}, ${2:t})"
                 }
             ],
             "static_methods": [
@@ -4150,6 +4355,36 @@
                     ],
                     "desc": "Create from HSB (H: 0-1)",
                     "snippet": "Color_fromHSB(${1:h}, ${2:s}, ${3:b})"
+                },
+                {
+                    "name": "Color_fromOKLab",
+                    "return": "Color",
+                    "signatures": [
+                        "float L, float a, float b",
+                        "float L, float a, float b, float alpha"
+                    ],
+                    "desc": "Create from OKLab (L: 0-1, a: ~-0.4-0.4, b: ~-0.4-0.4)",
+                    "snippet": "Color_fromOKLab(${1:L}, ${2:a}, ${3:b})"
+                },
+                {
+                    "name": "Color_fromOKLCH",
+                    "return": "Color",
+                    "signatures": [
+                        "float L, float C, float H",
+                        "float L, float C, float H, float a"
+                    ],
+                    "desc": "Create from OKLCH (L: 0-1, C: 0-0.4, H: 0-1)",
+                    "snippet": "Color_fromOKLCH(${1:L}, ${2:C}, ${3:H})"
+                },
+                {
+                    "name": "Color_fromLinear",
+                    "return": "Color",
+                    "signatures": [
+                        "float r, float g, float b",
+                        "float r, float g, float b, float a"
+                    ],
+                    "desc": "Create from linear RGB",
+                    "snippet": "Color_fromLinear(${1:r}, ${2:g}, ${3:b})"
                 },
                 {
                     "name": "Color_fromBytes",
@@ -5054,8 +5289,189 @@
             ]
         },
         {
+            "name": "Path",
+            "desc": "Path/Polyline for lines and curves",
+            "constructor": {
+                "signatures": [
+                    "",
+                    "vector<Vec2> verts",
+                    "vector<Vec3> verts"
+                ],
+                "snippet": "Path()"
+            },
+            "methods": [
+                {
+                    "name": "addVertex",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float z",
+                        "Vec2 v",
+                        "Vec3 v"
+                    ],
+                    "desc": "Add a vertex",
+                    "snippet": "addVertex(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "addVertices",
+                    "return": "Path@",
+                    "signatures": [
+                        "array<Vec3>@ verts",
+                        "array<Vec2>@ verts"
+                    ],
+                    "desc": "Add multiple vertices",
+                    "snippet": "addVertices(${1:verts})"
+                },
+                {
+                    "name": "getVertices",
+                    "return": "vector<Vec3>",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get all vertices",
+                    "snippet": "getVertices()"
+                },
+                {
+                    "name": "size",
+                    "return": "int",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get vertex count",
+                    "snippet": "size()"
+                },
+                {
+                    "name": "empty",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if polyline is empty",
+                    "snippet": "empty()"
+                },
+                {
+                    "name": "clear",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear all vertices",
+                    "snippet": "clear()"
+                },
+                {
+                    "name": "lineTo",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "float x, float y, float z",
+                        "Vec2 p",
+                        "Vec3 p"
+                    ],
+                    "desc": "Add line segment to point",
+                    "snippet": "lineTo(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "bezierTo",
+                    "return": "void",
+                    "signatures": [
+                        "float cx1, float cy1, float cx2, float cy2, float x, float y",
+                        "Vec2 cp1, Vec2 cp2, Vec2 to",
+                        "Vec3 cp1, Vec3 cp2, Vec3 to"
+                    ],
+                    "desc": "Add cubic bezier curve",
+                    "snippet": "bezierTo(${1:cx1}, ${2:cy1}, ${3:cx2}, ${4:cy2}, ${5:x}, ${6:y})"
+                },
+                {
+                    "name": "quadBezierTo",
+                    "return": "void",
+                    "signatures": [
+                        "float cx, float cy, float x, float y",
+                        "Vec2 cp, Vec2 to",
+                        "Vec3 cp, Vec3 to"
+                    ],
+                    "desc": "Add quadratic bezier curve",
+                    "snippet": "quadBezierTo(${1:cx}, ${2:cy}, ${3:x}, ${4:y})"
+                },
+                {
+                    "name": "curveTo",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y",
+                        "Vec2 to",
+                        "Vec3 to"
+                    ],
+                    "desc": "Add Catmull-Rom curve segment",
+                    "snippet": "curveTo(${1:x}, ${2:y})"
+                },
+                {
+                    "name": "arc",
+                    "return": "void",
+                    "signatures": [
+                        "float x, float y, float radiusX, float radiusY, float angleBegin, float angleEnd",
+                        "Vec2 center, float radiusX, float radiusY, float angleBegin, float angleEnd"
+                    ],
+                    "desc": "Add an arc",
+                    "snippet": "arc(${1:x}, ${2:y}, ${3:radiusX}, ${4:radiusY}, ${5:0}, ${6:360})"
+                },
+                {
+                    "name": "close",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Close the path",
+                    "snippet": "close()"
+                },
+                {
+                    "name": "setClosed",
+                    "return": "void",
+                    "signatures": [
+                        "bool closed"
+                    ],
+                    "desc": "Set closed state",
+                    "snippet": "setClosed(${1:true})"
+                },
+                {
+                    "name": "isClosed",
+                    "return": "bool",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Check if path is closed",
+                    "snippet": "isClosed()"
+                },
+                {
+                    "name": "draw",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Draw the polyline",
+                    "snippet": "draw()"
+                },
+                {
+                    "name": "getBounds",
+                    "return": "Rect",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get bounding box as Rect",
+                    "snippet": "getBounds()"
+                },
+                {
+                    "name": "getPerimeter",
+                    "return": "float",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get total path length",
+                    "snippet": "getPerimeter()"
+                }
+            ]
+        },
+        {
             "name": "Mesh",
-            "desc": "3D mesh with vertices, colors, normals, and indices",
+            "desc": "3D mesh with vertices, colors, normals, indices",
             "constructor": {
                 "signatures": [
                     ""
@@ -5472,187 +5888,6 @@
             ]
         },
         {
-            "name": "Path",
-            "desc": "Path/Polyline for drawing lines and curves",
-            "constructor": {
-                "signatures": [
-                    "",
-                    "vector<Vec2> verts",
-                    "vector<Vec3> verts"
-                ],
-                "snippet": "Path()"
-            },
-            "methods": [
-                {
-                    "name": "addVertex",
-                    "return": "void",
-                    "signatures": [
-                        "float x, float y",
-                        "float x, float y, float z",
-                        "Vec2 v",
-                        "Vec3 v"
-                    ],
-                    "desc": "Add a vertex",
-                    "snippet": "addVertex(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "addVertices",
-                    "return": "Path@",
-                    "signatures": [
-                        "array<Vec3>@ verts",
-                        "array<Vec2>@ verts"
-                    ],
-                    "desc": "Add multiple vertices",
-                    "snippet": "addVertices(${1:verts})"
-                },
-                {
-                    "name": "getVertices",
-                    "return": "vector<Vec3>",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Get all vertices",
-                    "snippet": "getVertices()"
-                },
-                {
-                    "name": "size",
-                    "return": "int",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Get vertex count",
-                    "snippet": "size()"
-                },
-                {
-                    "name": "empty",
-                    "return": "bool",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Check if polyline is empty",
-                    "snippet": "empty()"
-                },
-                {
-                    "name": "clear",
-                    "return": "void",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Clear all vertices",
-                    "snippet": "clear()"
-                },
-                {
-                    "name": "lineTo",
-                    "return": "void",
-                    "signatures": [
-                        "float x, float y",
-                        "float x, float y, float z",
-                        "Vec2 p",
-                        "Vec3 p"
-                    ],
-                    "desc": "Add line segment to point",
-                    "snippet": "lineTo(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "bezierTo",
-                    "return": "void",
-                    "signatures": [
-                        "float cx1, float cy1, float cx2, float cy2, float x, float y",
-                        "Vec2 cp1, Vec2 cp2, Vec2 to",
-                        "Vec3 cp1, Vec3 cp2, Vec3 to"
-                    ],
-                    "desc": "Add cubic bezier curve",
-                    "snippet": "bezierTo(${1:cx1}, ${2:cy1}, ${3:cx2}, ${4:cy2}, ${5:x}, ${6:y})"
-                },
-                {
-                    "name": "quadBezierTo",
-                    "return": "void",
-                    "signatures": [
-                        "float cx, float cy, float x, float y",
-                        "Vec2 cp, Vec2 to",
-                        "Vec3 cp, Vec3 to"
-                    ],
-                    "desc": "Add quadratic bezier curve",
-                    "snippet": "quadBezierTo(${1:cx}, ${2:cy}, ${3:x}, ${4:y})"
-                },
-                {
-                    "name": "curveTo",
-                    "return": "void",
-                    "signatures": [
-                        "float x, float y",
-                        "Vec2 to",
-                        "Vec3 to"
-                    ],
-                    "desc": "Add Catmull-Rom curve segment",
-                    "snippet": "curveTo(${1:x}, ${2:y})"
-                },
-                {
-                    "name": "arc",
-                    "return": "void",
-                    "signatures": [
-                        "float x, float y, float radiusX, float radiusY, float angleBegin, float angleEnd",
-                        "Vec2 center, float radiusX, float radiusY, float angleBegin, float angleEnd"
-                    ],
-                    "desc": "Add an arc",
-                    "snippet": "arc(${1:x}, ${2:y}, ${3:radiusX}, ${4:radiusY}, ${5:0}, ${6:360})"
-                },
-                {
-                    "name": "close",
-                    "return": "void",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Close the path",
-                    "snippet": "close()"
-                },
-                {
-                    "name": "setClosed",
-                    "return": "void",
-                    "signatures": [
-                        "bool closed"
-                    ],
-                    "desc": "Set closed state",
-                    "snippet": "setClosed(${1:true})"
-                },
-                {
-                    "name": "isClosed",
-                    "return": "bool",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Check if path is closed",
-                    "snippet": "isClosed()"
-                },
-                {
-                    "name": "draw",
-                    "return": "void",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Draw the polyline",
-                    "snippet": "draw()"
-                },
-                {
-                    "name": "getBounds",
-                    "return": "Rect",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Get bounding box as Rect",
-                    "snippet": "getBounds()"
-                },
-                {
-                    "name": "getPerimeter",
-                    "return": "float",
-                    "signatures": [
-                        ""
-                    ],
-                    "desc": "Get total path length",
-                    "snippet": "getPerimeter()"
-                }
-            ]
-        },
-        {
             "name": "Sound",
             "desc": "Audio playback",
             "constructor": {
@@ -5889,6 +6124,42 @@
                     ],
                     "desc": "Get font size",
                     "snippet": "getSize()"
+                },
+                {
+                    "name": "clearAtlas",
+                    "return": "void",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Clear font atlas (GPU memory freed, glyphs re-rasterized on next draw)",
+                    "snippet": "clearAtlas()"
+                },
+                {
+                    "name": "getMemoryUsage",
+                    "return": "size_t",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get atlas memory usage in bytes",
+                    "snippet": "getMemoryUsage()"
+                },
+                {
+                    "name": "getLoadedGlyphCount",
+                    "return": "size_t",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get number of loaded glyphs",
+                    "snippet": "getLoadedGlyphCount()"
+                },
+                {
+                    "name": "getAtlasCount",
+                    "return": "size_t",
+                    "signatures": [
+                        ""
+                    ],
+                    "desc": "Get number of atlas pages",
+                    "snippet": "getAtlasCount()"
                 }
             ]
         },

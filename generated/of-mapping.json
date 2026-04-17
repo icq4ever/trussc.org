@@ -97,6 +97,20 @@
           "notes": "",
           "notes_ja": "",
           "notes_ko": ""
+        },
+        {
+          "of": "ofGetWindowMode",
+          "tc": "isFullscreen()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofSetFullscreen",
+          "tc": "setFullscreen(fullscreen)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
         }
       ]
     },
@@ -213,6 +227,13 @@
           "notes_ko": ""
         },
         {
+          "of": "ofDrawBitmapStringHighlight",
+          "tc": "drawBitmapStringHighlight(text, x, y, background, foreground)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
           "of": "ofSetFrameRate",
           "tc": "setFps(fps)",
           "notes": "",
@@ -243,6 +264,27 @@
         {
           "of": "ofSetCircleResolution",
           "tc": "setCircleResolution(resolution)",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofPushStyle",
+          "tc": "pushStyle()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofPopStyle",
+          "tc": "popStyle()",
+          "notes": "",
+          "notes_ja": "",
+          "notes_ko": ""
+        },
+        {
+          "of": "ofEnableBlendMode",
+          "tc": "setBlendMode(mode)",
           "notes": "",
           "notes_ja": "",
           "notes_ko": ""
@@ -317,7 +359,7 @@
     {
       "id": "math",
       "name": "Math",
-      "name_ja": "수학",
+      "name_ja": "数学",
       "name_ko": "수학",
       "order": 4,
       "mappings": [
@@ -352,8 +394,8 @@
         {
           "of": "ofLerp",
           "tc": "lerp(a, b, t)",
-          "notes": "",
-          "notes_ja": "",
+          "notes": "std::lerp (C++20)",
+          "notes_ja": "std::lerp (C++20)",
           "notes_ko": ""
         },
         {
@@ -920,6 +962,20 @@
           "notes": "3D vector (x, y, z)",
           "notes_ja": "3Dベクトル (x, y, z)",
           "notes_ko": "3D 벡터 (x, y, z)"
+        },
+        {
+          "of": "-",
+          "tc": "IVec2",
+          "notes": "2D integer vector (x, y)",
+          "notes_ja": "2D整数ベクトル (x, y)",
+          "notes_ko": "2D 정수 벡터 (x, y)"
+        },
+        {
+          "of": "-",
+          "tc": "IVec3",
+          "notes": "3D integer vector (x, y, z)",
+          "notes_ja": "3D整数ベクトル (x, y, z)",
+          "notes_ko": "3D 정수 벡터 (x, y, z)"
         },
         {
           "of": "glm::mat4 / ofMatrix4x4",
